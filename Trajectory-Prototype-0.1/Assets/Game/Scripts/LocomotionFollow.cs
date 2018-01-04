@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class LocomotionFollow : MonoBehaviour {
 
-    public HandController handController;
+    public HandController leftHand;
+    public HandController rightHand;
+    public GameObject player; //cameraEye object
+
     public float distanceFromPlayer;
     private GameObject cube;
 
@@ -16,11 +19,11 @@ public class LocomotionFollow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (!handController.grabbedObj)
+        if (!leftHand.grabbedObj && !rightHand.grabbedObj)
         {
-            Ray ray = new Ray(cube.transform.position, transform.position);
+            Ray ray = new Ray(cube.transform.position, (player.transform.position - cube.transform.position));
             Vector3 destPoint = ray.GetPoint(distanceFromPlayer);
-
+            Debug.DrawRay(cube.transform.position, (player.transform.position - cube.transform.position), Color.green, .1f);
             transform.position = Vector3.Lerp(transform.position, new Vector3(destPoint.x, cube.transform.position.y - .25f, destPoint.z), Time.deltaTime);
         }
 		

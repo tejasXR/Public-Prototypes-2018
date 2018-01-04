@@ -52,6 +52,10 @@ public class HandController : MonoBehaviour {
         cubeRb.useGravity = false;
         other.transform.parent = trackedObj.transform;
         grabbedObj = true;
+        if (grabbedObj)
+        {
+            print("graddedObj true");
+        }
     }
 
     void ThrowObject(Collider other)
