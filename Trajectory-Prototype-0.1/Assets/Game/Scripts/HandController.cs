@@ -7,19 +7,35 @@ public class HandController : MonoBehaviour {
     public SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device device;
 
+    public bool cubeFollow = false;
+
     private Rigidbody rb;
+
+    private GameObject cube;
+    public GameObject player; //cameraRig object
 
 
 	// Use this for initialization
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
+        cube = GameObject.Find("Cube");
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
         device = SteamVR_Controller.Input((int)trackedObj.index);
+
+        if (cubeFollow)
+        {
+            player.transform.position = Vector3.Lerp(player.transform.position, new Vector3(cube.transform.position.x, cube.transform.position.y - .5f, cube.transform.position.z), Time.deltaTime);
+        }
+
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        {
+            //Teleport();
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -35,11 +51,6 @@ public class HandController : MonoBehaviour {
             {
                 ThrowObject(other);
             }
-
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
-            {
-                print("Get touchpad down");
-            }
         }
     }
 
@@ -49,6 +60,7 @@ public class HandController : MonoBehaviour {
         cubeRb.isKinematic = true;
         cubeRb.useGravity = false;
         other.transform.parent = trackedObj.transform;
+        cubeFollow = false;
     }
 
     void ThrowObject(Collider other)
@@ -60,9 +72,15 @@ public class HandController : MonoBehaviour {
 
         cubeRb.velocity = device.velocity;
         cubeRb.angularVelocity = device.angularVelocity;
-        print(rb.angularVelocity);
 
         other.transform.parent = null;
+        cubeFollow = true;
 
+    }
+
+    void Teleport()
+    {
+        player.transform.position = cube.transform.position;
+        //GrabObject(other);
     }
 }
