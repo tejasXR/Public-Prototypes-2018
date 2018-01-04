@@ -4,28 +4,65 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour {
 
-    private SteamVR_TrackedObject trackedObj;
+    public SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device device;
+
+    private Rigidbody rb;
 
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         device = SteamVR_Controller.Input((int)trackedObj.index);
+    }
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "cube")
         {
-            print("Get trigger down");
-        }
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                GrabObject(other);
+            }
 
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-        {
-            print("Get trigger up");
+            if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                ThrowObject(other);
+            }
+
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                print("Get touchpad down");
+            }
         }
+    }
+
+    void GrabObject(Collider other)
+    {
+        Rigidbody cubeRb = other.gameObject.GetComponent<Rigidbody>();
+        cubeRb.isKinematic = true;
+        cubeRb.useGravity = false;
+        other.transform.parent = trackedObj.transform;
+    }
+
+    void ThrowObject(Collider other)
+    {
+        
+        Rigidbody cubeRb = other.gameObject.GetComponent<Rigidbody>();
+        cubeRb.isKinematic = false;
+        cubeRb.useGravity = true;
+
+        cubeRb.velocity = device.velocity;
+        cubeRb.angularVelocity = device.angularVelocity;
+        print(rb.angularVelocity);
+
+        other.transform.parent = null;
 
     }
 }
