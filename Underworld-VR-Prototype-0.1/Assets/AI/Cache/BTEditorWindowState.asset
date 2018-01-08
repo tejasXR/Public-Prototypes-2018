@@ -16,8 +16,8 @@ MonoBehaviour:
   - AssetPath: .currentai
     BehaviorTreeName: (No AI Selected)
     BehaviorTreeID: 1
-    LastUpdate: 636510195122497040
-    LastModified: 636510195132570590
+    LastUpdate: 636510200327188309
+    LastModified: 636510200337695718
     Errored: 0
   - AssetPath: .createxml
     BehaviorTreeName: Create New Behavior Tree
@@ -28,8 +28,8 @@ MonoBehaviour:
   - AssetPath: Assets/AI/BehaviorTrees/WaypointPatrol.txt
     BehaviorTreeName: WaypointPatrol
     BehaviorTreeID: 1
-    LastUpdate: 636510195122497040
-    LastModified: 636510195132570590
+    LastUpdate: 636510200327188309
+    LastModified: 636510200337695718
     Errored: 0
   TreeState:
     _branchRepo:
@@ -77,7 +77,7 @@ MonoBehaviour:
       _type: 4
       _stateIndex: 1
       _parent: 0
-      _lastUpdate: 636510195122497040
+      _lastUpdate: 636510200327188309
       _children: 02000000
       _variables: 
       _focused: 0
@@ -435,7 +435,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movespeed
-        _currentValue: 2
+        _currentValue: 1
         _recordChange: 1
         _changed: 0
       - _field: facetarget
@@ -457,7 +457,7 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 8
       _parent: 7
-      _lastUpdate: 0
+      _lastUpdate: 636510200026785594
       _children: 
       _variables: 
       _focused: 0
@@ -591,7 +591,7 @@ MonoBehaviour:
         _recordChange: 1
         _changed: 0
       - _field: movespeed
-        _currentValue: 5
+        _currentValue: 3
         _recordChange: 1
         _changed: 0
       - _field: facetarget
@@ -613,10 +613,10 @@ MonoBehaviour:
       _type: 15
       _stateIndex: 11
       _parent: 10
-      _lastUpdate: 0
+      _lastUpdate: 636510200327188309
       _children: 
       _variables: 
-      _focused: 0
+      _focused: 1
     - _fields:
       - _field: name
         _currentValue: near
@@ -812,5 +812,5 @@ MonoBehaviour:
       _lastUpdate: 636510195122497040
       _children: 
       _variables: 
-      _focused: 1
+      _focused: 0
     _freeList: 
