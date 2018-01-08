@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114233808981126690}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,13 +106,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1718750113421010}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9153da453b87b334ea98aa7fa179272d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDestroyRate: 2
-  bulletSpeed: 9
+  damage: 1
 --- !u!135 &135415260925319410
 SphereCollider:
   m_ObjectHideFlags: 1
