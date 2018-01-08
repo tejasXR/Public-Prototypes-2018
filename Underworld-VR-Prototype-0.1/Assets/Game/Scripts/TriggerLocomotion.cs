@@ -11,31 +11,30 @@ public class TriggerLocomotion : MonoBehaviour
     public float triggerAxis;
     public GameObject cameraRig;
     public GameObject player; //camera Eye object
-    public AudioSource sprintingAudio;
-    public AudioSource afterSprintingAudio;
+    //public AudioSource sprintingAudio;
+    //public AudioSource afterSprintingAudio;
 
     public GameObject bodyCollider;
     //private Rigidbody bodyRb; //rigid body of the body Collider;
 
     //Movement Speeds
-    public float sprintInertia;
-    public float sprintInertiaSpeed;
+    //public float sprintInertia;
+    //public float sprintInertiaSpeed;
 
     public float moveSpeed;
-    public float staminaStart;
-    public float stamina;
-    public float staminaRecovery;
-    public float staminaDrain;
-    public float sprintSpeed;
+    //public float staminaStart;
+    //public float stamina;
+    //public float staminaRecovery;
+    //public float staminaDrain;
+    //public float sprintSpeed;
 
-    private bool isSprinting;
-    private bool sprintSoundPlayed;
+    //private bool isSprinting;
+    //private bool sprintSoundPlayed;
 
     // Use this for initialization
     void Start()
     {
-        //sprintSpeed = 1;
-        stamina = staminaStart;
+        //stamina = staminaStart;
     }
 
     // Update is called once per frame
@@ -44,7 +43,7 @@ public class TriggerLocomotion : MonoBehaviour
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object
         triggerAxis = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger).x; //Gets depth of trigger press    
 
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad) && stamina >= 0f)
+        /*if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad) && stamina >= 0f)
         {
             stamina -= staminaDrain * Time.deltaTime;
             sprintInertia = Mathf.Lerp(sprintInertia, 1, Time.deltaTime * sprintInertiaSpeed);
@@ -69,7 +68,7 @@ public class TriggerLocomotion : MonoBehaviour
             }
             sprintSoundPlayed = false;
 
-        }
+        }*/
     }
 
     private void FixedUpdate()
@@ -78,11 +77,11 @@ public class TriggerLocomotion : MonoBehaviour
         bodyCollider.transform.position = new Vector3(player.transform.position.x, bodyCollider.transform.position.y, player.transform.position.z); //always follow the player around
         cameraRig.transform.position = new Vector3(cameraRig.transform.position.x, bodyCollider.transform.position.y, cameraRig.transform.position.z);
 
-        if (triggerAxis > .15f)
+        if (triggerAxis > .15f) //If the trigger is pressed passed a certain threshold
         {
             //Assemble beginning variables
             controllerForward = trackedObj.transform.forward;
-            moveSpeed = triggerAxis + (sprintSpeed * sprintInertia);
+            moveSpeed = triggerAxis;// + (sprintSpeed * sprintInertia);
             Vector3 direction = new Vector3(controllerForward.x, 0, controllerForward.z);
 
             //If the bodyCollider hits something within a .5 unit distance, stop, else, move the whole cameraRig
@@ -95,12 +94,12 @@ public class TriggerLocomotion : MonoBehaviour
         }
     }
 
-    private void SprintSound()
+    /*private void SprintSound()
     {
         if (!sprintSoundPlayed)
         {
             sprintingAudio.Play();
             sprintSoundPlayed = true;
         }
-    }
+    }*/
 }
