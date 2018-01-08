@@ -6,13 +6,14 @@ public class Enemy : MonoBehaviour {
 
     public float enemyHealth;
     public Player playerController;
-    //public float enemyGiveHealth; //Amount of health enemy gives to player after it is destroyed
+    private float enemyGiveHealth; //Amount of health enemy gives to player after it is destroyed
 
     //public GameObject bulletPrefab;
 
 	// Use this for initialization
 	void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
+        enemyGiveHealth = enemyHealth;
 	}
 	
 	// Update is called once per frame
@@ -37,7 +38,7 @@ public class Enemy : MonoBehaviour {
 
     private void OnDestroy()
     {
-        playerController.playerHealth += enemyHealth;
+        playerController.playerHealth += enemyGiveHealth;
 
     }
 }
