@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     public float enemyHealth;
-    public Player playerController;
+    public Player playerController; //Whole of player object
     private float enemyGiveHealth; //Amount of health enemy gives to player after it is destroyed
     public GameObject player; //cameraEye object
 
@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour
     public GameObject enemyBulletPrefab;
     public Transform enemyBulletSpawn;
 
+    public Vector3 targetPosition;
+
+    private Ray ray;
 
 
     //public GameObject bulletPrefab;
@@ -28,11 +31,20 @@ public class Enemy : MonoBehaviour
     {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         enemyGiveHealth = enemyHealth;
+
+        //targetPosition = 
+
+        Vector3 randomDirection = new Vector3(Random.Range(-1, 1), Random.Range(.5f,1), Random.Range(-1, 1));
+        ray = new Ray(playerController.transform.position, randomDirection);
+
+        targetPosition = ray.GetPoint(8);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime);
 
         playerDirection = player.transform.position - transform.position;
 
@@ -55,6 +67,8 @@ public class Enemy : MonoBehaviour
             enemyBulletTimer = enemyBulletFireRate;
             Fire();
         }
+
+
 
 
     }
