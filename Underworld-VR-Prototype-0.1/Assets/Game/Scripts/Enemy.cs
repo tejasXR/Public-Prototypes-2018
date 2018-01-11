@@ -119,7 +119,7 @@ public class Enemy : MonoBehaviour
         int coinFlip = Random.Range(0, 2);
         if (coinFlip == 0)
         {
-            randomDirection = new Vector3(Random.Range(-.5f, -1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+            randomDirection = new Vector3(Random.Range(-1f, -.5f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
         } else
         {
             randomDirection = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));

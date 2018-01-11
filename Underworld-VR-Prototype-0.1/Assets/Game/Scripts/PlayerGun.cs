@@ -8,6 +8,7 @@ public class PlayerGun : MonoBehaviour {
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+    public Vector3 bulletSpawnStart;
 
     public float bulletFireRate; //bullets fires per second
     public float bulletTimer;
@@ -19,7 +20,7 @@ public class PlayerGun : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        bulletSpawnStart = bulletSpawn.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -45,6 +46,11 @@ public class PlayerGun : MonoBehaviour {
 
     void Fire()
     {
+        Ray ray = new Ray(bulletSpawn.transform.position, transform.forward);
+        Vector3 gunDownSights = ray.GetPoint(15); //Gets point 5 units of distance point out of gun
+        Vector3 randomFire = gunDownSights + (new Vector3(0f, Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * (1-gunAccuracy));
+
+        //bulletSpawn.transform.position = bulletSpawnStart *
 
         if (bulletTimer == bulletFireRate)
         {
@@ -52,7 +58,7 @@ public class PlayerGun : MonoBehaviour {
             var bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
             // Add velocity to the bullet
-            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
+            bullet.GetComponent<Rigidbody>().velocity = randomFire * bulletSpeed;
 
             // Destroy the bullet after 2 seconds
             Destroy(bullet, 2.0f);
