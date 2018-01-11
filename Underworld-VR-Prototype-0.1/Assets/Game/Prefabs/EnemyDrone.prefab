@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135663169779669824}
   - component: {fileID: 114615931794408200}
   m_Layer: 0
-  m_Name: PA_Drone
+  m_Name: EnemyDrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ MonoBehaviour:
   enemyHealth: 10
   playerController: {fileID: 0}
   player: {fileID: 0}
-  enemyBulletFireRate: 0.4
+  enemyBulletFireRate: 1
   enemyBulletTimer: 0
   enemyBulletSpeed: 10
   enemyBulletPrefab: {fileID: 1718750113421010, guid: 73ffc1378bff62f4091f82fffcc272c7,
@@ -473,6 +473,7 @@ MonoBehaviour:
   enemyMoveTimer: 0
   explosionPrefab: {fileID: 1000013462590818, guid: 4983334044ca77d4eba128fe4ee15dfb,
     type: 2}
+  enemyAccuracy: 0.5
 --- !u!135 &135663169779669824
 SphereCollider:
   m_ObjectHideFlags: 1

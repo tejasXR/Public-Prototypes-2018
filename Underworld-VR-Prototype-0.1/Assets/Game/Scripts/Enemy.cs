@@ -32,6 +32,10 @@ public class Enemy : MonoBehaviour
 
     public GameObject explosionPrefab;
 
+    public float enemyAccuracy;
+
+    public Vector3 enemyBulletDirection;
+
     //public GameObject bulletPrefab;
 
     // Use this for initialization
@@ -50,7 +54,8 @@ public class Enemy : MonoBehaviour
         
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
 
-        playerDirection = player.transform.position - transform.position;
+        playerDirection = enemyBulletDirection - transform.position;
+
 
         if (enemyHealth <= 0)
         {
@@ -59,7 +64,7 @@ public class Enemy : MonoBehaviour
 
         //Look at player
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        transform.rotation = rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
 
         if (enemyBulletTimer < enemyBulletFireRate)
         {
@@ -101,6 +106,13 @@ public class Enemy : MonoBehaviour
 
     void Fire()
     {
+        //Ray ray = new Ray(enemyBulletSpawn.transform.position, player.transform.position); //draws a ray before shooting from the bullet spawner to the player
+        //float distanceToPlayer = Vector3.Distance(enemyBulletSpawn.transform.position, player.transform.position);
+        //Vector3 gunDownSights = ray.GetPoint(distanceToPlayer); 
+
+        Vector3 randomFire = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * (1 - enemyAccuracy);
+        enemyBulletDirection = player.transform.position + randomFire;
+        print(enemyBulletDirection);
 
         if (enemyBulletTimer == enemyBulletFireRate)
         {
@@ -108,7 +120,7 @@ public class Enemy : MonoBehaviour
             var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawn.position, enemyBulletSpawn.rotation);
 
             // Add velocity to the bullet
-            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * enemyBulletSpeed;
+            bullet.GetComponent<Rigidbody>().velocity = enemyBulletSpawn.transform.forward * enemyBulletSpeed;
 
             // Destroy the bullet after 2 seconds
             Destroy(bullet, 2.0f);
