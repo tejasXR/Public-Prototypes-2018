@@ -471,6 +471,8 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   randomDirection: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
+  explosionPrefab: {fileID: 1000013462590818, guid: 4983334044ca77d4eba128fe4ee15dfb,
+    type: 2}
 --- !u!135 &135663169779669824
 SphereCollider:
   m_ObjectHideFlags: 1

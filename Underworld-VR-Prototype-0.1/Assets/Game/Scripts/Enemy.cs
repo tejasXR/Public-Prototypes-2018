@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
+    public GameObject explosionPrefab;
+
     //public GameObject bulletPrefab;
 
     // Use this for initialization
@@ -92,6 +94,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
         playerController.playerHealth += enemyGiveHealth;
 
     }
