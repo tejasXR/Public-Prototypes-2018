@@ -21,8 +21,14 @@ public class Enemy : MonoBehaviour
 
     public Vector3 targetPosition;
 
+    public Vector3 randomDirection;
+    //public GameObject randomDir;
+
     private Ray ray;
 
+    public float enemyMoveTimer; //time in seconds before enemy switches places
+
+    private Vector3 velocity = Vector3.zero;
 
     //public GameObject bulletPrefab;
 
@@ -30,21 +36,17 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player");
         enemyGiveHealth = enemyHealth;
 
-        //targetPosition = 
-
-        Vector3 randomDirection = new Vector3(Random.Range(-1, 1), Random.Range(.5f,1), Random.Range(-1, 1));
-        ray = new Ray(playerController.transform.position, randomDirection);
-
-        targetPosition = ray.GetPoint(8);
+        RandomPosition();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime);
+        
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
 
         playerDirection = player.transform.position - transform.position;
 
@@ -68,7 +70,12 @@ public class Enemy : MonoBehaviour
             Fire();
         }
 
-
+        enemyMoveTimer -= Time.deltaTime;
+        if (enemyMoveTimer <= 0)
+        {
+            RandomPosition();
+            enemyMoveTimer = Random.Range(5, 10);
+        }
 
 
     }
@@ -105,5 +112,20 @@ public class Enemy : MonoBehaviour
 
             enemyBulletTimer = 0;
         }
+    }
+
+    void RandomPosition()
+    {
+        int coinFlip = Random.Range(0, 2);
+        if (coinFlip == 0)
+        {
+            randomDirection = new Vector3(Random.Range(-.5f, -1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+        } else
+        {
+            randomDirection = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+        }
+        ray = new Ray(playerController.transform.position, randomDirection);
+        //randomDir.transform.position = randomDirection;
+        targetPosition = ray.GetPoint(Random.Range(7f, 10f));
     }
 }

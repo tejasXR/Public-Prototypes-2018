@@ -13,6 +13,8 @@ public class PlayerGun : MonoBehaviour {
     public float bulletTimer;
     public float bulletSpeed;
 
+    public float gunAccuracy;
+
 
 
 	// Use this for initialization
