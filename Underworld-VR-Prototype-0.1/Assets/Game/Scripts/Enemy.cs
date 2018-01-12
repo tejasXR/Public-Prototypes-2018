@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
 
         Vector3 randomFire = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * (1 - enemyAccuracy);
         enemyBulletDirection = player.transform.position + randomFire;
-        print(enemyBulletDirection);
+        //print(enemyBulletDirection);
 
         if (enemyBulletTimer == enemyBulletFireRate)
         {
