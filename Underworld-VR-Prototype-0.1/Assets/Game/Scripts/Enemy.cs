@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
             Instantiate(bulletDrop, transform.position, transform.rotation);
         }
 
-        Instantiate(bulletDropExplosion, transform.position, transform.rotation);
+        //Instantiate(bulletDropExplosion, transform.position, transform.rotation);
 
         //playerController.playerHealth += enemyGiveHealth;
 

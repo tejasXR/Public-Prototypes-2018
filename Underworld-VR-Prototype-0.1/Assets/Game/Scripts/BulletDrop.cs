@@ -4,25 +4,39 @@ using UnityEngine;
 
 public class BulletDrop : MonoBehaviour {
 
-    public GameObject player; //bodyCollider Object
+    public Player playerController;
+
+    public GameObject bodyCollider; //bodyCollider Object
     public float speed;
     private Rigidbody rb;
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("BodyCollider");
-
+        bodyCollider = GameObject.Find("BodyCollider");
+        playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        transform.LookAt(player.transform.position);
-        rb.AddRelativeForce(0, 0, speed);
+        //rb.AddForce((bodyCollider.transform.position - transform.position).normalized * speed * Time.smoothDeltaTime);
+
         
+        transform.LookAt(bodyCollider.transform.position);
+        rb.AddRelativeForce(0, 0, speed);
+
         //rb.AddForce()
 
-        //transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime * speed);
-	}
+        //transform.position = Vector3.Lerp(transform.position, bodyCollider.transform.position, Time.deltaTime * speed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == bodyCollider)
+        {
+            playerController.playerBullets += 1;
+            Destroy(gameObject);
+        }
+    }
 }

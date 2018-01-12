@@ -51,4 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aada454550e6fcf4e8ac9084e58d03b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPower: 25
+  explosionPower: 0
