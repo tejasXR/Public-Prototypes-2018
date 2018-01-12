@@ -36,6 +36,9 @@ public class Enemy : MonoBehaviour
 
     public Vector3 enemyBulletDirection;
 
+    public GameObject bulletDropExplosion;
+    public GameObject bulletDrop;
+
     //public GameObject bulletPrefab;
 
     // Use this for initialization
@@ -64,7 +67,7 @@ public class Enemy : MonoBehaviour
 
         //Look at player
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 2f * Time.deltaTime);
 
         if (enemyBulletTimer < enemyBulletFireRate)
         {
@@ -100,7 +103,14 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
-        playerController.playerHealth += enemyGiveHealth;
+        for (int i = 0; i < enemyGiveHealth; i++)
+        {
+            Instantiate(bulletDrop, transform.position, transform.rotation);
+        }
+
+        Instantiate(bulletDropExplosion, transform.position, transform.rotation);
+
+        //playerController.playerHealth += enemyGiveHealth;
 
     }
 
