@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour {
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
         }*/
 
-        print(Time.timeScale);
+        //print(Time.timeScale);
        
 
     }
