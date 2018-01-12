@@ -15,16 +15,20 @@ public class BulletDrop : MonoBehaviour {
         bodyCollider = GameObject.Find("BodyCollider");
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         rb = GetComponent<Rigidbody>();
+
+        //rb.centerOfMass = Vector3.zero;
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         //rb.AddForce((bodyCollider.transform.position - transform.position).normalized * speed * Time.smoothDeltaTime);
 
+        rb.MovePosition(Vector3.zero * Time.deltaTime);
         
-        transform.LookAt(bodyCollider.transform.position);
-        rb.AddRelativeForce(0, 0, speed);
+        //transform.LookAt(bodyCollider.transform.position);
+        //rb.AddRelativeForce(0, 0, speed);
 
         //rb.AddForce()
 
@@ -35,7 +39,7 @@ public class BulletDrop : MonoBehaviour {
     {
         if (collision.gameObject == bodyCollider)
         {
-            playerController.playerBullets += 1;
+            playerController.playerBullets += 5;
             Destroy(gameObject);
         }
     }

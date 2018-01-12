@@ -6,6 +6,8 @@ public class PlayerGun : MonoBehaviour {
 
     public SteamVR_TrackedObject trackedObj;
 
+    public Player playerController;
+
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public Vector3 bulletSpawnStart;
@@ -28,7 +30,7 @@ public class PlayerGun : MonoBehaviour {
 
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
 
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets >= 1)
         {
             Fire();
         }
@@ -57,7 +59,7 @@ public class PlayerGun : MonoBehaviour {
         {
             //Instantiate bullet
             var bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-
+            playerController.playerBullets -= 1;
             // Add velocity to the bullet
             bullet.GetComponent<Rigidbody>().velocity = randomFire * bulletSpeed;
 
@@ -67,6 +69,7 @@ public class PlayerGun : MonoBehaviour {
             bulletTimer = 0;
         }
 
+        
 
         //Destroy bullet after 2 seconds
     }

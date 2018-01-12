@@ -90,22 +90,22 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Bullet")
         {
-            var damage = collision.gameObject.GetComponent<Bullet>().damage;
+            var damage = other.gameObject.GetComponent<Bullet>().damage;
             enemyHealth -= damage;
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
     }
 
     private void OnDestroy()
     {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
-        for (int i = 0; i < enemyGiveHealth; i++)
+        //for (int i = 0; i < enemyGiveHealth; i++)
         {
-            Instantiate(bulletDrop, transform.position, transform.rotation);
+           // Instantiate(bulletDrop, transform.position, transform.rotation);
         }
 
         //Instantiate(bulletDropExplosion, transform.position, transform.rotation);
