@@ -44,6 +44,8 @@ public class PlayerGun : MonoBehaviour {
             bulletTimer = bulletFireRate;
         }
 
+
+
     }
 
     void Fire()

@@ -54,7 +54,6 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
 
         playerDirection = enemyBulletDirection - transform.position;
@@ -67,7 +66,7 @@ public class Enemy : MonoBehaviour
 
         //Look at player
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 2f * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime);
 
         if (enemyBulletTimer < enemyBulletFireRate)
         {
@@ -90,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
         {
