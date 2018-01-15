@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 
     public float enemyHealth;
     public Player playerController; //Whole of player object
-    private float enemyGiveHealth; //Amount of health enemy gives to player after it is destroyed
+    private float enemyGiveBullets = 10; //Amount of bullets enemy gives to player after it is destroyed
     public GameObject player; //cameraEye object
 
     private Vector3 playerDirection;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         player = GameObject.FindGameObjectWithTag("Player");
-        enemyGiveHealth = enemyHealth;
+        
 
         RandomPosition();
     }
@@ -101,6 +101,8 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        playerController.playerBullets += enemyGiveBullets;
+
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         //for (int i = 0; i < enemyGiveHealth; i++)
         {
@@ -109,7 +111,6 @@ public class Enemy : MonoBehaviour
 
         //Instantiate(bulletDropExplosion, transform.position, transform.rotation);
 
-        //playerController.playerHealth += enemyGiveHealth;
 
     }
 
