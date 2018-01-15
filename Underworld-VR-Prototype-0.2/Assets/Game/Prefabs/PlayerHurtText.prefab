@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4113880592662400}
   - component: {fileID: 114193393899482430}
   m_Layer: 0
-  m_Name: EarnBulletsText
+  m_Name: PlayerHurtText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

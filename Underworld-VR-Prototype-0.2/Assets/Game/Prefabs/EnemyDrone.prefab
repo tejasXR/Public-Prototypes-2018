@@ -551,12 +551,12 @@ MonoBehaviour:
   playerController: {fileID: 0}
   player: {fileID: 0}
   enemyHealth: 3
-  enemyGiveBullets: 10
+  enemyGiveBullets: 5
   enemyBulletFireRate: 1
   enemyAttackTimer: 0
   enemyBulletSpeed: 10
   randomDirection: {x: 0, y: 0, z: 0}
-  enemyAccuracy: 0.75
+  enemyAccuracy: 0.65
   enemyBulletDirection: {x: 0, y: 0, z: 0}
   enemyBulletPrefab: {fileID: 1871618839054336, guid: 1f2f088599c9dcd408ff5c043be1b1fc,
     type: 2}
