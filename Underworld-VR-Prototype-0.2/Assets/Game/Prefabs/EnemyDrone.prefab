@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4694557436209860}
   - component: {fileID: 95923756970893396}
-  - component: {fileID: 135663169779669824}
+  - component: {fileID: 136665424003045068}
   - component: {fileID: 114615931794408200}
   - component: {fileID: 54176489487998498}
   m_Layer: 0
@@ -527,7 +527,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000877015060790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: f14b6f7503476eb4e9b2afc1cc05e719, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -560,7 +560,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   randomDirection: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
-  explosionPrefab: {fileID: 1000013462590818, guid: 4983334044ca77d4eba128fe4ee15dfb,
+  explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
   enemyAccuracy: 0.5
   enemyBulletDirection: {x: 0, y: 0, z: 0}
@@ -579,8 +579,8 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135663169779669824
-SphereCollider:
+--- !u!136 &136665424003045068
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -588,6 +588,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.38
+  m_Radius: 0.14
+  m_Height: 0.36
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

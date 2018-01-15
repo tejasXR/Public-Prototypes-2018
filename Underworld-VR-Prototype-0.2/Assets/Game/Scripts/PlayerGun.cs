@@ -43,17 +43,15 @@ public class PlayerGun : MonoBehaviour {
         {
             bulletTimer = bulletFireRate;
         }
-
-
-
+       
     }
 
     void Fire()
     {
-        Ray ray = new Ray(bulletSpawn.transform.position, bulletSpawn.transform.forward);
-        Debug.DrawRay(bulletSpawn.transform.position, bulletSpawn.transform.forward);
-        Vector3 gunDownSights = ray.GetPoint(15); //Gets point X units of distance point out of gun
-        Vector3 randomFire = gunDownSights + (new Vector3(0f, Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * (1-gunAccuracy));
+        //Ray ray = new Ray(bulletSpawn.transform.position, bulletSpawn.transform.forward);
+        //Debug.DrawRay(bulletSpawn.transform.position, bulletSpawn.transform.forward);
+        //Vector3 gunDownSights = ray.GetPoint(15); //Gets point X units of distance point out of gun
+        //Vector3 randomFire = gunDownSights + (new Vector3(0f, Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * (1-gunAccuracy));
 
         //bulletSpawn.transform.position = bulletSpawnStart *
 
@@ -69,7 +67,6 @@ public class PlayerGun : MonoBehaviour {
 
             // Destroy the bullet after 2 seconds
             Destroy(bullet, 2.0f);
-
             bulletTimer = 0;
         }
 
