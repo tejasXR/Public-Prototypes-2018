@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     //Define Basic Enemy Variables
     public float enemyHealth;
     public float enemyGiveBullets; //Amount of bullets enemy gives to player after it is destroyed
+    private Rigidbody rb;
 
     //Enemy Attack Behavior
     public float enemyBulletFireRate; //bullets fires per second
@@ -23,13 +24,18 @@ public class Enemy : MonoBehaviour
     public Vector3 enemyBulletDirection; //direction of the enemy bullet when generated
 
     public GameObject enemyBulletPrefab; //the enemy bullet gameObject
-    public GameObject explosionPrefab; //the explosion effect when destroyed
     public Transform enemyBulletSpawn; //the object for where to spawn the enemy bullet
 
     //Enemy Movement Behavior
     public Vector3 targetPosition; //the position that the enemy is constantly moving to
     public float enemyMoveTimer; //time in seconds before enemy switches places
     private Vector3 velocity = Vector3.zero; //velocity needed for smoothDamp movement
+
+    //Enemy On Destroy
+    public GameObject explosionPrefab; //the explosion effect when destroyed
+    public GameObject earnBulletText; //the text object that tells players how many bullets they've earned
+    //public Text
+
 
     void Start()
     {
@@ -39,6 +45,8 @@ public class Enemy : MonoBehaviour
         
         //Initiate RandomPosition to go to a random position when first created
         RandomPosition();
+
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -47,7 +55,8 @@ public class Enemy : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
 
         //Look at player
-        playerDirection = enemyBulletDirection - transform.position;
+        //playerDirection = enemyBulletDirection - transform.position;
+        playerDirection = player.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime);
 
@@ -59,7 +68,6 @@ public class Enemy : MonoBehaviour
         else
         {
             enemyAttackTimer = enemyBulletFireRate;
-            enemyBulletFireRate = Random.Range(.7f, 2f);
             Fire();
         }
 
@@ -85,7 +93,12 @@ public class Enemy : MonoBehaviour
         {
             var damage = other.gameObject.GetComponent<Bullet>().damage;
             enemyHealth -= damage;
+
+            //Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
+            //rb.AddForce(otherVelocity);
+
             Destroy(other.gameObject);
+
         }
     }
 
@@ -94,6 +107,8 @@ public class Enemy : MonoBehaviour
     {
         playerController.playerBullets += enemyGiveBullets;
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Instantiate(earnBulletText, transform.position, transform.rotation);
+
     }
 
     void Fire()
@@ -104,6 +119,8 @@ public class Enemy : MonoBehaviour
 
         Vector3 randomFire = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * (1 - enemyAccuracy);
         enemyBulletDirection = player.transform.position + randomFire;
+
+        enemyBulletSpawn.LookAt(enemyBulletDirection);
 
         if (enemyAttackTimer == enemyBulletFireRate)
         {
@@ -117,6 +134,8 @@ public class Enemy : MonoBehaviour
             Destroy(bullet, 2.0f);
             enemyAttackTimer = 0;
         }
+
+        enemyBulletFireRate = Random.Range(.5f, 2f);
     }
 
     //Pick a random vector around the player

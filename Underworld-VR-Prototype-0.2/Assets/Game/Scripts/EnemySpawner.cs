@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour {
         if (enemySpawnTimer <= 0)
         {
             Instantiate(enemyPrefab);
-            enemySpawnTimer = Random.Range(10f, 15f);
+            enemySpawnTimer = Random.Range(7f, 10f);
         }
 		
 	}

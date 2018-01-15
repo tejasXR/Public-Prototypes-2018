@@ -548,25 +548,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1534971ae34d6a34c86501c33268c44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 3
   playerController: {fileID: 0}
   player: {fileID: 0}
+  enemyHealth: 3
+  enemyGiveBullets: 10
   enemyBulletFireRate: 1
-  enemyBulletTimer: 0
+  enemyAttackTimer: 0
   enemyBulletSpeed: 10
+  randomDirection: {x: 0, y: 0, z: 0}
+  enemyAccuracy: 0.75
+  enemyBulletDirection: {x: 0, y: 0, z: 0}
   enemyBulletPrefab: {fileID: 1871618839054336, guid: 1f2f088599c9dcd408ff5c043be1b1fc,
     type: 2}
   enemyBulletSpawn: {fileID: 4806373159280858}
   targetPosition: {x: 0, y: 0, z: 0}
-  randomDirection: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
   explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
-  enemyAccuracy: 0.5
-  enemyBulletDirection: {x: 0, y: 0, z: 0}
-  bulletDropExplosion: {fileID: 1089334694705222, guid: 10df27ec137653b4c9dc9f97c5f1194a,
+  earnBulletText: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}
-  bulletDrop: {fileID: 1871287040755794, guid: 3978e1283c1fe8743aeacddd76b7ad67, type: 2}
 --- !u!135 &135272214298204942
 SphereCollider:
   m_ObjectHideFlags: 1

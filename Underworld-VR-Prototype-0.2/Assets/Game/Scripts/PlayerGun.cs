@@ -59,7 +59,7 @@ public class PlayerGun : MonoBehaviour {
         {
             //Instantiate bullet
             var bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-            //playerController.playerBullets -= 1;
+            playerController.playerBullets -= 1;
             // Add velocity to the bullet
             //bullet.GetComponent<Rigidbody>().velocity = randomFire * bulletSpeed;
 
