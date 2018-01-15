@@ -1,24 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
 
     public float playerBullets;
 
-    public TextMesh bulletText;
+    public TextMeshPro bulletCounter;
     //public string health;
 
 	// Use this for initialization
 	void Start () {
-        bulletText.text = "" + playerBullets.ToString();
+        bulletCounter.text = "" + playerBullets.ToString();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (bulletText.text != playerBullets.ToString())
+		if (bulletCounter.text != playerBullets.ToString())
         {
-            bulletText.text = "" + playerBullets.ToString();
+            bulletCounter.text = "" + playerBullets.ToString();
         }
 	}
 
