@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour {
     public int wave;
     public string waveTimer;
     public float timeLeft;
+    public GameObject waveText;
 
 	// Use this for initialization
 	void Start () {
-        CheckTime();
+        WaveText();
+        CheckWave();
 	}
 	
 	// Update is called once per frame
@@ -27,10 +29,17 @@ public class GameManager : MonoBehaviour {
         string niceTime = minutes.ToString("00") + " : " + seconds.ToString("00") + " : " + milliseconds.ToString("0"); 
 
         waveTimer = niceTime;
-		
+
+        if (timeLeft <= 0)
+        {
+            timeLeft = 0;
+            wave++;
+            CheckWave();
+            WaveText();
+        }	
 	}
 
-    void CheckTime()
+    void CheckWave()
     {
         switch(wave)
         {
@@ -50,5 +59,10 @@ public class GameManager : MonoBehaviour {
                 timeLeft = 60f * 5f; //5 Minutes
                 break;
         }
+    }
+
+    void WaveText()
+    {
+        Instantiate(waveText);
     }
 }
