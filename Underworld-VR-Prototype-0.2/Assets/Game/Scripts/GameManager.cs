@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour {
         int seconds = Mathf.FloorToInt(timeLeft % 60f);
         float milliseconds = (timeLeft * 1000f);
         milliseconds = milliseconds % 100;
-        //string niceTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
         string niceTime = minutes.ToString("00") + " : " + seconds.ToString("00") + " : " + milliseconds.ToString("0"); 
 
         waveTimer = niceTime;
