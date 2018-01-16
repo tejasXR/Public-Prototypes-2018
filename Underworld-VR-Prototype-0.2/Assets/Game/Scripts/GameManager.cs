@@ -5,21 +5,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public int wave;
+    public int wave = 0;
     public string waveTimer;
     public float timeLeft;
     public GameObject waveText;
+    public bool waveActive;
 
 	// Use this for initialization
 	void Start () {
-        WaveText();
-        CheckWave();
+        StartNewWave();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        timeLeft -= Time.deltaTime;
+        if (waveActive)
+        {
+            timeLeft -= Time.deltaTime;
+        }
 
         int minutes = Mathf.FloorToInt(timeLeft / 60f);
         int seconds = Mathf.FloorToInt(timeLeft % 60f);
@@ -33,15 +36,21 @@ public class GameManager : MonoBehaviour {
         if (timeLeft <= 0)
         {
             timeLeft = 0;
-            wave++;
-            CheckWave();
-            WaveText();
+            waveActive = false;
         }	
 	}
 
+    void StartNewWave()
+    {
+        wave++;
+        CheckWave();
+        Instantiate(waveText);
+        waveActive = true;
+    }
+
     void CheckWave()
     {
-        switch(wave)
+        switch (wave)
         {
             case 1:
                 timeLeft = 60f;
@@ -59,10 +68,5 @@ public class GameManager : MonoBehaviour {
                 timeLeft = 60f * 5f; //5 Minutes
                 break;
         }
-    }
-
-    void WaveText()
-    {
-        Instantiate(waveText);
     }
 }
