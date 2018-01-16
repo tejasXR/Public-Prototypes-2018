@@ -14,27 +14,30 @@ public class EnemyManager : MonoBehaviour {
 
 
 
-    public bool isActive;
+    //public bool isActive;
 
     // Use this for initialization
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        isActive = true;
+        //isActive = true;
+        CheckWave();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isActive)
+        if (gameManager.waveActive)
         {
             enemySpawnTimer -= Time.deltaTime;
+
+            if (enemySpawnTimer <= 0)
+            {
+                SpawnEnemy();
+            }
         }
 
-        if (enemySpawnTimer <= 0)
-        {
-            SpawnEnemy();
-        }
+        
 
         /*if (enemiesToSpawn == 0)
         {
@@ -45,11 +48,12 @@ public class EnemyManager : MonoBehaviour {
 
     void SpawnEnemy()
     {
+        CheckWave();
+
         Instantiate(enemyPrefab, transform.position, transform.rotation);
-        enemiesToSpawn -= 1;
+        //enemiesToSpawn -= 1;
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
 
-        CheckWave();
     }
 
     void CheckWave()

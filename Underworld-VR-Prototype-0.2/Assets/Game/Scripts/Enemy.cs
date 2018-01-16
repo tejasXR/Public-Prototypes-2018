@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameManager gameManager;
+
     //Define Basic Player Variables
     public Player playerController; //Whole of player object
     public GameObject player; //cameraEye object
@@ -42,7 +44,7 @@ public class Enemy : MonoBehaviour
         //Define player variables for enemy prefab
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         player = GameObject.FindGameObjectWithTag("Player");
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //Initiate RandomPosition to go to a random position when first created
         RandomPosition();
 
@@ -51,8 +53,16 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        //Always move towards targetPosition
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
+        if (gameManager.waveActive)
+        {
+            //Always move towards targetPosition if wave is active
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
+        } else
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1f, 5f);
+            Destroy(this.gameObject);
+        }
+        
 
         //Look at player
         //playerDirection = enemyBulletDirection - transform.position;
@@ -60,29 +70,27 @@ public class Enemy : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime);
 
-        //If the attack timer equals the fire rate, then attack, else keep increasing the timer
-        if (enemyAttackTimer < enemyBulletFireRate)
-        {
-            enemyAttackTimer += Time.deltaTime;
-        }
-        else
-        {
-            enemyAttackTimer = enemyBulletFireRate;
-            Fire();
-        }
 
-        //Constantly decrease the moveTimer and if it hits zero, move
-        enemyMoveTimer -= Time.deltaTime;
-        if (enemyMoveTimer <= 0)
+        if (gameManager.waveActive)
         {
-            RandomPosition();
-            enemyMoveTimer = Random.Range(5, 10);
-        }
+            //If the attack timer equals the fire rate, then attack, else keep increasing the timer
+            if (enemyAttackTimer < enemyBulletFireRate)
+            {
+                enemyAttackTimer += Time.deltaTime;
+            }
+            else
+            {
+                enemyAttackTimer = enemyBulletFireRate;
+                Fire();
+            }
 
-        //If helath hits zero, destroy enemy
-        if (enemyHealth <= 0)
-        {
-            Destroy(this.gameObject);
+            //Constantly decrease the moveTimer and if it hits zero, move
+            enemyMoveTimer -= Time.deltaTime;
+            if (enemyMoveTimer <= 0)
+            {
+                RandomPosition();
+                enemyMoveTimer = Random.Range(5, 10);
+            }
         }
     }
 
@@ -96,20 +104,16 @@ public class Enemy : MonoBehaviour
 
             //Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
             //rb.AddForce(otherVelocity);
-
             Destroy(other.gameObject);
 
+            if (enemyHealth <= 0)
+            {
+                EnemyDestroy();
+                Destroy(this.gameObject);
+            }
         }
     }
 
-    //If destroyed, explode into shiny things and give the plyer bullets
-    private void OnDestroy()
-    {
-        playerController.playerBullets += enemyGiveBullets;
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
-        Instantiate(earnBulletText, transform.position, transform.rotation);
-
-    }
 
     void Fire()
     {
@@ -152,5 +156,19 @@ public class Enemy : MonoBehaviour
         ray = new Ray(playerController.transform.position, randomDirection);
         //randomDir.transform.position = randomDirection;
         targetPosition = ray.GetPoint(Random.Range(4f, 7f));
+    }
+
+    //If destroyed by a bullet, explode into shiny things and give the player bullets
+    void EnemyDestroy()
+    {
+        playerController.playerBullets += enemyGiveBullets;
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Instantiate(earnBulletText, transform.position, transform.rotation);
+    }
+
+    void DisappearAfterWave()
+    {
+        //yield return new WaitForSeconds(1f);
+
     }
 }
