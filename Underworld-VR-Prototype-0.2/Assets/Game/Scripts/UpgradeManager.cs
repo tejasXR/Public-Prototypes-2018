@@ -34,7 +34,7 @@ public class UpgradeManager : MonoBehaviour {
 
         if (gameManager.upgradeActive)
         {
-            print("UpgradeManager");
+            //print("UpgradeManager");
 
             UpgradePlacement();
             
