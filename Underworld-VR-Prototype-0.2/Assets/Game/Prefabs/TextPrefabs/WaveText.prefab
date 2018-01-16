@@ -38,9 +38,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4113880592662400}
-  - component: {fileID: 114193393899482430}
+  - component: {fileID: 114267881473082826}
   m_Layer: 0
-  m_Name: EarnBulletsText
+  m_Name: WaveText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 21982047819019848, guid: 6e5dd78aed3af864e9b1fedf2795dbc9, type: 2}
+  - {fileID: 21982047819019848, guid: be7403e889a7d8c4eb5b6027444739b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +101,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214148207314790}
   m_Mesh: {fileID: 0}
---- !u!114 &114193393899482430
+--- !u!114 &114267881473082826
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,12 +109,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1962754777400622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2bd3bb2e5f2f541b7a9c1e297bf819, type: 3}
+  m_Script: {fileID: 11500000, guid: 34f63b6abadf2ec4d99db83404dfc21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   textObject: {fileID: 1214148207314790}
-  text: {fileID: 0}
+  secondsAlive: 3
+  moveZDirection: -0.02
+  flash: 1
+  panMove: 0
+  follow: 1
 --- !u!114 &114923947219076326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,10 +138,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: +5
+  m_text: Wave One
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6e5dd78aed3af864e9b1fedf2795dbc9, type: 2}
-  m_sharedMaterial: {fileID: 21982047819019848, guid: 6e5dd78aed3af864e9b1fedf2795dbc9,
+  m_fontAsset: {fileID: 11400000, guid: be7403e889a7d8c4eb5b6027444739b3, type: 2}
+  m_sharedMaterial: {fileID: 21982047819019848, guid: be7403e889a7d8c4eb5b6027444739b3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -250,5 +254,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.31, y: 1}
+  m_SizeDelta: {x: 3, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}

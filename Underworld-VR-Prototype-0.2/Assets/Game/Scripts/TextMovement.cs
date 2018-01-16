@@ -2,33 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EarnBulletsText : MonoBehaviour {
+public class TextMovement : MonoBehaviour {
 
-    public GameObject player;
+    public GameObject player; //cameraEye object
     public GameObject textObject;
-    public TextMesh text;
-    
+    //public TextMesh text;
+    public float secondsAlive;
+    public float moveZDirection;
+    public bool flash;
+    public bool panMove;
+    public bool follow;
+    //public bool lookAtPlayer;
 
-	// Use this for initialization
-	void Start () {
+
+
+    // Use this for initialization
+    void Start()
+    {
         player = GameObject.FindGameObjectWithTag("Player");
 
-        StartCoroutine(Flash());
+        if(flash)
+        {
+            StartCoroutine(Flash());
+        }
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
+        
         var playerDirection = player.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = rotation;
 
-        transform.position = Vector3.Lerp(transform.position, transform.forward,  Time.deltaTime * 0.02f);
+        if (panMove)
+        {
+            transform.position = Vector3.Lerp(transform.position, transform.forward, Time.deltaTime * moveZDirection);
+        }
+
+        if (follow)
+        {
+            transform.position = Vector3.Lerp(transform.position, player.transform.forward * 5, Time.deltaTime * 2f);
+        }
     }
 
     IEnumerator Flash()
     {
         textObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(secondsAlive);
         textObject.SetActive(false);
         yield return new WaitForSeconds(.05f);
         textObject.SetActive(true);
@@ -51,5 +72,4 @@ public class EarnBulletsText : MonoBehaviour {
         Destroy(this.gameObject);
 
     }
-
 }
