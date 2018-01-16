@@ -36,7 +36,11 @@ public class Enemy : MonoBehaviour
     //Enemy On Destroy
     public GameObject explosionPrefab; //the explosion effect when destroyed
     public GameObject earnBulletText; //the text object that tells players how many bullets they've earned
+    private float enemyDestroyTimer = 2f;
+    
     //public Text
+
+
 
 
     void Start()
@@ -60,7 +64,7 @@ public class Enemy : MonoBehaviour
         } else
         {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1f, 5f);
-            Destroy(this.gameObject);
+            DisappearAfterWave();
         }
         
 
@@ -168,7 +172,11 @@ public class Enemy : MonoBehaviour
 
     void DisappearAfterWave()
     {
-        //yield return new WaitForSeconds(1f);
+        enemyDestroyTimer -= Time.deltaTime;
+        if (enemyDestroyTimer <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 
     }
 }
