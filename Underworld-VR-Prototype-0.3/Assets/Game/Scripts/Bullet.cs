@@ -15,11 +15,14 @@ public class Bullet : MonoBehaviour {
         if (collision.gameObject.tag == "Enemy")
         {
             Instantiate(bulletHitEnemyEffect, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+
         }
 
         if (collision.gameObject.tag == "Solid")
         {
             Instantiate(bulletSolidEnemyEffect, transform.position, transform.rotation);
+            Destroy(this.gameObject);
         }
     }
 
