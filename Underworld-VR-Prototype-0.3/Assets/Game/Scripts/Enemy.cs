@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
 
             //rb.AddForce(Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f));
 
-            rb.AddForce(direction * Time.deltaTime, ForceMode.Acceleration);
+            rb.AddForce(direction, ForceMode.Acceleration);
 
         }
         else
@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
 
         playerDirection = player.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime));
+        rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 30f * Time.deltaTime));
 
         
     }
@@ -162,7 +162,7 @@ public class Enemy : MonoBehaviour
             enemyHealth -= damage;
 
             Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
-            rb.AddForce(otherVelocity);
+            rb.AddForce(otherVelocity/2);
             Destroy(other.gameObject);
 
             if (enemyHealth <= 0)
