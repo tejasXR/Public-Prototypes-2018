@@ -5,10 +5,26 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     public float damage;
-    public GameObject bulletHitEffect;
+    public GameObject bulletHitEnemyEffect;
+    public GameObject bulletSolidEnemyEffect;
+    //public GameObject bulletDissolveEffect;
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Instantiate(bulletHitEnemyEffect, transform.position, transform.rotation);
+        }
+
+        if (collision.gameObject.tag == "Solid")
+        {
+            Instantiate(bulletSolidEnemyEffect, transform.position, transform.rotation);
+        }
+    }
 
     private void OnDestroy()
     {
-        Instantiate(bulletHitEffect, transform.position, transform.rotation);
+
     }
 }
