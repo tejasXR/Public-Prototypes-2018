@@ -94,6 +94,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4678892266539730}
+  - component: {fileID: 114828845744042964}
+  - component: {fileID: 65248806117653542}
   m_Layer: 0
   m_Name: Upgrade 4
   m_TagString: Untagged
@@ -331,6 +333,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570037073949656}
   m_Mesh: {fileID: 0}
+--- !u!65 &65248806117653542
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640669193642358}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.45, y: 1.65, z: 0.13}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65440516286398242
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -617,6 +631,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114828845744042964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640669193642358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9fd6dd7dbe19042957631b5292831e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeManager: {fileID: 0}
 --- !u!114 &114882093482431616
 MonoBehaviour:
   m_ObjectHideFlags: 1

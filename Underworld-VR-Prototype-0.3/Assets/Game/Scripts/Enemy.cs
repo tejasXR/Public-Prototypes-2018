@@ -55,12 +55,47 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    private void FixedUpdate()
+    {
+        if (gameManager.waveActive)
+        {
+            //Always move towards targetPosition if wave is active
+            //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
+
+            var direction = targetPosition - transform.position;
+            var distance = Vector3.Distance(targetPosition, transform.position);
+
+            //rb.MovePosition(Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f));
+            //rb.MovePosition(targetPosition);
+
+            //rb.AddForce(Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f));
+
+            rb.AddForce(direction * Time.deltaTime, ForceMode.Acceleration);
+
+        }
+        else
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1f, 5f);
+            DisappearAfterWave();
+        }
+
+        playerDirection = player.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime));
+
+        
+    }
     void Update()
     {
         if (gameManager.waveActive)
         {
             //Always move towards targetPosition if wave is active
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
+            //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
+
+           // var direction = transform.position - targetPosition;
+
+            //rb.MovePosition(targetPosition * Time.deltaTime);
+            //rb.MovePosition(targetPosition);
         } else
         {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1f, 5f);
@@ -70,9 +105,9 @@ public class Enemy : MonoBehaviour
 
         //Look at player
         //playerDirection = enemyBulletDirection - transform.position;
-        playerDirection = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime);
+        //playerDirection = player.transform.position - transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime);
 
 
         if (gameManager.waveActive)
@@ -99,15 +134,35 @@ public class Enemy : MonoBehaviour
     }
 
     //If player bullet hits enemy
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
         {
             var damage = other.gameObject.GetComponent<Bullet>().damage;
             enemyHealth -= damage;
 
-            //Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
-            //rb.AddForce(otherVelocity);
+            Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
+            rb.AddForce(otherVelocity);
+            Destroy(other.gameObject);
+
+            if (enemyHealth <= 0)
+            {
+                EnemyDestroy();
+                Destroy(this.gameObject);
+            }
+        }
+    }*/
+
+    // Trying onCollision
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            var damage = other.gameObject.GetComponent<Bullet>().damage;
+            enemyHealth -= damage;
+
+            Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
+            rb.AddForce(otherVelocity);
             Destroy(other.gameObject);
 
             if (enemyHealth <= 0)

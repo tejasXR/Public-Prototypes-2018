@@ -92,12 +92,12 @@ public class UpgradeManager : MonoBehaviour {
     {
         for (int i = 0; i < 3; i++)
         {
-            upgrades[i].transform.position = Vector3.Lerp(upgrades[i].transform.position, upgradeStationSlots[i].transform.position, Time.deltaTime * 2f);
+            upgrades[i].transform.position = Vector3.Lerp(upgrades[i].transform.position, upgradeStationSlots[i].transform.position, Time.deltaTime);
             upgrades[i].transform.rotation = Quaternion.Slerp(upgrades[i].transform.rotation, upgradeStationSlots[i].transform.rotation, Time.deltaTime);
             //print("upgrade moving");            
         }
 
-        upgradeText.transform.position = Vector3.Lerp(upgradeText.transform.position, upgradeTextSlot.transform.position, Time.deltaTime * 2f);
+        upgradeText.transform.position = Vector3.Lerp(upgradeText.transform.position, upgradeTextSlot.transform.position, Time.deltaTime);
         upgradeText.transform.rotation = Quaternion.Slerp(upgradeText.transform.rotation, upgradeTextSlot.transform.rotation, Time.deltaTime);
 
 
@@ -109,10 +109,10 @@ public class UpgradeManager : MonoBehaviour {
 
         foreach (GameObject item in upgrades)
         {
-            item.transform.position = Vector3.Lerp(item.transform.position, new Vector3(0, -9, 0), Time.deltaTime * 2f);
+            item.transform.position = Vector3.Lerp(item.transform.position, new Vector3(0, -9, 0), Time.deltaTime);
         }
 
-        upgradeText.transform.position = Vector3.Lerp(upgradeText.transform.position, new Vector3(0, 9, 0), Time.deltaTime * 2f);
+        upgradeText.transform.position = Vector3.Lerp(upgradeText.transform.position, new Vector3(0, 9, 0), Time.deltaTime);
 
 
         upgradeBufferTimer -= Time.deltaTime;
