@@ -54,6 +54,7 @@ public class UpgradeManager : MonoBehaviour {
         if (upgradeSelected)
         {
             UpgradeReturn();
+            UpgradesNull();
         }
 		
 	}
@@ -70,15 +71,16 @@ public class UpgradeManager : MonoBehaviour {
             if (randomChance > 75 && 90 > randomChance) { upgrades[i] = redUpgrades[Random.Range(0, redUpgrades.Length)]; }
             if (randomChance > 90 && 95 > randomChance) { upgrades[i] = silverUpgrades[Random.Range(0, silverUpgrades.Length)]; }
             if (randomChance > 95 && 99 > randomChance) { upgrades[i] = goldUpgrades[Random.Range(0, goldUpgrades.Length)]; }
-            print(randomChance);
+            //print(randomChance);
         }
     }
 
     void UpgradesCreated()
     {
         for (int i = 0; i < 3; i++)
-        {            
+        {
             upgrades[i] = Instantiate(upgrades[i], transform.position, transform.rotation) as GameObject;
+            //upgrades[i] = upgrades[i] as GameObject;
         }
     }
 
@@ -94,6 +96,8 @@ public class UpgradeManager : MonoBehaviour {
 
     void UpgradeReturn()
     {
+        gameManager.upgradeActive = false;
+
         foreach (GameObject item in upgrades)
         {
             item.transform.position = Vector3.Lerp(item.transform.position, new Vector3(0, -15, 0), Time.deltaTime * 2f);
@@ -102,9 +106,9 @@ public class UpgradeManager : MonoBehaviour {
         upgradeBufferTimer -= Time.deltaTime;
         if (upgradeBufferTimer <= 0)
         {
-            gameManager.upgradeActive = false;
             upgradeSelected = false;
             upgradesRandomized = false;
+            UpgradesNull();
         }
     }
 
@@ -112,7 +116,8 @@ public class UpgradeManager : MonoBehaviour {
     {
         for (int i = 0; i < 3; i++)
         {
-            upgrades[i] = null;
+            Destroy(upgrades[i].gameObject, 3f);
+            //upgrades[i] = null;
         }
     }
 }
