@@ -53,7 +53,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4744269468277596}
-  - component: {fileID: 114556044675457776}
   - component: {fileID: 114267855826267350}
   m_Layer: 0
   m_Name: EnemExplosion2
@@ -182,17 +181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyInSeconds: 3
---- !u!114 &114556044675457776
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1587944432538656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df24952f8d15d044fbf14b303702c459, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114984539099462626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +258,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -673873598
+  randomSeed: -1277964452
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3586,7 +3574,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1244304924
+  randomSeed: 378374526
   InitialModule:
     serializedVersion: 3
     enabled: 1
