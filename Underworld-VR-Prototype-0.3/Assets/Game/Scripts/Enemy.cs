@@ -162,7 +162,7 @@ public class Enemy : MonoBehaviour
             enemyHealth -= damage;
 
             Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
-            rb.AddForce(otherVelocity/2);
+            rb.AddForce(otherVelocity/4);
             Destroy(other.gameObject);
 
             if (enemyHealth <= 0)

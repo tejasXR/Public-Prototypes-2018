@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: TimerBoardGlow
-  m_Shader: {fileID: 4800000, guid: e6f9f025efa86ad4c807ab5b845f3bba, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3f387b3c7760d5a488b5596b42425701, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -18,6 +18,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _FlickerTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MKGlowTex:
         m_Texture: {fileID: 2800000, guid: c43738b2b5ea39e488158498ed03aa6e, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -27,10 +31,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Alpha: 1
+    - _Brightness: 3
+    - _FlickerSpeed: 1
+    - _Fold: 1
+    - _GlitchIntensity: 0
+    - _GlitchSpeed: 1
+    - _GlowSpeed: 1
+    - _GlowTiling: 0.05
     - _MKGlowOffSet: 0
     - _MKGlowPower: 2.5
     - _MKGlowTexStrength: 10
+    - _RimPower: 5
+    - _ScanSpeed: 1
+    - _ScanTiling: 0.05
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _MKGlowColor: {r: 0, g: 1, b: 0.37931037, a: 1}
     - _MKGlowTexColor: {r: 0.49264705, g: 1, b: 0.6640974, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
