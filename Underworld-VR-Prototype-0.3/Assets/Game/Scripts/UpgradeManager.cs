@@ -15,11 +15,13 @@ public class UpgradeManager : MonoBehaviour {
 
     // A list of the 3 upgrdaes that will be chosen
     public GameObject[] upgrades;
-
+    public GameObject upgradeText;
     //public GameObject upgrade2;
     //public GameObject upgrade3;
 
     public Transform[] upgradeStationSlots; //Transforms for where the chosen upgrades need to go
+    public Transform upgradeTextSlot; // Transform for where the upgrade text goes
+
     //public Transform upgradeStation2;
     //public Transform upgradeStation3;
 
@@ -32,7 +34,8 @@ public class UpgradeManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-       
+        upgradeText = Instantiate(upgradeText, transform.position, transform.rotation) as GameObject;
+        upgradeText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,6 +45,7 @@ public class UpgradeManager : MonoBehaviour {
         {
             if (!upgradesRandomized)
             {
+                upgradeText.SetActive(true);
                 RandomizeUpgrades();
                 //UpgradesNull();
                 UpgradesCreated();
@@ -90,8 +94,13 @@ public class UpgradeManager : MonoBehaviour {
         {
             upgrades[i].transform.position = Vector3.Lerp(upgrades[i].transform.position, upgradeStationSlots[i].transform.position, Time.deltaTime * 2f);
             upgrades[i].transform.rotation = Quaternion.Slerp(upgrades[i].transform.rotation, upgradeStationSlots[i].transform.rotation, Time.deltaTime);
-            //print("upgrade moving");
+            //print("upgrade moving");            
         }
+
+        upgradeText.transform.position = Vector3.Lerp(upgradeText.transform.position, upgradeTextSlot.transform.position, Time.deltaTime * 2f);
+        upgradeText.transform.rotation = Quaternion.Slerp(upgradeText.transform.rotation, upgradeTextSlot.transform.rotation, Time.deltaTime);
+
+
     }
 
     void UpgradeReturn()
@@ -100,12 +109,16 @@ public class UpgradeManager : MonoBehaviour {
 
         foreach (GameObject item in upgrades)
         {
-            item.transform.position = Vector3.Lerp(item.transform.position, new Vector3(0, -15, 0), Time.deltaTime * 2f);
+            item.transform.position = Vector3.Lerp(item.transform.position, new Vector3(0, -9, 0), Time.deltaTime * 2f);
         }
+
+        upgradeText.transform.position = Vector3.Lerp(upgradeText.transform.position, new Vector3(0, 9, 0), Time.deltaTime * 2f);
+
 
         upgradeBufferTimer -= Time.deltaTime;
         if (upgradeBufferTimer <= 0)
         {
+            upgradeText.SetActive(false);
             upgradeSelected = false;
             upgradesRandomized = false;
             UpgradesNull();
