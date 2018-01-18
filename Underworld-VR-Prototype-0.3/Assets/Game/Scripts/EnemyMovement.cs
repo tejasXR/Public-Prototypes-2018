@@ -11,14 +11,16 @@ public class EnemyMovement : MonoBehaviour {
     public float enemyMoveTimer; //time in seconds before enemy switches places
     private Vector3 velocity = Vector3.zero; //velocity needed for smoothDamp movement
     public float enemyMoveSpeed;
+    private bool moveNow;
+    //public float enemyMaxSpeed;
 
     // Ability to define movemt based on drone type
     //public bool enemySingleDrone;
     //public bool enemyDoubleDrone;
-    //public bool enemyBomberDrone;
+    public bool isBomberDrone;
 
-    public float enemyMovefrequencyMin;
-    public float enemyMovefrequencyMax;
+    public float enemyMoveFrequencyMin;
+    public float enemyMoveFrequencyMax;
 
 
     private Rigidbody rb;
@@ -34,10 +36,17 @@ public class EnemyMovement : MonoBehaviour {
 	void Update () {
 
         enemyMoveTimer -= Time.deltaTime;
+
         if (enemyMoveTimer <= 0)
         {
+            moveNow = false;
             RandomPosition();
-            enemyMoveTimer = Random.Range(enemyMovefrequencyMin, enemyMovefrequencyMax);
+            if (isBomberDrone)
+            {
+
+            }
+            enemyMoveTimer = Random.Range(enemyMoveFrequencyMin, enemyMoveFrequencyMax);
+
         }
     }
 
@@ -46,7 +55,7 @@ public class EnemyMovement : MonoBehaviour {
         if (other.gameObject.tag == "Bullet")
         {
             Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
-            rb.AddForce(otherVelocity / 4);
+            rb.AddForce(otherVelocity / 7);
         }
     }
 
@@ -56,13 +65,13 @@ public class EnemyMovement : MonoBehaviour {
         {
             //Always move towards targetPosition if wave is active
             var direction = targetPosition - transform.position;
-            var distance = Vector3.Distance(targetPosition, transform.position);
+            //var distance = Vector3.Distance(targetPosition, transform.position);
 
-            rb.AddForce(direction * enemyMoveSpeed, ForceMode.Acceleration);
+            rb.AddForce(direction * enemyMoveSpeed, ForceMode.Force);
         }
         else
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1f, 5f);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1.5f, 2f);
             enemyParent.DisappearAfterWave();
         }
 
@@ -73,19 +82,31 @@ public class EnemyMovement : MonoBehaviour {
 
     void RandomPosition()
     {
-        Vector3 randomPosition;
-
-        int coinFlip = Random.Range(0, 2);
-        if (coinFlip == 0)
+        if (!moveNow)
         {
-            randomPosition = new Vector3(Random.Range(-1f, -.5f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
-        }
-        else
-        {
-            randomPosition = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+            Vector3 randomPosition;
+
+            int coinFlip = Random.Range(0, 2);
+            if (coinFlip == 0)
+            {
+                randomPosition = new Vector3(Random.Range(-1f, -.5f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+            }
+            else
+            {
+                randomPosition = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+            }
+
+            Ray ray = new Ray(enemyParent.playerController.transform.position, randomPosition);
+            targetPosition = ray.GetPoint(Random.Range(4f, 7f));
         }
 
-        Ray ray = new Ray(enemyParent.playerController.transform.position, randomPosition);
-        targetPosition = ray.GetPoint(Random.Range(4f, 7f));
+        int layerMask = 1 << 8;
+
+        // Makes sure we don't collide into the player
+        if (!Physics.Raycast (transform.position, (targetPosition - transform.position), Mathf.Infinity, layerMask))
+        {
+            moveNow = true;
+        }
+
     }
 }

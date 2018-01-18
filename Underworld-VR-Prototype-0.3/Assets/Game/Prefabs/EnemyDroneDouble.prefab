@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1914685910066534
 GameObject:
   m_ObjectHideFlags: 1
@@ -316,7 +316,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900270239860416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4, y: 0.867, z: -2.766}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4694073387696584}
@@ -807,6 +807,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
   enemyMoveSpeed: 0.3
+  enemyMaxSpeed: 2
   enemyMovefrequencyMin: 8
   enemyMovefrequencyMax: 12
 --- !u!114 &114894925879622098

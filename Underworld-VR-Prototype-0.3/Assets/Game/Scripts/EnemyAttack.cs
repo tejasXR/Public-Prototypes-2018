@@ -19,11 +19,13 @@ public class EnemyAttack : MonoBehaviour {
     public Transform[] enemyBulletSpawns; //the object for where to spawn the enemy bullet
     private int enemyBulletSpawnCounter;
 
-    //public bool isDoubleDrone;
+    public bool isSingleDrone;
+    public bool isDoubleDrone;
 
     // Use this for initialization
     void Start () {
         enemyParent = GetComponent<EnemyParent>();
+        
     }
 
     // Update is called once per frame
@@ -66,7 +68,13 @@ public class EnemyAttack : MonoBehaviour {
 
         enemyBulletSpawnCounter++;
 
-        if (enemyBulletSpawnCounter > 1) { enemyBulletSpawnCounter = 0; }
+        if (isSingleDrone)
+        {
+            if (enemyBulletSpawnCounter > 0) { enemyBulletSpawnCounter = 0; }
+        } else if (isDoubleDrone)
+        {
+            if (enemyBulletSpawnCounter > 1) { enemyBulletSpawnCounter = 0; }
+        }
     }
 
     
