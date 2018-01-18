@@ -66,7 +66,7 @@ public class EnemyManager : MonoBehaviour {
     {
         CheckWave();
         int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
-        print(enemy);
+        //print(enemy);
 
         Instantiate(enemyTypes[enemy], enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);

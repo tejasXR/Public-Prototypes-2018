@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
             timeLeft = 0;
             upgradeActive = true;
             waveActive = false; //stop the wave after the waveTimer is over to put the player in upgrade mode
-            print("Upgrade!");
+            //print("Upgrade!");
         }
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
