@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1914685910066534
 GameObject:
   m_ObjectHideFlags: 1
@@ -249,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1861068702706764}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0.005, z: 0.223}
+  m_LocalPosition: {x: 0.17, y: 0.005, z: 0.225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4694073387696584}
@@ -289,7 +289,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1872747935428270}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 0.005, z: 0.223}
+  m_LocalPosition: {x: -0.17, y: 0.005, z: 0.225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4694073387696584}
@@ -777,6 +777,8 @@ MonoBehaviour:
   enemyBulletSpawns:
   - {fileID: 4061700760185906}
   - {fileID: 4207797572405268}
+  isSingleDrone: 0
+  isDoubleDrone: 1
 --- !u!114 &114813926777129486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -807,9 +809,12 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
   enemyMoveSpeed: 0.3
-  enemyMaxSpeed: 2
-  enemyMovefrequencyMin: 8
-  enemyMovefrequencyMax: 12
+  isBomberDrone: 0
+  enemyMoveFrequencyMin: 10
+  enemyMoveFrequencyMax: 12
+  bomberRandChance: 0
+  bomberMove: 0
+  bomberBufferTimer: 5
 --- !u!114 &114894925879622098
 MonoBehaviour:
   m_ObjectHideFlags: 1

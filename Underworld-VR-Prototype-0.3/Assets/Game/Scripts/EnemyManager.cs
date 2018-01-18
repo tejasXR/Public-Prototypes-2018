@@ -6,12 +6,26 @@ public class EnemyManager : MonoBehaviour {
 
     public GameManager gameManager;
     public float enemySpawnTimer; //The time in seconds in which an enemy spawns
-    public int enemiesToSpawn;
-    public GameObject enemyPrefab;
+    //public int enemiesToSpawn;
+    
+    //public GameObject nextEnemySpawned; //The next enemy to be spawned by the spawner;
+
+
     public Transform enemySpawnPosition;
 
-    private float enemySpawnTimerMin;
-    private float enemySpawnTimerMax;
+    public float enemySpawnTimerMin;
+    public float enemySpawnTimerMax;
+
+    //private float enemyDroneChance; //chance of drone double to be spawned;
+    //private float enemyDroneDoubleChance; //chance of drone double to be spawned;
+    //private float enemyBomberChance; //chance of drone double to be spawned;
+
+    public float[] enemyProbability; // 0 = single, 1 = double, 2 = bomber
+    public GameObject[] enemyTypes; // 0 = single, 1 = double, 2 = bomber
+
+
+
+
 
 
 
@@ -23,6 +37,7 @@ public class EnemyManager : MonoBehaviour {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //isActive = true;
         CheckWave();
+        
     }
 
     // Update is called once per frame
@@ -50,9 +65,10 @@ public class EnemyManager : MonoBehaviour {
     void SpawnEnemy()
     {
         CheckWave();
+        int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
+        print(enemy);
 
-        Instantiate(enemyPrefab, enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
-        //enemiesToSpawn -= 1;
+        Instantiate(enemyTypes[enemy], enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
 
     }
@@ -64,28 +80,68 @@ public class EnemyManager : MonoBehaviour {
             case 1:
                 enemySpawnTimerMin = 8f;
                 enemySpawnTimerMax = 12f;
-                //enemiesToSpawn = 10;
+
+                enemyProbability[0] = 100; // Single drones
+                enemyProbability[1] = 0; // Double Drones
+                enemyProbability[2] = 0; // Bombers
                 break;
             case 2:
                 enemySpawnTimerMin = 7f;
                 enemySpawnTimerMax = 10f;
-                //enemiesToSpawn = 15;
+
+                enemyProbability[0] = 80; // Single drones
+                enemyProbability[1] = 20; // Double Drones
+                enemyProbability[2] = 0; // Bombers
                 break;
             case 3:
                 enemySpawnTimerMin = 6f;
                 enemySpawnTimerMax = 9f;
-                //enemiesToSpawn = 20;
+
+                enemyProbability[0] = 50; // Single drones
+                enemyProbability[1] = 50; // Double Drones
+                enemyProbability[2] = 0; // Bombers
                 break;
             case 4:
                 enemySpawnTimerMin = 6f;
                 enemySpawnTimerMax = 7f;
-                //enemiesToSpawn = 25;
+
+                enemyProbability[0] = 30; // Single drones
+                enemyProbability[1] = 70; // Double Drones
+                enemyProbability[2] = 0; // Bombers
                 break;
             case 5:
                 enemySpawnTimerMin = 5f;
                 enemySpawnTimerMax = 6f;
-                //enemiesToSpawn = 30;
+
+                enemyProbability[0] = 10; // Single drones
+                enemyProbability[1] = 50; // Double Drones
+                enemyProbability[2] = 40; // Bombers
                 break;
         }
+    }
+
+    float EnemyProbability (float[] probs)
+    {
+        float total = 0;
+
+        foreach(float elem in probs)
+        {
+            total += elem;
+        }
+
+        float randomPoint = Random.value * total;
+
+        for (int i = 0; i <probs.Length; i++)
+        {
+            if (randomPoint <= probs[i])
+            {
+                return i;
+            } else
+            {
+                randomPoint -= probs[i];
+            }
+        }
+
+        return probs.Length - 1;
     }
 }

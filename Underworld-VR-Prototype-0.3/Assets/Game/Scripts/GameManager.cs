@@ -57,18 +57,21 @@ public class GameManager : MonoBehaviour {
         switch (wave)
         {
             case 1:
-                timeLeft = 160f;
+                timeLeft = 60f; //Thirty seconds
                 break;
             case 2:
-                timeLeft = 60f * 1.5f; // A minute and a half
+                timeLeft = 60f; // A minute
                 break;
             case 3:
-                timeLeft = 60f * 2f; //Two minutes
+                timeLeft = 60f * 1.5f; // A minute and a half
                 break;
             case 4:
-                timeLeft = 60f * 3f; //Three minutes
+                timeLeft = 60f * 2f; //Two minutes
                 break;
             case 5:
+                timeLeft = 60f * 3f; //Three minutes
+                break;
+            case 6:
                 timeLeft = 60f * 5f; //5 Minutes
                 break;
         }
