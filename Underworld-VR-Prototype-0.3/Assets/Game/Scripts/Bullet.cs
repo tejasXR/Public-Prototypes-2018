@@ -12,17 +12,11 @@ public class Bullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Solid")
         {
             Instantiate(bulletHitEnemyEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
 
-        }
-
-        if (collision.gameObject.tag == "Solid")
-        {
-            Instantiate(bulletSolidEnemyEffect, transform.position, transform.rotation);
-            Destroy(this.gameObject);
         }
     }
 
