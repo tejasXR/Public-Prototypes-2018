@@ -81,10 +81,7 @@ public class EnemyMovement : MonoBehaviour {
         }
 
         
-        if (other.gameObject.tag == "HitBody" && isBomberDrone)
-        {
-            enemyParent.BomberDestroy();
-        }
+        
     }
 
     void FixedUpdate()
@@ -106,6 +103,15 @@ public class EnemyMovement : MonoBehaviour {
         enemyParent.playerDirection = enemyParent.player.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(enemyParent.playerDirection);
         rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 30f * Time.deltaTime));
+
+        if (isBomberDrone && bomberMove)
+        {
+            if (Vector3.Distance(transform.position, enemyParent.player.transform.position) < 1f)
+            {
+                enemyParent.BomberDestroy();
+            }
+        }
+
     }
 
     void RandomPosition()
@@ -124,7 +130,7 @@ public class EnemyMovement : MonoBehaviour {
                 randomPosition = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
             }
 
-            Ray ray = new Ray(enemyParent.playerController.transform.position, randomPosition);
+            Ray ray = new Ray(enemyParent.player.transform.position, randomPosition);
             targetPosition = ray.GetPoint(Random.Range(4f, 7f));
         }
 
@@ -140,7 +146,7 @@ public class EnemyMovement : MonoBehaviour {
 
     void MoveToPlayer()
     {
-        targetPosition = enemyParent.playerController.transform.position;
+        targetPosition = enemyParent.player.transform.position;
         enemyMoveSpeed = enemyMoveSpeed / 2;
     }
 
