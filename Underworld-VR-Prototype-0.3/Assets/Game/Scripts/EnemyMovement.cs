@@ -10,6 +10,16 @@ public class EnemyMovement : MonoBehaviour {
     public Vector3 targetPosition; //the position that the enemy is constantly moving to
     public float enemyMoveTimer; //time in seconds before enemy switches places
     private Vector3 velocity = Vector3.zero; //velocity needed for smoothDamp movement
+    public float enemyMoveSpeed;
+
+    // Ability to define movemt based on drone type
+    //public bool enemySingleDrone;
+    //public bool enemyDoubleDrone;
+    //public bool enemyBomberDrone;
+
+    public float enemyMovefrequencyMin;
+    public float enemyMovefrequencyMax;
+
 
     private Rigidbody rb;
 
@@ -27,11 +37,11 @@ public class EnemyMovement : MonoBehaviour {
         if (enemyMoveTimer <= 0)
         {
             RandomPosition();
-            enemyMoveTimer = Random.Range(5, 10);
+            enemyMoveTimer = Random.Range(enemyMovefrequencyMin, enemyMovefrequencyMax);
         }
     }
 
-    private void OnCillisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Bullet")
         {
@@ -48,7 +58,7 @@ public class EnemyMovement : MonoBehaviour {
             var direction = targetPosition - transform.position;
             var distance = Vector3.Distance(targetPosition, transform.position);
 
-            rb.AddForce(direction, ForceMode.Acceleration);
+            rb.AddForce(direction * enemyMoveSpeed, ForceMode.Acceleration);
         }
         else
         {

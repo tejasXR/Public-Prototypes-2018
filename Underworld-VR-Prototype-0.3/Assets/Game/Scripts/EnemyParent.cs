@@ -33,9 +33,7 @@ public class EnemyParent : MonoBehaviour {
         if (other.gameObject.tag == "Bullet")
         {
             var damage = other.gameObject.GetComponent<Bullet>().damage;
-            enemyHealth -= damage;
-
-            
+            enemyHealth -= damage;            
 
             if (enemyHealth <= 0)
             {

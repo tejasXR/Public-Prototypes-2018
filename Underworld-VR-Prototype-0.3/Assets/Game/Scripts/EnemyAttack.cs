@@ -16,7 +16,10 @@ public class EnemyAttack : MonoBehaviour {
     public Vector3 enemyBulletDirection; //direction of the enemy bullet when generated
 
     public GameObject enemyBulletPrefab; //the enemy bullet gameObject
-    public Transform enemyBulletSpawn; //the object for where to spawn the enemy bullet
+    public Transform[] enemyBulletSpawns; //the object for where to spawn the enemy bullet
+    private int enemyBulletSpawnCounter;
+
+    //public bool isDoubleDrone;
 
     // Use this for initialization
     void Start () {
@@ -45,20 +48,26 @@ public class EnemyAttack : MonoBehaviour {
         Vector3 randomFire = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * (1 - enemyAccuracy);
         enemyBulletDirection = enemyParent.player.transform.position + randomFire;
 
-        enemyBulletSpawn.LookAt(enemyBulletDirection);
+        enemyBulletSpawns[enemyBulletSpawnCounter].LookAt(enemyBulletDirection);
 
         if (enemyAttackTimer == enemyBulletFireRate)
         {
             //Instantiate bullet
-            var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawn.position, enemyBulletSpawn.rotation);
+            var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawns[enemyBulletSpawnCounter].position, enemyBulletSpawns[enemyBulletSpawnCounter].rotation);
 
             // Add velocity to the bullet
-            bullet.GetComponent<Rigidbody>().velocity = enemyBulletSpawn.transform.forward * enemyBulletSpeed;
+            bullet.GetComponent<Rigidbody>().velocity = enemyBulletSpawns[enemyBulletSpawnCounter].transform.forward * enemyBulletSpeed;
 
             // Destroy the bullet after 2 seconds and reset attack timer
             Destroy(bullet, 2.0f);
             enemyAttackTimer = 0;
         }
         enemyBulletFireRate = Random.Range(.5f, 2f);
+
+        enemyBulletSpawnCounter++;
+
+        if (enemyBulletSpawnCounter > 1) { enemyBulletSpawnCounter = 0; }
     }
+
+    
 }
