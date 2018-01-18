@@ -22,6 +22,9 @@ public class EnemyMovement : MonoBehaviour {
     public float enemyMoveFrequencyMin;
     public float enemyMoveFrequencyMax;
 
+    public float bomberRandChance; //The random chance that the bomber drone stops moving to random locations, and moves towards the player for the explosion
+    public bool bomberMove;
+    public float bomberBufferTimer = 5f; // A slight buffer so that the bomber does not move towards the player right away
 
     private Rigidbody rb;
 
@@ -36,15 +39,34 @@ public class EnemyMovement : MonoBehaviour {
 	void Update () {
 
         enemyMoveTimer -= Time.deltaTime;
+        
+        if (bomberBufferTimer <= 0)
+        {
+            bomberBufferTimer = 0;
+        } else
+        {
+            bomberBufferTimer -= Time.deltaTime;
+        }
 
         if (enemyMoveTimer <= 0)
         {
             moveNow = false;
-            RandomPosition();
-            if (isBomberDrone)
+            
+            if (isBomberDrone && !bomberMove && bomberBufferTimer <= 0)
             {
-
+                //print("possibility of bomb");
+                bomberRandChance = Random.Range(0, 2);
+                if (bomberRandChance == 1)
+                {
+                    bomberMove = true;
+                    MoveToPlayer();
+                }
             }
+            if (!bomberMove)
+            {
+                RandomPosition();
+            }
+
             enemyMoveTimer = Random.Range(enemyMoveFrequencyMin, enemyMoveFrequencyMax);
 
         }
@@ -55,7 +77,13 @@ public class EnemyMovement : MonoBehaviour {
         if (other.gameObject.tag == "Bullet")
         {
             Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
-            rb.AddForce(otherVelocity / 7);
+            rb.AddForce(otherVelocity / 5);
+        }
+
+        
+        if (other.gameObject.tag == "HitBody" && isBomberDrone)
+        {
+            enemyParent.BomberDestroy();
         }
     }
 
@@ -109,4 +137,12 @@ public class EnemyMovement : MonoBehaviour {
         }
 
     }
+
+    void MoveToPlayer()
+    {
+        targetPosition = enemyParent.playerController.transform.position;
+        enemyMoveSpeed = enemyMoveSpeed / 2;
+    }
+
+
 }

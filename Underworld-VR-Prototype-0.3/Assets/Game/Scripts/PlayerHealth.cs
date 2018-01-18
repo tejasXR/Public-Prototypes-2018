@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour {
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "EnemyBullet")
         {

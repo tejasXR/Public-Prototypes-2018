@@ -20,6 +20,8 @@ public class EnemyParent : MonoBehaviour {
     public GameObject earnBulletText; //the text object that tells players how many bullets they've earned
     private float enemyDestroyTimer = 2f;
 
+
+
     void Start () {
 
         //Define player variables for enemy prefab
@@ -41,6 +43,9 @@ public class EnemyParent : MonoBehaviour {
                 Destroy(this.gameObject);
             }
         }
+
+
+
     }
 
     /*void RandomPosition()
@@ -75,5 +80,11 @@ public class EnemyParent : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
+    }
+
+    public void BomberDestroy()
+    {
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Destroy(this.gameObject);
     }
 }
