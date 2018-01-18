@@ -40,8 +40,8 @@ Material:
     - _GlowSpeed: 1
     - _GlowTiling: 0.05
     - _MKGlowOffSet: 0
-    - _MKGlowPower: 2.5
-    - _MKGlowTexStrength: 10
+    - _MKGlowPower: 0.5
+    - _MKGlowTexStrength: 1
     - _RimPower: 5
     - _ScanSpeed: 1
     - _ScanTiling: 0.05
