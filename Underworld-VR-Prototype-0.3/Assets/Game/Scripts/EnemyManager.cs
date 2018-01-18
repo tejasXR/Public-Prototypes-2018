@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour {
     public float enemySpawnTimer; //The time in seconds in which an enemy spawns
     public int enemiesToSpawn;
     public GameObject enemyPrefab;
+    public Transform enemySpawnPosition;
 
     private float enemySpawnTimerMin;
     private float enemySpawnTimerMax;
@@ -50,7 +51,7 @@ public class EnemyManager : MonoBehaviour {
     {
         CheckWave();
 
-        Instantiate(enemyPrefab, transform.position, transform.rotation);
+        Instantiate(enemyPrefab, enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
         //enemiesToSpawn -= 1;
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
 

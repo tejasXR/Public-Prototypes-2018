@@ -176,10 +176,7 @@ public class Enemy : MonoBehaviour
 
     void Fire()
     {
-        //Ray ray = new Ray(enemyBulletSpawn.transform.position, player.transform.position); //draws a ray before shooting from the bullet spawner to the player
-        //float distanceToPlayer = Vector3.Distance(enemyBulletSpawn.transform.position, player.transform.position);
-        //Vector3 gunDownSights = ray.GetPoint(distanceToPlayer); 
-
+        
         Vector3 randomFire = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * (1 - enemyAccuracy);
         enemyBulletDirection = player.transform.position + randomFire;
 

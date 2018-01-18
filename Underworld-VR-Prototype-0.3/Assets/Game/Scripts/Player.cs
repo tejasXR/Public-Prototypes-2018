@@ -6,8 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float playerBullets;
+    public float playerHealth;
+    public float playerHealthMax;
 
     public TextMeshPro bulletCounter;
+    public GameObject hitBody;
+
     //public string health;
 
 	// Use this for initialization
@@ -22,13 +26,4 @@ public class Player : MonoBehaviour {
             bulletCounter.text = "" + playerBullets.ToString();
         }
 	}
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "BulletDrop")
-        {
-            playerBullets += 1;
-            Destroy(collision.gameObject);
-        }
-    }
 }
