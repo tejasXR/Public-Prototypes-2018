@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour {
     {
         int minutes = Mathf.FloorToInt(timeLeft / 60f);
         int seconds = Mathf.FloorToInt(timeLeft % 60f);
-        float milliseconds = (timeLeft * 1000f);
+        float milliseconds = (timeLeft * 100f);
         milliseconds = milliseconds % 100;
         string niceTime = minutes.ToString("00") + " : " + seconds.ToString("00") + " : " + milliseconds.ToString("0");
 

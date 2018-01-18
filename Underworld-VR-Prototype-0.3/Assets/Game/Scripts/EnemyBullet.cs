@@ -28,6 +28,6 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnDestroy()
     {
-
+        Instantiate(bulletHitEffect, transform.position, transform.rotation);
     }
 }
