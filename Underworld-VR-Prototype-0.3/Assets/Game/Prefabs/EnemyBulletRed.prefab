@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4002156940361628}
   - component: {fileID: 54676709888809466}
   - component: {fileID: 136819365290101432}
+  - component: {fileID: 114001084011116850}
   m_Layer: 9
   m_Name: EnemyBulletRed
   m_TagString: EnemyBullet
@@ -195,6 +196,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114001084011116850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1871618839054336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b294dbda82eea4f96d7d4ec4e048cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHitEffect: {fileID: 1918055969258948, guid: bee95c0f7b3d32f44918ee8db92c953d,
+    type: 2}
 --- !u!136 &136642876076122152
 CapsuleCollider:
   m_ObjectHideFlags: 1

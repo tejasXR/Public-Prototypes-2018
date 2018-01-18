@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4188614887061684}
   - component: {fileID: 114427351749160772}
   m_Layer: 0
-  m_Name: BulletHitEnemyEffect
+  m_Name: EnemyBulletOrangeHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3298,7 +3298,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 0}
-  - {fileID: 2100000, guid: dec36177d6f68cb4bbd8e02d0164280b, type: 2}
+  - {fileID: 2100000, guid: f843d67144516954caee69d430f19547, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
