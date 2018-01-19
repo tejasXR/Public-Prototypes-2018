@@ -10,12 +10,21 @@ public class EnemyBullet : MonoBehaviour {
     //public GameObject bulletDissolveEffect;
 
     private Rigidbody rb;
+    private Vector3 transformStart;
+    public GameObject enemyParent;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         //print(rb.velocity);
         print(transform.rotation);
+        transformStart = transform.position;
+
+        //Finds enemy that fired bullet
+        //enemyParent = 
+
+        //Vector3 diff = 
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -32,7 +41,22 @@ public class EnemyBullet : MonoBehaviour {
             //var localVel = transform.InverseTransformDirection(rb.velocity);
             //rb.velocity = localVel.z;
 
-            rb.velocity *= -1;
+            //rb.velocity *= -1;
+
+            //Get the nearest enemy
+
+            //float deflectAccuracy = .03f;
+
+            var bulletDirection = enemyParent.transform.position - transform.position;
+
+            //bulletDirection.x += Random.Range(-deflectAccuracy, deflectAccuracy);
+            //bulletDirection.y += Random.Range(-deflectAccuracy, deflectAccuracy);
+            //bulletDirection.z += Random.Range(-deflectAccuracy, deflectAccuracy);
+
+
+            transform.rotation = Quaternion.LookRotation(bulletDirection);
+            rb.velocity = bulletDirection * 2f;
+            //transform.rotation = collision.gameObject.transform.rotation;
 
             //rb.velocity = -rb.velocity * 5f;
             //transform.position = Vector3.Reflect(transform.position, Vector3.up);
