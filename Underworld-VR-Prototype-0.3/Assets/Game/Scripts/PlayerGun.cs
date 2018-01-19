@@ -22,10 +22,10 @@ public class PlayerGun : MonoBehaviour {
     private Vector2 touchpad;
 
 
-
 	// Use this for initialization
 	void Start () {
         bulletSpawnStart = bulletSpawn.transform.position;
+        bulletTimer = 1 / bulletFireRate;
 	}
 	
 	// Update is called once per frame
@@ -45,13 +45,13 @@ public class PlayerGun : MonoBehaviour {
         }
 
 
-        if (bulletTimer < bulletFireRate)
+        //if (bulletTimer >= bulletFireRate)
         {
-            bulletTimer += Time.deltaTime;
+            bulletTimer -= Time.deltaTime;
 
-        } else
+        } if (bulletTimer <= 0)
         {
-            bulletTimer = bulletFireRate;
+            bulletTimer = 0;
         }
 
 
@@ -67,7 +67,7 @@ public class PlayerGun : MonoBehaviour {
 
         //bulletSpawn.transform.position = bulletSpawnStart *
 
-        if (bulletTimer == bulletFireRate)
+        if (bulletTimer <= 0)
         {
             //Instantiate bullet
             var bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
@@ -79,7 +79,7 @@ public class PlayerGun : MonoBehaviour {
 
             // Destroy the bullet after 2 seconds
             Destroy(bullet, 2.0f);
-            bulletTimer = 0;
+            bulletTimer = 1 / bulletFireRate;
         }
 
         

@@ -40,7 +40,7 @@ public class StadiumLightMove : MonoBehaviour {
             //print("changing");
 
             moveFrequencyTimer = Random.Range(1, moveFrequency);
-            print("changing");
+            //print("changing");
 
         }
 
