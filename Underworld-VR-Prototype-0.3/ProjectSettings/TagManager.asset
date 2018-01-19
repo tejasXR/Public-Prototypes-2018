@@ -9,6 +9,7 @@ TagManager:
   - Solid
   - EnemyBullet
   - HitBody
+  - Sword
   layers:
   - Default
   - TransparentFX

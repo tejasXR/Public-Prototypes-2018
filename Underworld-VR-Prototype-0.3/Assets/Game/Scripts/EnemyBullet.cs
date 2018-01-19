@@ -9,6 +9,14 @@ public class EnemyBullet : MonoBehaviour {
     //public GameObject bulletSolidEnemyEffect;
     //public GameObject bulletDissolveEffect;
 
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        //print(rb.velocity);
+        print(transform.rotation);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,6 +24,24 @@ public class EnemyBullet : MonoBehaviour {
         {
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
+
+        }
+
+        if (collision.gameObject.tag == "Sword")
+        {
+            //var localVel = transform.InverseTransformDirection(rb.velocity);
+            //rb.velocity = localVel.z;
+
+            rb.velocity *= -1;
+
+            //rb.velocity = -rb.velocity * 5f;
+            //transform.position = Vector3.Reflect(transform.position, Vector3.up);
+
+            //Vector3 rot = transform.rotation.eulerAngles;
+            //rot = new Vector3(rot.x, rot.y + 180, rot.z);
+            //transform.rotation = Quaternion.Euler(rot);
+
+            //rb.velocity = transform.forward * 5f;
 
         }
 
