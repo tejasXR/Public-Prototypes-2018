@@ -96,7 +96,7 @@ public class EnemyMovement : MonoBehaviour {
         }
         else
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1.5f, 2f);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1.5f, 5f);
             enemyParent.DisappearAfterWave();
         }
 
