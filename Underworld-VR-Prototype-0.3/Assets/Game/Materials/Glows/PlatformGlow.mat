@@ -32,5 +32,5 @@ Material:
     - _MKGlowTexStrength: 10
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _MKGlowColor: {r: 0.22352943, g: 0.9294118, b: 0.98823535, a: 1}
-    - _MKGlowTexColor: {r: 0, g: 0.9450981, b: 0.5019608, a: 1}
+    - _MKGlowColor: {r: 0, g: 0.751724, b: 1, a: 1}
+    - _MKGlowTexColor: {r: 0.22352943, g: 0.9294118, b: 0.98823535, a: 1}
