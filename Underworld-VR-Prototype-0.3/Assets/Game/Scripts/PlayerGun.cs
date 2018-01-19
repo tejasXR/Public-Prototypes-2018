@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class PlayerGun : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class PlayerGun : MonoBehaviour {
 
     public float gunAccuracy;
 
+    private Vector2 touchpad;
+
 
 
 	// Use this for initialization
@@ -29,11 +32,18 @@ public class PlayerGun : MonoBehaviour {
 	void FixedUpdate () {
 
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
+        touchpad = device.GetAxis(EVRButtonId.k_EButton_SteamVR_Touchpad);
 
         if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets >= 1)
         {
             Fire();
         }
+
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+        {
+            OpenWeaponsMenu();
+        }
+
 
         if (bulletTimer < bulletFireRate)
         {
@@ -43,6 +53,8 @@ public class PlayerGun : MonoBehaviour {
         {
             bulletTimer = bulletFireRate;
         }
+
+
        
     }
 
@@ -73,5 +85,10 @@ public class PlayerGun : MonoBehaviour {
         
 
         //Destroy bullet after 2 seconds
+    }
+
+    void OpenWeaponsMenu()
+    {
+
     }
 }
