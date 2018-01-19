@@ -21,6 +21,8 @@ public class PlayerGun : MonoBehaviour {
 
     private Vector2 touchpad;
 
+    public float bulletsInstantiated;
+
 
 	// Use this for initialization
 	void Start () {
@@ -69,22 +71,33 @@ public class PlayerGun : MonoBehaviour {
 
         if (bulletTimer <= 0)
         {
-            //Instantiate bullet
-            var bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-            playerController.playerBullets -= 1;
-            // Add velocity to the bullet
-            //bullet.GetComponent<Rigidbody>().velocity = randomFire * bulletSpeed;
+            for (int i = 0; i < bulletsInstantiated; i++)
+            {
 
-            bullet.GetComponent<Rigidbody>().velocity = bulletSpawn.transform.forward * bulletSpeed;
+                float spreadFactor = 1 - gunAccuracy;
 
-            // Destroy the bullet after 2 seconds
-            Destroy(bullet, 2.0f);
+                var bulletDirection = bulletSpawn.transform.forward;
+
+                bulletDirection.x += Random.Range(-spreadFactor, spreadFactor);
+                bulletDirection.y += Random.Range(-spreadFactor, spreadFactor);
+                bulletDirection.z += Random.Range(-spreadFactor, spreadFactor);
+
+                //Instantiate bullet
+                var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.LookRotation(bulletDirection));
+                playerController.playerBullets -= 1;
+                // Add velocity to the bullet
+                //bullet.GetComponent<Rigidbody>().velocity = randomFire * bulletSpeed;
+
+                bullet.GetComponent<Rigidbody>().velocity = bulletDirection * bulletSpeed;
+
+                // Destroy the bullet after 2 seconds
+                Destroy(bullet, 2.0f);
+
+            }
             bulletTimer = 1 / bulletFireRate;
         }
 
-        
-
-        //Destroy bullet after 2 seconds
+       
     }
 
     void OpenWeaponsMenu()

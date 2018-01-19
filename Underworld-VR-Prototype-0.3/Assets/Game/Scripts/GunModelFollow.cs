@@ -10,8 +10,8 @@ public class GunModelFollow : MonoBehaviour {
     public float rotationSpeed;
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
         transform.position = Vector3.Lerp(transform.position, controller.transform.position, Time.unscaledDeltaTime * moveSpeed);
         transform.rotation = Quaternion.Slerp(transform.rotation, controller.transform.rotation, Time.unscaledDeltaTime * rotationSpeed);
 	}
