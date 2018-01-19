@@ -44,6 +44,18 @@ public class EnemyParent : MonoBehaviour {
             }
         }
 
+        if (other.gameObject.tag == "Deflected Bullet")
+        {
+            var damage = other.gameObject.GetComponent<EnemyBullet>().damage;
+            enemyHealth -= damage*2;
+
+            if (enemyHealth <= 0)
+            {
+                EnemyDestroy();
+                Destroy(this.gameObject);
+            }
+        }
+
 
 
     }

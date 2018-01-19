@@ -9,6 +9,7 @@ public class EnemyBullet : MonoBehaviour {
     //public GameObject bulletSolidEnemyEffect;
     //public GameObject bulletDissolveEffect;
 
+    public float damage;
     private Rigidbody rb;
     private Vector3 transformStart;
     public GameObject enemyParent;
@@ -29,14 +30,15 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet" || this.gameObject.tag == "Deflected Bullet")
         {
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
 
         }
 
-        if (collision.gameObject.tag == "Sword")
+
+        if (collision.gameObject.tag == "Sword" && this.gameObject.tag != "Deflected Bullet")
         {
             //var localVel = transform.InverseTransformDirection(rb.velocity);
             //rb.velocity = localVel.z;
@@ -55,7 +57,8 @@ public class EnemyBullet : MonoBehaviour {
 
 
             transform.rotation = Quaternion.LookRotation(bulletDirection);
-            rb.velocity = bulletDirection * 2f;
+            rb.velocity = bulletDirection * 3f;
+            this.gameObject.tag = "Deflected Bullet";
             //transform.rotation = collision.gameObject.transform.rotation;
 
             //rb.velocity = -rb.velocity * 5f;
