@@ -72,7 +72,7 @@ public class EnemyAttack : MonoBehaviour {
             bullet.GetComponent<Rigidbody>().velocity = enemyBulletDirection * enemyBulletSpeed;
             bullet.GetComponent<EnemyBullet>().enemyParent = this.gameObject;
             //bullet.transform.position
-            print(enemyBulletDirection);
+            //print(enemyBulletDirection);
 
             // Destroy the bullet after 2 seconds and reset attack timer
             Destroy(bullet, 2.0f);

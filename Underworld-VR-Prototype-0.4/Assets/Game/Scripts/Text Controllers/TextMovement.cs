@@ -31,9 +31,9 @@ public class TextMovement : MonoBehaviour {
     void Update()
     {
         
-        var playerDirection = player.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(playerDirection);
-        transform.rotation = rotation;
+        //var playerDirection = player.transform.position - transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        //transform.rotation = rotation;
 
         if (panMove)
         {
