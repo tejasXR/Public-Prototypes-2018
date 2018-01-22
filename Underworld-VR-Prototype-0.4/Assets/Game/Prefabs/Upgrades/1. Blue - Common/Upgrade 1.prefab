@@ -638,6 +638,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeManager: {fileID: 0}
+  playerController: {fileID: 0}
+  upgradeCost: 50
+  addFireRateMultiplier: 0.05
+  addDamageMultiplier: 0
 --- !u!114 &114781922206933908
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-    public float damage;
+    [HideInInspector] public float damage;
     public GameObject bulletHitEnemyEffect;
     public GameObject bulletSolidEnemyEffect;
     //public GameObject bulletDissolveEffect;

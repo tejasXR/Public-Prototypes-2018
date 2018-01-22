@@ -29,22 +29,17 @@ public class Upgrades : MonoBehaviour {
         if(other.gameObject.tag == "Bullet")
         {
             playerController.playerBullets -= upgradeCost;
-
             AddUpgradeEffect();
-
             upgradeManager.upgradeSelected = true;
-            
-            //gameManager
         }
     }
 
     void AddUpgradeEffect()
     {
-        foreach (int effects in effects)
-        {
-            playerController.bulletDamageMultiplier += addFireRateMultiplier;
-            playerController.bulletDamageMultiplier += addDamageMultiplier;
-        }
+        
+        playerController.bulletDamageMultiplier += addFireRateMultiplier;
+        playerController.bulletDamageMultiplier += addDamageMultiplier;
+        
         
     }
 }
