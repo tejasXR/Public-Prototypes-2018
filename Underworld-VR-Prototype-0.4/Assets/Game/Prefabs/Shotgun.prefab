@@ -113,7 +113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1460693836281084
 GameObject:
   m_ObjectHideFlags: 1
@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4074735595092644
 Transform:
   m_ObjectHideFlags: 1
@@ -1058,7 +1058,8 @@ MonoBehaviour:
   bulletFireRate: 0.5
   bulletTimer: 0
   bulletSpeed: 30
-  gunAccuracy: 0.75
+  bulletDamage: 5
+  bulletAccuracy: 0
   bulletsInstantiated: 5
 --- !u!114 &114973429985388542
 MonoBehaviour:
@@ -1232,7 +1233,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574344698948578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.047971703}
+  m_LocalPosition: {x: 0, y: 0, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4260678765600196}
@@ -1240,7 +1241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.54, y: 0.26}
+  m_AnchoredPosition: {x: 0.0142, y: 0.006653428}
   m_SizeDelta: {x: 0.1, y: 0.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224438458163440070

@@ -276,7 +276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1792880935989220
 GameObject:
   m_ObjectHideFlags: 1
@@ -1038,7 +1038,8 @@ MonoBehaviour:
   bulletFireRate: 10
   bulletTimer: 0
   bulletSpeed: 50
-  gunAccuracy: 0.95
+  bulletDamage: 2
+  bulletAccuracy: 0
   bulletsInstantiated: 1
 --- !u!114 &114154976867286110
 MonoBehaviour:

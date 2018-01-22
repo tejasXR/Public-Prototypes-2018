@@ -9,8 +9,15 @@ public class Upgrades : MonoBehaviour {
 
     public float upgradeCost;
 
-    public float addFireRateMultiplier;
-    public float addDamageMultiplier;
+    // Player Health Upgrades
+    public float addPlayerHealth;
+    public float addPlayerHealthMaxMultiplier;
+
+    // Player Attack Upgrades
+    public float addBulletFireRateMultiplier;
+    public float addBulletDamageMultiplier;
+    public float addBulletSpeedMultiplier;
+    public float addBulletAccuracyMultiplier;
 
     // Use this for initialization
     void Start () {
@@ -18,11 +25,6 @@ public class Upgrades : MonoBehaviour {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
 
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     void OnTriggerEnter(Collider other)
     {
@@ -37,8 +39,8 @@ public class Upgrades : MonoBehaviour {
     void AddUpgradeEffect()
     {
         
-        playerController.bulletDamageMultiplier += addFireRateMultiplier;
-        playerController.bulletDamageMultiplier += addDamageMultiplier;
+        playerController.bulletDamageMultiplier += addBulletFireRateMultiplier;
+        playerController.bulletDamageMultiplier += addBulletDamageMultiplier;
         
         
     }

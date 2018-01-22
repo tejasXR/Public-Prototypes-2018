@@ -1283,7 +1283,8 @@ MonoBehaviour:
   bulletFireRate: 3
   bulletTimer: 0
   bulletSpeed: 15
-  gunAccuracy: 1
+  bulletDamage: 1
+  bulletAccuracy: 0
   bulletsInstantiated: 1
 --- !u!114 &114856762210280402
 MonoBehaviour:
