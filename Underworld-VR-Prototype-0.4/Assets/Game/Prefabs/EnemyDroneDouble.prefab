@@ -707,7 +707,9 @@ MonoBehaviour:
   enemyGiveBullets: 10
   explosionPrefab: {fileID: 1587944432538656, guid: 2961e39a2f0980f40b93b8bb8c049e9e,
     type: 2}
-  earnBulletText: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
+  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}
 --- !u!114 &114386137724552814
 MonoBehaviour:

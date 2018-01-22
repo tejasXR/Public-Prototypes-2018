@@ -411,7 +411,9 @@ MonoBehaviour:
   enemyGiveBullets: 5
   explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
-  earnBulletText: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
+  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}
 --- !u!135 &135472704725102944
 SphereCollider:

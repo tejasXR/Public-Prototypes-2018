@@ -397,7 +397,9 @@ MonoBehaviour:
   enemyGiveBullets: 10
   explosionPrefab: {fileID: 1587944432538656, guid: ad5974bf451ee6d43bf966092352e50c,
     type: 2}
-  earnBulletText: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
+  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}
 --- !u!114 &114243018927494776
 MonoBehaviour:
@@ -432,11 +434,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBulletFireRate: 0
-  enemyAttackTimer: 0
   enemyBulletSpeed: 0
-  randomDirection: {x: 0, y: 0, z: 0}
-  enemyAccuracy: 0
-  enemyBulletDirection: {x: 0, y: 0, z: 0}
+  enemyBulletDamage: 0
+  enemyBulletAccuracy: 0
   enemyBulletPrefab: {fileID: 0}
   enemyBulletSpawns: []
   isSingleDrone: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyParent : MonoBehaviour {
@@ -17,7 +18,8 @@ public class EnemyParent : MonoBehaviour {
 
     //Enemy On Destroy
     public GameObject explosionPrefab; //the explosion effect when destroyed
-    public GameObject earnBulletText; //the text object that tells players how many bullets they've earned
+    public GameObject earnedBulletObj; //the text object that tells players how many bullets they've earned
+    public TextMeshPro earnedBulletText;
     private float enemyDestroyTimer = 2f;
 
 
@@ -27,6 +29,9 @@ public class EnemyParent : MonoBehaviour {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         player = GameObject.FindGameObjectWithTag("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        earnedBulletText.text = "+ " + enemyGiveBullets.ToString();  
+
     }
 
     void OnCollisionEnter(Collision other)
@@ -73,7 +78,11 @@ public class EnemyParent : MonoBehaviour {
     {
         playerController.playerBullets += enemyGiveBullets;
         Instantiate(explosionPrefab, transform.position, transform.rotation);
-        Instantiate(earnBulletText, transform.position, transform.rotation);
+
+
+        Instantiate(earnedBulletObj, transform.position, transform.rotation);
+        
+
     }
 
     public void DisappearAfterWave()

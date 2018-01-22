@@ -76,8 +76,8 @@ public class EnemyMovement : MonoBehaviour {
     {
         if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "DeflectedBullet")
         {
-            Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
-            rb.AddForce(otherVelocity / 5);
+            //Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
+            //rb.AddForce(otherVelocity.normalized / 4);
         }
     }
 
