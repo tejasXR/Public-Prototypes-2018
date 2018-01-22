@@ -767,11 +767,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBulletFireRate: 0.4
-  enemyAttackTimer: 0
   enemyBulletSpeed: 5
-  randomDirection: {x: 0, y: 0, z: 0}
-  enemyAccuracy: 0.6
-  enemyBulletDirection: {x: 0, y: 0, z: 0}
+  enemyBulletDamage: 2
+  enemyBulletAccuracy: 0
   enemyBulletPrefab: {fileID: 1871618839054336, guid: a05db7cc4904f9f4eb8757d4b8e0ae4c,
     type: 2}
   enemyBulletSpawns:

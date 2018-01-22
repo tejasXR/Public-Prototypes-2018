@@ -10,9 +10,10 @@ public class EnemyAttack : MonoBehaviour {
     public float enemyBulletFireRate; //bullets fires per second
     private float enemyAttackTimer; //timer to know when to attack next
     public float enemyBulletSpeed; //speed of enemy bullet
+    public float enemyBulletDamage;
     //public Vector3 randomDirection; //random direction needed for enemy gun accuracy
     //private Ray ray; //ray needed for enemy gun accuracy
-    public float enemyAccuracy; //enemy accuray in % form
+    public float enemyBulletAccuracy; //enemy accuray in % form
     //public Vector3 enemyBulletDirection; //direction of the enemy bullet when generated
 
     public GameObject enemyBulletPrefab; //the enemy bullet gameObject
@@ -47,7 +48,7 @@ public class EnemyAttack : MonoBehaviour {
 
     void Fire()
     {
-        float spreadFactor = 1 - enemyAccuracy;
+        float spreadFactor = 1 - enemyBulletAccuracy;
 
         var enemyBulletDirection = enemyParent.player.transform.position - transform.position;
 
@@ -71,6 +72,7 @@ public class EnemyAttack : MonoBehaviour {
             //bullet.GetComponent<Rigidbody>().velocity = enemyBulletSpawns[enemyBulletSpawnCounter].transform.forward * enemyBulletSpeed;
             bullet.GetComponent<Rigidbody>().velocity = enemyBulletDirection * enemyBulletSpeed;
             bullet.GetComponent<EnemyBullet>().enemyParent = this.gameObject;
+            bullet.GetComponent<EnemyBullet>().damage = enemyBulletDamage;
             //bullet.transform.position
             //print(enemyBulletDirection);
 

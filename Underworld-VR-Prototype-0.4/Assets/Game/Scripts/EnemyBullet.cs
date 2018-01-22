@@ -18,7 +18,7 @@ public class EnemyBullet : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         //print(rb.velocity);
-        print(transform.rotation);
+        //print(transform.rotation);
         transformStart = transform.position;
 
         //Finds enemy that fired bullet
@@ -30,15 +30,20 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet" || this.gameObject.tag == "Deflected Bullet")
+        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
         {
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
-
         }
 
+        /*if (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet")
+        {
+            Instantiate(bulletHitEffect, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+        }*/
 
-        if (collision.gameObject.tag == "Sword" && this.gameObject.tag != "Deflected Bullet")
+
+        if (collision.gameObject.tag == "Sword" && this.gameObject.tag != "DeflectedBullet")
         {
             //var localVel = transform.InverseTransformDirection(rb.velocity);
             //rb.velocity = localVel.z;
@@ -58,7 +63,7 @@ public class EnemyBullet : MonoBehaviour {
 
             transform.rotation = Quaternion.LookRotation(bulletDirection);
             rb.velocity = bulletDirection * 3f;
-            this.gameObject.tag = "Deflected Bullet";
+            this.gameObject.tag = "DeflectedBullet";
             //transform.rotation = collision.gameObject.transform.rotation;
 
             //rb.velocity = -rb.velocity * 5f;
@@ -81,6 +86,6 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnDestroy()
     {
-        Instantiate(bulletHitEffect, transform.position, transform.rotation);
+        //Instantiate(bulletHitEffect, transform.position, transform.rotation);
     }
 }

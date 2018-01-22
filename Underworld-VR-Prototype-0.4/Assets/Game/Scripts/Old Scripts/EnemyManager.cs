@@ -6,10 +6,6 @@ public class EnemyManager : MonoBehaviour {
 
     public GameManager gameManager;
     public float enemySpawnTimer; //The time in seconds in which an enemy spawns
-    //public int enemiesToSpawn;
-    
-    //public GameObject nextEnemySpawned; //The next enemy to be spawned by the spawner;
-
 
     public Transform enemySpawnPosition;
 
@@ -22,12 +18,6 @@ public class EnemyManager : MonoBehaviour {
 
     public float[] enemyProbability; // 0 = single, 1 = double, 2 = bomber
     public GameObject[] enemyTypes; // 0 = single, 1 = double, 2 = bomber
-
-
-
-
-
-
 
     //public bool isActive;
 
@@ -52,14 +42,6 @@ public class EnemyManager : MonoBehaviour {
                 SpawnEnemy();
             }
         }
-
-        
-
-        /*if (enemiesToSpawn == 0)
-        {
-            CheckWave();
-        }*/
-
     }
 
     void SpawnEnemy()
@@ -70,7 +52,6 @@ public class EnemyManager : MonoBehaviour {
 
         Instantiate(enemyTypes[enemy], enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
-
     }
 
     void CheckWave()

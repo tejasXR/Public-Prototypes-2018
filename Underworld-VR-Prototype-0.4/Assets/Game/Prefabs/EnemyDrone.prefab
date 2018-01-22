@@ -348,7 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBulletFireRate: 0.4
   enemyBulletSpeed: 8
-  enemyAccuracy: 0.7
+  enemyBulletDamage: 1
+  enemyBulletAccuracy: 0
   enemyBulletPrefab: {fileID: 1871618839054336, guid: 1f2f088599c9dcd408ff5c043be1b1fc,
     type: 2}
   enemyBulletSpawns:

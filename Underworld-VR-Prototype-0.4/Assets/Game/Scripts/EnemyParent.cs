@@ -21,7 +21,6 @@ public class EnemyParent : MonoBehaviour {
     private float enemyDestroyTimer = 2f;
 
 
-
     void Start () {
 
         //Define player variables for enemy prefab
@@ -32,9 +31,17 @@ public class EnemyParent : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "DeflectedBullet")
         {
-            var damage = other.gameObject.GetComponent<Bullet>().damage;
+            float damage = 0;
+
+            if (other.gameObject.tag == "Bullet")
+            {
+                damage = other.gameObject.GetComponent<Bullet>().damage;
+            } else if (other.gameObject.tag == "DeflectedBullet")
+            {
+                damage = other.gameObject.GetComponent<EnemyBullet>().damage;
+            }
             enemyHealth -= damage;            
 
             if (enemyHealth <= 0)
@@ -43,21 +50,6 @@ public class EnemyParent : MonoBehaviour {
                 Destroy(this.gameObject);
             }
         }
-
-        if (other.gameObject.tag == "Deflected Bullet")
-        {
-            var damage = other.gameObject.GetComponent<EnemyBullet>().damage;
-            enemyHealth -= damage*2;
-
-            if (enemyHealth <= 0)
-            {
-                EnemyDestroy();
-                Destroy(this.gameObject);
-            }
-        }
-
-
-
     }
 
     /*void RandomPosition()

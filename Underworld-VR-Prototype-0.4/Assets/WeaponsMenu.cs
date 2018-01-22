@@ -144,7 +144,7 @@ public class WeaponsMenu : MonoBehaviour {
                 weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
                 oldMenuItem = currentMenuItem;
                 weaponList[currentMenuItem].sceneImage.color = weaponList[currentMenuItem].highlightColor;
-                print("changing color");
+                //print("changing color");
             }
         }
     }

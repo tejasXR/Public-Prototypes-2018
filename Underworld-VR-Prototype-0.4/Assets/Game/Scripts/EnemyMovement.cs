@@ -74,14 +74,11 @@ public class EnemyMovement : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "DeflectedBullet")
         {
             Vector3 otherVelocity = other.gameObject.GetComponent<Rigidbody>().velocity;
             rb.AddForce(otherVelocity / 5);
         }
-
-        
-        
     }
 
     void FixedUpdate()

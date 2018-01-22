@@ -61,9 +61,11 @@ public class PlayerGun : MonoBehaviour {
             for (int i = 0; i < bulletsInstantiated; i++)
             {
                 // Adds gun accuray
-                float spreadFactor = (1 - bulletAccuracy) * playerController.bulletAccuracyMultiplier;
+                float spreadFactor = 1 - (bulletAccuracy * playerController.bulletAccuracyMultiplier);
+                if (spreadFactor <= 0) {spreadFactor = 0;}
 
                 var bulletDirection = bulletSpawn.transform.forward;
+                
 
                 bulletDirection.x += Random.Range(-spreadFactor, spreadFactor);
                 bulletDirection.y += Random.Range(-spreadFactor, spreadFactor);
