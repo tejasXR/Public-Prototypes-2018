@@ -17,13 +17,20 @@ public class PlayerGun : MonoBehaviour {
     public float bulletTimer;
     public float bulletSpeed;
 
-    public float gunAccuracy;
+    public float bulletAccuracy;
     public float bulletsInstantiated;
 
 
 	// Use this for initialization
 	void Start () {
         bulletSpawnStart = bulletSpawn.transform.position;
+
+        // Recheck multipliers after upgrades
+        bulletFireRate = bulletFireRate * playerController.bulletFireRateMultiplier;
+        bulletSpeed = bulletSpeed * playerController.bulletSpeedMultiplier;
+        bulletAccuracy = bulletAccuracy * playerController.bulletAccuracyMultiplier;
+        
+        // Bullet timer calculation so fire rate is in bullets per second
         bulletTimer = 1 / bulletFireRate;
 	}
 	
@@ -63,7 +70,7 @@ public class PlayerGun : MonoBehaviour {
             for (int i = 0; i < bulletsInstantiated; i++)
             {
 
-                float spreadFactor = 1 - gunAccuracy;
+                float spreadFactor = 1 - bulletAccuracy;
 
                 var bulletDirection = bulletSpawn.transform.forward;
 
@@ -88,4 +95,7 @@ public class PlayerGun : MonoBehaviour {
 
        
     }
+
+
+
 }

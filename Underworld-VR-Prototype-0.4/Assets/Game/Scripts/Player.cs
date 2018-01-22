@@ -6,10 +6,23 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float playerBullets;
+     
+
     public string bulletString;
 
     public float playerHealth;
     public float playerHealthMax;
+
+    public float playerHealthMaxMultiplier = 1;
+
+
+    public float bulletFireRateMultiplier = 1;
+    public float bulletDamageMultiplier = 1;
+    public float bulletSpeedMultiplier = 1;
+    public float bulletAccuracyMultiplier = 1;
+
+
+
 
     public TextMeshPro[] bulletCounters;
     public GameObject hitBody;
