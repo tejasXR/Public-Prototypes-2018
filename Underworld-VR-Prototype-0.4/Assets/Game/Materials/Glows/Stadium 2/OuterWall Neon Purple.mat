@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: OuterBorder
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: OuterWall Neon Purple
+  m_Shader: {fileID: 4800000, guid: a6b700a358a79f445add9a15b906f33b, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -72,21 +72,19 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _MKGlowOffSet: 0
-    - _MKGlowPower: 0.34
+    - _MKGlowPower: 0.45
     - _MKGlowTexStrength: 10
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Shininess: 0.078125
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.16078432, g: 1, b: 0.9960785, a: 1}
+    - _Color: {r: 0.7904786, g: 0, b: 0.9191176, a: 1}
     - _EmissionColor: {r: 0.16260153, g: 1, b: 0.99568254, a: 1}
-    - _MKGlowColor: {r: 0, g: 0.751724, b: 1, a: 1}
+    - _MKGlowColor: {r: 0.986207, g: 0, b: 1, a: 1}
     - _MKGlowTexColor: {r: 0.81568635, g: 0.15686275, b: 0.96470594, a: 1}
-    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
