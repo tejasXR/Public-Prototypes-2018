@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TraingleStadiumGlow 2
+  m_Name: OuterBorder
   m_Shader: {fileID: 4800000, guid: e6f9f025efa86ad4c807ab5b845f3bba, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -20,7 +20,7 @@ Material:
     m_TexEnvs:
     - _MKGlowTex:
         m_Texture: {fileID: 2800000, guid: c43738b2b5ea39e488158498ed03aa6e, type: 3}
-        m_Scale: {x: 300, y: 300}
+        m_Scale: {x: 1, y: 0}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: d2bfdb919488ef040b6f7e30c6d08ebf, type: 3}
@@ -33,4 +33,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _MKGlowColor: {r: 0, g: 0.751724, b: 1, a: 1}
-    - _MKGlowTexColor: {r: 0.1254902, g: 0.06666667, b: 0.63529414, a: 1}
+    - _MKGlowTexColor: {r: 0.81568635, g: 0.15686275, b: 0.96470594, a: 1}
