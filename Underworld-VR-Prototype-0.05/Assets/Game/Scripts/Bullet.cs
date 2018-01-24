@@ -17,11 +17,11 @@ public class Bullet : MonoBehaviour {
 
     private void Update()
     {
-        step = bulletSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, bulletDirection, step);
+        //step = bulletSpeed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, bulletDirection, step);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyBullet" || other.gameObject.tag == "Solid")
         {
@@ -29,9 +29,9 @@ public class Bullet : MonoBehaviour {
             Destroy(this.gameObject);
 
         }
-    }
+    }*/
 
-    /*private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet" || collision.gameObject.tag == "Solid")
         {
@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour {
             Destroy(this.gameObject);
 
         }
-    }*/
+    }
 
     private void OnDestroy()
     {

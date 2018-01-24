@@ -76,11 +76,11 @@ public class PlayerGun : MonoBehaviour {
                 playerController.playerBullets -= 1;
 
                 // Add velocity to the bullet
-                //bullet.GetComponent<Rigidbody>().velocity = bulletDirection * bulletSpeed;
-                //bullet.GetComponent<Bullet>().damage = bulletDamage * playerController.bulletDamageMultiplier;
+                bullet.GetComponent<Rigidbody>().velocity = bulletDirection * bulletSpeed;
+                bullet.GetComponent<Bullet>().damage = bulletDamage * playerController.bulletDamageMultiplier;
 
-                bullet.GetComponent<Bullet>().bulletDirection = bulletDirection;
-                bullet.GetComponent<Bullet>().bulletSpeed = bulletSpeed;
+                //bullet.GetComponent<Bullet>().bulletDirection = bulletDirection;
+                //bullet.GetComponent<Bullet>().bulletSpeed = bulletSpeed;
 
 
                 // Destroy the bullet after 2 seconds
