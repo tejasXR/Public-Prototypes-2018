@@ -62,6 +62,7 @@ public class EnemyBullet : MonoBehaviour {
 
 
             transform.rotation = Quaternion.LookRotation(bulletDirection);
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.velocity = bulletDirection * 3f;
             this.gameObject.tag = "DeflectedBullet";
             //transform.rotation = collision.gameObject.transform.rotation;

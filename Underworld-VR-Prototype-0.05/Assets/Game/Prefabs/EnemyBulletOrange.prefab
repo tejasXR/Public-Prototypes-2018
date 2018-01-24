@@ -209,6 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletHitEffect: {fileID: 1918055969258948, guid: 96ae2c153f67d1042b93e509350e047c,
     type: 2}
+  damage: 0
+  enemyParent: {fileID: 0}
 --- !u!136 &136642876076122152
 CapsuleCollider:
   m_ObjectHideFlags: 1
