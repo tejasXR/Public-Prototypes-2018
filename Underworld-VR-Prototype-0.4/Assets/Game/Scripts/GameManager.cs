@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
     public float timeLeft;
     public GameObject waveText;
 
+    public TextMeshPro[] timeTextMeshPro;
+
     public bool waveActive; //To see if the player is currently in a wave
     public bool upgradeActive; //To see if the player is currently upgrading
 
@@ -17,7 +19,10 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         StartNewWave();
-	}
+
+        
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,7 +47,11 @@ public class GameManager : MonoBehaviour {
             StartNewWave();
             waveActive = true;
         }
-	}
+
+
+        
+
+    }
 
     public void StartNewWave()
     {
@@ -86,6 +95,12 @@ public class GameManager : MonoBehaviour {
         string niceTime = minutes.ToString("00") + " : " + seconds.ToString("00") + " : " + milliseconds.ToString("0");
 
         waveTimer = niceTime;
+
+        foreach (TextMeshPro timeText in timeTextMeshPro)
+        {
+            timeText.text = waveTimer;
+            //print(timeText);
+        }
     }
     
 }
