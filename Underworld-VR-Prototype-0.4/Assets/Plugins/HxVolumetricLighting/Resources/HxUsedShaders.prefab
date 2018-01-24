@@ -26,7 +26,7 @@ MonoBehaviour:
   DensityParticles: 0
   Point: 1
   Spot: 1
-  Directional: 0
+  Directional: 1
   SinglePassStereo: 1
   Projector: 0
   FullLast: 0
@@ -40,6 +40,6 @@ MonoBehaviour:
   DensityParticlesLast: 0
   PointLast: 1
   SpotLast: 1
-  DirectionalLast: 0
+  DirectionalLast: 1
   SinglePassStereoLast: 1
   ProjectorLast: 0
