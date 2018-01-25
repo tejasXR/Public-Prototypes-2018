@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 114118255780314454}
   m_Layer: 0
   m_Name: New Enemy 2 - Fast Drones
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2317,9 +2317,9 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0.75
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -2617,7 +2617,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572905347101056}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
@@ -2660,7 +2660,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572905347101056}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04e4438180274104db6b533d440d9f51, type: 3}
   m_Name: 
@@ -2726,7 +2726,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1572905347101056}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33f541a7d57fd545976719c01b47b05, type: 3}
   m_Name: 
@@ -2770,10 +2770,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 0.94
+  m_Radius: 0.17
+  m_Height: 0.76
   m_Direction: 1
-  m_Center: {x: 0, y: -0.18, z: 0}
+  m_Center: {x: 0, y: -0.12, z: 0}
 --- !u!136 &136991849609600254
 CapsuleCollider:
   m_ObjectHideFlags: 1
