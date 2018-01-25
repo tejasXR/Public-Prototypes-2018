@@ -29,6 +29,9 @@ public class EnemyMovement : MonoBehaviour {
     public bool bomberMove;
     public float bomberBufferTimer = 5f; // A slight buffer so that the bomber does not move towards the player right away
 
+    public bool hasTentacles;
+    public GameObject[] tentacles;
+
     private Rigidbody rb;
 
 
@@ -169,5 +172,9 @@ public class EnemyMovement : MonoBehaviour {
         enemyMoveSpeed = enemyMoveSpeed / 2;
     }
 
+    public void TentaclesMove()
+    {
+
+    }
 
 }
