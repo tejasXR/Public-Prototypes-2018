@@ -52,7 +52,7 @@ public class TentaclesMove : MonoBehaviour {
         //Vector3 toAngle = new Vector3(xAngle, yAngle, zAngle);
 
 
-        transform.Rotate(toAngle, Time.deltaTime * 10f);
+        //transform.Rotate(toAngle, Time.deltaTime * 10f);
 
         //transform.localEulerAngles = Vector3.up;
 

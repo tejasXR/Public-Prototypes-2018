@@ -10,27 +10,60 @@ public class SpinObject : MonoBehaviour {
 
     public float spinSpeed;
 
+    public bool useRigidbody;
+    private Rigidbody rb;
 
     // Use this for initialization
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (spinAlongY)
+        if (!useRigidbody)
         {
-            transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
+            if (spinAlongY)
+            {
+                transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
+            }
+            else if (spinAlongX)
+            {
+                transform.Rotate(Vector3.right, spinSpeed * Time.deltaTime);
+            }
+            else if (spinAlongZ)
+            {
+                transform.Rotate(Vector3.forward, spinSpeed * Time.deltaTime);
+            }
         }
-        else if (spinAlongX)
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (useRigidbody)
         {
-            transform.Rotate(Vector3.right, spinSpeed * Time.deltaTime);
-        }
-        else if (spinAlongZ)
-        {
-            transform.Rotate(Vector3.forward, spinSpeed * Time.deltaTime);
+
+            if (spinAlongX)
+            {
+                Quaternion rot = Quaternion.Euler(1 * Time.deltaTime * spinSpeed, 0, 0);
+                rb.MoveRotation(rb.rotation * rot);
+            }
+            else if (spinAlongY)
+            {
+                Quaternion rot = Quaternion.Euler(0, 1 * Time.deltaTime * spinSpeed, 0);
+                rb.MoveRotation(rb.rotation * rot);
+
+            }
+            else if (spinAlongZ)
+            {
+                Quaternion rot = Quaternion.Euler(0, 0, 1 * Time.deltaTime * spinSpeed);
+                rb.MoveRotation(rb.rotation * rot);
+
+            }
+
+
         }
     }
 }

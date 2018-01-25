@@ -133,14 +133,30 @@ public class EnemyMovement : MonoBehaviour {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1.5f, 5f);
             enemyParent.DisappearAfterWave();
         }
+
+        if (rb.velocity.magnitude > (enemyMoveSpeed*4))
+        {
+            rb.velocity = rb.velocity.normalized * (enemyMoveSpeed * 4);
+        }
+
+
+
         //enemyParent.playerDirection = enemyParent.player.transform.position - transform.position;
 
 
         //lookDirection = enemyParent.player.transform.position;
         //lookDirection = lookPosition;
-        Vector3 looking = lookDirection - transform.position;
 
-        Quaternion rotation = Quaternion.LookRotation(looking);
+
+        if (!isBomberDrone)
+        {
+            Vector3 looking = lookDirection - transform.position;
+
+            Quaternion rotation = Quaternion.LookRotation(looking);
+            rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime));
+
+        }
+
         //Quaternion rotation = Quaternion.LookRotation(enemyParent.playerDirection);
 
         // Create a variable to enable dyanmic rotation towrds different Vectors (i.e., th  player, move position)
@@ -148,7 +164,6 @@ public class EnemyMovement : MonoBehaviour {
         //Quaternion rotation = Quaternion.LookRotation(lookDirection);
         //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
 
-        rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime));
 
         if (isBomberDrone && bomberMove)
         {
@@ -195,12 +210,6 @@ public class EnemyMovement : MonoBehaviour {
     void MoveToPlayer()
     {
         targetPosition = enemyParent.player.transform.position;
-        enemyMoveSpeed = enemyMoveSpeed / 2;
+        enemyMoveSpeed = enemyMoveSpeed / 4;
     }
-
-    public void TentaclesMove()
-    {
-
-    }
-
 }
