@@ -126,7 +126,7 @@ public class EnemyMovement : MonoBehaviour {
             var direction = targetPosition - transform.position;
             //var distance = Vector3.Distance(targetPosition, transform.position);          
 
-            rb.AddForce(direction * enemyMoveSpeed, ForceMode.Force);
+            rb.AddForce(direction * enemyMoveSpeed, ForceMode.Acceleration);
         }
         else
         {
@@ -134,10 +134,11 @@ public class EnemyMovement : MonoBehaviour {
             enemyParent.DisappearAfterWave();
         }
 
-        if (rb.velocity.magnitude > (enemyMoveSpeed*4))
+        // Controls max speed of enemy;
+        /*if (rb.velocity.magnitude > (enemyMoveSpeed*4))
         {
             rb.velocity = rb.velocity.normalized * (enemyMoveSpeed * 4);
-        }
+        }*/
 
 
 
@@ -154,7 +155,6 @@ public class EnemyMovement : MonoBehaviour {
 
             Quaternion rotation = Quaternion.LookRotation(looking);
             rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime));
-
         }
 
         //Quaternion rotation = Quaternion.LookRotation(enemyParent.playerDirection);
