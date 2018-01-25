@@ -8,6 +8,7 @@ public class TentaclesMove : MonoBehaviour {
     public float changeFrequency;
 
     private Quaternion rotation;
+    private Vector3 toAngle;
 
     public float rotationXMin;
     public float rotationXMax;
@@ -40,12 +41,24 @@ public class TentaclesMove : MonoBehaviour {
             changeTimer = Random.Range(0, 1 * changeFrequency);
         }
 
+        //float xAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.x, rotation.eulerAngles.x, ref refVelocity, smooth);
+        //float yAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, rotation.eulerAngles.y, ref refVelocity, smooth);
+        //float zAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, rotation.eulerAngles.z, ref refVelocity, smooth);
+
         float xAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.x, rotation.eulerAngles.x, ref refVelocity, smooth);
         float yAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, rotation.eulerAngles.y, ref refVelocity, smooth);
         float zAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, rotation.eulerAngles.z, ref refVelocity, smooth);
 
+        //Vector3 toAngle = new Vector3(xAngle, yAngle, zAngle);
 
-        transform.rotation = Quaternion.Euler(xAngle, yAngle, zAngle);
+
+        transform.Rotate(toAngle, Time.deltaTime * 10f);
+
+        //transform.localEulerAngles = Vector3.up;
+
+        //transform.Rotate(Vector3.right * Time.deltaTime);
+
+        transform.localRotation = Quaternion.Euler(xAngle, yAngle, zAngle);
 
     }
 
@@ -59,6 +72,9 @@ public class TentaclesMove : MonoBehaviour {
 
 
         rotation.eulerAngles = new Vector3(randomXAngle, randomYAngle, randomZAngle);
+
+        toAngle = new Vector3(randomXAngle, randomYAngle, randomZAngle);
+
         //rotation = Mathf.SmoothDampAngle
     }
 }
