@@ -12,8 +12,9 @@ public class EnemyMovement : MonoBehaviour {
     private Vector3 velocity = Vector3.zero; //velocity needed for smoothDamp movement
     public float enemyMoveSpeed;
     private bool moveNow;
+    public bool canFire;
 
-    private Vector3 lookDirection;
+    public Vector3 lookDirection;
     private float lookAtMovePosTimer; // The timer before the enemy stops looking at the move position and looks at the player
     //public float enemyMaxSpeed;
 
@@ -29,8 +30,6 @@ public class EnemyMovement : MonoBehaviour {
     public bool bomberMove;
     public float bomberBufferTimer = 5f; // A slight buffer so that the bomber does not move towards the player right away
 
-    public bool hasTentacles;
-    public GameObject[] tentacles;
 
     private Rigidbody rb;
 
@@ -81,9 +80,11 @@ public class EnemyMovement : MonoBehaviour {
         if (lookAtMovePosTimer >= 0)
         {
             lookDirection = targetPosition;
+            canFire = false;
         } else
         {
             lookDirection = enemyParent.player.transform.position;
+            canFire = true;
         } 
 
 
@@ -122,6 +123,7 @@ public class EnemyMovement : MonoBehaviour {
         Vector3 looking = lookDirection - transform.position;
 
         Quaternion rotation = Quaternion.LookRotation(looking);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
 
         rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime));
 

@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour {
 
     private EnemyParent enemyParent;
+    private EnemyMovement enemyMovement;
 
     //Enemy Attack Behavior
     public float enemyBulletFireRate; //bullets fires per second
-    private float enemyAttackTimer; //timer to know when to attack next
+    public float enemyAttackTimer; //timer to know when to attack next
     public float enemyBulletSpeed; //speed of enemy bullet
     public float enemyBulletDamage;
     //public Vector3 randomDirection; //random direction needed for enemy gun accuracy
@@ -26,7 +27,7 @@ public class EnemyAttack : MonoBehaviour {
     // Use this for initialization
     void Start () {
         enemyParent = GetComponent<EnemyParent>();
-        
+        enemyMovement = GetComponent<EnemyMovement>();
     }
 
     // Update is called once per frame
@@ -41,57 +42,60 @@ public class EnemyAttack : MonoBehaviour {
             else
             {
                 enemyAttackTimer = enemyBulletFireRate;
-                Fire();
+                Fire();                
             }
         }
     }
 
     void Fire()
     {
-        float spreadFactor = 1 - enemyBulletAccuracy;
-
-        var enemyBulletDirection = enemyParent.player.transform.position - transform.position;
-
-        enemyBulletDirection.x += Random.Range(-spreadFactor, spreadFactor);
-        enemyBulletDirection.y += Random.Range(-spreadFactor, spreadFactor);
-        enemyBulletDirection.z += Random.Range(-spreadFactor, spreadFactor);
-
-        enemyBulletDirection = enemyBulletDirection.normalized;
-
-        //Vector3 randomFire = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * (1 - enemyAccuracy);
-        //enemyBulletDirection = enemyParent.player.transform.position + randomFire;
-
-        //enemyBulletSpawns[enemyBulletSpawnCounter].LookAt(enemyBulletDirection);
-
-        if (enemyAttackTimer == enemyBulletFireRate)
+        if (enemyMovement.canFire)
         {
-            //Instantiate bullet
-            var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawns[enemyBulletSpawnCounter].position, Quaternion.LookRotation(enemyBulletDirection));
+            float spreadFactor = 1 - enemyBulletAccuracy;
 
-            // Add velocity to the bullet
-            //bullet.GetComponent<Rigidbody>().velocity = enemyBulletSpawns[enemyBulletSpawnCounter].transform.forward * enemyBulletSpeed;
-            bullet.GetComponent<Rigidbody>().velocity = enemyBulletDirection * enemyBulletSpeed;
-            bullet.GetComponent<EnemyBullet>().enemyParent = this.gameObject;
-            bullet.GetComponent<EnemyBullet>().damage = enemyBulletDamage;
-            //bullet.transform.position
-            //print(enemyBulletDirection);
+            var enemyBulletDirection = enemyParent.player.transform.position - transform.position;
 
-            // Destroy the bullet after 2 seconds and reset attack timer
-            Destroy(bullet, 2.0f);
-            enemyAttackTimer = 0;
-        }
-        enemyBulletFireRate = Random.Range(.5f, 2f);
+            enemyBulletDirection.x += Random.Range(-spreadFactor, spreadFactor);
+            enemyBulletDirection.y += Random.Range(-spreadFactor, spreadFactor);
+            enemyBulletDirection.z += Random.Range(-spreadFactor, spreadFactor);
 
-        enemyBulletSpawnCounter++;
+            enemyBulletDirection = enemyBulletDirection.normalized;
 
-        if (isSingleDrone)
-        {
-            if (enemyBulletSpawnCounter > 0) { enemyBulletSpawnCounter = 0; }
-        } else if (isDoubleDrone)
-        {
-            if (enemyBulletSpawnCounter > 1) { enemyBulletSpawnCounter = 0; }
+            //Vector3 randomFire = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * (1 - enemyAccuracy);
+            //enemyBulletDirection = enemyParent.player.transform.position + randomFire;
+
+            //enemyBulletSpawns[enemyBulletSpawnCounter].LookAt(enemyBulletDirection);
+
+            if (enemyAttackTimer == enemyBulletFireRate)
+            {
+                //Instantiate bullet
+                var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawns[enemyBulletSpawnCounter].position, Quaternion.LookRotation(enemyBulletDirection));
+
+                // Add velocity to the bullet
+                //bullet.GetComponent<Rigidbody>().velocity = enemyBulletSpawns[enemyBulletSpawnCounter].transform.forward * enemyBulletSpeed;
+                bullet.GetComponent<Rigidbody>().velocity = enemyBulletDirection * enemyBulletSpeed;
+                bullet.GetComponent<EnemyBullet>().enemyParent = this.gameObject;
+                bullet.GetComponent<EnemyBullet>().damage = enemyBulletDamage;
+                //bullet.transform.position
+                //print(enemyBulletDirection);
+
+                // Destroy the bullet after 2 seconds and reset attack timer
+                Destroy(bullet, 2.0f);
+                enemyAttackTimer = 0;
+            }
+            enemyBulletFireRate = Random.Range(.5f, 2f);
+
+            enemyBulletSpawnCounter++;
+
+            if (isSingleDrone)
+            {
+                if (enemyBulletSpawnCounter > 0) { enemyBulletSpawnCounter = 0; }
+            } else if (isDoubleDrone)
+            {
+                if (enemyBulletSpawnCounter > 1) { enemyBulletSpawnCounter = 0; }
+            }
         }
     }
 
-    
+
 }
