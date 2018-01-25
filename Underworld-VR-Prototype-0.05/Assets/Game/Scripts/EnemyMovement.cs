@@ -16,12 +16,14 @@ public class EnemyMovement : MonoBehaviour {
 
     public Vector3 lookDirection;
     private float lookAtMovePosTimer; // The timer before the enemy stops looking at the move position and looks at the player
-    private float attackBufferTimer = 1f;
+    private float attackBufferTimer = 1.5f;
     //public float enemyMaxSpeed;
 
     // Ability to define movemt based on drone type
     //public bool enemySingleDrone;
     //public bool enemyDoubleDrone;
+    public bool alwaysFacingPlayer;
+
     public bool isBomberDrone;
 
     public float enemyMoveFrequencyMin;
@@ -78,21 +80,31 @@ public class EnemyMovement : MonoBehaviour {
 
         }
 
-        if (lookAtMovePosTimer <= 0)
+        if (alwaysFacingPlayer)
         {
+            canFire = true;
             lookDirection = enemyParent.player.transform.position;
-            attackBufferTimer -= Time.deltaTime;
-
-            if (attackBufferTimer <= 0)
-            {
-                canFire = true;
-            }
-
         } else
         {
-            lookDirection = targetPosition;
-            canFire = false;
-        } 
+            if (lookAtMovePosTimer <= 0)
+            {
+                lookDirection = enemyParent.player.transform.position;
+                attackBufferTimer -= Time.deltaTime;
+
+                if (attackBufferTimer <= 0)
+                {
+                    canFire = true;
+                }
+
+            }
+            else
+            {
+                lookDirection = targetPosition;
+                canFire = false;
+            }
+        }
+
+        
 
 
     }
@@ -112,7 +124,7 @@ public class EnemyMovement : MonoBehaviour {
         {
             //Always move towards targetPosition if wave is active
             var direction = targetPosition - transform.position;
-            //var distance = Vector3.Distance(targetPosition, transform.position);
+            //var distance = Vector3.Distance(targetPosition, transform.position);          
 
             rb.AddForce(direction * enemyMoveSpeed, ForceMode.Force);
         }
