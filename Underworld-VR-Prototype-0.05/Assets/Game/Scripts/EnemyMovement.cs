@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour {
 
     public Vector3 lookDirection;
     private float lookAtMovePosTimer; // The timer before the enemy stops looking at the move position and looks at the player
+    private float attackBufferTimer = 1f;
     //public float enemyMaxSpeed;
 
     // Ability to define movemt based on drone type
@@ -77,14 +78,20 @@ public class EnemyMovement : MonoBehaviour {
 
         }
 
-        if (lookAtMovePosTimer >= 0)
+        if (lookAtMovePosTimer <= 0)
+        {
+            lookDirection = enemyParent.player.transform.position;
+            attackBufferTimer -= Time.deltaTime;
+
+            if (attackBufferTimer <= 0)
+            {
+                canFire = true;
+            }
+
+        } else
         {
             lookDirection = targetPosition;
             canFire = false;
-        } else
-        {
-            lookDirection = enemyParent.player.transform.position;
-            canFire = true;
         } 
 
 
@@ -114,15 +121,19 @@ public class EnemyMovement : MonoBehaviour {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1.5f, 5f);
             enemyParent.DisappearAfterWave();
         }
-
         //enemyParent.playerDirection = enemyParent.player.transform.position - transform.position;
-        //Quaternion rotation = Quaternion.LookRotation(enemyParent.playerDirection);
-        //Quaternion rotation = Quaternion.LookRotation(enemyParent.playerDirection);
 
-        // Create a variable to enable dyanmic rotation towrds different Vectors (i.e., th  player, move position)
+
+        //lookDirection = enemyParent.player.transform.position;
+        //lookDirection = lookPosition;
         Vector3 looking = lookDirection - transform.position;
 
         Quaternion rotation = Quaternion.LookRotation(looking);
+        //Quaternion rotation = Quaternion.LookRotation(enemyParent.playerDirection);
+
+        // Create a variable to enable dyanmic rotation towrds different Vectors (i.e., th  player, move position)
+
+        //Quaternion rotation = Quaternion.LookRotation(lookDirection);
         //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 3f);
 
         rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, 3f * Time.deltaTime));
@@ -140,6 +151,7 @@ public class EnemyMovement : MonoBehaviour {
     void RandomPosition()
     {
         lookAtMovePosTimer = 1.5f;
+        attackBufferTimer = 1f;
 
         if (!moveNow)
         {
