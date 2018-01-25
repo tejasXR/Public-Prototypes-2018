@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4161762623362108}
   m_Layer: 0
-  m_Name: Spine (1)
+  m_Name: Spine 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4052920625673104}
   m_Layer: 0
-  m_Name: Spine
+  m_Name: Spine 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4412993207082864}
   m_Layer: 0
-  m_Name: Legs (1)
+  m_Name: Legs 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -739,7 +739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1971235829776944
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4562847889895336}
   m_Layer: 0
-  m_Name: Legs
+  m_Name: Legs 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -819,7 +819,7 @@ Transform:
   - {fileID: 4394514903703454}
   - {fileID: 4275227594099992}
   m_Father: {fileID: 4991759369490738}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4106017096073162
 Transform:
@@ -862,7 +862,7 @@ Transform:
   - {fileID: 4045664550482140}
   - {fileID: 4730178037867114}
   m_Father: {fileID: 4991759369490738}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4196386549936146
 Transform:
@@ -889,7 +889,7 @@ Transform:
   m_Children:
   - {fileID: 4444211973751750}
   m_Father: {fileID: 4991759369490738}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4267891132300540
 Transform:
@@ -1041,7 +1041,7 @@ Transform:
   - {fileID: 4772747424262916}
   - {fileID: 4795462571659164}
   m_Father: {fileID: 4991759369490738}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4418321734072978
 Transform:
@@ -1107,7 +1107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4991759369490738}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4562847889895336
 Transform:
@@ -1426,11 +1426,11 @@ Transform:
   m_Children:
   - {fileID: 4921561280658304}
   - {fileID: 4562847889895336}
+  - {fileID: 4412993207082864}
   - {fileID: 4052920625673104}
+  - {fileID: 4161762623362108}
   - {fileID: 4238435365302820}
   - {fileID: 4536528652310640}
-  - {fileID: 4161762623362108}
-  - {fileID: 4412993207082864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2875,7 +2875,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939284057369390}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
@@ -2897,7 +2897,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939284057369390}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04e4438180274104db6b533d440d9f51, type: 3}
   m_Name: 
@@ -2993,9 +2993,10 @@ MonoBehaviour:
   playerController: {fileID: 0}
   player: {fileID: 0}
   playerDirection: {x: 0, y: 0, z: 0}
-  enemyHealth: 0
+  enemyHealth: 1
   enemyGiveBullets: 0
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 1791950710268172, guid: 508faf91813c2f248aed6f78763379de,
+    type: 2}
   earnedBulletObj: {fileID: 0}
   earnedBulletText: {fileID: 0}
 --- !u!114 &114834007637533014
