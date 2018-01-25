@@ -726,6 +726,7 @@ MonoBehaviour:
   spinAlongY: 0
   spinAlongZ: 1
   spinSpeed: 50
+  useRigidbody: 0
 --- !u!114 &114556901744483380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -769,6 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBulletFireRate: 0.4
+  enemyAttackTimer: 0
   enemyBulletSpeed: 5
   enemyBulletDamage: 2
   enemyBulletAccuracy: 0
@@ -794,6 +796,7 @@ MonoBehaviour:
   spinAlongY: 0
   spinAlongZ: 1
   spinSpeed: 35
+  useRigidbody: 0
 --- !u!114 &114854056830996052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -809,6 +812,9 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
   enemyMoveSpeed: 0.3
+  canFire: 0
+  lookDirection: {x: 0, y: 0, z: 0}
+  alwaysFacingPlayer: 0
   isBomberDrone: 0
   enemyMoveFrequencyMin: 10
   enemyMoveFrequencyMax: 12
@@ -830,6 +836,7 @@ MonoBehaviour:
   spinAlongY: 0
   spinAlongZ: 0
   spinSpeed: 35
+  useRigidbody: 0
 --- !u!135 &135541987768665244
 SphereCollider:
   m_ObjectHideFlags: 1

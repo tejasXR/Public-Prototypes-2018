@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBulletFireRate: 0.4
+  enemyAttackTimer: 0
   enemyBulletSpeed: 8
   enemyBulletDamage: 1
   enemyBulletAccuracy: 0
@@ -371,6 +372,9 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
   enemyMoveSpeed: 1
+  canFire: 0
+  lookDirection: {x: 0, y: 0, z: 0}
+  alwaysFacingPlayer: 0
   isBomberDrone: 0
   enemyMoveFrequencyMin: 9
   enemyMoveFrequencyMax: 15
@@ -392,6 +396,7 @@ MonoBehaviour:
   spinAlongY: 1
   spinAlongZ: 0
   spinSpeed: 35
+  useRigidbody: 0
 --- !u!114 &114762754765243728
 MonoBehaviour:
   m_ObjectHideFlags: 1
