@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class TentaclesMove : MonoBehaviour {
 
-    private float changeTimer;
+    public float changeTimer;
     private Quaternion rotation;
 
-	// Use this for initialization
-	void Start () {
+    public float rotationXMin;
+    public float rotationXMax;
+
+    public float rotationYMin;
+    public float rotationYMax;
+
+    public float rotationZMin;
+    public float rotationZMax;
+
+
+    // Use this for initialization
+    void Start () {
 
 		
 	}
@@ -21,9 +31,8 @@ public class TentaclesMove : MonoBehaviour {
         if (changeTimer <= 0)
         {
             RandomAngle();
-            changeTimer = Random.Range(1, 5);
+            changeTimer = Random.Range(1, 2);
         }
-
 
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
 
@@ -31,9 +40,11 @@ public class TentaclesMove : MonoBehaviour {
 
     void RandomAngle()
     {
-        var randomAngle = Random.Range(0, 15);
-        rotation.eulerAngles = new Vector3(0, 0, randomAngle);
+        var randomXAngle = Random.Range(rotationXMin, rotationXMax);
+        var randomYAngle = Random.Range(rotationYMin, rotationYMax);
+        var randomZAngle = Random.Range(rotationZMin, rotationZMax);
 
 
+        rotation.eulerAngles = new Vector3(randomXAngle, randomYAngle, randomZAngle);
     }
 }
