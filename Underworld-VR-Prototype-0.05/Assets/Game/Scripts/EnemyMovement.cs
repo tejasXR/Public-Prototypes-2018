@@ -162,8 +162,8 @@ public class EnemyMovement : MonoBehaviour {
 
     void RandomPosition()
     {
-        lookAtMovePosTimer = 1.5f;
-        attackBufferTimer = 1f;
+        lookAtMovePosTimer = 2.5f;
+        attackBufferTimer = 2f;
 
         if (!moveNow)
         {

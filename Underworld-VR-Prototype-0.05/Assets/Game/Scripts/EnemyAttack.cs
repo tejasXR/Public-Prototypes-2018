@@ -28,20 +28,21 @@ public class EnemyAttack : MonoBehaviour {
     void Start () {
         enemyParent = GetComponent<EnemyParent>();
         enemyMovement = GetComponent<EnemyMovement>();
+
+        enemyAttackTimer = (1 / (enemyBulletFireRate + Random.Range(0, 2)));
     }
 
     // Update is called once per frame
     void Update () {
+
+
+
         if (enemyParent.gameManager.waveActive)
         {
+            enemyAttackTimer -= Time.deltaTime;
             //If the attack timer equals the fire rate, then attack, else keep increasing the timer
-            if (enemyAttackTimer < enemyBulletFireRate)
+            if (enemyAttackTimer <= 0)
             {
-                enemyAttackTimer += Time.deltaTime;
-            }
-            else
-            {
-                enemyAttackTimer = enemyBulletFireRate;
                 Fire();                
             }
         }
@@ -66,8 +67,8 @@ public class EnemyAttack : MonoBehaviour {
 
             //enemyBulletSpawns[enemyBulletSpawnCounter].LookAt(enemyBulletDirection);
 
-            if (enemyAttackTimer == enemyBulletFireRate)
-            {
+            //if (enemyAttackTimer == enemyBulletFireRate)
+            //{
                 //Instantiate bullet
                 var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawns[enemyBulletSpawnCounter].position, Quaternion.LookRotation(enemyBulletDirection));
 
@@ -81,9 +82,13 @@ public class EnemyAttack : MonoBehaviour {
 
                 // Destroy the bullet after 2 seconds and reset attack timer
                 Destroy(bullet, 2.0f);
-                enemyAttackTimer = 0;
-            }
-            enemyBulletFireRate = Random.Range(.5f, 2f);
+                
+            // }
+
+
+            //enemyBulletFireRate = Random.Range(.5f, 2f);
+
+            enemyAttackTimer = (1 / (enemyBulletFireRate + Random.Range(0, 2)));
 
             enemyBulletSpawnCounter++;
 

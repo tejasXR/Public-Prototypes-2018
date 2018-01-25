@@ -40,9 +40,9 @@ public class TentaclesMove : MonoBehaviour {
             changeTimer = Random.Range(0, 1 * changeFrequency);
         }
 
-        float xAngle = Mathf.SmoothDampAngle(transform.eulerAngles.x, rotation.eulerAngles.x, ref refVelocity, smooth);
-        float yAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotation.eulerAngles.y, ref refVelocity, smooth);
-        float zAngle = Mathf.SmoothDampAngle(transform.eulerAngles.z, rotation.eulerAngles.z, ref refVelocity, smooth);
+        float xAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.x, rotation.eulerAngles.x, ref refVelocity, smooth);
+        float yAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.y, rotation.eulerAngles.y, ref refVelocity, smooth);
+        float zAngle = Mathf.SmoothDampAngle(transform.localEulerAngles.z, rotation.eulerAngles.z, ref refVelocity, smooth);
 
 
         transform.rotation = Quaternion.Euler(xAngle, yAngle, zAngle);
