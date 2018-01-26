@@ -40,7 +40,7 @@ public class DroneSpawn : MonoBehaviour {
             spawnBufferTimer -= Time.deltaTime;
             if (spawnBufferTimer <= 0)
             {
-                //Destroy(this.gameObject);
+                Destroy(this.gameObject);
             }
         }
         

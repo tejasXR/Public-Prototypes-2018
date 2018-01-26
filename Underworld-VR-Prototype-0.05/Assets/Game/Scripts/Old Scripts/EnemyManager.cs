@@ -11,7 +11,9 @@ public class EnemyManager : MonoBehaviour
 
     public Vector3 enemySpawnPos;
 
-    public Transform enemySpawnPosition;
+    public GameObject enemySpawner;
+
+    //public Transform enemySpawnPosition;
 
     public float enemySpawnTimerMin;
     public float enemySpawnTimerMax;
@@ -54,8 +56,9 @@ public class EnemyManager : MonoBehaviour
         CheckWave();
         int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
         //print(enemy);
-
-        Instantiate(enemyTypes[enemy], enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
+        RandomPosition();
+        //Instantiate(enemyTypes[enemy], enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
+        Instantiate(enemySpawner, enemySpawnPos, Quaternion.identity);
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
     }
 
@@ -148,6 +151,6 @@ public class EnemyManager : MonoBehaviour
         }
 
         Ray ray = new Ray(playerController.transform.position, randomPosition);
-        enemySpawnPos = ray.GetPoint(Random.Range(4f, 7f));
+        enemySpawnPos = ray.GetPoint(Random.Range(10f, 12f));
     }
 }
