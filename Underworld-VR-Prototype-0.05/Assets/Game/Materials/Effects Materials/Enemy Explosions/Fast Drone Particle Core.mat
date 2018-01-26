@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Light Drone Particle Core
+  m_Name: Fast Drone Particle Core
   m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -32,7 +32,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
-    - _TintColor: {r: 0, g: 0.83823526, b: 0.040466603, a: 0.11764706}
+    - _TintColor: {r: 0, g: 0.68372196, b: 0.71323526, a: 0.11764706}
     - _TintColorB: {r: 0.6137934, g: 0, b: 1, a: 0}
     - _TintColorG: {r: 0.7484788, g: 0.41176468, b: 1, a: 0}
     - _TintColorR: {r: 0.45476675, g: 0.38235295, b: 1, a: 0.47058824}

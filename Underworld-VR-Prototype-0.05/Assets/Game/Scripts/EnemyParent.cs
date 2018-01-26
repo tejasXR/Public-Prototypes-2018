@@ -30,7 +30,7 @@ public class EnemyParent : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        earnedBulletText.text = "+ " + enemyGiveBullets.ToString();  
+        earnedBulletText.text = "+ " + enemyGiveBullets.ToString();
 
     }
 
