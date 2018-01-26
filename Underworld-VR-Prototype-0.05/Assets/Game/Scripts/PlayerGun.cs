@@ -32,7 +32,7 @@ public class PlayerGun : MonoBehaviour {
         bulletAccuracy = bulletAccuracy * playerController.bulletAccuracyMultiplier;
         
         // Bullet timer calculation so fire rate is in bullets per second
-        bulletTimer = (1 / bulletFireRate) * playerController.bulletFireRateMultiplier;
+        bulletTimer = 0;
 	}
 	
 	// Update is called once per frame

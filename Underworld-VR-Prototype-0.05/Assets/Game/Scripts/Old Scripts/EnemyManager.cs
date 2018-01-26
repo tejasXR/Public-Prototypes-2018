@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour {
+public class EnemyManager : MonoBehaviour
+{
 
-    public GameManager gameManager;
+    private GameManager gameManager;
+    private GameObject playerController;
     public float enemySpawnTimer; //The time in seconds in which an enemy spawns
+
+    public Vector3 enemySpawnPos;
 
     public Transform enemySpawnPosition;
 
@@ -25,9 +29,10 @@ public class EnemyManager : MonoBehaviour {
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerController = GameObject.Find("PlayerController");
         //isActive = true;
         CheckWave();
-        
+
     }
 
     // Update is called once per frame
@@ -101,28 +106,48 @@ public class EnemyManager : MonoBehaviour {
         }
     }
 
-    float EnemyProbability (float[] probs)
+    float EnemyProbability(float[] probs)
     {
         float total = 0;
 
-        foreach(float elem in probs)
+        foreach (float elem in probs)
         {
             total += elem;
         }
 
         float randomPoint = Random.value * total;
 
-        for (int i = 0; i <probs.Length; i++)
+        for (int i = 0; i < probs.Length; i++)
         {
             if (randomPoint <= probs[i])
             {
                 return i;
-            } else
+            }
+            else
             {
                 randomPoint -= probs[i];
             }
         }
 
         return probs.Length - 1;
+    }
+
+    public void RandomPosition()
+    {
+        // Creates a random position within a raycast range to spawn the triangle enemy spawner
+        Vector3 randomPosition;
+
+        int coinFlip = Random.Range(0, 2);
+        if (coinFlip == 0)
+        {
+            randomPosition = new Vector3(Random.Range(-1f, -.5f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+        }
+        else
+        {
+            randomPosition = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+        }
+
+        Ray ray = new Ray(playerController.transform.position, randomPosition);
+        enemySpawnPos = ray.GetPoint(Random.Range(4f, 7f));
     }
 }
