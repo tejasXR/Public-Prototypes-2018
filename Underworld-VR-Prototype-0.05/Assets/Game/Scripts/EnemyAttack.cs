@@ -24,6 +24,8 @@ public class EnemyAttack : MonoBehaviour {
     public bool isSingleDrone;
     public bool isDoubleDrone;
 
+    public EnemyEyeGlow eyeObject;
+
     // Use this for initialization
     void Start () {
         enemyParent = GetComponent<EnemyParent>();
@@ -69,6 +71,10 @@ public class EnemyAttack : MonoBehaviour {
 
             //if (enemyAttackTimer == enemyBulletFireRate)
             //{
+
+            // Eye Glow effect
+            eyeObject.Flash();
+
                 //Instantiate bullet
                 var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawns[enemyBulletSpawnCounter].position, Quaternion.LookRotation(enemyBulletDirection));
 
