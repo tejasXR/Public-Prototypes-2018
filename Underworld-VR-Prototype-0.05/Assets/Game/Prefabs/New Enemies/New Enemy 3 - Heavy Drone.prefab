@@ -333,11 +333,11 @@ GameObject:
   - component: {fileID: 114998259266843276}
   m_Layer: 0
   m_Name: New Enemy 3 - Heavy Drone
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1575038181445674
 GameObject:
   m_ObjectHideFlags: 1
@@ -2231,11 +2231,11 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541307603904862}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 15
   m_Drag: 0.65
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541307603904862}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04e4438180274104db6b533d440d9f51, type: 3}
   m_Name: 
@@ -2644,7 +2644,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541307603904862}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33f541a7d57fd545976719c01b47b05, type: 3}
   m_Name: 
@@ -2653,11 +2653,14 @@ MonoBehaviour:
   playerController: {fileID: 0}
   player: {fileID: 0}
   playerDirection: {x: 0, y: 0, z: 0}
-  enemyHealth: 0
+  enemyHealth: 2
   enemyGiveBullets: 0
-  explosionPrefab: {fileID: 0}
-  earnedBulletObj: {fileID: 0}
-  earnedBulletText: {fileID: 0}
+  explosionPrefab: {fileID: 1560450553902976, guid: d8eaa550c28298043b66bfb0082335d6,
+    type: 2}
+  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
+  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
 --- !u!114 &114522975221165880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2727,7 +2730,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541307603904862}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
