@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4288952927722028}
   - component: {fileID: 114258505345042390}
   m_Layer: 0
-  m_Name: Light Drone Spawn
+  m_Name: 3. Heavy Drone Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285651394217778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.065, y: 0.336, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4288952927722028}
@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 1843681473007062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 4764300075610722}
   m_Father: {fileID: 4288952927722028}
@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1230580555338202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.77, y: 0, z: 1.99}
+  m_LocalPosition: {x: -6.15, y: 0, z: -0.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4215325072438152}
@@ -208,7 +208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933657232114820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.207}
+  m_LocalPosition: {x: 0, y: 0.088, z: 0.26}
   m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4115991325041616}
@@ -267,7 +267,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 672d00274f937704daa156043ab6dede, type: 2}
+  - {fileID: 2100000, guid: 9b8d27a1ee5f28f48ae3cc65ef2a7eab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnTimer: 2
-  enemySpawnObj: {fileID: 1939284057369390, guid: b1c133328078c3a44af2859d5ca387bc,
+  enemySpawnObj: {fileID: 1148098929671228, guid: 622510b4743841542ae0f4c1794b5688,
     type: 2}
   spawnPoint: {fileID: 4017920081385994}
   mesh: {fileID: 1772129945141078}
@@ -451,7 +451,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1125676817
+  randomSeed: -717526964
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -579,7 +579,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.01
+      scalar: 0.02
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -854,7 +854,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 3.34, y: 0.65, z: 3.4}
+    m_Scale: {x: 3.69, y: 0.79, z: 2.58}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -7092,7 +7092,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03d4a87ecf09aa0408f053012798de4c, type: 2}
+  - {fileID: 2100000, guid: 62d22763585d3334196128a323370922, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
