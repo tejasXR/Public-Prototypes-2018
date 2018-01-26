@@ -38,7 +38,22 @@ GameObject:
   - component: {fileID: 4288952927722028}
   - component: {fileID: 114258505345042390}
   m_Layer: 0
-  m_Name: Light Drone Spawn
+  m_Name: Fast Drone Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1335946901987112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4400627834780850}
+  m_Layer: 0
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +86,7 @@ GameObject:
   - component: {fileID: 4115991325041616}
   - component: {fileID: 114694324126129338}
   m_Layer: 0
-  m_Name: Light Drone Spawn (1)
+  m_Name: Spawn Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 1843681473007062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 6.5, y: 6.5, z: 6.5}
   m_Children:
   - {fileID: 4764300075610722}
   m_Father: {fileID: 4288952927722028}
@@ -164,13 +179,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1230580555338202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.77, y: 0, z: 1.99}
+  m_LocalPosition: {x: 4.03, y: 0, z: 10.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4215325072438152}
   - {fileID: 4115991325041616}
+  - {fileID: 4400627834780850}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4400627834780850
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1335946901987112}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.182, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4288952927722028}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4461414764785238
 Transform:
@@ -179,7 +208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1933657232114820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.16}
   m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4115991325041616}
@@ -238,7 +267,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 672d00274f937704daa156043ab6dede, type: 2}
+  - {fileID: 2100000, guid: ef8190f23ea4c9245966734c8b744b55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -343,9 +372,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1561cefa1dc178448eafb1a9d28d4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawnTimer: 3
-  enemySpawnObj: {fileID: 1939284057369390, guid: b1c133328078c3a44af2859d5ca387bc,
+  enemySpawnTimer: 2
+  enemySpawnObj: {fileID: 1572905347101056, guid: 5a33ac7b014ca284c9a46f3594dabd6c,
     type: 2}
+  spawnPoint: {fileID: 4400627834780850}
+  mesh: {fileID: 1772129945141078}
+  triangleAlpha: 0
+  alphaSpeed: 1
 --- !u!114 &114694324126129338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01312d085de31d743b9c821c785fc59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyInSeconds: 3
+  destroyInSeconds: 5
 --- !u!198 &198490427253412958
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -418,7 +451,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1783567130
+  randomSeed: 299928357
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -821,7 +854,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 3.34, y: 0.5, z: 3.4}
+    m_Scale: {x: 3.5, y: 0.7, z: 2.28}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -7059,7 +7092,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03d4a87ecf09aa0408f053012798de4c, type: 2}
+  - {fileID: 2100000, guid: 59bb4dd4e2863e24d83e4e180203c9aa, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
