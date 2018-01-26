@@ -54,16 +54,25 @@ public class EnemyBullet : MonoBehaviour {
 
             //float deflectAccuracy = .03f;
 
-            var bulletDirection = enemyParent.transform.position - transform.position;
+            Vector3 bulletDirection = enemyParent.transform.position - transform.position;
+
+            if (!enemyParent.gameObject.activeInHierarchy)
+            {
+                bulletDirection = -transform.position;
+            }
+
+            transform.rotation = Quaternion.LookRotation(bulletDirection);
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            rb.velocity = bulletDirection * 3f;
+
+           
 
             //bulletDirection.x += Random.Range(-deflectAccuracy, deflectAccuracy);
             //bulletDirection.y += Random.Range(-deflectAccuracy, deflectAccuracy);
             //bulletDirection.z += Random.Range(-deflectAccuracy, deflectAccuracy);
 
 
-            transform.rotation = Quaternion.LookRotation(bulletDirection);
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            rb.velocity = bulletDirection * 3f;
+            
             this.gameObject.tag = "DeflectedBullet";
             //transform.rotation = collision.gameObject.transform.rotation;
 

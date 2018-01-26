@@ -428,8 +428,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4212038825064408}
-  - component: {fileID: 54580523255930258}
   - component: {fileID: 136611272747037676}
+  - component: {fileID: 54580523255930258}
   - component: {fileID: 114837669059016600}
   - component: {fileID: 114384852840785020}
   - component: {fileID: 114118255780314454}
@@ -2932,14 +2932,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  playerController: {fileID: 0}
   player: {fileID: 0}
-  playerDirection: {x: 0, y: 0, z: 0}
-  enemyHealth: 0
-  enemyGiveBullets: 0
-  explosionPrefab: {fileID: 0}
-  earnedBulletObj: {fileID: 0}
-  earnedBulletText: {fileID: 0}
+  enemyHealth: 1
+  enemyGiveBullets: 5
+  explosionPrefab: {fileID: 1957070108246546, guid: 67832243d348c7447bb24e3375b1ffc6,
+    type: 2}
+  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
+  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
 --- !u!114 &114847947163347374
 MonoBehaviour:
   m_ObjectHideFlags: 1

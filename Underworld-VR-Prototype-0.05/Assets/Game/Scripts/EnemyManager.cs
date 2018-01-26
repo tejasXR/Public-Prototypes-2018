@@ -9,11 +9,11 @@ public class EnemyManager : MonoBehaviour
     private GameObject playerController;
     public float enemySpawnTimer; //The time in seconds in which an enemy spawns
 
-    public Vector3 enemySpawnPos;
+    //public Vector3 enemySpawnPos;
 
-    public GameObject enemySpawner;
+    //public GameObject enemySpawner;
 
-    //public Transform enemySpawnPosition;
+    public Vector3 enemySpawnPosition;
 
     public float enemySpawnTimerMin;
     public float enemySpawnTimerMax;
@@ -22,8 +22,8 @@ public class EnemyManager : MonoBehaviour
     //private float enemyDroneDoubleChance; //chance of drone double to be spawned;
     //private float enemyBomberChance; //chance of drone double to be spawned;
 
-    public float[] enemyProbability; // 0 = single, 1 = double, 2 = bomber
-    public GameObject[] enemyTypes; // 0 = single, 1 = double, 2 = bomber
+    public float[] enemyProbability; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber
+    public GameObject[] enemyTypes; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber
 
     //public bool isActive;
 
@@ -56,9 +56,14 @@ public class EnemyManager : MonoBehaviour
         CheckWave();
         int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
         //print(enemy);
+
         RandomPosition();
-        //Instantiate(enemyTypes[enemy], enemySpawnPosition.transform.position, enemySpawnPosition.transform.rotation);
-        Instantiate(enemySpawner, enemySpawnPos, Quaternion.identity);
+
+        // Spawns enemy spawner objects at the spawn positions
+        Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
+
+
+        // OLD -->>Instantiate(enemySpawner, enemySpawnPos, Quaternion.identity);
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
     }
 
@@ -70,41 +75,41 @@ public class EnemyManager : MonoBehaviour
                 enemySpawnTimerMin = 8f;
                 enemySpawnTimerMax = 12f;
 
-                enemyProbability[0] = 100; // Single drones
-                enemyProbability[1] = 0; // Double Drones
-                enemyProbability[2] = 0; // Bombers
+                enemyProbability[0] = 100; // Light drones
+                enemyProbability[1] = 0; // Fast Drones
+                enemyProbability[2] = 0; // Heavy Drones
                 break;
             case 2:
                 enemySpawnTimerMin = 7f;
                 enemySpawnTimerMax = 10f;
 
-                enemyProbability[0] = 80; // Single drones
-                enemyProbability[1] = 20; // Double Drones
-                enemyProbability[2] = 0; // Bombers
+                enemyProbability[0] = 80; // Light drones
+                enemyProbability[1] = 20; // Fast Drones
+                enemyProbability[2] = 0; // Heavy Drones
                 break;
             case 3:
                 enemySpawnTimerMin = 6f;
                 enemySpawnTimerMax = 9f;
 
-                enemyProbability[0] = 50; // Single drones
-                enemyProbability[1] = 50; // Double Drones
-                enemyProbability[2] = 0; // Bombers
+                enemyProbability[0] = 50; // Light drones
+                enemyProbability[1] = 50; // Fast Drones
+                enemyProbability[2] = 0; // Heavy Drones
                 break;
             case 4:
                 enemySpawnTimerMin = 6f;
                 enemySpawnTimerMax = 7f;
 
-                enemyProbability[0] = 30; // Single drones
-                enemyProbability[1] = 70; // Double Drones
-                enemyProbability[2] = 0; // Bombers
+                enemyProbability[0] = 30; // Light drones
+                enemyProbability[1] = 70; // Fast Drones
+                enemyProbability[2] = 0; // Heavy Drones
                 break;
             case 5:
                 enemySpawnTimerMin = 5f;
                 enemySpawnTimerMax = 6f;
 
-                enemyProbability[0] = 10; // Single drones
-                enemyProbability[1] = 50; // Double Drones
-                enemyProbability[2] = 40; // Bombers
+                enemyProbability[0] = 10; // Light drones
+                enemyProbability[1] = 50; // Fast Drones
+                enemyProbability[2] = 40; // Heavy Drones
                 break;
         }
     }
@@ -151,6 +156,6 @@ public class EnemyManager : MonoBehaviour
         }
 
         Ray ray = new Ray(playerController.transform.position, randomPosition);
-        enemySpawnPos = ray.GetPoint(Random.Range(10f, 12f));
+        enemySpawnPosition = ray.GetPoint(Random.Range(10f, 12f));
     }
 }

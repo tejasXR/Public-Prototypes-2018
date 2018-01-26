@@ -2659,7 +2659,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1939284057369390}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 6
   m_Drag: 0.65
   m_AngularDrag: 1
   m_UseGravity: 0
@@ -3207,11 +3207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  playerController: {fileID: 0}
   player: {fileID: 0}
-  playerDirection: {x: 0, y: 0, z: 0}
-  enemyHealth: 1
-  enemyGiveBullets: 5
+  enemyHealth: 300
+  enemyGiveBullets: 10
   explosionPrefab: {fileID: 1791950710268172, guid: 508faf91813c2f248aed6f78763379de,
     type: 2}
   earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,

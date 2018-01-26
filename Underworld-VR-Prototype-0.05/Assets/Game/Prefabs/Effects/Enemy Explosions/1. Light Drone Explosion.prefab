@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 4924700386169638}
   - component: {fileID: 114016388798239142}
   m_Layer: 0
-  m_Name: Light Drone Explosion
+  m_Name: 1. Light Drone Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1847844001619758
 GameObject:
   m_ObjectHideFlags: 0

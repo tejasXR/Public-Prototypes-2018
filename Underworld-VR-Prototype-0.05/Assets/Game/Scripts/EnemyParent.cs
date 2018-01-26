@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class EnemyParent : MonoBehaviour {
 
-    public GameManager gameManager;
+    [HideInInspector] public GameManager gameManager;
 
     //Define Basic Player Variables
-    public Player playerController; //Whole of player object
+    private Player playerController; //Whole of player object
     public GameObject player; //cameraEye object
-    public Vector3 playerDirection; //Direction towards the player
+    //public Vector3 playerDirection; //Direction towards the player
 
     //Define Basic Enemy Variables
     public float enemyHealth;

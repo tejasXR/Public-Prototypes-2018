@@ -89,12 +89,12 @@ GameObject:
   - component: {fileID: 4393060018431110}
   - component: {fileID: 114098063714405496}
   m_Layer: 0
-  m_Name: Heavy Drone Explosion
+  m_Name: 3. Heavy Drone Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1637782515304716
 GameObject:
   m_ObjectHideFlags: 0
