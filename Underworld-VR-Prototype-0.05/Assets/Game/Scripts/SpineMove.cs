@@ -24,6 +24,10 @@ public class SpineMove : MonoBehaviour {
     public bool isUp;
     public bool isDown;
 
+    private float xPos;
+    private float yPos;
+    private float zPos;
+
 
     // Use this for initialization
     void Start () {
@@ -31,25 +35,35 @@ public class SpineMove : MonoBehaviour {
         //spineLength = spineBones.Length;
         //originalPos = spineBones[0].transform.position;
 
-        originalPos = transform.position;
+        originalPos = transform.localPosition;
         spineTimerDuration = spineTimer;
-        targetPosition = new Vector3(raiseX, raiseY, raiseZ) + transform.position;
-    }
-	
-	// Update is called once per frame
-	void Update () {
+        //targetPosition = new Vector3(transform.localPosition.x + raiseX, transform.localPosition.y + raiseY, transform.localPosition.z + raiseZ) + transform.position;
+        
 
-        if (delayTimer > 0)
+        xPos = transform.localPosition.x + raiseX;
+        yPos = transform.localPosition.y + raiseY;
+        zPos = transform.localPosition.z + raiseZ;
+
+        targetPosition = new Vector3(xPos, yPos, zPos);
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        //transform.localPosition = Vector3.Lerp(transform.localPosition,  new Vector3(transform.localPosition.x, testPos, transform.localPosition.z), Time.deltaTime);
+
+        if (delayTimer >= 0)
         {
             delayTimer -= Time.deltaTime;
         }
 
-        if (delayTimer <= 0)
+        if (delayTimer < 0)
         {
             if (!isUp)
             {
                 // Start moving is the spine is not in the target position
-                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpeed);
+                transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * moveSpeed);
 
                 // Becuase all spines are in original position, count down the delay timer to cause a spine rolling effect
 
@@ -63,7 +77,7 @@ public class SpineMove : MonoBehaviour {
             }
             else
             {
-                transform.position = Vector3.Lerp(transform.position, originalPos, Time.deltaTime * moveSpeed);
+                transform.localPosition = Vector3.Lerp(transform.localPosition, originalPos, Time.deltaTime * moveSpeed);
 
                 spineTimer -= Time.deltaTime;
                 if (spineTimer <= 0)
