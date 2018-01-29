@@ -21,9 +21,19 @@ public class PlayerGun : MonoBehaviour {
     public float bulletAccuracy;
     public float bulletsInstantiated;
 
+    public float gunRecoilThrowbackMin;
+    public float gunRecoilThrowbackMax;
 
-	// Use this for initialization
-	void Start () {
+    public float gunRecoilBackAngleMin;
+    public float gunRecoilBackAngleMax;
+
+    public GameObject gunBody;
+    private Quaternion gunBodyBaseRotation;
+
+
+
+    // Use this for initialization
+    void Start () {
         bulletSpawnStart = bulletSpawn.transform.position;
 
         // Recheck multipliers after upgrades
@@ -33,24 +43,36 @@ public class PlayerGun : MonoBehaviour {
         
         // Bullet timer calculation so fire rate is in bullets per second
         bulletTimer = 0;
+
+        gunBodyBaseRotation = gunBody.transform.rotation;
+
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    private void Update()
+    {
+        bulletTimer -= Time.deltaTime;
+
+        if (bulletTimer <= 0)
+        {
+            bulletTimer = 0;
+        }
+
+        gunBody.transform.position = Vector3.Lerp(gunBody.transform.position, transform.position, Time.unscaledDeltaTime * 8f);
+        gunBody.transform.localRotation = Quaternion.Lerp(gunBody.transform.localRotation, gunBodyBaseRotation, Time.unscaledDeltaTime * 8f);
+
+
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
 
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
         
         if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets >= 1)
         {
             Fire();
-        }
-        
-        bulletTimer -= Time.deltaTime;
-
-        if (bulletTimer <= 0)
-        {
-            bulletTimer = 0;
-        }       
+        }             
     }
 
     void Fire()
@@ -85,6 +107,14 @@ public class PlayerGun : MonoBehaviour {
 
                 // Destroy the bullet after 2 seconds
                 Destroy(bullet, 2.0f);
+
+                //transform.localPosition -= transform.;
+                //transform.localRotation = Quaternion.Euler(Random.Range(0, -20), 0, 0);
+                //transform.Rotate(Vector3.left);
+
+                gunBody.transform.position -= gunBody.transform.forward * Random.Range(gunRecoilThrowbackMin, gunRecoilThrowbackMax);
+                gunBody.transform.localRotation = Quaternion.Euler(gunBody.transform.localRotation.x + Random.Range(gunRecoilBackAngleMin, gunRecoilBackAngleMax), gunBody.transform.localRotation.y, gunBody.transform.localRotation.z);
+                
 
             }
             // Recalculated bullet timer

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
 
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     // A list of all the total upgrades between the different rarities
     public GameObject[] blueUpgrades; //Common upgrades
