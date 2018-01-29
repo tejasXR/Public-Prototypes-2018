@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4074735595092644
 Transform:
   m_ObjectHideFlags: 1
@@ -337,7 +337,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4485432269748390}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4260678765600196
 Transform:
@@ -418,7 +418,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4602543424394206}
-  - {fileID: 4686457097177492}
   - {fileID: 4135715554817422}
   m_Father: {fileID: 4955210162491196}
   m_RootOrder: 0
@@ -457,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 1543605363050920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4312824479462684}
   - {fileID: 4426084431936700}
@@ -466,6 +465,7 @@ Transform:
   - {fileID: 4711829167786324}
   - {fileID: 4488799338779974}
   - {fileID: 4597505019447344}
+  - {fileID: 4686457097177492}
   m_Father: {fileID: 4485432269748390}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -488,13 +488,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578494073436890}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.118, z: 0.573}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.019666672, z: 0.09550001}
+  m_LocalScale: {x: 0.16666667, y: 0.16666667, z: 0.16666667}
   m_Children:
   - {fileID: 4074735595092644}
-  m_Father: {fileID: 4485432269748390}
-  m_RootOrder: 1
+  m_Father: {fileID: 4602543424394206}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4711829167786324
 Transform:
@@ -516,7 +516,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830616208544648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4485432269748390}
@@ -1059,8 +1059,15 @@ MonoBehaviour:
   bulletTimer: 0
   bulletSpeed: 30
   bulletDamage: 5
-  bulletAccuracy: 0
+  bulletAccuracy: 0.85
   bulletsInstantiated: 5
+  gunRecoilMultiplier: 10
+  gunRecoilThrowbackMin: 0.01
+  gunRecoilThrowbackMax: 0.02
+  gunRecoilBackAngleMin: -1
+  gunRecoilBackAngleMax: -3
+  gunBody: {fileID: 1543605363050920}
+  gunRecoilAngleSpeed: 2
 --- !u!114 &114973429985388542
 MonoBehaviour:
   m_ObjectHideFlags: 1

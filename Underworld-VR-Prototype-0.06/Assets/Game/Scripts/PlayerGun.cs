@@ -21,6 +21,8 @@ public class PlayerGun : MonoBehaviour {
     public float bulletAccuracy;
     public float bulletsInstantiated;
 
+    public float gunRecoilMultiplier;
+
     public float gunRecoilThrowbackMin;
     public float gunRecoilThrowbackMax;
 
@@ -29,6 +31,8 @@ public class PlayerGun : MonoBehaviour {
 
     public GameObject gunBody;
     private Quaternion gunBodyBaseRotation;
+
+    public float gunRecoilAngleSpeed;
 
 
 
@@ -58,7 +62,7 @@ public class PlayerGun : MonoBehaviour {
         }
 
         gunBody.transform.position = Vector3.Lerp(gunBody.transform.position, transform.position, Time.unscaledDeltaTime * 8f);
-        gunBody.transform.localRotation = Quaternion.Lerp(gunBody.transform.localRotation, gunBodyBaseRotation, Time.unscaledDeltaTime * 8f);
+        gunBody.transform.localRotation = Quaternion.Lerp(gunBody.transform.localRotation, gunBodyBaseRotation, Time.unscaledDeltaTime * gunRecoilAngleSpeed);
 
 
 
@@ -112,13 +116,17 @@ public class PlayerGun : MonoBehaviour {
                 //transform.localRotation = Quaternion.Euler(Random.Range(0, -20), 0, 0);
                 //transform.Rotate(Vector3.left);
 
-                gunBody.transform.position -= gunBody.transform.forward * Random.Range(gunRecoilThrowbackMin, gunRecoilThrowbackMax);
-                gunBody.transform.localRotation = Quaternion.Euler(gunBody.transform.localRotation.x + Random.Range(gunRecoilBackAngleMin, gunRecoilBackAngleMax), gunBody.transform.localRotation.y, gunBody.transform.localRotation.z);
+
                 
 
             }
             // Recalculated bullet timer
             bulletTimer = (1 / bulletFireRate) * playerController.bulletFireRateMultiplier;
-        }       
+            gunBody.transform.position -= gunBody.transform.forward * Random.Range(gunRecoilThrowbackMin, gunRecoilThrowbackMax) * gunRecoilMultiplier;
+            gunBody.transform.localRotation = Quaternion.Euler(gunBody.transform.localRotation.x + Random.Range(gunRecoilBackAngleMin, gunRecoilBackAngleMax) * gunRecoilMultiplier, gunBody.transform.localRotation.y, gunBody.transform.localRotation.z);
+
+        }
+        
+        
     }
 }

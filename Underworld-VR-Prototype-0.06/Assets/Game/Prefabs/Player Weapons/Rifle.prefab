@@ -354,7 +354,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4285279591552726}
-  - {fileID: 4789927214277680}
   - {fileID: 4873370140165434}
   m_Father: {fileID: 4345494372662028}
   m_RootOrder: 0
@@ -419,6 +418,7 @@ Transform:
   - {fileID: 4230141337038386}
   - {fileID: 4472411600127416}
   - {fileID: 4941058329849866}
+  - {fileID: 4789927214277680}
   m_Father: {fileID: 4178098002516126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
@@ -428,7 +428,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609162585574984}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -495,13 +495,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1252477728396952}
-  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 0.079, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.010264608, z: -0.017071713}
+  m_LocalScale: {x: 0.16666667, y: 0.16666667, z: 0.16666667}
   m_Children:
   - {fileID: 4240070921597136}
-  m_Father: {fileID: 4178098002516126}
-  m_RootOrder: 1
+  m_Father: {fileID: 4285279591552726}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!4 &4806591550572362
 Transform:
@@ -527,7 +527,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4178098002516126}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!4 &4881635854321944
 Transform:
@@ -1039,8 +1039,15 @@ MonoBehaviour:
   bulletTimer: 0
   bulletSpeed: 50
   bulletDamage: 2
-  bulletAccuracy: 0
+  bulletAccuracy: 0.965
   bulletsInstantiated: 1
+  gunRecoilMultiplier: 10
+  gunRecoilThrowbackMin: 0.001
+  gunRecoilThrowbackMax: 0.005
+  gunRecoilBackAngleMin: -0.05
+  gunRecoilBackAngleMax: -0.02
+  gunBody: {fileID: 1536236292618852}
+  gunRecoilAngleSpeed: 8
 --- !u!114 &114154976867286110
 MonoBehaviour:
   m_ObjectHideFlags: 1
