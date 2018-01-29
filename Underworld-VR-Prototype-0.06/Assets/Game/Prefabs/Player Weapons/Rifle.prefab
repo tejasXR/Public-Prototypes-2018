@@ -1048,6 +1048,7 @@ MonoBehaviour:
   gunRecoilBackAngleMax: -0.02
   gunBody: {fileID: 1536236292618852}
   gunRecoilAngleSpeed: 8
+  gunRecoilThrowbackSpeed: 7
 --- !u!114 &114154976867286110
 MonoBehaviour:
   m_ObjectHideFlags: 1

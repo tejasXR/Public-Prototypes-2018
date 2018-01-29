@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4074735595092644
 Transform:
   m_ObjectHideFlags: 1
@@ -1068,6 +1068,7 @@ MonoBehaviour:
   gunRecoilBackAngleMax: -3
   gunBody: {fileID: 1543605363050920}
   gunRecoilAngleSpeed: 2
+  gunRecoilThrowbackSpeed: 8
 --- !u!114 &114973429985388542
 MonoBehaviour:
   m_ObjectHideFlags: 1

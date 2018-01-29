@@ -33,6 +33,8 @@ public class PlayerGun : MonoBehaviour {
     private Quaternion gunBodyBaseRotation;
 
     public float gunRecoilAngleSpeed;
+    public float gunRecoilThrowbackSpeed;
+
 
 
 
@@ -61,7 +63,7 @@ public class PlayerGun : MonoBehaviour {
             bulletTimer = 0;
         }
 
-        gunBody.transform.position = Vector3.Lerp(gunBody.transform.position, transform.position, Time.unscaledDeltaTime * 8f);
+        gunBody.transform.position = Vector3.Lerp(gunBody.transform.position, transform.position, Time.unscaledDeltaTime * gunRecoilThrowbackSpeed);
         gunBody.transform.localRotation = Quaternion.Lerp(gunBody.transform.localRotation, gunBodyBaseRotation, Time.unscaledDeltaTime * gunRecoilAngleSpeed);
 
 
