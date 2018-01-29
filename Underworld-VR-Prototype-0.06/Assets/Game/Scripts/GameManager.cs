@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour {
 
     public int wave = 0;
     public string waveTimer;
-    public float timeLeft;
+    public float timeLeftCounter; //The variable that counts down in the update statement
+    public float timeLeft; //The variable that shows how long each wave lasts
     public GameObject waveText;
 
     public TextMeshPro[] timeTextMeshPro;
@@ -19,9 +20,6 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         StartNewWave();
-
-        
-
     }
 	
 	// Update is called once per frame
@@ -30,12 +28,12 @@ public class GameManager : MonoBehaviour {
 
         if (waveActive)
         {
-            timeLeft -= Time.deltaTime;
+            timeLeftCounter -= Time.deltaTime;
         }
 
-        if (timeLeft <= 0 && waveActive)
+        if (timeLeftCounter <= 0 && waveActive)
         {
-            timeLeft = 0;
+            timeLeftCounter = 0;
             upgradeActive = true;
             waveActive = false; //stop the wave after the waveTimer is over to put the player in upgrade mode
             //print("Upgrade!");
@@ -47,10 +45,6 @@ public class GameManager : MonoBehaviour {
             StartNewWave();
             waveActive = true;
         }
-
-
-        
-
     }
 
     public void StartNewWave()
@@ -59,6 +53,7 @@ public class GameManager : MonoBehaviour {
         CheckWave();
         Instantiate(waveText);
         waveActive = true;
+        timeLeftCounter = timeLeft;
     }
 
     void CheckWave()
@@ -88,9 +83,9 @@ public class GameManager : MonoBehaviour {
 
     void UpdateTimer()
     {
-        int minutes = Mathf.FloorToInt(timeLeft / 60f);
-        int seconds = Mathf.FloorToInt(timeLeft % 60f);
-        float milliseconds = (timeLeft * 100f);
+        int minutes = Mathf.FloorToInt(timeLeftCounter / 60f);
+        int seconds = Mathf.FloorToInt(timeLeftCounter % 60f);
+        float milliseconds = (timeLeftCounter * 100f);
         milliseconds = milliseconds % 100;
         string niceTime = minutes.ToString("00") + " : " + seconds.ToString("00") + " : " + milliseconds.ToString("0");
 

@@ -66,7 +66,7 @@ public class PlayerShield : MonoBehaviour {
             scanTileCurrent = 0;
             flickerSpeedCurrent = flickerSpeedMax;
 
-            print("Hit");
+            //print("Hit");
 
             Destroy(other.gameObject);
         }
