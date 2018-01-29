@@ -13,6 +13,16 @@ public class PlayerHealth : MonoBehaviour {
 
     public GameObject hitbodyProjection; //How the hologram will show
 
+    //public GameObject platformTriangle; // The platform triangle the player is on
+    //public GameObject[] belowTriangle1; // The first triangle under player
+    //public GameObject[] belowtraingle2;
+    //public GameObject[] belowTriangle3;
+    //public GameObject[] belowTriangle4;
+
+    //public Color[] belowTriangleColors;
+
+
+
 	// Use this for initialization
 	void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
