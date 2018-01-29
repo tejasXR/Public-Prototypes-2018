@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunModelFollow : MonoBehaviour {
+public class ControllerFollow : MonoBehaviour {
 
     public GameObject controller;
 
