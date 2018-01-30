@@ -26,9 +26,16 @@ public class WallUI : MonoBehaviour {
         transform.position = UIStartPosition.position;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        transform.position = UIStartPosition.position;
+        timerObj.transform.position = timerStartTransform.position;
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if (gameManager.roundActive)
         {
@@ -47,7 +54,7 @@ public class WallUI : MonoBehaviour {
             timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerStartTransform.position, Time.deltaTime * 1.5f);
             alpha = Mathf.SmoothStep(alpha, 0, Time.deltaTime * 7f);
 
-            if (alpha < .1)
+            if (alpha < .01)
             {
                 wallUIWhole.SetActive(false);
             }
