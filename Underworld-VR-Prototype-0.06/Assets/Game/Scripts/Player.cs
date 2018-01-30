@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
         }
         bulletString = playerBullets.ToString();
 
-        gameManager.GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 	
 	void Update ()
@@ -52,10 +52,6 @@ public class Player : MonoBehaviour {
         if (playerHealth <= 0)
         {
             gameManager.redemptionActive = true;
-        }
-
-        if (gameManager.redemptionActive)
-        {
             weaponActive.WeaponToActivate("SABER SWORD"); // Active saber sword for redemption mode
         }
     }

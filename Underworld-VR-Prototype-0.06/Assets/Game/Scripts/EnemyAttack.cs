@@ -23,6 +23,7 @@ public class EnemyAttack : MonoBehaviour {
 
     public bool isSingleDrone;
     public bool isDoubleDrone;
+    public bool isRedemptiionDrone;
 
     public EnemyEyeGlow eyeObject;
 
@@ -39,7 +40,7 @@ public class EnemyAttack : MonoBehaviour {
 
 
 
-        if (enemyParent.gameManager.roundActive)
+        if (enemyParent.gameManager.roundActive || (isRedemptiionDrone && enemyParent.gameManager.redemptionActive))
         {
             enemyAttackTimer -= Time.deltaTime;
             //If the attack timer equals the fire rate, then attack, else keep increasing the timer
@@ -52,7 +53,7 @@ public class EnemyAttack : MonoBehaviour {
 
     void Fire()
     {
-        if (enemyMovement.canFire)
+        if (enemyMovement.canFire || isRedemptiionDrone)
         {
             float spreadFactor = 1 - enemyBulletAccuracy;
 
@@ -98,7 +99,7 @@ public class EnemyAttack : MonoBehaviour {
 
             enemyBulletSpawnCounter++;
 
-            if (isSingleDrone)
+            if (isSingleDrone || isRedemptiionDrone)
             {
                 if (enemyBulletSpawnCounter > 0) { enemyBulletSpawnCounter = 0; }
             } else if (isDoubleDrone)

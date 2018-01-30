@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4113880592662400}
   - component: {fileID: 114267881473082826}
   m_Layer: 0
-  m_Name: WaveText
+  m_Name: RoundText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

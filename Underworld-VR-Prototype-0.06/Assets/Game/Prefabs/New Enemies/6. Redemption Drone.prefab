@@ -53,7 +53,8 @@ GameObject:
   - component: {fileID: 136464540810774004}
   - component: {fileID: 54314020785832482}
   - component: {fileID: 114522913037557770}
-  - component: {fileID: 114507767526602886}
+  - component: {fileID: 114371699052203214}
+  - component: {fileID: 114729702045194388}
   - component: {fileID: 114619853065379972}
   m_Layer: 0
   m_Name: 6. Redemption Drone
@@ -87,8 +88,9 @@ GameObject:
   - component: {fileID: 4948797714291306}
   - component: {fileID: 33119340750176920}
   - component: {fileID: 23429697900565126}
+  - component: {fileID: 114806085556547778}
   m_Layer: 0
-  m_Name: mesh1320233954
+  m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1067573063101074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0573, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0.001, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4957091641604550}
@@ -219,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138871618401690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.53, y: 4.2, z: -7.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4845362446127092}
@@ -241,7 +243,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 90c4aab6377a2894e860e738b2b96668, type: 2}
+  - {fileID: 2100000, guid: 0d2cac86dc5abcc4bad231e242bd7f64, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -401,7 +403,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114507767526602886
+--- !u!114 &114371699052203214
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -409,22 +411,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138871618401690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e4438180274104db6b533d440d9f51, type: 3}
+  m_Script: {fileID: 11500000, guid: d08900f03a3b0c947b0a1fce655edf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyParent: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  enemyMoveTimer: 0
-  enemyMoveSpeed: 0
-  canFire: 0
-  lookDirection: {x: 0, y: 0, z: 0}
-  alwaysFacingPlayer: 1
-  isBomberDrone: 0
-  enemyMoveFrequencyMin: 0
-  enemyMoveFrequencyMax: 0
-  bomberRandChance: 0
-  bomberMove: 0
-  bomberBufferTimer: 5
 --- !u!114 &114522913037557770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,8 +432,10 @@ MonoBehaviour:
   enemyGiveBullets: 0
   explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
-  earnedBulletObj: {fileID: 0}
-  earnedBulletText: {fileID: 0}
+  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
+  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+    type: 2}
 --- !u!114 &114619853065379972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,16 +456,56 @@ MonoBehaviour:
     type: 2}
   enemyBulletSpawns:
   - {fileID: 4090613579304144}
-  isSingleDrone: 1
+  isSingleDrone: 0
   isDoubleDrone: 0
-  eyeObject: {fileID: 0}
+  isRedemptiionDrone: 1
+  eyeObject: {fileID: 114806085556547778}
+--- !u!114 &114729702045194388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138871618401690}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e4438180274104db6b533d440d9f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyParent: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  enemyMoveTimer: 0
+  enemyMoveSpeed: 0
+  canFire: 1
+  lookDirection: {x: 0, y: 0, z: 0}
+  alwaysFacingPlayer: 0
+  isBomberDrone: 0
+  enemyMoveFrequencyMin: 0
+  enemyMoveFrequencyMax: 0
+  bomberRandChance: 0
+  bomberMove: 0
+  bomberBufferTimer: 5
+--- !u!114 &114806085556547778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1247451420339390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ae5b7e60d216545af1352ca503533b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowPowerTarget: 1.5
+  textureStrengthTarget: 1.5
+  colorTarget: {r: 1, g: 0.10588236, b: 0.34509805, a: 1}
+  lerpSpeed: 10
 --- !u!114 &114869414610325486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1479307374608100}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31d56cd726de5d44fa033e5a2143fd1f, type: 3}
   m_Name: 

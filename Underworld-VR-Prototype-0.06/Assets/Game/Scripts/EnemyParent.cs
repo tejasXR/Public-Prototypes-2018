@@ -9,7 +9,7 @@ public class EnemyParent : MonoBehaviour {
 
     //Define Basic Player Variables
     private Player playerController; //Whole of player object
-    private GameObject player; //cameraEye object
+    [HideInInspector] public GameObject player; //cameraEye object
     //public Vector3 playerDirection; //Direction towards the player
 
     //Define Basic Enemy Variables

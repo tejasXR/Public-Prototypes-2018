@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour {
     public bool upgradeActive; //To see if the player is currently upgrading
     public bool redemptionActive; //To see if the player is currently in redemption mode
 
+    public float redemptionMeter;
+    public float redemptionMeterMax;
+
+    public bool hadRedemption; //Check if the player has gone through redemption in this play session
+
 
     // Use this for initialization
     void Start () {
@@ -32,8 +37,13 @@ public class GameManager : MonoBehaviour {
             timeLeftCounter -= Time.deltaTime;
         }
 
+        if (redemptionActive)
+        {
+            redemptionMeter -= Time.deltaTime;
+        }
+
         // If the counter has counted down to zero and the player is currently in a wave, stop the timer and enter upgrade mode
-        if (timeLeftCounter <= 0 && roundActive)
+        if (timeLeftCounter <= 0 && roundActive && !redemptionActive)
         {
             timeLeftCounter = 0;
             upgradeActive = true;
@@ -42,15 +52,17 @@ public class GameManager : MonoBehaviour {
         }
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
-        if (!upgradeActive && !roundActive)
+        if (!upgradeActive && !roundActive && !redemptionActive)
         {
             StartRound();
             roundActive = true;
         }
 
         // If the player has lost all health (called from Player script) and the round is active, stop round and enter redemption mode
-        if (redemptionActive && roundActive)
+        if (redemptionActive && roundActive && !hadRedemption)
         {
+            StartRedemption();
+            hadRedemption = false;
             roundActive = false;
         }
 
@@ -105,6 +117,11 @@ public class GameManager : MonoBehaviour {
             timeText.text = roundTimer;
             //print(timeText);
         }
+    }
+
+    void StartRedemption()
+    {
+        redemptionMeter = 5;
     }
     
 }
