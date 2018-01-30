@@ -88,6 +88,8 @@ public class PlayerGun : MonoBehaviour {
     {
         if (bulletTimer <= 0)
         {
+            Instantiate(gunSparkEffect, sparkPoint.position, sparkPoint.transform.rotation);
+
             // Adds ability to instantiate multiple bullets
             for (int i = 0; i < bulletsInstantiated; i++)
             {
@@ -121,7 +123,7 @@ public class PlayerGun : MonoBehaviour {
                 //transform.localRotation = Quaternion.Euler(Random.Range(0, -20), 0, 0);
                 //transform.Rotate(Vector3.left);
 
-                Instantiate(gunSparkEffect, sparkPoint.position, sparkPoint.transform.rotation);
+                
                 
 
             }
@@ -129,6 +131,7 @@ public class PlayerGun : MonoBehaviour {
             bulletTimer = (1 / bulletFireRate) * playerController.bulletFireRateMultiplier;
             gunBody.transform.position -= gunBody.transform.forward * Random.Range(gunRecoilThrowbackMin, gunRecoilThrowbackMax) * gunRecoilMultiplier;
             gunBody.transform.localRotation = Quaternion.Euler(gunBody.transform.localRotation.x + Random.Range(gunRecoilBackAngleMin, gunRecoilBackAngleMax) * gunRecoilMultiplier, gunBody.transform.localRotation.y, gunBody.transform.localRotation.z);
+
 
         }
         
