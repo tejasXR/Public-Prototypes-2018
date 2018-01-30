@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour {
     public string roundTimer;
     public float timeLeftCounter; //The variable that counts down in the update statement
     public float timeLeft; //The variable that shows how long each wave lasts
-    public GameObject roundText;
+    //public GameObject roundText;
+    public GameObject wallUI;
+
+    public float redemptionBufferTime;
 
     public TextMeshPro[] timeTextMeshPro;
 
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour {
         {
             StartRound();
         }
+
     }
 	
 	// Update is called once per frame
@@ -45,10 +49,14 @@ public class GameManager : MonoBehaviour {
 
         if (redemptionActive)
         {
-            redemptionMeter -= Time.deltaTime;
+            redemptionBufferTime -= Time.deltaTime;
+            if (redemptionBufferTime <= 0)
+            {
+                redemptionMeter -= Time.deltaTime;
+            }
         }
 
-        // If the counter has counted down to zero and the player is currently in a wave, stop the timer and enter upgrade mode
+        // If the counter has counted down to zero and the player is currently in a round, stop the timer and enter upgrade mode
         if (timeLeftCounter <= 0 && roundActive && !redemptionActive)
         {
             timeLeftCounter = 0;
@@ -90,11 +98,14 @@ public class GameManager : MonoBehaviour {
     {
         roundCurrent++;
         CheckRound();
-        Instantiate(roundText);
+        //Instantiate(roundText);
+        wallUI.SetActive(true);
         roundActive = true;
         redemptionActive = false;
         upgradeActive = false;
         timeLeftCounter = timeLeft;
+        //print("starting");
+
     }
 
     void CheckRound()
@@ -145,6 +156,7 @@ public class GameManager : MonoBehaviour {
     void StartRedemption()
     {
         redemptionMeter = 5;
+        wallUI.SetActive(false);
     }
 
     void GameOver()

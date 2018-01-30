@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -667331979, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
-  m_Name: Fixation SDF
+  m_Name: Fixation SDF - Green
   m_EditorClassIdentifier: 
-  hashCode: 1010974971
+  hashCode: 986095205
   material: {fileID: 21159375325049504}
   materialHashCode: -4649968
   fontAssetType: 1

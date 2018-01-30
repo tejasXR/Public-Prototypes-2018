@@ -4,33 +4,47 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
 
-    public Player playerController;
-    private Renderer rend;
+    private Player playerController;
+    private Renderer rendHitbody;
+    private Renderer rendPlatform;
 
     public float alphaHealth = 0; //current alpha representing health
     public float alphaHealthMax; //the maximum alpha value representing a full loss of health
     public float alphaHit = 0; // the alpha addition needed for when the player gets hit
 
+    public float healthSmooth;
+
     public GameObject hitbodyProjection; //How the hologram will show
 
-    //public GameObject platformTriangle; // The platform triangle the player is on
-    //public GameObject[] belowTriangle1; // The first triangle under player
-    //public GameObject[] belowtraingle2;
-    //public GameObject[] belowTriangle3;
-    //public GameObject[] belowTriangle4;
+    public GameObject platformTriangle; // The platform triangle the player is on
+    public GameObject[] belowTriangle1; // The first triangle under player
+    public GameObject[] belowTriangle2;
+    public GameObject[] belowTriangle3;
+    public GameObject[] belowTriangle4;
 
-    //public Color[] belowTriangleColors;
+    public Color[] triangleBlueColors;
+    public Color[] triangleRedColors;
+
+    public Color[] triangleCurrentColors;
 
 
 
-	// Use this for initialization
-	void Start () {
+
+
+
+
+    // Use this for initialization
+    void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
-        rend = hitbodyProjection.GetComponent<Renderer>();
-	}
+        rendHitbody = hitbodyProjection.GetComponent<Renderer>();
+        rendPlatform = platformTriangle.GetComponent<Renderer>();
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        healthSmooth = Mathf.Lerp(healthSmooth, playerController.playerHealth / playerController.playerHealthMax, Time.deltaTime * 3f);
 
         //var alphaPercent = 1 - (playerController.playerHealth / playerController.playerHealthMax);
 
@@ -39,14 +53,41 @@ public class PlayerHealth : MonoBehaviour {
         alphaHit = Mathf.Lerp(alphaHit, 0, Time.unscaledDeltaTime * 3f);
 
 
-        rend.material.SetFloat("_Alpha", alphaHealth);
+        rendHitbody.material.SetFloat("_Alpha", alphaHealth);
 
         if (alphaHit <= 0)
         {
             alphaHit = 0;
         }
 
+        //////////////// Watch out for performance issues //////////////////////////
 
+        for (int i = 0; i < 4; i++)
+        {
+            triangleCurrentColors[i] = Color.Lerp(triangleRedColors[i], triangleBlueColors[i], healthSmooth - .15f);
+            //triangleCurrentColors[i] = Color.Lerp(triangleBlueColors[i], triangleRedColors[i], healthPercent);
+        }
+
+        rendPlatform.material.SetColor("_MKGlowColor", triangleCurrentColors[0]);
+        rendPlatform.material.SetColor("_MKGlowTexColor", triangleCurrentColors[0]);
+
+        for (int i = 1; i < 4; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                belowTriangle1[j].GetComponent<Renderer>().material.SetColor("_MKGlowColor", triangleCurrentColors[i]);
+                //belowTriangle1[j].GetComponent<Renderer>().material.SetColor("_MKGlowTexColor", triangleCurrentColors[i]);
+
+                belowTriangle2[j].GetComponent<Renderer>().material.SetColor("_MKGlowColor", triangleCurrentColors[i]);
+                //belowTriangle2[j].GetComponent<Renderer>().material.SetColor("_MKGlowTexColor", triangleCurrentColors[i]);
+
+                belowTriangle3[j].GetComponent<Renderer>().material.SetColor("_MKGlowColor", triangleCurrentColors[i]);
+                //belowTriangle3[j].GetComponent<Renderer>().material.SetColor("_MKGlowTexColor", triangleCurrentColors[i]);
+
+                belowTriangle4[j].GetComponent<Renderer>().material.SetColor("_MKGlowColor", triangleCurrentColors[i]);
+            }
+            
+        }
     }
 
     private void OnCollisionEnter(Collision other)
