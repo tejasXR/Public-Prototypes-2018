@@ -9,7 +9,7 @@ public class EnemyParent : MonoBehaviour {
 
     //Define Basic Player Variables
     private Player playerController; //Whole of player object
-    public GameObject player; //cameraEye object
+    private GameObject player; //cameraEye object
     //public Vector3 playerDirection; //Direction towards the player
 
     //Define Basic Enemy Variables
@@ -76,13 +76,13 @@ public class EnemyParent : MonoBehaviour {
     //If destroyed by a bullet, explode into shiny things and give the player bullets
     void EnemyDestroy()
     {
-        playerController.playerBullets += enemyGiveBullets;
+        if (enemyGiveBullets > 0)
+        {
+            playerController.playerBullets += enemyGiveBullets;
+            Instantiate(earnedBulletObj, transform.position, transform.rotation);
+        }
+
         Instantiate(explosionPrefab, transform.position, transform.rotation);
-
-
-        Instantiate(earnedBulletObj, transform.position, transform.rotation);
-        
-
     }
 
     public void DisappearAfterWave()

@@ -219,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138871618401690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -3, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4845362446127092}
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138871618401690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04e4438180274104db6b533d440d9f51, type: 3}
   m_Name: 
@@ -415,13 +415,13 @@ MonoBehaviour:
   enemyParent: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
-  enemyMoveSpeed: 1
+  enemyMoveSpeed: 0
   canFire: 0
   lookDirection: {x: 0, y: 0, z: 0}
-  alwaysFacingPlayer: 0
+  alwaysFacingPlayer: 1
   isBomberDrone: 0
-  enemyMoveFrequencyMin: 9
-  enemyMoveFrequencyMax: 15
+  enemyMoveFrequencyMin: 0
+  enemyMoveFrequencyMax: 0
   bomberRandChance: 0
   bomberMove: 0
   bomberBufferTimer: 5
@@ -431,28 +431,26 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138871618401690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f33f541a7d57fd545976719c01b47b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  enemyHealth: 3
-  enemyGiveBullets: 5
+  enemyHealth: 1
+  enemyGiveBullets: 0
   explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
-  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
-    type: 2}
-  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
-    type: 2}
+  earnedBulletObj: {fileID: 0}
+  earnedBulletText: {fileID: 0}
 --- !u!114 &114619853065379972
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138871618401690}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
@@ -461,7 +459,7 @@ MonoBehaviour:
   enemyAttackTimer: 0
   enemyBulletSpeed: 8
   enemyBulletDamage: 1
-  enemyBulletAccuracy: 0
+  enemyBulletAccuracy: 0.8
   enemyBulletPrefab: {fileID: 1871618839054336, guid: 1f2f088599c9dcd408ff5c043be1b1fc,
     type: 2}
   enemyBulletSpawns:

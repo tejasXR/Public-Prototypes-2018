@@ -22,8 +22,8 @@ public class EnemySpawnManager : MonoBehaviour
     //private float enemyDroneDoubleChance; //chance of drone double to be spawned;
     //private float enemyBomberChance; //chance of drone double to be spawned;
 
-    public float[] enemyProbability; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber
-    public GameObject[] enemyTypes; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber
+    public float[] enemyProbability; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber, 4 = leviathan, 5 = redemption
+    public GameObject[] enemyTypes; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber, 4 = leviathan, 5 = redemption
 
     //public bool isActive;
 
@@ -33,7 +33,7 @@ public class EnemySpawnManager : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerController = GameObject.Find("PlayerController");
         //isActive = true;
-        CheckWave();
+        CheckRound();
 
     }
 
@@ -53,7 +53,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        CheckWave();
+        CheckRound();
         int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
         //print(enemy);
 
@@ -67,7 +67,7 @@ public class EnemySpawnManager : MonoBehaviour
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
     }
 
-    void CheckWave()
+    void CheckRound()
     {
         switch (gameManager.roundCurrent)
         {
@@ -112,6 +112,14 @@ public class EnemySpawnManager : MonoBehaviour
                 enemyProbability[2] = 40; // Heavy Drones
                 break;
         }
+    }
+
+    void RedemptionMode()
+    {
+        enemySpawnTimerMin = 3f;
+        enemySpawnTimerMax = 5f;
+
+        enemyProbability[5] = 100; // Redemption Drone
     }
 
     float EnemyProbability(float[] probs)
