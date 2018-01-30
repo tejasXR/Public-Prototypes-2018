@@ -24,7 +24,9 @@ public class Player : MonoBehaviour {
     public float bulletAccuracyMultiplier = 1;
 
     public TextMeshPro[] bulletCounters;
-    public GameObject hitBody;
+
+    public WeaponActive weaponActive; // Keeps track of the current weapons that the player is using
+
 
 	void Start ()
     {
@@ -50,6 +52,11 @@ public class Player : MonoBehaviour {
         if (playerHealth <= 0)
         {
             gameManager.redemptionActive = true;
+        }
+
+        if (gameManager.redemptionActive)
+        {
+            weaponActive.WeaponToActivate("SABER SWORD"); // Active saber sword for redemption mode
         }
     }
 }

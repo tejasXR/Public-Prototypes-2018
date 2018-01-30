@@ -128,7 +128,7 @@ public class EnemyMovement : MonoBehaviour {
 
             rb.AddForce(direction * enemyMoveSpeed, ForceMode.Acceleration);
         }
-        else
+        else if (!enemyParent.gameManager.roundActive || enemyParent.gameManager.redemptionActive)
         {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(0, -5, 0), ref velocity, 1.5f, 5f);
             enemyParent.DisappearAfterWave();
