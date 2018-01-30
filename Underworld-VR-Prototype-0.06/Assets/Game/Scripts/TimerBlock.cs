@@ -12,6 +12,9 @@ public class TimerBlock : MonoBehaviour {
     private float scaleOriginal;
     private float scaleCurrent;
 
+    public bool isRoundTimer;
+    public bool isRedemptionTimer;
+
 	// Use this for initialization
 	void Start () {
 
@@ -23,18 +26,38 @@ public class TimerBlock : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (timeLeft != gameManager.timeLeft)
+        if (isRoundTimer)
         {
-            timeLeft = gameManager.timeLeft;
+            if (timeLeft != gameManager.timeLeft)
+            {
+                timeLeft = gameManager.timeLeft;
+            }
+
+            timeLeftCounter = gameManager.timeLeftCounter;
+
+            var timePercent = timeLeftCounter / timeLeft;
+
+            scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal * timePercent, Time.deltaTime * 2f);
+
+            transform.localScale = new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
         }
 
-        timeLeftCounter = gameManager.timeLeftCounter;
+        if (isRedemptionTimer)
+        {
+            if (timeLeft != gameManager.redemptionMeterMax)
+            {
+                timeLeft = gameManager.redemptionMeterMax;
+            }
 
-        var timePercent = timeLeftCounter / timeLeft;
+            timeLeftCounter = gameManager.redemptionMeter;
 
-        scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal * timePercent, Time.deltaTime * 2f);
+            var timePercent = timeLeftCounter / timeLeft;
 
-        transform.localScale= new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
+            scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal * timePercent, Time.deltaTime * 2f);
+
+            transform.localScale = new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
+        }
+        
 		
 	}
 }

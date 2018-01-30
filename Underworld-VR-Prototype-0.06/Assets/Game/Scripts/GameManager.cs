@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
 
     public TextMeshPro[] timeTextMeshPro;
 
+    public bool gameStart;
     public bool roundActive; //To see if the player is currently in a round
     public bool upgradeActive; //To see if the player is currently upgrading
     public bool redemptionActive; //To see if the player is currently in redemption mode
@@ -26,7 +27,11 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartRound();
+        CheckRound();
+        if (gameStart)
+        {
+            StartRound();
+        }
     }
 	
 	// Update is called once per frame
@@ -63,16 +68,17 @@ public class GameManager : MonoBehaviour {
         if (redemptionActive && roundActive && !hadRedemption)
         {
             StartRedemption();
-            hadRedemption = false;
+            hadRedemption = true;
             roundActive = false;
         }
 
-        if (redemptionMeter >= redemptionMeterMax)
+        if (redemptionMeter >= redemptionMeterMax && redemptionActive)
         {
-            redemptionActive = false;
             roundCurrent -= 1; // Reset the round number to when the player died
             StartRound(); // Start the wave
-        } else if (redemptionMeter <= 0)
+            redemptionActive = false;
+        }
+        else if (redemptionMeter <= 0 && !gameOver)
         {
             // If the player fails redemption, end the game
             GameOver();
@@ -95,6 +101,9 @@ public class GameManager : MonoBehaviour {
     {
         switch (roundCurrent)
         {
+            case 0:
+                timeLeft = 5f; //Thirty seconds
+                break;
             case 1:
                 timeLeft = 60f; //Thirty seconds
                 break;
