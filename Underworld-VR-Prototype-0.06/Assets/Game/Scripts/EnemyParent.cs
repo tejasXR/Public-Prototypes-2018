@@ -15,6 +15,7 @@ public class EnemyParent : MonoBehaviour {
     //Define Basic Enemy Variables
     public float enemyHealth;
     public float enemyGiveBullets; //Amount of bullets enemy gives to player after it is destroyed
+    public float enemyRedemptionPoints;
 
     //Enemy On Destroy
     public GameObject explosionPrefab; //the explosion effect when destroyed
@@ -80,6 +81,11 @@ public class EnemyParent : MonoBehaviour {
         {
             playerController.playerBullets += enemyGiveBullets;
             Instantiate(earnedBulletObj, transform.position, transform.rotation);
+        }
+
+        if (enemyRedemptionPoints > 0)
+        {
+            gameManager.redemptionMeter += enemyRedemptionPoints;
         }
 
         Instantiate(explosionPrefab, transform.position, transform.rotation);

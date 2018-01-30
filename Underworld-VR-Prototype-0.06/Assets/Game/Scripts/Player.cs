@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     public float playerHealth;
     public float playerHealthMax;
 
+    //public float playerRedemptionHealth
+
     // Player Health Multipliers
     public float playerHealthMaxMultiplier = 1;
 
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour {
     public TextMeshPro[] bulletCounters;
 
     public WeaponActive weaponActive; // Keeps track of the current weapons that the player is using
+
+
 
 
 	void Start ()

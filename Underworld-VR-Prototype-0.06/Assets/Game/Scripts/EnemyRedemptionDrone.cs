@@ -17,5 +17,12 @@ public class EnemyRedemptionDrone : MonoBehaviour {
     void Update () {
 
         transform.LookAt(enemyParent.player.transform.position);
+
+        if (!enemyParent.gameManager.redemptionActive)
+        {
+            Destroy(this.gameObject);
+        }
 	}
+
+    
 }

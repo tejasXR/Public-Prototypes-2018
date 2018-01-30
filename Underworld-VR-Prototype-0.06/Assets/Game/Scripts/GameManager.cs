@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     public bool roundActive; //To see if the player is currently in a round
     public bool upgradeActive; //To see if the player is currently upgrading
     public bool redemptionActive; //To see if the player is currently in redemption mode
+    public bool gameOver;
 
     public float redemptionMeter;
     public float redemptionMeterMax;
@@ -66,6 +67,17 @@ public class GameManager : MonoBehaviour {
             roundActive = false;
         }
 
+        if (redemptionMeter >= redemptionMeterMax)
+        {
+            redemptionActive = false;
+            roundCurrent -= 1; // Reset the round number to when the player died
+            StartRound(); // Start the wave
+        } else if (redemptionMeter <= 0)
+        {
+            // If the player fails redemption, end the game
+            GameOver();
+        }
+
     }
 
     public void StartRound()
@@ -74,6 +86,8 @@ public class GameManager : MonoBehaviour {
         CheckRound();
         Instantiate(roundText);
         roundActive = true;
+        redemptionActive = false;
+        upgradeActive = false;
         timeLeftCounter = timeLeft;
     }
 
@@ -122,6 +136,14 @@ public class GameManager : MonoBehaviour {
     void StartRedemption()
     {
         redemptionMeter = 5;
+    }
+
+    void GameOver()
+    {
+        roundActive = false;
+        redemptionActive = false;
+        upgradeActive = false;
+        gameOver = true;
     }
     
 }
