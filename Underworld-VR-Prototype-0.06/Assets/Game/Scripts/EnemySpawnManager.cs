@@ -13,6 +13,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     //public GameObject enemySpawner;
 
+    public bool spawnNow;
     public Vector3 enemySpawnPosition;
 
     public float enemySpawnTimerMin;
@@ -48,6 +49,7 @@ public class EnemySpawnManager : MonoBehaviour
 
             if (enemySpawnTimer <= 0)
             {
+                spawnNow = false;
                 SpawnEnemy();
             }
         }
@@ -189,20 +191,30 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void RandomPosition()
     {
-        // Creates a random position within a raycast range to spawn the triangle enemy spawner
-        Vector3 randomPosition;
-
-        int coinFlip = Random.Range(0, 2);
-        if (coinFlip == 0)
+        if (!spawnNow)
         {
-            randomPosition = new Vector3(Random.Range(-1f, -.5f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
-        }
-        else
-        {
-            randomPosition = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
-        }
+            // Creates a random position within a raycast range to spawn the triangle enemy spawner
+            Vector3 randomPosition;
 
-        Ray ray = new Ray(playerController.transform.position, randomPosition);
-        enemySpawnPosition = ray.GetPoint(Random.Range(10f, 12f));
+            int coinFlip = Random.Range(0, 2);
+            if (coinFlip == 0)
+            {
+                randomPosition = new Vector3(Random.Range(-1f, -.5f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+            }
+            else
+            {
+                randomPosition = new Vector3(Random.Range(.5f, 1f), Random.Range(0f, .75f), Random.Range(-1f, 1f));
+            }
+
+            Ray ray = new Ray(playerController.transform.position, randomPosition);
+            enemySpawnPosition = ray.GetPoint(Random.Range(10f, 12f));
+
+            // if there are no enemies with a 1 unit radius
+            if (!Physics.CheckSphere(enemySpawnPosition, 1f))
+            {
+                spawnNow = true;
+            }
+        }
+        
     }
 }

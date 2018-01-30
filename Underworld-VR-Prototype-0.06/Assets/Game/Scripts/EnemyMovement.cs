@@ -203,7 +203,11 @@ public class EnemyMovement : MonoBehaviour {
         // Makes sure we don't collide into the player
         if (!Physics.Raycast (transform.position, (targetPosition - transform.position), Mathf.Infinity, layerMask))
         {
-            moveNow = true;
+            // if there are no enemies with a 1 unit radius
+            if (!Physics.CheckSphere(targetPosition, 1f))
+            {
+                moveNow = true;
+            }
         }
     }
 

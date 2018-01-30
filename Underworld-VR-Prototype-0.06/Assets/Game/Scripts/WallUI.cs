@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WallUI : MonoBehaviour {
 
+    public Transform UIStartPosition;
     public Transform UITargetPosition;
     public Transform timerTargetTransform;
     public GameObject timerObj;
@@ -17,6 +18,7 @@ public class WallUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         alpha = 0;
+        transform.position = UIStartPosition.position;
 	}
 	
 	// Update is called once per frame

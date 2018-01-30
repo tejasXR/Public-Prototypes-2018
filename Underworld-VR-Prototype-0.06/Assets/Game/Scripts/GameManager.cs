@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour {
             StartRound(); // Start the wave
             redemptionActive = false;
         }
-        else if (redemptionMeter <= 0 && !gameOver)
+        else if (redemptionMeter <= 0 && !gameOver && redemptionActive)
         {
             // If the player fails redemption, end the game
             GameOver();

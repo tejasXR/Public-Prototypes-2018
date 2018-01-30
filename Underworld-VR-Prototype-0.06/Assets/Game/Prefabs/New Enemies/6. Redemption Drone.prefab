@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1067573063101074
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 1170499212236898}
   m_LocalRotation: {x: -0, y: -0.99144495, z: -0, w: 0.13052589}
   m_LocalPosition: {x: 0.001, y: 0, z: 0.0446}
-  m_LocalScale: {x: 1.3617634, y: 1.3617636, z: 1.3617636}
+  m_LocalScale: {x: 2.3149977, y: 2.314998, z: 2.314998}
   m_Children:
   - {fileID: 4948797714291306}
   - {fileID: 4194022515029272}
@@ -207,8 +207,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1247451420339390}
   m_LocalRotation: {x: -0.0888647, y: -0.049474098, z: 0.004419473, w: 0.99480444}
-  m_LocalPosition: {x: 0.005, y: 0.007, z: -0.011}
-  m_LocalScale: {x: 0.45515102, y: 0.45515102, z: 0.45515102}
+  m_LocalPosition: {x: -0.002, y: 0.0135, z: 0.0248}
+  m_LocalScale: {x: 0.63721144, y: 0.63721144, z: 0.63721144}
   m_Children:
   - {fileID: 4559253233627114}
   m_Father: {fileID: 4845362446127092}
@@ -430,6 +430,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyHealth: 1
   enemyGiveBullets: 0
+  enemyRedemptionPoints: 0
   explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
   earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
