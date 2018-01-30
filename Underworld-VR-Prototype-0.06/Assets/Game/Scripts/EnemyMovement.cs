@@ -120,7 +120,7 @@ public class EnemyMovement : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (enemyParent.gameManager.waveActive)
+        if (enemyParent.gameManager.roundActive)
         {
             //Always move towards targetPosition if wave is active
             var direction = targetPosition - transform.position;

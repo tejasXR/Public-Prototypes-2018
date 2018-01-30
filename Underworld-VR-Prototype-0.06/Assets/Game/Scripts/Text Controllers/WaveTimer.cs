@@ -17,6 +17,6 @@ public class WaveTimer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timerText.text = gameManager.waveTimer;
+        timerText.text = gameManager.roundTimer;
 	}
 }

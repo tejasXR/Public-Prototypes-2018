@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PlayerSwordHandle2Glow
+  m_Name: PlayerSwordTrailGlow
   m_Shader: {fileID: 4800000, guid: 3116dc5d2d459014eb4d26279676bac8, type: 3}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 0
@@ -78,7 +78,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MKGlowPower: 0.5
+    - _MKGlowPower: 0.73
     - _MKGlowTexStrength: 0
     - _Metallic: 0
     - _Mode: 0
@@ -91,10 +91,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 0.051849008, b: 0.3853366, a: 1}
     - _EmissionColor: {r: 0.27930364, g: 0.3338489, b: 0.46323532, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _MKGlowColor: {r: 0.9779411, g: 0.17257765, b: 0.589145, a: 1}
-    - _MKGlowTexColor: {r: 0.7793102, g: 0, b: 1, a: 1}
+    - _MKGlowColor: {r: 1, g: 0.050980397, b: 0.38431376, a: 1}
+    - _MKGlowTexColor: {r: 1, g: 0.050980397, b: 0.38431376, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 1, g: 0, b: 0, a: 1}

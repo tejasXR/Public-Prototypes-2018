@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.waveActive)
+        if (gameManager.roundActive)
         {
             enemySpawnTimer -= Time.deltaTime;
 
@@ -69,7 +69,7 @@ public class EnemyManager : MonoBehaviour
 
     void CheckWave()
     {
-        switch (gameManager.wave)
+        switch (gameManager.roundCurrent)
         {
             case 1:
                 enemySpawnTimerMin = 8f;

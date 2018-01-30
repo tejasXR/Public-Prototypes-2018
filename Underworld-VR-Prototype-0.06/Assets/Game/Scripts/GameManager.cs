@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public int wave = 0;
-    public string waveTimer;
+    public int roundCurrent = 0; // counter of the current round
+    public string roundTimer;
     public float timeLeftCounter; //The variable that counts down in the update statement
     public float timeLeft; //The variable that shows how long each wave lasts
-    public GameObject waveText;
+    public GameObject roundText;
 
     public TextMeshPro[] timeTextMeshPro;
 
-    public bool waveActive; //To see if the player is currently in a wave
+    public bool roundActive; //To see if the player is currently in a round
     public bool upgradeActive; //To see if the player is currently upgrading
 
 
@@ -26,39 +26,39 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         UpdateTimer();
 
-        if (waveActive)
+        if (roundActive)
         {
             timeLeftCounter -= Time.deltaTime;
         }
 
-        if (timeLeftCounter <= 0 && waveActive)
+        if (timeLeftCounter <= 0 && roundActive)
         {
             timeLeftCounter = 0;
             upgradeActive = true;
-            waveActive = false; //stop the wave after the waveTimer is over to put the player in upgrade mode
+            roundActive = false; //stop the wave after the waveTimer is over to put the player in upgrade mode
             //print("Upgrade!");
         }
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
-        if (!upgradeActive && !waveActive)
+        if (!upgradeActive && !roundActive)
         {
             StartNewWave();
-            waveActive = true;
+            roundActive = true;
         }
     }
 
     public void StartNewWave()
     {
-        wave++;
+        roundCurrent++;
         CheckWave();
-        Instantiate(waveText);
-        waveActive = true;
+        Instantiate(roundText);
+        roundActive = true;
         timeLeftCounter = timeLeft;
     }
 
     void CheckWave()
     {
-        switch (wave)
+        switch (roundCurrent)
         {
             case 1:
                 timeLeft = 60f; //Thirty seconds
@@ -89,11 +89,11 @@ public class GameManager : MonoBehaviour {
         milliseconds = milliseconds % 100;
         string niceTime = minutes.ToString("00") + " : " + seconds.ToString("00") + " : " + milliseconds.ToString("0");
 
-        waveTimer = niceTime;
+        roundTimer = niceTime;
 
         foreach (TextMeshPro timeText in timeTextMeshPro)
         {
-            timeText.text = waveTimer;
+            timeText.text = roundTimer;
             //print(timeText);
         }
     }

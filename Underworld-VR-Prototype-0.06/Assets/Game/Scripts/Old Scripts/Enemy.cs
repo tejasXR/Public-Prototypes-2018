@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameManager.waveActive)
+        if (gameManager.roundActive)
         {
             //Always move towards targetPosition if wave is active
             //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (gameManager.waveActive)
+        if (gameManager.roundActive)
         {
             //Always move towards targetPosition if wave is active
             //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, 1f, 5f);
@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
         //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20f * Time.deltaTime);
 
 
-        if (gameManager.waveActive)
+        if (gameManager.roundActive)
         {
             //If the attack timer equals the fire rate, then attack, else keep increasing the timer
             if (enemyAttackTimer < enemyBulletFireRate)

@@ -26,7 +26,7 @@ public class WaveText : MonoBehaviour {
 
     void CheckWave()
     {
-        switch(gameManager.wave)
+        switch(gameManager.roundCurrent)
         {
             case 1:
                 waveText.text = "Wave \n " +

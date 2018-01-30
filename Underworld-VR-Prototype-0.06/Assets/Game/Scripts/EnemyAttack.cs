@@ -39,7 +39,7 @@ public class EnemyAttack : MonoBehaviour {
 
 
 
-        if (enemyParent.gameManager.waveActive)
+        if (enemyParent.gameManager.roundActive)
         {
             enemyAttackTimer -= Time.deltaTime;
             //If the attack timer equals the fire rate, then attack, else keep increasing the timer
