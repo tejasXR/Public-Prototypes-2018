@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    private GameManager gameManager;
+
     // Player Basic Variables
     public float playerBullets;
     public string bulletString;
@@ -30,7 +32,9 @@ public class Player : MonoBehaviour {
         {
             bulletCounter.text = "" + playerBullets.ToString();
         }
-        bulletString = playerBullets.ToString();        
+        bulletString = playerBullets.ToString();
+
+        gameManager.GetComponent<GameManager>();
 	}
 	
 	void Update ()
@@ -41,6 +45,11 @@ public class Player : MonoBehaviour {
             {
                 bulletCounter.text = "" + playerBullets.ToString();                
             }
+        }
+
+        if (playerHealth <= 0)
+        {
+            gameManager.redemptionActive = true;
         }
     }
 }
