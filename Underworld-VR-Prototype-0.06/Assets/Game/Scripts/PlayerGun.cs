@@ -35,6 +35,9 @@ public class PlayerGun : MonoBehaviour {
     public float gunRecoilAngleSpeed;
     public float gunRecoilThrowbackSpeed;
 
+    public GameObject gunSparkEffect;
+    public Transform sparkPoint;
+
 
 
 
@@ -118,7 +121,7 @@ public class PlayerGun : MonoBehaviour {
                 //transform.localRotation = Quaternion.Euler(Random.Range(0, -20), 0, 0);
                 //transform.Rotate(Vector3.left);
 
-
+                Instantiate(gunSparkEffect, sparkPoint.position, sparkPoint.transform.rotation);
                 
 
             }
