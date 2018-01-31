@@ -15,12 +15,14 @@ public class TimerBlock : MonoBehaviour {
     public bool isRoundTimer;
     public bool isRedemptionTimer;
 
+    private Renderer rend;
+
 	// Use this for initialization
 	void Start () {
 
         scaleOriginal = transform.localScale.x;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-		
+        rend = GetComponent<Renderer>();	
 	}
 	
 	// Update is called once per frame
@@ -56,6 +58,8 @@ public class TimerBlock : MonoBehaviour {
             scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal * timePercent, Time.deltaTime * 2f);
 
             transform.localScale = new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
+
+            rend.material.SetColor("_Color", Color.Lerp(Color.black, Color.red, timePercent + .2f));
         }
         
 		

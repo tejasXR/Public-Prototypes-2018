@@ -12,7 +12,7 @@ public class WallUI : MonoBehaviour {
     public Transform timerStartTransform;
     public Transform timerTargetTransform;
     public GameObject timerObj;
-    public TextMeshPro roundTitle;
+    public TextMeshPro titleText;
 
     public GameObject wallUIWhole;
 
@@ -20,9 +20,21 @@ public class WallUI : MonoBehaviour {
     public float alpha;
     public float bufferTime; // buffer time before the timer ui drops down
 
+    public bool isRoundUI;
+    public bool isRedemptionUI;
+
 	// Use this for initialization
 	void Start () {
-        alpha = 0;
+
+        if (isRoundUI)
+        {
+            alpha = 0;
+        }
+        if (isRedemptionUI)
+        {
+            alpha = 1;
+        }
+
         transform.position = UIStartPosition.position;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
@@ -37,10 +49,19 @@ public class WallUI : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (gameManager.roundActive)
+       
+        if (gameManager.roundActive || gameManager.redemptionActive)
         {
-            alpha = Mathf.SmoothStep(alpha, 1, Time.deltaTime * 2.5f);
-            
+            if (isRoundUI)
+            {
+                alpha = Mathf.SmoothStep(alpha, 1, Time.deltaTime * 2.5f);
+            }
+
+            if (isRedemptionUI)
+            {
+                alpha = Mathf.SmoothStep(alpha, (gameManager.redemptionMeter / gameManager.redemptionMeterMax) - .1f, Time.deltaTime * 5f);
+            }
+
             transform.position = Vector3.Lerp(transform.position, UITargetPosition.position, Time.deltaTime * moveSpeed);
 
             bufferTime -= Time.deltaTime;
@@ -49,23 +70,29 @@ public class WallUI : MonoBehaviour {
                 timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerTargetTransform.position, Time.deltaTime);
                 bufferTime = 0;
             }
-        } else //automatically fade out if the player is not in a round
+        }
+        else //automatically fade out if the player is not in a round
         {
-            timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerStartTransform.position, Time.deltaTime * 1.5f);
-            alpha = Mathf.SmoothStep(alpha, 0, Time.deltaTime * 7f);
-
-            if (alpha < .01)
+            if (isRoundUI)
             {
-                wallUIWhole.SetActive(false);
+                timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerStartTransform.position, Time.deltaTime * 1.5f);
+                alpha = Mathf.SmoothStep(alpha, 0, Time.deltaTime * 7f);
+
+                if (alpha < .01)
+                {
+                    alpha = 0;
+                    wallUIWhole.SetActive(false);
+                }
             }
+            
         }
 
-        if (gameManager.redemptionActive)
+        if ((isRoundUI && gameManager.redemptionActive) || (isRedemptionUI && gameManager.roundActive))
         {
             wallUIWhole.SetActive(false);
-        }
+        }     
 
-        roundTitle.alpha = alpha;
+        titleText.alpha = alpha;
 
     }
 }
