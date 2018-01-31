@@ -34,7 +34,7 @@ public class StadiumFlicker : MonoBehaviour {
                 triangleStadiums[triangleStadiumCount].SetActive(true);
                 triangleStadiumCount++;
 
-                if (triangleStadiumCount == (triangleStadiums.Length - 1))
+                if (triangleStadiumCount == (triangleStadiums.Length))
                 {
                     flickerTimer = flickerFrequency;
                     triangleStadiumCount = 0;
