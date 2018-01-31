@@ -145,7 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1694775867652880}
   m_LocalRotation: {x: 0, y: -1.497797e-32, z: 0, w: 1}
-  m_LocalPosition: {x: -7e-45, y: 0.7999999, z: 4.499998}
+  m_LocalPosition: {x: 0, y: 1, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4269733545198914}
@@ -369,6 +369,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeManager: {fileID: 0}
+  playerController: {fileID: 0}
+  upgradeCost: 0
+  addPlayerHealth: 0
+  addPlayerHealthMaxMultiplier: 0
+  addBulletFireRateMultiplier: 0
+  addBulletDamageMultiplier: 0
+  addBulletSpeedMultiplier: 0
+  addBulletAccuracyMultiplier: 0
 --- !u!114 &114055419981460694
 MonoBehaviour:
   m_ObjectHideFlags: 1

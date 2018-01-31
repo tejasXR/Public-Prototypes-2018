@@ -144,8 +144,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719630123401018}
-  m_LocalRotation: {x: -0, y: -0.9999579, z: -0, w: 0.00917717}
-  m_LocalPosition: {x: -1.79, y: 0, z: -5.66}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 3.9999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4693557723434598}
@@ -155,7 +155,7 @@ Transform:
   - {fileID: 224408054442239738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -178.94801, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4693557723434598
 Transform:
   m_ObjectHideFlags: 1
@@ -530,6 +530,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeManager: {fileID: 0}
+  playerController: {fileID: 0}
+  upgradeCost: 0
+  addPlayerHealth: 0
+  addPlayerHealthMaxMultiplier: 0
+  addBulletFireRateMultiplier: 0
+  addBulletDamageMultiplier: 0
+  addBulletSpeedMultiplier: 0
+  addBulletAccuracyMultiplier: 0
 --- !u!114 &114502323912389568
 MonoBehaviour:
   m_ObjectHideFlags: 1
