@@ -561,14 +561,25 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   playerController: {fileID: 0}
   playerShield: {fileID: 0}
+  weaponActive: {fileID: 0}
   upgradeCost: 100
   addPlayerHealth: 0
   addPlayerHealthMaxMultiplier: 0
+  addPlayerHealthRegenMultiplier: 0.05
   addBulletFireRateMultiplier: 0
   addBulletDamageMultiplier: 0
   addBulletAccuracyMultiplier: 0
+  addBulletCapacity: 0
+  addNoUseBulletChance: 0
   addShieldRegenerationMultiplier: 0
   addShieldHealthMaxMultiplier: 0
+  addShieldAbsorptionChance: 0
+  addEnemyAdditionalBullets: 0
+  addEnemyNegativeHealthMultiplier: 0
+  unlockRifle: 0
+  unlockShotgun: 0
+  unlockSaberSword: 0
+  unlockLaserRifle: 0
 --- !u!114 &114407669341121016
 MonoBehaviour:
   m_ObjectHideFlags: 1

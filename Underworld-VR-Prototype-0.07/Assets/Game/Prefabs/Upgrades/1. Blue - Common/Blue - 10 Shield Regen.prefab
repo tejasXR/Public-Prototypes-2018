@@ -437,7 +437,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Slightly Increases shield regen
+  m_text: Slightly Increases Shield Absorption
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114121424810786952}
-    characterCount: 31
+    characterCount: 36
     spriteCount: 0
     spaceCount: 3
     wordCount: 4
@@ -550,7 +550,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 75
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114139399091165670}
-    characterCount: 2
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -711,9 +711,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Synthetic
-
-    defense'
+  m_text: Science is Great
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -781,10 +779,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114254861376848010}
-    characterCount: 17
+    characterCount: 16
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -821,15 +819,24 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   playerController: {fileID: 0}
   playerShield: {fileID: 0}
-  upgradeCost: 75
+  weaponActive: {fileID: 0}
+  upgradeCost: 150
   addPlayerHealth: 0
   addPlayerHealthMaxMultiplier: 0
   addBulletFireRateMultiplier: 0
   addBulletDamageMultiplier: 0
-  addBulletSpeedMultiplier: 0
   addBulletAccuracyMultiplier: 0
-  addShieldRegenerationMultiplier: 0.1
+  addBulletCapacity: 0
+  addNoUseBulletChance: 0
+  addShieldRegenerationMultiplier: 0
   addShieldHealthMaxMultiplier: 0
+  addShieldAbsorptionChance: 0.05
+  addEnemyAdditionalBullets: 0
+  addEnemyNegativeHealthMultiplier: 0
+  unlockRifle: 0
+  unlockShotgun: 0
+  unlockSaberSword: 0
+  unlockLaserRifle: 0
 --- !u!114 &114580394320333304
 MonoBehaviour:
   m_ObjectHideFlags: 1

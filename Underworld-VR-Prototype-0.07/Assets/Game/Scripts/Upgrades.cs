@@ -14,6 +14,7 @@ public class Upgrades : MonoBehaviour {
     // Player Health Upgrades
     public float addPlayerHealth;
     public float addPlayerHealthMaxMultiplier;
+    public float addPlayerHealthRegenMultiplier;
 
     // Player Attack Upgrades
     public float addBulletFireRateMultiplier;
@@ -68,6 +69,7 @@ public class Upgrades : MonoBehaviour {
         // Player Health Effects
         playerController.playerHealthMaxMultiplier += addPlayerHealthMaxMultiplier;
         playerController.playerHealth += addPlayerHealth;
+        playerController.playerHealthRegenMultiplier += addPlayerHealthRegenMultiplier;
 
 
         // Player Defense Effects
