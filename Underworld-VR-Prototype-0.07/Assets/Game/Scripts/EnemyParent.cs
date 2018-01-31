@@ -23,7 +23,6 @@ public class EnemyParent : MonoBehaviour {
     public TextMeshPro earnedBulletText;
     private float enemyDestroyTimer = 2f;
 
-    public float enemyGiveBulletsMultiplier;
 
 
     void Start () {
@@ -34,6 +33,8 @@ public class EnemyParent : MonoBehaviour {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         earnedBulletText.text = "+ " + enemyGiveBullets.ToString();
+
+        enemyHealth -= (enemyHealth * playerController.enemyNegativeHealthMultiplier);
 
     }
 
@@ -81,7 +82,7 @@ public class EnemyParent : MonoBehaviour {
     {
         if (enemyGiveBullets > 0)
         {
-            playerController.playerBullets += enemyGiveBullets + enemyGiveBulletsMultiplier;
+            playerController.playerBullets += enemyGiveBullets + playerController.enemyGiveAdditionalBullets;
             Instantiate(earnedBulletObj, transform.position, transform.rotation);
         }
 

@@ -106,7 +106,14 @@ public class PlayerGun : MonoBehaviour {
 
                 //Instantiate bullet
                 var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.LookRotation(bulletDirection));
-                playerController.playerBullets -= 1;
+
+                // Creates a chance that the gun will use no bullets when firing
+                var bulletNoUseChance = Random.Range(0, 1);
+                if (bulletNoUseChance > playerController.playerNoUseBulletChance)
+                {
+                    playerController.playerBullets -= 1;
+
+                }
 
                 // Add velocity to the bullet
                 bullet.GetComponent<Rigidbody>().velocity = bulletDirection * bulletSpeed;

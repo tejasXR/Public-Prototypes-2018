@@ -14,10 +14,9 @@ public class Player : MonoBehaviour {
     public float playerHealth;
     public float playerHealthMax;
 
-    public float playerBulletCapacity;
-    public float playerBulletCapacityMac;
 
-
+    public float enemyGiveAdditionalBullets;
+    public float enemyNegativeHealthMultiplier;
 
     //public float playerRedemptionHealth
 
@@ -30,6 +29,9 @@ public class Player : MonoBehaviour {
     public float bulletDamageMultiplier = 1;
     //public float bulletSpeedMultiplier = 1;
     public float bulletAccuracyMultiplier = 1;
+    public float playerBulletCapacity = 200;
+    public float playerNoUseBulletChance = 0;
+
 
     public TextMeshPro[] bulletCounters;
 
@@ -73,6 +75,11 @@ public class Player : MonoBehaviour {
             {
                 playerHealth = playerHealthMax * playerHealthMaxMultiplier;
             }
+        }
+
+        if (playerBullets >= playerBulletCapacity)
+        {
+            playerBullets = playerBulletCapacity;
         }
     }
 }

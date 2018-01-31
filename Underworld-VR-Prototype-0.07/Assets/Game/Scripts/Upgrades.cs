@@ -20,11 +20,17 @@ public class Upgrades : MonoBehaviour {
     public float addBulletDamageMultiplier;
     //public float addBulletSpeedMultiplier; <--- No one really know why we should have this
     public float addBulletAccuracyMultiplier;
+    public float addBulletCapacity;
+    public float addNoUseBulletChance;
 
     // Player Defense Upgrades
     public float addShieldRegenerationMultiplier;
     public float addShieldHealthMaxMultiplier;
-    public float addShieldAbsorptionChanceMultiplier;
+    public float addShieldAbsorptionChance;
+
+    // Enemy Upgrades
+    public float addEnemyAdditionalBullets;
+    public float addEnemyNegativeHealthMultiplier;
 
     // Use this for initialization
     void Start () {
@@ -49,18 +55,26 @@ public class Upgrades : MonoBehaviour {
         playerController.bulletFireRateMultiplier += addBulletFireRateMultiplier;
         playerController.bulletDamageMultiplier += addBulletDamageMultiplier;
         playerController.bulletAccuracyMultiplier += addBulletAccuracyMultiplier;
+        playerController.playerBulletCapacity += addBulletCapacity;
+        playerController.playerNoUseBulletChance += addNoUseBulletChance;
 
         // Player Health Effects
         playerController.playerHealthMaxMultiplier += addPlayerHealthMaxMultiplier;
+        playerController.playerHealth += addPlayerHealth;
 
 
         // Player Defense Effects
         playerShield.shieldRechargeSpeedMultiplier += addShieldRegenerationMultiplier;
         playerShield.shieldHealthMaxMultiplier += addShieldHealthMaxMultiplier;
-        playerShield.shieldAbsorptionChanceMultiplier += addShieldAbsorptionChanceMultiplier;
+        playerShield.shieldAbsorptionChance += addShieldAbsorptionChance;
+
+        // Enemy Effects
+        playerController.enemyGiveAdditionalBullets += addEnemyAdditionalBullets;
+        playerController.enemyNegativeHealthMultiplier += addEnemyNegativeHealthMultiplier;
 
 
-        
-        
+
+
+
     }
 }
