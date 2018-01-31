@@ -16,12 +16,15 @@ public class SwordScript : MonoBehaviour {
     public float trailScaleOriginal;
     public float trailScaleCurrent;
 
+    private Rigidbody rb;
+
 	// Use this for initialization
 	void Start () {
         swordScaleOriginal = swordEnd.transform.localScale.y;
         swordYOriginal = swordEnd.transform.localPosition.y;
-
         trailScaleOriginal = lightsaberTrail.height;
+
+        rb = GetComponent<Rigidbody>();
 	}
 
     private void OnEnable()
@@ -42,6 +45,8 @@ public class SwordScript : MonoBehaviour {
         swordEnd.transform.localScale = new Vector3(swordEnd.transform.localScale.x, swordScaleCurrent, swordEnd.transform.localScale.z);
         swordEnd.transform.localPosition = new Vector3(swordEnd.transform.localPosition.x, swordYCurrent, swordEnd.transform.localPosition.z);
         lightsaberTrail.height = trailScaleCurrent;
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,12 +55,16 @@ public class SwordScript : MonoBehaviour {
         {
             var enemyBullet = other.gameObject.GetComponent<EnemyBullet>();
             var enemyBulletRb = other.gameObject.GetComponent<Rigidbody>();
+            Vector3 bulletDirection;
 
-            Vector3 bulletDirection = enemyBullet.enemyParent.transform.position - other.transform.position;
+            
 
-            if (!enemyBullet.enemyParent.gameObject.activeInHierarchy)
+            if (enemyBullet.enemyParent.gameObject == null)
             {
-                bulletDirection = -other.transform.position;
+                bulletDirection = -enemyBulletRb.velocity + new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), Random.Range(-2, 2));
+            } else
+            {
+                bulletDirection = (enemyBullet.enemyParent.transform.position - other.transform.position) + new Vector3(Random.Range(-.15f, .15f), Random.Range(-.15f, .15f), Random.Range(-.15f, .15f));
             }
 
             other.transform.rotation = Quaternion.LookRotation(bulletDirection);

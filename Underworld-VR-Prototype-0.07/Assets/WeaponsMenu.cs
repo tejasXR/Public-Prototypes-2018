@@ -25,11 +25,14 @@ public class WeaponsMenu : MonoBehaviour {
     private bool weaponsSelected;
 
     public GameObject[] weapons; //Here are the weapon gameObject that we will show or hide depending on what weapon the user picks in the weapons menu
+
+    public WeaponActive weaponActive; // Adding weapon active to set the current active weapon
     
 
     // Use this for initialization
     void Start () {
         weaponsMenu.SetActive(false);
+        weaponActive = GetComponent<WeaponActive>();
 
         foreach (Weapon weapon in weaponList)
         {
@@ -49,7 +52,7 @@ public class WeaponsMenu : MonoBehaviour {
         }
 
         currentMenuItem = 0;
-        oldMenuItem = 0;
+        oldMenuItem = 1;
     }
 	
 	// Update is called once per frame
@@ -153,12 +156,35 @@ public class WeaponsMenu : MonoBehaviour {
     {
         //weaponsSelected = true;
 
+        // Linking to WeaponActive script for better managing of the current active weapon
+
+        switch(currentMenuItem)
+        {
+            case 0:
+                weaponActive.WeaponToActivate("PISTOL");
+                break;
+            case 1:
+                weaponActive.WeaponToActivate("RIFLE");
+                break;
+            case 2:
+                weaponActive.WeaponToActivate("SHOTGUN");
+                break;
+            case 3:
+                weaponActive.WeaponToActivate("SABER SWORD");
+                break;
+            case 4:
+                weaponActive.WeaponToActivate("LASER RIFLE");
+                break;
+        }
+        
+        /*
         for (int i = 0; i <= 4; i++)
         {
             weapons[i].SetActive(false);
         }
 
         weapons[currentMenuItem].SetActive(true);
+        */
 
     }
 

@@ -7,7 +7,7 @@ public class Upgrades : MonoBehaviour {
     public UpgradeManager upgradeManager;
     public Player playerController;
     public PlayerShield playerShield;
-    public EnemyParent enemyParent;
+    public WeaponActive weaponActive;
 
     public float upgradeCost;
 
@@ -32,6 +32,13 @@ public class Upgrades : MonoBehaviour {
     public float addEnemyAdditionalBullets;
     public float addEnemyNegativeHealthMultiplier;
 
+    // Weapon Upgrades
+    public bool unlockRifle;
+    public bool unlockShotgun;
+    public bool unlockSaberSword;
+    public bool unlockLaserRifle;
+
+
     // Use this for initialization
     void Start () {
         upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
@@ -41,7 +48,7 @@ public class Upgrades : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Bullet" && !upgradeManager.upgradeSelected)
+        if(other.gameObject.tag == "Bullet" && !upgradeManager.upgradeSelected && playerController.playerBullets >= upgradeCost)
         {
             playerController.playerBullets -= upgradeCost;
             AddUpgradeEffect();
@@ -72,7 +79,22 @@ public class Upgrades : MonoBehaviour {
         playerController.enemyGiveAdditionalBullets += addEnemyAdditionalBullets;
         playerController.enemyNegativeHealthMultiplier += addEnemyNegativeHealthMultiplier;
 
-
+        if (unlockRifle)
+        {
+            weaponActive.WeaponToActivate("RIFLE");
+        }
+        else if(unlockShotgun)
+        {
+            weaponActive.WeaponToActivate("SHOTGUN");
+        }
+        else if (unlockSaberSword)
+        {
+            weaponActive.WeaponToActivate("SABER SWORD");
+        }
+        else if (unlockLaserRifle)
+        {
+            weaponActive.WeaponToActivate("LASER RIFLE");
+        }
 
 
 

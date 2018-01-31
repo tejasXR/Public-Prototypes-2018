@@ -17,7 +17,7 @@ public class WeaponActive : MonoBehaviour {
 
         DisableAllWeapons();
 
-        Debug.Log(CheckCurrentWeapon());
+        //Debug.Log(CheckCurrentWeapon());
     }
 	
 	
@@ -42,14 +42,15 @@ public class WeaponActive : MonoBehaviour {
                 weapons[2].SetActive(true);
                 weaponInt = 2;
                 break;
-            case "LASER RIFLE":
+            case "SABER SWORD":
                 weapons[3].SetActive(true);
                 weaponInt = 3;
                 break;
-            case "SABER SWORD":
+            case "LASER RIFLE":
                 weapons[4].SetActive(true);
                 weaponInt = 4;
                 break;
+           
         }
         currentWeapon = weaponName;
     }
@@ -69,10 +70,10 @@ public class WeaponActive : MonoBehaviour {
                 previousWeapon = "SHOTGUN";
                 break;
             case 3:
-                previousWeapon = "LASER RIFLE";
+                previousWeapon = "SABER SWORD";
                 break;
             case 4:
-                previousWeapon = "SABER SWORD";
+                previousWeapon = "LASER RIFLE";
                 break;
         }
 
