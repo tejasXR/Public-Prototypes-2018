@@ -14,6 +14,7 @@ public class PlayerShield : MonoBehaviour {
     public float shieldRechargeSpeedMultiplier = 1;
     public float shieldHealthMaxMultiplier = 1;
 
+    public float shieldSizeMultiplier = 1;
 
     public float shieldAbsorptionChance = 0;
 
@@ -53,7 +54,7 @@ public class PlayerShield : MonoBehaviour {
         }
 
         flickerSpeedCurrent = Mathf.Lerp(flickerSpeedCurrent, 0, Time.deltaTime * 3f);
-        scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal, Time.deltaTime * 3f);
+        scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal * shieldSizeMultiplier, Time.deltaTime * 3f);
 
         rend.material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
         rend.material.SetFloat("_ScanTiling", scanTileCurrent);

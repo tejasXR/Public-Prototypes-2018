@@ -23,11 +23,13 @@ public class Upgrades : MonoBehaviour {
     public float addBulletAccuracyMultiplier;
     public float addBulletCapacity;
     public float addNoUseBulletChance;
+    public float addbulletCriticalHitChance;
 
     // Player Defense Upgrades
     public float addShieldRegenerationMultiplier;
     public float addShieldHealthMaxMultiplier;
     public float addShieldAbsorptionChance;
+    public float addShieldSizeMultipler;
 
     // Enemy Upgrades
     public float addEnemyAdditionalBullets;
@@ -65,6 +67,7 @@ public class Upgrades : MonoBehaviour {
         playerController.bulletAccuracyMultiplier += addBulletAccuracyMultiplier;
         playerController.playerBulletCapacity += addBulletCapacity;
         playerController.playerNoUseBulletChance += addNoUseBulletChance;
+        playerController.playerBulletCriticalHitChance += addbulletCriticalHitChance;
 
         // Player Health Effects
         playerController.playerHealthMaxMultiplier += addPlayerHealthMaxMultiplier;
@@ -76,6 +79,7 @@ public class Upgrades : MonoBehaviour {
         playerShield.shieldRechargeSpeedMultiplier += addShieldRegenerationMultiplier;
         playerShield.shieldHealthMaxMultiplier += addShieldHealthMaxMultiplier;
         playerShield.shieldAbsorptionChance += addShieldAbsorptionChance;
+        playerShield.shieldSizeMultiplier += addShieldSizeMultipler;
 
         // Enemy Effects
         playerController.enemyGiveAdditionalBullets += addEnemyAdditionalBullets;

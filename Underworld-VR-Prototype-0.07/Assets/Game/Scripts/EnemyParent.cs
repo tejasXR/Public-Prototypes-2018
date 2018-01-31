@@ -46,6 +46,13 @@ public class EnemyParent : MonoBehaviour {
 
             if (other.gameObject.tag == "Bullet")
             {
+                // Add chance for critical hit, one-hit kill
+                var criticalHit = Random.Range(0, 1);
+                if (criticalHit > playerController.playerBulletCriticalHitChance)
+                {
+                    damage = enemyHealth;
+                }
+
                 damage = other.gameObject.GetComponent<Bullet>().damage;
             } else if (other.gameObject.tag == "DeflectedBullet")
             {

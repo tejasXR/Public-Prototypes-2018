@@ -21,6 +21,8 @@ public class PlayerGun : MonoBehaviour {
     public float bulletAccuracy;
     public float bulletsInstantiated;
 
+    //public float bulletCriticalHitChance;
+
     public float gunRecoilMultiplier;
 
     public float gunRecoilThrowbackMin;

@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
     public float bulletAccuracyMultiplier = 1;
     public float playerBulletCapacity = 200;
     public float playerNoUseBulletChance = 0;
+    public float playerBulletCriticalHitChance;
 
 
     public TextMeshPro[] bulletCounters;
