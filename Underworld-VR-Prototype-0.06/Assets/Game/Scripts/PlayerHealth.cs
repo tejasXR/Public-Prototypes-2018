@@ -27,7 +27,9 @@ public class PlayerHealth : MonoBehaviour {
 
     public Color[] triangleCurrentColors;
 
+    public Light bottomLight;
 
+    public Material[] belowPlatformNeon;
 
 
 
@@ -62,6 +64,7 @@ public class PlayerHealth : MonoBehaviour {
 
         //////////////// Watch out for performance issues //////////////////////////
 
+
         for (int i = 0; i < 4; i++)
         {
             triangleCurrentColors[i] = Color.Lerp(triangleRedColors[i], triangleBlueColors[i], healthSmooth - .15f);
@@ -70,9 +73,19 @@ public class PlayerHealth : MonoBehaviour {
 
         rendPlatform.material.SetColor("_MKGlowColor", triangleCurrentColors[0]);
         rendPlatform.material.SetColor("_MKGlowTexColor", triangleCurrentColors[0]);
+        bottomLight.color = triangleCurrentColors[0];
 
+        // Here we are directly accessing the materials of the triangle objects, and changing them permanently at runtime
+        for (int i = 0; i < 4; i++)
+        {
+            belowPlatformNeon[i].SetColor("_MKGlowColor", triangleCurrentColors[i]);
+
+        }
+
+        /* ///Here we are changing the material properties of all the triangle parts individually at runtime
         for (int i = 1; i < 4; i++)
         {
+            //belowPlatformNeon = GetComponent<Renderer>().materials;
             for (int j = 0; j < 3; j++)
             {
                 belowTriangle1[j].GetComponent<Renderer>().material.SetColor("_MKGlowColor", triangleCurrentColors[i]);
@@ -87,7 +100,7 @@ public class PlayerHealth : MonoBehaviour {
                 belowTriangle4[j].GetComponent<Renderer>().material.SetColor("_MKGlowColor", triangleCurrentColors[i]);
             }
             
-        }
+        }*/
     }
 
     private void OnCollisionEnter(Collision other)
