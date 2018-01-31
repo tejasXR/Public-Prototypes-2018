@@ -34,13 +34,35 @@ public class SwordScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        swordScaleCurrent = Mathf.Lerp(swordScaleCurrent, swordScaleOriginal, Time.deltaTime);
-        swordYCurrent = Mathf.Lerp(swordYCurrent, swordYOriginal, Time.deltaTime);
-        trailScaleCurrent = Mathf.Lerp(trailScaleCurrent, trailScaleOriginal, Time.deltaTime);
+        swordScaleCurrent = Mathf.Lerp(swordScaleCurrent, swordScaleOriginal, Time.deltaTime * 1.5f);
+        swordYCurrent = Mathf.Lerp(swordYCurrent, swordYOriginal, Time.deltaTime * 1.5f);
+        trailScaleCurrent = Mathf.Lerp(trailScaleCurrent, trailScaleOriginal, Time.deltaTime * 1.5f);
 
 
         swordEnd.transform.localScale = new Vector3(swordEnd.transform.localScale.x, swordScaleCurrent, swordEnd.transform.localScale.z);
         swordEnd.transform.localPosition = new Vector3(swordEnd.transform.localPosition.x, swordYCurrent, swordEnd.transform.localPosition.z);
         lightsaberTrail.height = trailScaleCurrent;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+            var enemyBullet = other.gameObject.GetComponent<EnemyBullet>();
+            var enemyBulletRb = other.gameObject.GetComponent<Rigidbody>();
+
+            Vector3 bulletDirection = enemyBullet.enemyParent.transform.position - other.transform.position;
+
+            if (!enemyBullet.enemyParent.gameObject.activeInHierarchy)
+            {
+                bulletDirection = -other.transform.position;
+            }
+
+            other.transform.rotation = Quaternion.LookRotation(bulletDirection);
+            enemyBulletRb.constraints = RigidbodyConstraints.FreezeRotation;
+            enemyBulletRb.velocity = bulletDirection * 3f;
+
+            other.gameObject.tag = "DeflectedBullet";
+        }
     }
 }

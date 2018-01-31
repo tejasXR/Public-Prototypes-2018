@@ -43,7 +43,7 @@ public class EnemyBullet : MonoBehaviour {
         }*/
 
 
-        if (collision.gameObject.tag == "Sword" && this.gameObject.tag != "DeflectedBullet")
+        /*if (collision.gameObject.tag == "Sword" && this.gameObject.tag != "DeflectedBullet")
         {
             //var localVel = transform.InverseTransformDirection(rb.velocity);
             //rb.velocity = localVel.z;
