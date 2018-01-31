@@ -14,15 +14,21 @@ public class Player : MonoBehaviour {
     public float playerHealth;
     public float playerHealthMax;
 
+    public float playerBulletCapacity;
+    public float playerBulletCapacityMac;
+
+
+
     //public float playerRedemptionHealth
 
     // Player Health Multipliers
     public float playerHealthMaxMultiplier = 1;
+    public float playerHealthRegenMultiplier = 1;
 
     // Player Attack Multipliers
     public float bulletFireRateMultiplier = 1;
     public float bulletDamageMultiplier = 1;
-    public float bulletSpeedMultiplier = 1;
+    //public float bulletSpeedMultiplier = 1;
     public float bulletAccuracyMultiplier = 1;
 
     public TextMeshPro[] bulletCounters;
@@ -57,6 +63,16 @@ public class Player : MonoBehaviour {
         {
             gameManager.redemptionActive = true;
             weaponActive.WeaponToActivate("SABER SWORD"); // Active saber sword for redemption mode
+        }
+
+        if (gameManager.roundActive)
+        {
+            playerHealth += Time.deltaTime * playerHealthRegenMultiplier;
+
+            if (playerHealth >= (playerHealthMax * playerHealthMaxMultiplier))
+            {
+                playerHealth = playerHealthMax * playerHealthMaxMultiplier;
+            }
         }
     }
 }

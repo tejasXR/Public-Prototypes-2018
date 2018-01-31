@@ -23,6 +23,8 @@ public class EnemyParent : MonoBehaviour {
     public TextMeshPro earnedBulletText;
     private float enemyDestroyTimer = 2f;
 
+    public float enemyGiveBulletsMultiplier;
+
 
     void Start () {
 
@@ -79,7 +81,7 @@ public class EnemyParent : MonoBehaviour {
     {
         if (enemyGiveBullets > 0)
         {
-            playerController.playerBullets += enemyGiveBullets;
+            playerController.playerBullets += enemyGiveBullets + enemyGiveBulletsMultiplier;
             Instantiate(earnedBulletObj, transform.position, transform.rotation);
         }
 

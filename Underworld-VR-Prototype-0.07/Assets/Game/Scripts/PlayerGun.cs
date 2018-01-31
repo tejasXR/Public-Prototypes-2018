@@ -47,7 +47,7 @@ public class PlayerGun : MonoBehaviour {
 
         // Recheck multipliers after upgrades
         bulletFireRate = bulletFireRate * playerController.bulletFireRateMultiplier;
-        bulletSpeed = bulletSpeed * playerController.bulletSpeedMultiplier;
+        
         bulletAccuracy = bulletAccuracy * playerController.bulletAccuracyMultiplier;
         
         // Bullet timer calculation so fire rate is in bullets per second

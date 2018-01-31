@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        healthSmooth = Mathf.Lerp(healthSmooth, playerController.playerHealth / playerController.playerHealthMax, Time.deltaTime * 3f);
+        healthSmooth = Mathf.Lerp(healthSmooth, playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier), Time.deltaTime * 3f);
 
         //var alphaPercent = 1 - (playerController.playerHealth / playerController.playerHealthMax);
 

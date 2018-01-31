@@ -20,7 +20,7 @@ public class SwordOpen : MonoBehaviour {
 	void Update () {
         device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
 
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
             if (!swordOpen)
             {
