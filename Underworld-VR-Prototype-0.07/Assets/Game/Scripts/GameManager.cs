@@ -7,8 +7,16 @@ public class GameManager : MonoBehaviour {
 
     public int roundCurrent = 0; // counter of the current round
     public string roundTimer;
+
     public float timeLeftCounter; //The variable that counts down in the update statement
     public float timeLeft; //The variable that shows how long each wave lasts
+
+    public float upgradeTimer;
+    public float upgradeTimerCounter;
+
+    public float redemptionMeter;
+    public float redemptionMeterMax;
+
     //public GameObject roundText;
     public GameObject wallUI;
 
@@ -22,8 +30,7 @@ public class GameManager : MonoBehaviour {
     public bool redemptionActive; //To see if the player is currently in redemption mode
     public bool gameOver;
 
-    public float redemptionMeter;
-    public float redemptionMeterMax;
+    
 
     public bool hadRedemption; //Check if the player has gone through redemption in this play session
 
@@ -45,6 +52,16 @@ public class GameManager : MonoBehaviour {
         if (roundActive)
         {
             timeLeftCounter -= Time.deltaTime;
+        }
+
+        if (upgradeActive)
+        {
+            upgradeTimerCounter -= Time.deltaTime;
+            if (upgradeTimerCounter <= 0)
+            {
+                upgradeActive = false;
+                upgradeTimerCounter = upgradeTimer;
+            }
         }
 
         if (redemptionActive)
@@ -91,7 +108,6 @@ public class GameManager : MonoBehaviour {
             // If the player fails redemption, end the game
             GameOver();
         }
-
     }
 
     public void StartRound()
@@ -105,7 +121,6 @@ public class GameManager : MonoBehaviour {
         upgradeActive = false;
         timeLeftCounter = timeLeft;
         //print("starting");
-
     }
 
     void CheckRound()
@@ -155,7 +170,7 @@ public class GameManager : MonoBehaviour {
 
     void StartRedemption()
     {
-        redemptionMeter = 5;
+        redemptionMeter = 10;
         wallUI.SetActive(false);
     }
 

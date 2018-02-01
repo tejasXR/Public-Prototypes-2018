@@ -13,6 +13,7 @@ public class TimerBlock : MonoBehaviour {
     private float scaleCurrent;
 
     public bool isRoundTimer;
+    public bool isUpgradeTimer;
     public bool isRedemptionTimer;
 
     private Renderer rend;
@@ -36,6 +37,22 @@ public class TimerBlock : MonoBehaviour {
             }
 
             timeLeftCounter = gameManager.timeLeftCounter;
+
+            var timePercent = timeLeftCounter / timeLeft;
+
+            scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal * timePercent, Time.deltaTime * 2f);
+
+            transform.localScale = new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
+        }
+
+        if (isUpgradeTimer)
+        {
+            if (timeLeft != gameManager.upgradeTimer)
+            {
+                timeLeft = gameManager.upgradeTimer;
+            }
+
+            timeLeftCounter = gameManager.upgradeTimerCounter;
 
             var timePercent = timeLeftCounter / timeLeft;
 
