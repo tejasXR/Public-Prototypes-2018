@@ -18,6 +18,8 @@ public class GameStartUI : MonoBehaviour {
 
     private Renderer rend;
 
+    public bool gameStart;
+
 	// Use this for initialization
 	void Start () {
         rend = GetComponent<Renderer>();
@@ -38,13 +40,13 @@ public class GameStartUI : MonoBehaviour {
 
         if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
-            gameManager.gameStart = true;
+           gameStart = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!gameManager.gameStart)
+        if (!gameStart)
         {
             rend.material = mats[0];
         }

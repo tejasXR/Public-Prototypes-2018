@@ -37,7 +37,7 @@ public class PlatformScript : MonoBehaviour {
         distanceCurrent = Vector3.Distance(transform.position, Vector3.zero);
         var distancePercent = (distanceTotal - distanceCurrent) / distanceTotal;
 
-        if (gameManager.playerMoveToStadium && moving)
+        if (moving)
         {
             if (distancePercent < .9f)
             {
@@ -52,11 +52,11 @@ public class PlatformScript : MonoBehaviour {
             if (distanceCurrent < .001f)
             {
                 moving = false;
-                gameManager.playerReachedStadium = true;
+               
             }
         }
 
-        if (gameManager.playerReachedStadium && scaling)
+        if (scaling)
         {
             // Scaling based on distance
             //var distancePercent = (distanceTotal - distanceCurrent) / distanceTotal;

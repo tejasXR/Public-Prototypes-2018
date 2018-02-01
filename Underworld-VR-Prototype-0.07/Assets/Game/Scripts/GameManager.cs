@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour {
     //public GameObject roundText;
     public GameObject wallUI;
 
-    public float redemptionBufferTime;
+     public float purpleStadiumEnableBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
+     public float redemptionBufferTime; // Time between redemption mode starting and the meter counting down
 
     public TextMeshPro[] timeTextMeshPro;
 
@@ -33,32 +34,52 @@ public class GameManager : MonoBehaviour {
     public bool redemptionActive; //To see if the player is currently in redemption mode
     public bool gameOver;
 
-    
+    public GameObject purpleStadium;
+    public GameObject bluePlatform;
+    public GameObject synthCity;
 
     public bool hadRedemption; //Check if the player has gone through redemption in this play session
 
+    public PlatformScript playerPlatform;
+    public GameStartUI gameStartUI;
+
+    private void Awake()
+    {
+    }
 
     // Use this for initialization
     void Start () {
         CheckRound();
+
+        redemptionBufferTime = 3f;
+        purpleStadiumEnableBufferTime = 1.5f;
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (gameStart && !playerMoveToStadium)
+        if (gameStartUI.gameStart && !playerMoveToStadium)
         {
+            gameStart = true;
+            playerPlatform.moving = true;
             playerMoveToStadium = true;
         }
 
+        if (!playerPlatform.moving && playerMoveToStadium)
+        {
+            EnableStadium();
+            playerReachedStadium = true;
+            playerPlatform.scaling = true;
+            playerMoveToStadium = false;
+        }
 
+        
 
         if (roundActive)
         {
             UpdateTimer();
 
             timeLeftCounter -= Time.deltaTime;
-
         }
 
         if (upgradeActive)
@@ -179,6 +200,15 @@ public class GameManager : MonoBehaviour {
     {
         redemptionMeter = 10;
         wallUI.SetActive(false);
+    }
+
+    void EnableStadium()
+    {
+        bluePlatform.SetActive(true);
+        purpleStadium.SetActive(true);
+        synthCity.SetActive(false);
+        playerReachedStadium = false;
+
     }
 
     void GameOver()

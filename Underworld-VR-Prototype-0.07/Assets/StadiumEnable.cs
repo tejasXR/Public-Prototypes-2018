@@ -15,6 +15,8 @@ public class StadiumEnable : MonoBehaviour {
     public bool isStadium;
     public bool isPlatformTriangles;
 
+    public float delay;
+
     public GameObject[] platformTriangles;
 
     // Use this for initialization
@@ -58,6 +60,7 @@ public class StadiumEnable : MonoBehaviour {
 
     IEnumerator StadiumFlash()
     {
+        yield return new WaitForSeconds(delay);
         abovePlatform.SetActive(true);
         yield return new WaitForSeconds(.25f);
         abovePlatform.SetActive(false);
@@ -92,6 +95,8 @@ public class StadiumEnable : MonoBehaviour {
 
     IEnumerator PlatformTraingleFlash()
     {
+        yield return new WaitForSeconds(delay);
+
         for (int i = 0; i < 4; i++)
         {
             platformTriangles[i].SetActive(false);
