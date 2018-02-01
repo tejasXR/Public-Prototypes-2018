@@ -164,7 +164,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593314794331478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 3.9999998}
+  m_LocalPosition: {x: 0, y: 1, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4672384661939356}
@@ -465,8 +465,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 1.1
+  m_fontSizeBase: 1.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -716,9 +716,11 @@ MonoBehaviour:
   addBulletAccuracyMultiplier: 0
   addBulletCapacity: 0
   addNoUseBulletChance: 0
+  addbulletCriticalHitChance: 0
   addShieldRegenerationMultiplier: 0
   addShieldHealthMaxMultiplier: 0.05
   addShieldAbsorptionChance: 0
+  addShieldSizeMultipler: 0
   addEnemyAdditionalBullets: 0
   addEnemyNegativeHealthMultiplier: 0
   unlockRifle: 0
@@ -744,7 +746,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Slightly Increases Shield Absorption
+  m_text: Slightly Increases Shield Health
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -772,8 +774,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 1.1
+  m_fontSizeBase: 1.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -812,7 +814,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114467506409254724}
-    characterCount: 36
+    characterCount: 32
     spriteCount: 0
     spaceCount: 3
     wordCount: 4
@@ -873,7 +875,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Science is Great
+  m_text: A Little Backup
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -941,7 +943,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114887793723553116}
-    characterCount: 16
+    characterCount: 15
     spriteCount: 0
     spaceCount: 2
     wordCount: 3
@@ -1087,7 +1089,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.293}
-  m_SizeDelta: {x: 1.11, y: 0.59}
+  m_SizeDelta: {x: 1.29, y: 0.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224888874212126968
 RectTransform:

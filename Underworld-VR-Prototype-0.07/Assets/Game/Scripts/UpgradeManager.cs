@@ -31,12 +31,18 @@ public class UpgradeManager : MonoBehaviour {
 
     private Vector3 originTextPos;
 
+    public bool upgradeStart = false; // To know that we are in the upgrade process
     public bool upgradesRandomized = false;
     public bool upgradeSelected = false;
 
-    private float[] upgradeClassProbability;
+    // Booleans used for making sure upgrades are not the same as they are created
+    bool upgradesSet;
+    bool upgrade1Set;
+    bool upgrade2Set;
 
-    private float upgradeBufferTimer = 1.5f; //the buffer time between after the player upgrades and the wave starts
+    public float[] upgradeClassProbability;
+
+    public float upgradeBufferTimer = 1.5f; //the buffer time between after the player upgrades and the wave starts
    
 
     // Use this for initialization
@@ -51,6 +57,8 @@ public class UpgradeManager : MonoBehaviour {
         upgradeTitle.SetActive(false);
         upgradeInstructions.SetActive(false);
         upgradeTimerBlock.SetActive(false);
+
+        upgradeBufferTimer = 1.5f;
     }
 
     // Update is called once per frame
@@ -58,22 +66,24 @@ public class UpgradeManager : MonoBehaviour {
 
         if (gameManager.upgradeActive)
         {
+            upgradeStart = true;
             if (!upgradesRandomized)
             {
                 upgradeTitle.SetActive(true);
-                RandomizeUpgrades();
+                upgradeInstructions.SetActive(true);
+                upgradeTimerBlock.SetActive(true);
+                CheckNoRepeat();
+                //RandomizeUpgrades();
                 //UpgradesNull();
                 //UpgradesCreated();
-                upgradeBufferTimer = 1.5f;
-                upgradesRandomized = true;
             }
             UpgradePlacement();
         }
 
-        if (upgradeSelected)
+        if ((upgradeSelected || !gameManager.upgradeActive) && upgradeStart)
         {
             UpgradeReturn();
-            UpgradesNull();
+            //UpgradesNull();
         }
 		
 	}
@@ -108,11 +118,11 @@ public class UpgradeManager : MonoBehaviour {
         return probs.Length - 1;
     }
 
-    void RandomizeUpgrades()
+    GameObject RandomizeUpgrades(int i)
     {
         // Checks the upgrade class probability to create
 
-        for (int i = 0; i < 3; i++)
+        //for (int i = 0; i < 3; i++)
         {
             CheckRound();
 
@@ -136,6 +146,13 @@ public class UpgradeManager : MonoBehaviour {
                     upgrades[i] = goldUpgrades[Random.Range(0, goldUpgrades.Length)];
                     break;
             }
+            print("Hi");
+
+            //if ()
+            //upgrades[i] = Instantiate(upgrades[i], transform.position, transform.rotation) as GameObject;
+            return upgrades[i];
+
+           
         }
 
        
@@ -156,6 +173,46 @@ public class UpgradeManager : MonoBehaviour {
             //print(randomChance);
         }
         */
+    }
+
+    void CheckNoRepeat()
+    {
+       
+
+        upgrades[0] = RandomizeUpgrades(0);
+        print("upgrades0");
+
+        if (upgrades[1] == null && !upgrade1Set)
+        {
+            upgrades[1] = RandomizeUpgrades(1);
+            if (upgrades[1] != upgrades[0])
+            {
+                upgrade1Set = true;
+                print("upgrades1");
+
+            }
+        }         
+
+        if (upgrades[2] == null && !upgrade2Set)
+        {
+            upgrades[2] = RandomizeUpgrades(2);
+            if (upgrades[2] != upgrades[1])
+            {
+                upgrade2Set = true;
+                print("upgrades2");
+            }
+        }
+
+        if (upgrade1Set && upgrade2Set)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                upgrades[i] = Instantiate(upgrades[i], transform.position, transform.rotation) as GameObject;
+                upgradesRandomized = true;
+            }
+        }
+
+
     }
 
     /*
@@ -190,20 +247,25 @@ public class UpgradeManager : MonoBehaviour {
 
     void UpgradeReturn()
     {
-        foreach (GameObject item in upgrades)
-        {
-            item.transform.position = Vector3.Lerp(item.transform.position, new Vector3(0, -9, 0), Time.deltaTime);
-        }
-
-        upgradeTitle.transform.position = Vector3.Lerp(upgradeTitle.transform.position, originTextPos, Time.deltaTime);
-        upgradeInstructions.transform.position = Vector3.Lerp(upgradeTitle.transform.position, originTextPos, Time.deltaTime);
-        upgradeTimerBlock.transform.position = Vector3.Lerp(upgradeTitle.transform.position, originTextPos, Time.deltaTime);
-
-
         upgradeBufferTimer -= Time.deltaTime;
+        if (upgradeBufferTimer > 0)
+        {
+            foreach (GameObject item in upgrades)
+            {
+                item.transform.position = Vector3.Lerp(item.transform.position, new Vector3(0, -9, 0), Time.deltaTime);
+            }
+
+            upgradeTitle.transform.position = Vector3.Lerp(upgradeTitle.transform.position, originTextPos, Time.deltaTime);
+            upgradeInstructions.transform.position = Vector3.Lerp(upgradeTitle.transform.position, originTextPos, Time.deltaTime);
+            upgradeTimerBlock.SetActive(false);
+
+            //upgradeTimerBlock.transform.position = Vector3.Lerp(upgradeTitle.transform.position, originTextPos, Time.deltaTime);
+        }
         if (upgradeBufferTimer <= 0)
         {
             upgradeTitle.SetActive(false);
+            upgradeInstructions.SetActive(false);
+            upgradeTimerBlock.SetActive(false);
             upgradeSelected = false;
             upgradesRandomized = false;
             UpgradesNull();
@@ -218,7 +280,10 @@ public class UpgradeManager : MonoBehaviour {
         {
             Destroy(upgrades[i].gameObject, 3f);
             //upgrades[i] = null;
+           
         }
+        upgradeStart = false;
+        upgradeBufferTimer = 1.5f;
     }
 
     void CheckRound()
@@ -228,8 +293,7 @@ public class UpgradeManager : MonoBehaviour {
         switch (gameManager.roundCurrent)
         {
             case 1:
-                upgradeClassProbability[0] = 75; // Blue / Common
-                upgradeClassProbability[1] = 25; // Green / Uncommon
+                upgradeClassProbability[0] = 100; // Blue / Common
                 break;
             case 2:
                 upgradeClassProbability[0] = 50; // Blue

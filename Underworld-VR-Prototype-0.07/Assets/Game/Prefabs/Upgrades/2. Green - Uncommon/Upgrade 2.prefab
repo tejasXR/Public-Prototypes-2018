@@ -144,8 +144,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1694775867652880}
-  m_LocalRotation: {x: 0, y: -1.497797e-32, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 4}
+  m_LocalRotation: {x: 0, y: -0.12977079, z: 0, w: 0.99154407}
+  m_LocalPosition: {x: -1.2426952, y: 0.80000144, z: 4.2514615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4269733545198914}
@@ -370,13 +370,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeManager: {fileID: 0}
   playerController: {fileID: 0}
+  playerShield: {fileID: 0}
+  weaponActive: {fileID: 0}
   upgradeCost: 0
   addPlayerHealth: 0
   addPlayerHealthMaxMultiplier: 0
+  addPlayerHealthRegenMultiplier: 0
   addBulletFireRateMultiplier: 0
   addBulletDamageMultiplier: 0
-  addBulletSpeedMultiplier: 0
   addBulletAccuracyMultiplier: 0
+  addBulletCapacity: 0
+  addNoUseBulletChance: 0
+  addbulletCriticalHitChance: 0
+  addShieldRegenerationMultiplier: 0
+  addShieldHealthMaxMultiplier: 0
+  addShieldAbsorptionChance: 0
+  addShieldSizeMultipler: 0
+  addEnemyAdditionalBullets: 0
+  addEnemyNegativeHealthMultiplier: 0
+  unlockRifle: 0
+  unlockShotgun: 0
+  unlockSaberSword: 0
+  unlockLaserRifle: 0
 --- !u!114 &114055419981460694
 MonoBehaviour:
   m_ObjectHideFlags: 1

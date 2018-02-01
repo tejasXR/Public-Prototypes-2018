@@ -177,7 +177,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925947536916388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 3.9999998}
+  m_LocalPosition: {x: 0, y: 1, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4108313258581282}
@@ -465,8 +465,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 1.1
+  m_fontSizeBase: 1.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -578,8 +578,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 1.1
+  m_fontSizeBase: 1.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -662,14 +662,17 @@ MonoBehaviour:
   upgradeCost: 100
   addPlayerHealth: 0
   addPlayerHealthMaxMultiplier: 0
+  addPlayerHealthRegenMultiplier: 0
   addBulletFireRateMultiplier: 0
   addBulletDamageMultiplier: 0
   addBulletAccuracyMultiplier: 0
   addBulletCapacity: 100
   addNoUseBulletChance: 0
+  addbulletCriticalHitChance: 0
   addShieldRegenerationMultiplier: 0
   addShieldHealthMaxMultiplier: 0
   addShieldAbsorptionChance: 0
+  addShieldSizeMultipler: 0
   addEnemyAdditionalBullets: 0
   addEnemyNegativeHealthMultiplier: 0
   unlockRifle: 0
@@ -1071,7 +1074,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.293}
-  m_SizeDelta: {x: 1.11, y: 0.59}
+  m_SizeDelta: {x: 1.23, y: 0.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224531502896765002
 RectTransform:
