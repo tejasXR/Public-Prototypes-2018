@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
     //public GameObject roundText;
     public GameObject wallUI;
 
-     public float purpleStadiumEnableBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
+     public float roundFirstStartBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
      public float redemptionBufferTime; // Time between redemption mode starting and the meter counting down
 
     public TextMeshPro[] timeTextMeshPro;
@@ -38,10 +38,14 @@ public class GameManager : MonoBehaviour {
     public GameObject bluePlatform;
     public GameObject synthCity;
 
+    public GameObject playerShield;
+
+
     public bool hadRedemption; //Check if the player has gone through redemption in this play session
 
     public PlatformScript playerPlatform;
     public GameStartUI gameStartUI;
+    public WeaponActive weaponActive;
 
     private void Awake()
     {
@@ -52,7 +56,6 @@ public class GameManager : MonoBehaviour {
         CheckRound();
 
         redemptionBufferTime = 3f;
-        purpleStadiumEnableBufferTime = 1.5f;
     }
 	
 	// Update is called once per frame
@@ -68,17 +71,29 @@ public class GameManager : MonoBehaviour {
         if (!playerPlatform.moving && playerMoveToStadium)
         {
             EnableStadium();
-            playerReachedStadium = true;
             playerPlatform.scaling = true;
             playerMoveToStadium = false;
+            playerReachedStadium = true;
+
         }
 
-        
+        // Initialize before the first when, when the player has just reached the stadium
+        if (playerReachedStadium)
+        {
+            roundFirstStartBufferTime -= Time.deltaTime;
+            if (roundFirstStartBufferTime <= 0 && !roundStart)
+            {
+                roundActive = true;
+                StartRound();
+                playerShield.SetActive(true);
+                weaponActive.WeaponToActivate("PISTOL");
+                roundStart = true;
+            }
+        }
 
         if (roundActive)
         {
             UpdateTimer();
-
             timeLeftCounter -= Time.deltaTime;
         }
 
@@ -207,8 +222,6 @@ public class GameManager : MonoBehaviour {
         bluePlatform.SetActive(true);
         purpleStadium.SetActive(true);
         synthCity.SetActive(false);
-        playerReachedStadium = false;
-
     }
 
     void GameOver()
