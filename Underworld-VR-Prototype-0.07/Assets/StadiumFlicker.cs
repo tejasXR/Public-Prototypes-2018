@@ -12,6 +12,8 @@ public class StadiumFlicker : MonoBehaviour {
     public bool flickerActive;
     public int triangleStadiumCount;
 
+    public bool shouldFlicker;
+
 	// Use this for initialization
 	void Start () {
         flickerTimer = flickerFrequency;
@@ -20,31 +22,37 @@ public class StadiumFlicker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        flickerTimer -= Time.deltaTime;
-        if (flickerTimer <= 0)// && !flickerActive)
+        if (shouldFlicker)
         {
-            //flickerActive = true;
-            flickerTimer = 0;
-            flickerDurationTimer -= Time.deltaTime;
-            if (flickerDurationTimer > 0)
+            flickerTimer -= Time.deltaTime;
+            if (flickerTimer <= 0)// && !flickerActive)
             {
-                triangleStadiums[triangleStadiumCount].SetActive(false);
-            } else
-            {
-                triangleStadiums[triangleStadiumCount].SetActive(true);
-                triangleStadiumCount++;
+                //flickerActive = true;
+                flickerTimer = 0;
+                flickerDurationTimer -= Time.deltaTime;
+                if (flickerDurationTimer > 0)
+                {
+                    triangleStadiums[triangleStadiumCount].SetActive(false);
+                }
+                else
+                {
+                    triangleStadiums[triangleStadiumCount].SetActive(true);
+                    triangleStadiumCount++;
 
-                if (triangleStadiumCount == (triangleStadiums.Length))
-                {
-                    flickerTimer = flickerFrequency;
-                    triangleStadiumCount = 0;
-                } else
-                {
-                    //flickerActive = false;
-                    flickerDurationTimer = flickerDuration;
+                    if (triangleStadiumCount == (triangleStadiums.Length))
+                    {
+                        flickerTimer = flickerFrequency;
+                        triangleStadiumCount = 0;
+                    }
+                    else
+                    {
+                        //flickerActive = false;
+                        flickerDurationTimer = flickerDuration;
+                    }
                 }
             }
         }
+        
 
 	}
 }

@@ -9,6 +9,7 @@ public class StadiumEnable : MonoBehaviour {
 
     public bool flash;
     public bool scaling;
+    public bool scalingDone;
 
     public GameObject abovePlatform;
 
@@ -16,6 +17,7 @@ public class StadiumEnable : MonoBehaviour {
     public bool isPlatformTriangles;
 
     public float delay;
+    public float delayCounter;
 
     public GameObject[] platformTriangles;
 
@@ -26,6 +28,8 @@ public class StadiumEnable : MonoBehaviour {
 
     private void OnEnable()
     {
+        delayCounter = delay;
+
         if (isStadium)
         {
             scaleCurrent = .4f;
@@ -37,25 +41,31 @@ public class StadiumEnable : MonoBehaviour {
             scaleCurrent = 0;
             StartCoroutine(PlatformTraingleFlash());
         }
-        scaling = false;
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (!scaling)
+        if (delayCounter >= 0)
+        {
+            delayCounter -= Time.deltaTime;
+        } else
+        {
+            delayCounter = 0;
+            scaling = true;
+        }
+
+        if (scaling && !scalingDone)
         {
             scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal, Time.deltaTime);
             abovePlatform.transform.localScale = new Vector3(abovePlatform.transform.localScale.x, scaleCurrent, abovePlatform.transform.localScale.z);
         }
-        
-        
+
 
         if ((scaleCurrent / scaleOriginal) > .98f)
         {
-            scaling = false;
+            scalingDone = true;
         }
-		
 	}
 
     IEnumerator StadiumFlash()
@@ -70,6 +80,14 @@ public class StadiumEnable : MonoBehaviour {
         abovePlatform.SetActive(false);
         yield return new WaitForSeconds(.1f);
         abovePlatform.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        abovePlatform.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        abovePlatform.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        abovePlatform.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        abovePlatform.SetActive(true);
         yield return new WaitForSeconds(.01f);
         abovePlatform.SetActive(false);
         yield return new WaitForSeconds(.01f);
@@ -91,6 +109,8 @@ public class StadiumEnable : MonoBehaviour {
         yield return new WaitForSeconds(.0005f);
         abovePlatform.SetActive(true);
         yield return new WaitForSeconds(.0005f);
+
+        abovePlatform.GetComponent<StadiumFlicker>().shouldFlicker = true;
     }
 
     IEnumerator PlatformTraingleFlash()
