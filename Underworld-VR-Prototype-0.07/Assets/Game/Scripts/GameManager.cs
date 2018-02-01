@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour {
     public TextMeshPro[] timeTextMeshPro;
 
     public bool gameStart;
+    public bool playerMoveToStadium;
+    public bool playerReachedStadium;
+    public bool roundStart;
     public bool roundActive; //To see if the player is currently in a round
     public bool upgradeActive; //To see if the player is currently upgrading
     public bool redemptionActive; //To see if the player is currently in redemption mode
@@ -38,20 +41,24 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         CheckRound();
-        if (gameStart)
-        {
-            StartRound();
-        }
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-        UpdateTimer();
+
+        if (gameStart && !playerMoveToStadium)
+        {
+            playerMoveToStadium = true;
+        }
+
+
 
         if (roundActive)
         {
+            UpdateTimer();
+
             timeLeftCounter -= Time.deltaTime;
+
         }
 
         if (upgradeActive)
@@ -83,11 +90,11 @@ public class GameManager : MonoBehaviour {
         }
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
-        if (!upgradeActive && !roundActive && !redemptionActive)
+        /*if (!upgradeActive && !roundActive && !redemptionActive && gameStart)
         {
             StartRound();
             roundActive = true;
-        }
+        }*/
 
         // If the player has lost all health (called from Player script) and the round is active, stop round and enter redemption mode
         if (redemptionActive && roundActive && !hadRedemption)
