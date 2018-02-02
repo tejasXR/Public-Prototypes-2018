@@ -41,13 +41,13 @@ public class PlatformScript : MonoBehaviour {
         {
            if (distancePercent < .05f)
             {
-                maxSpeed = Mathf.Lerp(maxSpeed, 2f, Time.deltaTime);
+                maxSpeed = Mathf.Lerp(maxSpeed, 7f, Time.deltaTime);
             } else if (distancePercent > .1f && distancePercent < .9f)
             {
                 maxSpeed = Mathf.Lerp(maxSpeed, 10f, Time.deltaTime);
             } else if (distancePercent > .9f)
             {
-                maxSpeed = Mathf.Lerp(maxSpeed, 3f, Time.deltaTime);
+                maxSpeed = Mathf.Lerp(maxSpeed, 5f, Time.deltaTime);
                 print("slowing down");
             }
            

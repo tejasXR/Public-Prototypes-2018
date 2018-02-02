@@ -10,12 +10,14 @@ public class PlatformLightScript : MonoBehaviour {
     private Light light;
     public float lightIntensity;
     public float lightIntensityOriginal;
+    public float delay;
+    public float delayCounter;
 
 	// Use this for initialization
 	void Start () {
         light = GetComponent<Light>();
-        light.intensity = lightIntensity;
-        
+        lightIntensityOriginal = light.intensity;
+        delayCounter = delay;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 	
@@ -24,12 +26,16 @@ public class PlatformLightScript : MonoBehaviour {
 
         if (gameManager.playerReachedStadium && !lightOn)
         {
-            lightOn = true;
+            delayCounter -= Time.deltaTime;
+            if (delayCounter <= 0)
+            {
+                lightOn = true;
+            }
         }
 
         if (lightOn)
         {
-            lightIntensity = Mathf.Lerp(lightIntensity, lightIntensityOriginal, Time.deltaTime * .5f);
+            lightIntensity = Mathf.Lerp(lightIntensity, lightIntensityOriginal, Time.deltaTime * .25f);
         }
 
         light.intensity = lightIntensity;

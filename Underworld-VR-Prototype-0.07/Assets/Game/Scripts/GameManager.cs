@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
     public GameObject bluePlatform;
     public GameObject synthCity;
 
+    public GameObject playerStartArea;
     public GameObject playerShield;
 
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
+        playerStartArea.SetActive(true);
     }
 
     // Use this for initialization
@@ -226,6 +228,7 @@ public class GameManager : MonoBehaviour {
         bluePlatform.SetActive(true);
         purpleStadium.SetActive(true);
         synthCity.SetActive(false);
+        playerStartArea.SetActive(false);
     }
 
     void GameOver()

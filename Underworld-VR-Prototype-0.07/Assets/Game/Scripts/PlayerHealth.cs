@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public Color[] triangleCurrentColors;
 
-    public Light bottomLight;
+    public Light platformLight;
 
     public Material[] belowPlatformNeon;
 
@@ -73,7 +73,7 @@ public class PlayerHealth : MonoBehaviour {
 
         rendPlatform.material.SetColor("_MKGlowColor", triangleCurrentColors[0]);
         rendPlatform.material.SetColor("_MKGlowTexColor", triangleCurrentColors[0]);
-        bottomLight.color = triangleCurrentColors[0];
+        platformLight.color = triangleCurrentColors[0];
 
         // Here we are directly accessing the materials of the triangle objects, and changing them permanently at runtime
         for (int i = 0; i < 4; i++)
