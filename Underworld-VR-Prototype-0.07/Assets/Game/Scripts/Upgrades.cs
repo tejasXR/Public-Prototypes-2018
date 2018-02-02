@@ -24,11 +24,13 @@ public class Upgrades : MonoBehaviour {
     public float addBulletCapacity;
     public float addNoUseBulletChance;
     public float addBulletCriticalHitChance;
+    public float addBulletRegeneration;
+
 
     // Player Defense Upgrades
     public float addShieldRegenerationMultiplier;
     public float addShieldHealthMaxMultiplier;
-    public float addShieldAbsorptionChance;
+    public float addShieldAbsorbtionChance;
     public float addShieldSizeMultipler;
 
     // Enemy Upgrades
@@ -51,12 +53,21 @@ public class Upgrades : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Bullet" && !upgradeManager.upgradeSelected && playerController.playerBullets >= upgradeCost)
+        if(other.gameObject.tag == "Bullet" && !upgradeManager.upgradeSelected)
         {
-            playerController.playerBullets -= upgradeCost;
-            AddUpgradeEffect();
-            upgradeManager.upgradeSelected = true;
+            if (playerController.playerBulletCapacity >= upgradeCost)
+            {
+                playerController.playerBullets -= upgradeCost;
+                AddUpgradeEffect();
+                upgradeManager.upgradeSelected = true;
+            } else
+            {
+                //
+            }
+            
         }
+
+        Destroy(other.gameObject);
     }
 
     void AddUpgradeEffect()
@@ -78,7 +89,7 @@ public class Upgrades : MonoBehaviour {
         // Player Defense Effects
         playerShield.shieldRechargeSpeedMultiplier += addShieldRegenerationMultiplier;
         playerShield.shieldHealthMaxMultiplier += addShieldHealthMaxMultiplier;
-        playerShield.shieldAbsorptionChance += addShieldAbsorptionChance;
+        playerShield.shieldAbsorbtionChance += addShieldAbsorbtionChance;
         playerShield.shieldSizeMultiplier += addShieldSizeMultipler;
 
         // Enemy Effects

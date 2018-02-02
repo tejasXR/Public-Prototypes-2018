@@ -19,7 +19,7 @@ public class PlayerShield : MonoBehaviour {
 
     public float shieldSizeMultiplier = 1;
 
-    public float shieldAbsorptionChance = 0;
+    public float shieldAbsorbtionChance = 0;
 
     //private float scaleOriginal;
     //private float scaleCurrent;
@@ -87,7 +87,7 @@ public class PlayerShield : MonoBehaviour {
 
             // A chance to absorb an incoming bullet
             float shieldAbsorption = Random.Range(0f, 1f);
-            if (shieldAbsorption > shieldAbsorptionChance)
+            if (shieldAbsorption > shieldAbsorbtionChance)
             {
                 playerController.playerBullets++;
             }

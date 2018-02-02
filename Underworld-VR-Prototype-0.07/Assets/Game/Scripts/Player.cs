@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 
     // Player Health Multipliers
     public float playerHealthMaxMultiplier = 1;
-    public float playerHealthRegenMultiplier = 1;
+    public float playerHealthRegenMultiplier = 0;
 
     // Player Attack Multipliers
     public float bulletFireRateMultiplier = 1;
@@ -33,7 +33,8 @@ public class Player : MonoBehaviour {
     public float bulletAccuracyMultiplier = 1;
     public float playerBulletCapacity = 200;
     public float playerNoUseBulletChance = 0;
-    public float playerBulletCriticalHitChance;
+    public float playerBulletCriticalHitChance = 0;
+    public float playerBulletRegeneration = 0;
 
 
     public TextMeshPro[] bulletCounters;
@@ -73,11 +74,15 @@ public class Player : MonoBehaviour {
         if (gameManager.roundActive)
         {
             playerHealth += Time.deltaTime * playerHealthRegenMultiplier;
+            playerBullets += Mathf.RoundToInt(Time.deltaTime * playerBulletRegeneration);
+
 
             if (playerHealth >= (playerHealthMax * playerHealthMaxMultiplier))
             {
                 playerHealth = playerHealthMax * playerHealthMaxMultiplier;
             }
+
+
         }
 
         if (playerBullets >= playerBulletCapacity)

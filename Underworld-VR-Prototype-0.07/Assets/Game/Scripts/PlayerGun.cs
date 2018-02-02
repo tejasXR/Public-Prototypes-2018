@@ -47,6 +47,7 @@ public class PlayerGun : MonoBehaviour {
     public bool isLaserRifle;
 
     public GameObject bulletUsedObj;
+    public GameObject noBulletsObj;
 
     //public ushort pulseStrength;
 
@@ -70,6 +71,8 @@ public class PlayerGun : MonoBehaviour {
 
     private void Update()
     {
+
+
         bulletTimer -= Time.deltaTime;
 
         if (bulletTimer <= 0)
@@ -101,10 +104,19 @@ public class PlayerGun : MonoBehaviour {
 
        device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
         
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets >= bulletsInstantiated)
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
-            Fire();
-        }             
+            if (playerController.playerBullets >= bulletsInstantiated)
+            {
+                Fire();
+            }
+        }
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets < bulletsInstantiated)
+        {
+            GunVibration(.5f, 2000);
+            //device.TriggerHapticPulse(1500);
+            Instantiate(noBulletsObj, sparkPoint.position, sparkPoint.transform.rotation);
+        }
     }
 
     void Fire()
@@ -193,7 +205,6 @@ public class PlayerGun : MonoBehaviour {
         if (isLaserRifle)
         {
             StartCoroutine(GunVibration(1f, 3000));
-
         }
     }
 
