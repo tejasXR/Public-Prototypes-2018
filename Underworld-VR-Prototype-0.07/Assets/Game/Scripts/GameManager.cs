@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 
     //public GameObject roundText;
     public GameObject wallUI;
+    public GameObject redemptionUI;
 
      public float roundFirstStartBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
      public float redemptionBufferTime; // Time between redemption mode starting and the meter counting down
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour {
     public bool roundStart;
     public bool roundActive; //To see if the player is currently in a round
     public bool upgradeActive; //To see if the player is currently upgrading
+
+    public bool redemptionStart;
     public bool redemptionActive; //To see if the player is currently in redemption mode
     public bool gameOver;
 
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour {
     public PlatformScript playerPlatform;
     public GameStartUI gameStartUI;
     public WeaponActive weaponActive;
+    public Player playerController;
 
     private void Awake()
     {
@@ -112,12 +116,13 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        if (redemptionActive)
+        if (redemptionStart)
         {
             redemptionBufferTime -= Time.deltaTime;
             if (redemptionBufferTime <= 0)
             {
                 redemptionMeter -= Time.deltaTime;
+                redemptionActive = true;
             }
         }
 
@@ -141,11 +146,18 @@ public class GameManager : MonoBehaviour {
         }
 
         // If the player has lost all health (called from Player script) and the round is active, stop round and enter redemption mode
-        if (redemptionActive && roundActive && !hadRedemption)
+        if (playerController.playerHealth <= 0 && !hadRedemption && playerController.playerRedemptionHealth > 0)
+        {
+            redemptionStart = true;
+        }
+
+        if (redemptionStart)
         {
             StartRedemption();
+            redemptionActive = true;
             hadRedemption = true;
             roundActive = false;
+            redemptionStart = false;
         }
 
         if (redemptionMeter >= redemptionMeterMax && redemptionActive)
@@ -222,7 +234,11 @@ public class GameManager : MonoBehaviour {
     void StartRedemption()
     {
         redemptionMeter = 10;
+        redemptionUI.SetActive(true);
         wallUI.SetActive(false);
+        weaponActive.WeaponToActivate("SABER SWORD");
+        purpleStadium.SetActive(false);
+
     }
 
     void EnableStadium()

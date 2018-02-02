@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     public float playerHealth;
     public float playerHealthMax;
 
+    public float playerRedemptionHealth;
+
 
     public float enemyGiveAdditionalBullets;
     public float enemyNegativeHealthMultiplier;
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour {
 
     public TextMeshPro[] bulletCounters;
 
-    public WeaponActive weaponActive; // Keeps track of the current weapons that the player is using
+    //public WeaponActive weaponActive; // Keeps track of the current weapons that the player is using
 
 
 
@@ -64,8 +66,8 @@ public class Player : MonoBehaviour {
 
         if (playerHealth <= 0)
         {
-            gameManager.redemptionActive = true;
-            weaponActive.WeaponToActivate("SABER SWORD"); // Active saber sword for redemption mode
+            //gameManager.redemptionActive = true;
+            //weaponActive.WeaponToActivate("SABER SWORD"); // Active saber sword for redemption mode
         }
 
         if (gameManager.roundActive)
