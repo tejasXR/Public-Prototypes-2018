@@ -10,14 +10,21 @@ public class PlatformLightScript : MonoBehaviour {
     private Light light;
     public float lightIntensity;
     public float lightIntensityOriginal;
+    //public float lightIntensityTarget;
+
 
     public float delay;
     public float delayCounter;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
         light = GetComponent<Light>();
         lightIntensityOriginal = light.intensity;
+    }
+
+    // Use this for initialization
+    void Start () {
+        
         
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
@@ -25,6 +32,7 @@ public class PlatformLightScript : MonoBehaviour {
     private void OnEnable()
     {
         delayCounter = delay;
+        lightIntensity = 0;
     }
 
     // Update is called once per frame
