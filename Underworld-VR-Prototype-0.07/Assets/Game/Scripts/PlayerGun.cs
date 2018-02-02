@@ -99,7 +99,7 @@ public class PlayerGun : MonoBehaviour {
 
        device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
         
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets >= 1)
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets >= bulletsInstantiated)
         {
             Fire();
         }             

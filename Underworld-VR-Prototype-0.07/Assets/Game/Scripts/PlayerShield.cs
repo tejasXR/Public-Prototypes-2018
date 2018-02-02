@@ -6,6 +6,9 @@ public class PlayerShield : MonoBehaviour {
 
     public Player playerController;
 
+    public SteamVR_TrackedObject trackedObj;
+    private SteamVR_Controller.Device device;
+
     public float shieldHealthMax;
     public float shieldHealth;
     private float shieldHealthSmooth;
@@ -64,6 +67,11 @@ public class PlayerShield : MonoBehaviour {
         transform.localScale = new Vector3(modelScale, modelScale, modelScale);
 	}
 
+    private void FixedUpdate()
+    {
+        device = SteamVR_Controller.Input((int)trackedObj.index);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -75,6 +83,8 @@ public class PlayerShield : MonoBehaviour {
             scanTileCurrent = 0;
             flickerSpeedCurrent = flickerSpeedMax;
 
+            StartCoroutine(ShieldVibration(1, 2000));
+
             // A chance to absorb an incoming bullet
             float shieldAbsorption = Random.Range(0f, 1f);
             if (shieldAbsorption > shieldAbsorptionChance)
@@ -85,6 +95,16 @@ public class PlayerShield : MonoBehaviour {
             //print("Hit");
 
             Destroy(other.gameObject);
+        }
+    }
+
+    IEnumerator ShieldVibration(float length, ushort strength)
+    {
+        for (float i = 0; i < length; i += Time.deltaTime)
+        {
+            device.TriggerHapticPulse(strength);
+            strength = (ushort)Mathf.Lerp(strength, 0, Time.deltaTime * 5);
+            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
         }
     }
 }
