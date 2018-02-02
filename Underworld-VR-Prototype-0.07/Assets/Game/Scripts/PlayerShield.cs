@@ -76,7 +76,7 @@ public class PlayerShield : MonoBehaviour {
             flickerSpeedCurrent = flickerSpeedMax;
 
             // A chance to absorb an incoming bullet
-            float shieldAbsorption = Random.Range(0,1);
+            float shieldAbsorption = Random.Range(0f, 1f);
             if (shieldAbsorption > shieldAbsorptionChance)
             {
                 playerController.playerBullets++;

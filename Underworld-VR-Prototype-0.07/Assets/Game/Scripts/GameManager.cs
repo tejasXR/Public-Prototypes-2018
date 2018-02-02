@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour {
             upgradeTimerCounter -= Time.deltaTime;
             if (upgradeTimerCounter <= 0)
             {
+                roundStart = true;
                 upgradeActive = false;
                 upgradeTimerCounter = upgradeTimer;
             }
@@ -121,16 +122,19 @@ public class GameManager : MonoBehaviour {
         {
             timeLeftCounter = 0;
             upgradeActive = true;
-            roundActive = false; //stop the wave after the waveTimer is over to put the player in upgrade mode
+            roundStart = false;
+            roundActive = false;  //stop the wave after the waveTimer is over to put the player in upgrade mode
+
             //print("Upgrade!");
         }
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
-        /*if (!upgradeActive && !roundActive && !redemptionActive && gameStart)
+        if (roundStart && !upgradeActive && !roundActive && !redemptionActive && roundCurrent > 0)
         {
             StartRound();
             roundActive = true;
-        }*/
+            roundStart = false;
+        }
 
         // If the player has lost all health (called from Player script) and the round is active, stop round and enter redemption mode
         if (redemptionActive && roundActive && !hadRedemption)

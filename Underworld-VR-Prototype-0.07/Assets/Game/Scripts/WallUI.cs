@@ -23,9 +23,8 @@ public class WallUI : MonoBehaviour {
     public bool isRoundUI;
     public bool isRedemptionUI;
 
-	// Use this for initialization
-	void Start () {
-
+    private void Awake()
+    {
         if (isRoundUI)
         {
             alpha = 0;
@@ -34,6 +33,12 @@ public class WallUI : MonoBehaviour {
         {
             alpha = 1;
         }
+    }
+
+    // Use this for initialization
+    void Start () {
+
+        
 
         transform.position = UIStartPosition.position;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
