@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
     public bool gameStart;
     public bool playerMoveToStadium;
     public bool playerReachedStadium;
+    public bool mainGameStart;
     public bool roundStart;
     public bool roundActive; //To see if the player is currently in a round
     public bool upgradeActive; //To see if the player is currently upgrading
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (gameStartUI.gameStart && !playerMoveToStadium)
+        if (gameStartUI.gameStart && !playerMoveToStadium && !playerReachedStadium)
         {
             gameStart = true;
             playerPlatform.moving = true;
@@ -80,16 +81,17 @@ public class GameManager : MonoBehaviour {
         }
 
         // Initialize before the first when, when the player has just reached the stadium
-        if (playerReachedStadium)
+        if (playerReachedStadium && !mainGameStart)
         {
             roundFirstStartBufferTime -= Time.deltaTime;
             if (roundFirstStartBufferTime <= 0 && !roundStart)
             {
-                roundActive = true;
-                StartRound();
+                //roundActive = true;
+                //StartRound();
                 playerShield.SetActive(true);
                 weaponActive.WeaponToActivate("PISTOL");
                 roundStart = true;
+                mainGameStart = true;
             }
         }
 
@@ -165,9 +167,9 @@ public class GameManager : MonoBehaviour {
         CheckRound();
         //Instantiate(roundText);
         wallUI.SetActive(true);
-        roundActive = true;
-        redemptionActive = false;
-        upgradeActive = false;
+        //roundActive = true;
+        //redemptionActive = false;
+        //upgradeActive = false;
         timeLeftCounter = timeLeft;
         //print("starting");
     }

@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1180408355382406
 GameObject:
   m_ObjectHideFlags: 1
@@ -1446,6 +1446,10 @@ MonoBehaviour:
   gunSparkEffect: {fileID: 1788295150095858, guid: 61365ba6013295144a7624c34f319ac3,
     type: 2}
   sparkPoint: {fileID: 4198427258148618}
+  isPistol: 0
+  isRifle: 0
+  isShotgun: 0
+  isLaserRifle: 1
 --- !u!114 &114483896883153150
 MonoBehaviour:
   m_ObjectHideFlags: 1

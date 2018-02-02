@@ -6,6 +6,7 @@ using Valve.VR;
 public class PlayerGun : MonoBehaviour {
 
     public SteamVR_TrackedObject trackedObj;
+    private SteamVR_Controller.Device device;
 
     public Player playerController;
 
@@ -40,6 +41,12 @@ public class PlayerGun : MonoBehaviour {
     public GameObject gunSparkEffect;
     public Transform sparkPoint;
 
+    public bool isPistol;
+    public bool isRifle;
+    public bool isShotgun;
+    public bool isLaserRifle;
+
+    //public ushort pulseStrength;
 
 
 
@@ -73,12 +80,24 @@ public class PlayerGun : MonoBehaviour {
 
 
 
+        // Add dynamic pulse feed back to weapon haptics
+        /*if (pulseStart > 0)
+        {
+            for (ushort i = pulseStart; i > 0; i -= Time.deltaTime)
+            {
+                device.TriggerHapticPulse(i);
+                pulseStart -= 1;
+                //print(pulseStart);
+            }
+        }*/
+        
+
     }
 
     // Update is called once per frame
     void FixedUpdate () {
 
-        SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
+       device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
         
         if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets >= 1)
         {
@@ -91,7 +110,7 @@ public class PlayerGun : MonoBehaviour {
         if (bulletTimer <= 0)
         {
             Instantiate(gunSparkEffect, sparkPoint.position, sparkPoint.transform.rotation);
-
+            GunHaptics();
             // Adds ability to instantiate multiple bullets
             for (int i = 0; i < bulletsInstantiated; i++)
             {
@@ -111,11 +130,11 @@ public class PlayerGun : MonoBehaviour {
 
                 // Creates a chance that the gun will use no bullets when firing
                 float bulletNoUseChance = Random.Range(0f, 1f);
-                print(bulletNoUseChance);
+                //print(bulletNoUseChance);
                 if (bulletNoUseChance > playerController.playerNoUseBulletChance)
                 {
                     playerController.playerBullets -= 1;
-                    print("bullet used");
+                    //print("bullet used");
 
                 }
 
@@ -126,7 +145,7 @@ public class PlayerGun : MonoBehaviour {
                 //bullet.GetComponent<Bullet>().bulletDirection = bulletDirection;
                 //bullet.GetComponent<Bullet>().bulletSpeed = bulletSpeed;
 
-
+                
                 // Destroy the bullet after 2 seconds
                 Destroy(bullet, 2.0f);
 
@@ -148,4 +167,42 @@ public class PlayerGun : MonoBehaviour {
         
         
     }
+
+    void GunHaptics()
+    {
+        if (isPistol)
+        {
+            StartCoroutine(GunVibration(.4f, 1000));
+        }
+
+        if (isRifle)
+        {
+            StartCoroutine(GunVibration(.25f, 1500));
+
+        }
+
+        if (isShotgun)
+        {
+            StartCoroutine(GunVibration(1f, 3500));
+
+        }
+
+        if (isLaserRifle)
+        {
+            StartCoroutine(GunVibration(1f, 3000));
+
+        }
+    }
+
+    IEnumerator GunVibration(float length, ushort strength)
+    {
+        for (float i = 0; i < length; i += Time.deltaTime)
+        {
+            device.TriggerHapticPulse(strength);
+            strength = (ushort)Mathf.Lerp(strength, 0, Time.deltaTime * 5);
+            yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
+        }
+    }
+
+
 }

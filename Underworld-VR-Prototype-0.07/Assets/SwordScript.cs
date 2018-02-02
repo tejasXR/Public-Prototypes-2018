@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SwordScript : MonoBehaviour {
 
+    public SteamVR_TrackedObject trackedObj;
+    private SteamVR_Controller.Device device;
+
     public GameObject swordEnd;
     public LightsaberTrail lightsaberTrail;
 
@@ -37,9 +40,9 @@ public class SwordScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        swordScaleCurrent = Mathf.Lerp(swordScaleCurrent, swordScaleOriginal, Time.deltaTime * 2.5f);
-        swordYCurrent = Mathf.Lerp(swordYCurrent, swordYOriginal, Time.deltaTime * 2.5f);
-        trailScaleCurrent = Mathf.Lerp(trailScaleCurrent, trailScaleOriginal, Time.deltaTime * 2.5f);
+        swordScaleCurrent = Mathf.Lerp(swordScaleCurrent, swordScaleOriginal, Time.deltaTime * 4f);
+        swordYCurrent = Mathf.Lerp(swordYCurrent, swordYOriginal, Time.deltaTime * 4f);
+        trailScaleCurrent = Mathf.Lerp(trailScaleCurrent, trailScaleOriginal, Time.deltaTime * 4f);
 
 
         swordEnd.transform.localScale = new Vector3(swordEnd.transform.localScale.x, swordScaleCurrent, swordEnd.transform.localScale.z);
@@ -47,6 +50,12 @@ public class SwordScript : MonoBehaviour {
         lightsaberTrail.height = trailScaleCurrent;
 
         
+    }
+
+    private void FixedUpdate()
+    {
+        device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,7 +66,7 @@ public class SwordScript : MonoBehaviour {
             var enemyBulletRb = other.gameObject.GetComponent<Rigidbody>();
             Vector3 bulletDirection;
 
-            
+            device.TriggerHapticPulse(300);
 
             if (enemyBullet.enemyParent.gameObject == null)
             {

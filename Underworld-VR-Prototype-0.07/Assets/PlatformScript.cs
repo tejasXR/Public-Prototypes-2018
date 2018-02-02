@@ -35,7 +35,7 @@ public class PlatformScript : MonoBehaviour {
 
         distanceCurrent = Vector3.Distance(transform.position, Vector3.zero);
         float distancePercent = (distanceTotal - distanceCurrent) / distanceTotal;
-        print(distancePercent);
+        //print(distancePercent);
 
         if (moving)
         {
