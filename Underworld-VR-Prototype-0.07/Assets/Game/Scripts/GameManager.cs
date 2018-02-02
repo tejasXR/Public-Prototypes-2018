@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
     public bool upgradeActive; //To see if the player is currently upgrading
 
     public bool redemptionStart;
+    public bool redemptionPreStart;
     public bool redemptionActive; //To see if the player is currently in redemption mode
     public bool hadRedemption; //Check if the player has gone through redemption in this play session
 
@@ -122,6 +123,11 @@ public class GameManager : MonoBehaviour {
         if (redemptionStart && redemptionBufferTime > 0)
         {
             redemptionBufferTime -= Time.deltaTime;
+            if (redemptionBufferTime < 3 && !redemptionPreStart)
+            {
+                PreRedemption();
+                redemptionPreStart = true;
+            }
             if (redemptionBufferTime <= 0)
             {
                 redemptionActive = true;
@@ -154,7 +160,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // If the player has lost all health (called from Player script) and the round is active, stop round and enter redemption mode
-        if (playerController.playerHealth <= 0 && !hadRedemption && playerController.playerRedemptionHealth > 0)
+        if (playerController.playerHealth <= 0 && !hadRedemption)
         {
             redemptionStart = true;
             print("redemption start");

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
 
     private Player playerController;
+    private GameManager gameManager;
+
     private Renderer rendHitbody;
     private Renderer rendPlatform;
 
@@ -40,7 +42,7 @@ public class PlayerHealth : MonoBehaviour {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         rendHitbody = hitbodyProjection.GetComponent<Renderer>();
         rendPlatform = platformTriangle.GetComponent<Renderer>();
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 	
 	// Update is called once per frame
@@ -107,9 +109,19 @@ public class PlayerHealth : MonoBehaviour {
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
-            playerController.playerHealth -= 1;
-            alphaHit = .1f;
-            Destroy(other.gameObject);
+            if (gameManager.roundActive)
+            {
+                playerController.playerHealth -= 1;
+                alphaHit = .1f;
+                Destroy(other.gameObject);
+            }
+
+            if (gameManager.redemptionActive)
+            {
+                playerController.playerRedemptionHealth -= 1;
+                alphaHit = .1f;
+                Destroy(other.gameObject);
+            }
         }
     }
 }
