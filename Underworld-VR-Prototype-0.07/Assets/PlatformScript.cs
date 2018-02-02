@@ -48,7 +48,7 @@ public class PlatformScript : MonoBehaviour {
             } else if (distancePercent > .9f)
             {
                 maxSpeed = Mathf.Lerp(maxSpeed, 5f, Time.deltaTime);
-                print("slowing down");
+                //print("slowing down");
             }
            
             transform.position = Vector3.SmoothDamp(transform.position, Vector3.zero, ref velocity, smoothTime, maxSpeed);

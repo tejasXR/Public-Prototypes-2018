@@ -146,7 +146,7 @@ public class UpgradeManager : MonoBehaviour {
                     upgrades[i] = goldUpgrades[Random.Range(0, goldUpgrades.Length)];
                     break;
             }
-            print("Hi");
+            //print("Hi");
 
             //if ()
             //upgrades[i] = Instantiate(upgrades[i], transform.position, transform.rotation) as GameObject;
@@ -180,7 +180,7 @@ public class UpgradeManager : MonoBehaviour {
        
 
         upgrades[0] = RandomizeUpgrades(0);
-        print("upgrades0");
+        //print("upgrades0");
 
         if (upgrades[1] == null && !upgrade1Set)
         {
@@ -188,7 +188,7 @@ public class UpgradeManager : MonoBehaviour {
             if (upgrades[1] != upgrades[0])
             {
                 upgrade1Set = true;
-                print("upgrades1");
+                //print("upgrades1");
 
             }
         }         
@@ -199,7 +199,7 @@ public class UpgradeManager : MonoBehaviour {
             if (upgrades[2] != upgrades[1])
             {
                 upgrade2Set = true;
-                print("upgrades2");
+                //print("upgrades2");
             }
         }
 

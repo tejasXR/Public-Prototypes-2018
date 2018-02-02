@@ -10,6 +10,7 @@ public class PlatformLightScript : MonoBehaviour {
     private Light light;
     public float lightIntensity;
     public float lightIntensityOriginal;
+
     public float delay;
     public float delayCounter;
 
@@ -17,12 +18,17 @@ public class PlatformLightScript : MonoBehaviour {
 	void Start () {
         light = GetComponent<Light>();
         lightIntensityOriginal = light.intensity;
-        delayCounter = delay;
+        
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        delayCounter = delay;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if (gameManager.playerReachedStadium && !lightOn)
         {

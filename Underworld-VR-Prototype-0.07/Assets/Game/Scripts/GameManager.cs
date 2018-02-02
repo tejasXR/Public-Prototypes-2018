@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour {
 
     public bool redemptionStart;
     public bool redemptionActive; //To see if the player is currently in redemption mode
+    public bool hadRedemption; //Check if the player has gone through redemption in this play session
+
     public bool gameOver;
 
     public GameObject purpleStadium;
@@ -45,8 +47,9 @@ public class GameManager : MonoBehaviour {
     public GameObject playerStartArea;
     public GameObject playerShield;
 
+    public GameObject platformLight;
+    public GameObject redemptionLight;
 
-    public bool hadRedemption; //Check if the player has gone through redemption in this play session
 
     public PlatformScript playerPlatform;
     public GameStartUI gameStartUI;
@@ -116,14 +119,19 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        if (redemptionStart)
+        if (redemptionStart && redemptionBufferTime > 0)
         {
             redemptionBufferTime -= Time.deltaTime;
             if (redemptionBufferTime <= 0)
             {
-                redemptionMeter -= Time.deltaTime;
                 redemptionActive = true;
+                redemptionStart = false;
             }
+        }
+
+        if (redemptionActive)
+        {
+            redemptionMeter -= Time.deltaTime;
         }
 
         // If the counter has counted down to zero and the player is currently in a round, stop the timer and enter upgrade mode
@@ -138,7 +146,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
-        if (roundStart && !upgradeActive && !roundActive && !redemptionActive && roundCurrent > 0)
+        if (roundStart && !upgradeActive && !roundActive && !redemptionActive)
         {
             StartRound();
             roundActive = true;
@@ -149,22 +157,25 @@ public class GameManager : MonoBehaviour {
         if (playerController.playerHealth <= 0 && !hadRedemption && playerController.playerRedemptionHealth > 0)
         {
             redemptionStart = true;
+            print("redemption start");
         }
 
         if (redemptionStart)
         {
-            StartRedemption();
-            redemptionActive = true;
+            TurnOffForRedemption(); // Turn stuff off for redemption
+            //redemptionActive = true; // Not false here, will call when redemption buffer timer runs down
             hadRedemption = true;
             roundActive = false;
-            redemptionStart = false;
+            //redemptionStart = false; // Not false here becuase we need the buffer time to run out first
         }
 
         if (redemptionMeter >= redemptionMeterMax && redemptionActive)
         {
             roundCurrent -= 1; // Reset the round number to when the player died
+            StopRedemption();
             StartRound(); // Start the wave
             redemptionActive = false;
+            
         }
         else if (redemptionMeter <= 0 && !gameOver && redemptionActive)
         {
@@ -179,11 +190,12 @@ public class GameManager : MonoBehaviour {
         CheckRound();
         //Instantiate(roundText);
         wallUI.SetActive(true);
-        //roundActive = true;
-        //redemptionActive = false;
-        //upgradeActive = false;
+        
+        
+        
+       
         timeLeftCounter = timeLeft;
-        //print("starting");
+        
     }
 
     void CheckRound()
@@ -233,12 +245,35 @@ public class GameManager : MonoBehaviour {
 
     void StartRedemption()
     {
-        redemptionMeter = 10;
-        redemptionUI.SetActive(true);
-        wallUI.SetActive(false);
-        weaponActive.WeaponToActivate("SABER SWORD");
-        purpleStadium.SetActive(false);
+        //redemptionMeter = 10;
+       
+    }
 
+    // Turn on light and give player sword for pre-redemption timing
+    void PreRedemption()
+    {
+        redemptionUI.SetActive(true);
+        weaponActive.WeaponToActivate("SABER SWORD");
+        redemptionLight.SetActive(true);
+    }
+
+    // Turn stuff off (black-out) for the redemption buffer timer to run down
+    void TurnOffForRedemption()
+    {
+        wallUI.SetActive(false);
+        purpleStadium.SetActive(false);
+        bluePlatform.SetActive(false);
+        platformLight.SetActive(false);
+    }
+
+    void StopRedemption()
+    {
+        redemptionUI.SetActive(false);
+        purpleStadium.SetActive(true);
+        bluePlatform.SetActive(true);
+        platformLight.SetActive(true);
+        redemptionLight.SetActive(false);
+        weaponActive.WeaponToActivate(weaponActive.previousWeapon);
     }
 
     void EnableStadium()
@@ -247,6 +282,7 @@ public class GameManager : MonoBehaviour {
         purpleStadium.SetActive(true);
         synthCity.SetActive(false);
         playerStartArea.SetActive(false);
+        platformLight.SetActive(true);
     }
 
     void GameOver()
