@@ -11,6 +11,7 @@ TagManager:
   - HitBody
   - Sword
   - DeflectedBullet
+  - Shield
   layers:
   - Default
   - TransparentFX

@@ -2856,7 +2856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletFireRate: 0.7
+  enemyBulletFireRate: 1
   enemyAttackTimer: 0
   enemyBulletSpeed: 8
   enemyBulletDamage: 1
@@ -2867,6 +2867,7 @@ MonoBehaviour:
   - {fileID: 4784806252506142}
   isSingleDrone: 1
   isDoubleDrone: 0
+  isRedemptiionDrone: 0
   eyeObject: {fileID: 0}
 --- !u!114 &114197711480782936
 MonoBehaviour:
@@ -3128,7 +3129,8 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   enemyHealth: 1
-  enemyGiveBullets: 5
+  enemyGiveBullets: 10
+  enemyRedemptionPoints: 0
   explosionPrefab: {fileID: 1957070108246546, guid: 67832243d348c7447bb24e3375b1ffc6,
     type: 2}
   earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,

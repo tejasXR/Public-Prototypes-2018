@@ -12,6 +12,7 @@ public class RedemptionLightScript : MonoBehaviour {
     public float lightIntensityMax;
     public float lightIntensityMin;
     public float lightIntensity;
+    public float lightIntensitySmooth;
 
     public float delay;
     public float delayCounter;
@@ -28,6 +29,7 @@ public class RedemptionLightScript : MonoBehaviour {
     private void OnEnable()
     {
         delayCounter = delay;
+        light.intensity = 0;
     }
 
     // Update is called once per frame
@@ -44,13 +46,21 @@ public class RedemptionLightScript : MonoBehaviour {
 
         if (lightOn)
         {
-            lightIntensity -= Time.deltaTime;
-            if (lightIntensity <= lightIntensityMin)
+            /*
+            lightIntensity += Time.deltaTime;
+            if (lightIntensity >= lightIntensityMin)
             {
-                lightIntensity = lightIntensityMax;
+                lightIntensity = lightIntensityMin;
             }
 
-            light.intensity = lightIntensity;
+            lightIntensitySmooth = Mathf.Lerp(lightIntensitySmooth, lightIntensity, Time.deltaTime);
+            light.intensity = lightIntensitySmooth;
+            */
+
+            //lightIntensity = Mathf.Lerp(lightIntensity, lightIntensityMax, Time.deltaTime * .25f);
+            light.intensity = Mathf.Lerp(light.intensity, lightIntensityMax, Time.deltaTime * .25f);
         }
+
+        
     }
 }

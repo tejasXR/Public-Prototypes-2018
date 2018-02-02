@@ -40,9 +40,9 @@ public class SwordScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        swordScaleCurrent = Mathf.Lerp(swordScaleCurrent, swordScaleOriginal, Time.deltaTime * 4f);
-        swordYCurrent = Mathf.Lerp(swordYCurrent, swordYOriginal, Time.deltaTime * 4f);
-        trailScaleCurrent = Mathf.Lerp(trailScaleCurrent, trailScaleOriginal, Time.deltaTime * 4f);
+        swordScaleCurrent = Mathf.Lerp(swordScaleCurrent, swordScaleOriginal, Time.deltaTime * 2.5f);
+        swordYCurrent = Mathf.Lerp(swordYCurrent, swordYOriginal, Time.deltaTime * 2.5f);
+        trailScaleCurrent = Mathf.Lerp(trailScaleCurrent, trailScaleOriginal, Time.deltaTime * 2.5f);
 
 
         swordEnd.transform.localScale = new Vector3(swordEnd.transform.localScale.x, swordScaleCurrent, swordEnd.transform.localScale.z);

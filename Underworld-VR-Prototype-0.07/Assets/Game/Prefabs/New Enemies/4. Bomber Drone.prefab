@@ -2072,6 +2072,8 @@ MonoBehaviour:
   enemyBulletSpawns: []
   isSingleDrone: 0
   isDoubleDrone: 0
+  isRedemptiionDrone: 0
+  eyeObject: {fileID: 0}
 --- !u!114 &114178485419918170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2178,7 +2180,8 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   enemyHealth: 5
-  enemyGiveBullets: 15
+  enemyGiveBullets: 25
+  enemyRedemptionPoints: 0
   explosionPrefab: {fileID: 1587944432538656, guid: 1a96677d1ad2b544c93fae382fd3fc63,
     type: 2}
   earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,

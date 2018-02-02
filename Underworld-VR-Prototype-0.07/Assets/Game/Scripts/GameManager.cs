@@ -65,8 +65,6 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         CheckRound();
-
-        redemptionBufferTime = 3f;
     }
 	
 	// Update is called once per frame
@@ -96,7 +94,7 @@ public class GameManager : MonoBehaviour {
             {
                 //roundActive = true;
                 //StartRound();
-                playerShield.SetActive(true);
+                //playerShield.SetActive(true);
                 weaponActive.WeaponToActivate("PISTOL");
                 roundStart = true;
                 mainGameStart = true;
@@ -123,7 +121,7 @@ public class GameManager : MonoBehaviour {
         if (redemptionStart && redemptionBufferTime > 0)
         {
             redemptionBufferTime -= Time.deltaTime;
-            if (redemptionBufferTime < 3 && !redemptionPreStart)
+            if (redemptionBufferTime < 6 && !redemptionPreStart)
             {
                 PreRedemption();
                 redemptionPreStart = true;
@@ -131,6 +129,7 @@ public class GameManager : MonoBehaviour {
             if (redemptionBufferTime <= 0)
             {
                 redemptionActive = true;
+                StartRedemption();
                 redemptionStart = false;
             }
         }
@@ -180,6 +179,8 @@ public class GameManager : MonoBehaviour {
             roundCurrent -= 1; // Reset the round number to when the player died
             StopRedemption();
             StartRound(); // Start the wave
+            //redemptionMeter
+            playerController.playerHealth += playerController.playerHealthMax / 2;
             redemptionActive = false;
             
         }
@@ -251,14 +252,13 @@ public class GameManager : MonoBehaviour {
 
     void StartRedemption()
     {
-        //redemptionMeter = 10;
-       
+        redemptionUI.SetActive(true);
+        playerShield.SetActive(true);
     }
 
     // Turn on light and give player sword for pre-redemption timing
     void PreRedemption()
     {
-        redemptionUI.SetActive(true);
         weaponActive.WeaponToActivate("SABER SWORD");
         redemptionLight.SetActive(true);
     }
@@ -270,6 +270,8 @@ public class GameManager : MonoBehaviour {
         purpleStadium.SetActive(false);
         bluePlatform.SetActive(false);
         platformLight.SetActive(false);
+        playerShield.SetActive(false);
+        weaponActive.DisableAllWeapons();
     }
 
     void StopRedemption()
@@ -280,6 +282,7 @@ public class GameManager : MonoBehaviour {
         platformLight.SetActive(true);
         redemptionLight.SetActive(false);
         weaponActive.WeaponToActivate(weaponActive.previousWeapon);
+        playerShield.SetActive(true);
     }
 
     void EnableStadium()

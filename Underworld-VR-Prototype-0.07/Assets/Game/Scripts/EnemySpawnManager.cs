@@ -91,40 +91,40 @@ public class EnemySpawnManager : MonoBehaviour
             switch (gameManager.roundCurrent)
             {
                 case 1:
-                    enemySpawnTimerMin = 8f;
-                    enemySpawnTimerMax = 12f;
+                    enemySpawnTimerMin = 5f;
+                    enemySpawnTimerMax = 7f;
 
                     enemyProbability[0] = 100; // Light drones
                     //enemyProbability[1] = 0; // Fast Drones
                     //enemyProbability[2] = 0; // Heavy Drones
                     break;
                 case 2:
-                    enemySpawnTimerMin = 7f;
-                    enemySpawnTimerMax = 10f;
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 6f;
 
                     enemyProbability[0] = 80; // Light drones
                     enemyProbability[1] = 20; // Fast Drones
                     //enemyProbability[2] = 0; // Heavy Drones
                     break;
                 case 3:
-                    enemySpawnTimerMin = 6f;
-                    enemySpawnTimerMax = 9f;
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 6f;
 
                     enemyProbability[0] = 50; // Light drones
                     enemyProbability[1] = 50; // Fast Drones
                     //enemyProbability[2] = 0; // Heavy Drones
                     break;
                 case 4:
-                    enemySpawnTimerMin = 6f;
-                    enemySpawnTimerMax = 7f;
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 5f;
 
                     enemyProbability[0] = 30; // Light drones
                     enemyProbability[1] = 70; // Fast Drones
                     //enemyProbability[2] = 0; // Heavy Drones
                     break;
                 case 5:
-                    enemySpawnTimerMin = 5f;
-                    enemySpawnTimerMax = 6f;
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 5f;
 
                     enemyProbability[0] = 10; // Light drones
                     enemyProbability[1] = 50; // Fast Drones
@@ -137,8 +137,8 @@ public class EnemySpawnManager : MonoBehaviour
         {
             ResetEnemyProbability();
 
-            enemySpawnTimerMin = 3f;
-            enemySpawnTimerMax = 5f;
+            enemySpawnTimerMin = 1f;
+            enemySpawnTimerMax = 3f;
 
             //enemyProbability[0] = 0; // Light drones
             //enemyProbability[1] = 0; // Fast Drones

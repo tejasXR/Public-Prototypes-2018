@@ -430,7 +430,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyHealth: 1
   enemyGiveBullets: 0
-  enemyRedemptionPoints: 0
+  enemyRedemptionPoints: 5
   explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
   earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletFireRate: 0.4
+  enemyBulletFireRate: 2
   enemyAttackTimer: 0
   enemyBulletSpeed: 8
   enemyBulletDamage: 1

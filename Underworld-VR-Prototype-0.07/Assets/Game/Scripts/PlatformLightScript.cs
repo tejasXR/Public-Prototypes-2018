@@ -9,7 +9,7 @@ public class PlatformLightScript : MonoBehaviour {
     public bool lightOn;
     private Light light;
     public float lightIntensity;
-    public float lightIntensityOriginal;
+    public float lightIntensityMax;
     //public float lightIntensityTarget;
 
 
@@ -19,7 +19,7 @@ public class PlatformLightScript : MonoBehaviour {
     private void Awake()
     {
         light = GetComponent<Light>();
-        lightIntensityOriginal = light.intensity;
+        //lightIntensityMax = light.intensity;
     }
 
     // Use this for initialization
@@ -32,7 +32,7 @@ public class PlatformLightScript : MonoBehaviour {
     private void OnEnable()
     {
         delayCounter = delay;
-        lightIntensity = 0;
+        light.intensity = 0;
     }
 
     // Update is called once per frame
@@ -49,10 +49,12 @@ public class PlatformLightScript : MonoBehaviour {
 
         if (lightOn)
         {
-            lightIntensity = Mathf.Lerp(lightIntensity, lightIntensityOriginal, Time.deltaTime * .25f);
+            //lightIntensity = Mathf.Lerp(lightIntensity, lightIntensityMax, Time.deltaTime * .25f);
+            light.intensity = Mathf.Lerp(light.intensity, lightIntensityMax, Time.deltaTime * .25f);
+
         }
 
-        light.intensity = lightIntensity;
+        //light.intensity = lightIntensity;
 		
 	}
 }

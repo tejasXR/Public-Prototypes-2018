@@ -40,6 +40,12 @@ public class StadiumEnable : MonoBehaviour {
         {
             scaleCurrent = 0;
             StartCoroutine(PlatformTraingleFlash());
+
+            foreach (GameObject platformTriangle in platformTriangles)
+            {
+                platformTriangle.SetActive(false);
+            }
+
         }
     }
 

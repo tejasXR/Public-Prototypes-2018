@@ -80,7 +80,7 @@ public class WeaponActive : MonoBehaviour {
         return previousWeapon;
     }
 
-    void DisableAllWeapons()
+    public void DisableAllWeapons()
     {
         foreach (GameObject weapon in weapons)
         {
