@@ -38179,6 +38179,7 @@ MonoBehaviour:
   blueUpgrades:
   - {fileID: 1808092634020446, guid: e7ce8d1dbe5a71c4fb399baaa1252d22, type: 2}
   - {fileID: 1749432523048874, guid: 88e69d023ad5562439100370df741ac7, type: 2}
+  - {fileID: 1839550244289644, guid: 6d50e8d8b70af1f46b379644214ca57b, type: 2}
   - {fileID: 1593314794331478, guid: cd4fb212272bc10469db2efdb0f4c3a8, type: 2}
   - {fileID: 1149381844770744, guid: e8dc03efa0b5e7941900f2eadd837416, type: 2}
   - {fileID: 1590155758769802, guid: b93ee957f203b3e458d0688b25c17054, type: 2}
@@ -38187,9 +38188,30 @@ MonoBehaviour:
   - {fileID: 1446125895184242, guid: daa516bac5bc2eb4d8c92f3037cb4dd4, type: 2}
   - {fileID: 1925947536916388, guid: 8d1d2511dab94a14fba7b90074064866, type: 2}
   greenUpgrades:
-  - {fileID: 0}
+  - {fileID: 1893990982981988, guid: 760d2e574e78f9e4582d00f070302a6f, type: 2}
+  - {fileID: 1191984952097030, guid: 55884e2ce2b150448a93c241854a04e3, type: 2}
+  - {fileID: 1476315539914534, guid: d141f663370cd7c43be271592dc5fbd9, type: 2}
+  - {fileID: 1565781063791032, guid: 26404b89f027493488af423e9eb46772, type: 2}
+  - {fileID: 1894288884037580, guid: 5dd9e236dafc0174db4985e7e57c3333, type: 2}
+  - {fileID: 1203133923306140, guid: 3c8f94edea3221043bc6219f1e0ae167, type: 2}
+  - {fileID: 1485149429041626, guid: 4f6a040fb51011744af8bbed61c02baf, type: 2}
+  - {fileID: 1395410202165654, guid: 3804ae68c5a171049a1438adcced973a, type: 2}
+  - {fileID: 1338833128773136, guid: 2f6ab2608c82aca419714f4817114f84, type: 2}
+  - {fileID: 1779074625927498, guid: bf4555d2edb08d94d8085ade86490a74, type: 2}
+  - {fileID: 1937582753674410, guid: f1b7e5f26b711794d97f79876a01fdb5, type: 2}
   redUpgrades:
-  - {fileID: 0}
+  - {fileID: 1486659719615208, guid: dda88429b3033b94eb091fc339131dbc, type: 2}
+  - {fileID: 1937582753674410, guid: 9dfd953ff9daf1e4b91ec7d961d75821, type: 2}
+  - {fileID: 1754598717193476, guid: f394ab19ca555424fa12975db0f832fd, type: 2}
+  - {fileID: 1116068715121192, guid: aaf58e170bcb9ee4c9c39d79819bb4e5, type: 2}
+  - {fileID: 1900551787085466, guid: 805ca1dad011e9b4f8636ffb28adb132, type: 2}
+  - {fileID: 1900551787085466, guid: d05d4188844da0c40a6313dbbe1567ce, type: 2}
+  - {fileID: 1648883714881754, guid: cffd823f1f60cf04c8bd5526edaf5761, type: 2}
+  - {fileID: 1262587447779458, guid: fca1cda657ee8eb40922d47dd8bd440c, type: 2}
+  - {fileID: 1507967724804148, guid: 79e7af5ab2022f647a5d6350e5670f39, type: 2}
+  - {fileID: 1752349898597740, guid: 1b2f291d1c935d642957b5db702219e2, type: 2}
+  - {fileID: 1806451925674372, guid: 7b6b7d5c81ec33a47a834ac250591743, type: 2}
+  - {fileID: 1964504347620390, guid: 3b8aff381ee61744bab358958aa2eee7, type: 2}
   silverUpgrades:
   - {fileID: 1640669193642358, guid: 3d65194e80145104492b62ff38d97bb9, type: 2}
   goldUpgrades:
