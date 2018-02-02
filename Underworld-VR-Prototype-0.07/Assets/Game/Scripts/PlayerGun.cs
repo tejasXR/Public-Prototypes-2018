@@ -46,6 +46,8 @@ public class PlayerGun : MonoBehaviour {
     public bool isShotgun;
     public bool isLaserRifle;
 
+    public GameObject bulletUsedObj;
+
     //public ushort pulseStrength;
 
 
@@ -110,6 +112,7 @@ public class PlayerGun : MonoBehaviour {
         if (bulletTimer <= 0)
         {
             Instantiate(gunSparkEffect, sparkPoint.position, sparkPoint.transform.rotation);
+            Instantiate(bulletUsedObj, sparkPoint.position, sparkPoint.transform.rotation);
             GunHaptics();
             // Adds ability to instantiate multiple bullets
             for (int i = 0; i < bulletsInstantiated; i++)

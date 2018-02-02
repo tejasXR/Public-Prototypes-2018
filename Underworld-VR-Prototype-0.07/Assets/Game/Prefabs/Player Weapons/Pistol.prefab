@@ -1273,6 +1273,12 @@ MonoBehaviour:
   gunSparkEffect: {fileID: 1957070108246546, guid: 3d057019f11cc7d4bb128dc1d07457e0,
     type: 2}
   sparkPoint: {fileID: 4569371337697242}
+  isPistol: 1
+  isRifle: 0
+  isShotgun: 0
+  isLaserRifle: 0
+  bulletUsedObj: {fileID: 1913003000877222, guid: 9d8aa5837353c7b42a361a8b8e2400fa,
+    type: 2}
 --- !u!114 &114856762210280402
 MonoBehaviour:
   m_ObjectHideFlags: 1
