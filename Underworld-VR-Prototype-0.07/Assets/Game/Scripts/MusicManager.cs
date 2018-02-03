@@ -5,7 +5,7 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour {
 
     public AudioClip[] music;
-    public AudioSource musicPlayer;
+    private AudioSource musicPlayer;
 
     public GameManager gameManager;
     public TimeManager timeManager;
@@ -19,6 +19,8 @@ public class MusicManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        musicPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
