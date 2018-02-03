@@ -562,7 +562,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerShield: {fileID: 0}
   weaponActive: {fileID: 0}
-  upgradeCost: 150
+  upgradeCost: 100
   addPlayerHealth: 0
   addPlayerHealthMaxMultiplier: 0
   addPlayerHealthRegenMultiplier: 0

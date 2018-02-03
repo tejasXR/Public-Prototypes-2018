@@ -33,6 +33,9 @@ public class WallUI : MonoBehaviour {
         {
             alpha = 1;
         }
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     // Use this for initialization
@@ -41,7 +44,6 @@ public class WallUI : MonoBehaviour {
         
 
         transform.position = UIStartPosition.position;
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 
     private void OnEnable()

@@ -68,7 +68,7 @@ public class Upgrades : MonoBehaviour {
     {
         if(other.gameObject.tag == "Bullet" && !upgradeManager.upgradeSelected)
         {
-            if (playerController.playerBulletCapacity >= upgradeCost)
+            if (playerController.playerBullets >= upgradeCost)
             {
                 playerController.playerBullets -= upgradeCost;
                 AddUpgradeEffect();

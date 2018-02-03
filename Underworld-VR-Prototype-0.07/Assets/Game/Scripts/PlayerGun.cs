@@ -46,6 +46,8 @@ public class PlayerGun : MonoBehaviour {
     public bool isShotgun;
     public bool isLaserRifle;
 
+    public bool noBulletHaptic;
+
     public GameObject bulletUsedObj;
     public GameObject noBulletsObj;
 
@@ -117,8 +119,7 @@ public class PlayerGun : MonoBehaviour {
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets < bulletsInstantiated)
         {
-            GunVibration(.5f, 2000);
-            //device.TriggerHapticPulse(1500);
+            StartCoroutine(NoBulletsLeft());
             Instantiate(noBulletsObj, sparkPoint.position, sparkPoint.transform.rotation);
         }
     }
@@ -221,6 +222,16 @@ public class PlayerGun : MonoBehaviour {
             strength = (ushort)Mathf.Lerp(strength, 0, Time.deltaTime * 5);
             yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
         }
+    }
+
+    IEnumerator NoBulletsLeft()
+    {
+        device.TriggerHapticPulse(2000);
+        yield return new WaitForSeconds(.1f);
+        device.TriggerHapticPulse(2000);
+        yield return new WaitForSeconds(.1f);
+        device.TriggerHapticPulse(2000);
+        //yield return new WaitForSeconds(.1f);
     }
 
 

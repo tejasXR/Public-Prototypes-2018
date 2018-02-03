@@ -50,7 +50,7 @@ public class MusicManager : MonoBehaviour {
         }
 
 
-        musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, musicVolume, Time.deltaTime * 1.5f);
+        musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, musicVolume, Time.deltaTime * 1f);
         musicPlayer.pitch = Mathf.Lerp(musicPlayer.pitch, musicPitch, Time.deltaTime * 5f);
 
 

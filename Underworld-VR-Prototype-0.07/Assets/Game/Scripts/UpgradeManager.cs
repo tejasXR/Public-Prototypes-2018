@@ -282,6 +282,7 @@ public class UpgradeManager : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             Destroy(upgrades[i].gameObject, 3f);
+            upgrades[i] = null;
             //upgrades[i] = null;
            
         }
