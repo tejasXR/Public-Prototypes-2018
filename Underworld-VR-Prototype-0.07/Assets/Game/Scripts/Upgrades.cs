@@ -51,9 +51,17 @@ public class Upgrades : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
+        //playerController = GameObject.Find("PlayerController").GetComponent<Player>();
+        //playerShield = GameObject.Find("PlayerShield").GetComponent<PlayerShield>();
+    }
+
+    private void OnEnable()
+    {
         upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
-        playerShield = GameObject.Find("PlayerShield").GetComponent<PlayerShield>();
+        playerShield = GameObject.FindGameObjectWithTag("Shield").GetComponent<PlayerShield>();
+        weaponActive = GameObject.FindGameObjectWithTag("WeaponHand").GetComponent<WeaponActive>();
     }
 
     void OnTriggerEnter(Collider other)

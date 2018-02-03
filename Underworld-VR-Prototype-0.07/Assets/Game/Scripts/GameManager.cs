@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour {
         if (redemptionStart && redemptionBufferTime > 0)
         {
             redemptionBufferTime -= Time.deltaTime;
-            if (redemptionBufferTime < 3 && !redemptionPreStart)
+            if (redemptionBufferTime < 2 && !redemptionPreStart)
             {
                 PreRedemption();
                 redemptionPreStart = true;
@@ -190,6 +190,7 @@ public class GameManager : MonoBehaviour {
             playerController.playerHealth += playerController.playerHealthMax / 2;
             roundStart = true;
             redemptionActive = false;
+            redemptionPreStart = false;
             //StartRound(); // Start the wave
 
         }

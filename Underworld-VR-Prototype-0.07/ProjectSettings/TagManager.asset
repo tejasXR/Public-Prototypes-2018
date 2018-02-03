@@ -12,6 +12,7 @@ TagManager:
   - Sword
   - DeflectedBullet
   - Shield
+  - WeaponHand
   layers:
   - Default
   - TransparentFX

@@ -91,8 +91,8 @@ public class EnemySpawnManager : MonoBehaviour
             switch (gameManager.roundCurrent)
             {
                 case 1:
-                    enemySpawnTimerMin = 5f;
-                    enemySpawnTimerMax = 7f;
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 6f;
 
                     enemyProbability[0] = 100; // Light drones
                     //enemyProbability[1] = 0; // Fast Drones

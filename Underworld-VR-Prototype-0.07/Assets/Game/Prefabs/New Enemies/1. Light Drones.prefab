@@ -3337,8 +3337,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  enemyHealth: 5
-  enemyGiveBullets: 15
+  enemyHealth: 3
+  enemyGiveBullets: 10
   enemyRedemptionPoints: 0
   explosionPrefab: {fileID: 1791950710268172, guid: 508faf91813c2f248aed6f78763379de,
     type: 2}
