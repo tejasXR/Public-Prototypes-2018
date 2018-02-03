@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour {
     public GameStartUI gameStartUI;
     public WeaponActive weaponActive;
     public Player playerController;
+    public MusicManager musicManager;
 
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour {
             gameStart = true;
             playerPlatform.moving = true;
             playerMoveToStadium = true;
+            musicManager.musicVolume = 1f;
             foreach (GameObject controllerModel in controllerModels)
             {
                 controllerModel.SetActive(false);
@@ -112,6 +114,7 @@ public class GameManager : MonoBehaviour {
         {
             UpdateTimer();
             timeLeftCounter -= Time.deltaTime;
+
         }
 
         if (upgradeActive)
@@ -123,6 +126,8 @@ public class GameManager : MonoBehaviour {
                 upgradeActive = false;
                 upgradeTimerCounter = upgradeTimer;
             }
+
+            musicManager.musicVolume = .5f;
         }
 
         if (redemptionStart && redemptionBufferTime > 0)

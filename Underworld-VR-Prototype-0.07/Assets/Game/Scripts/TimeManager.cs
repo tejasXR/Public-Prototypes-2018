@@ -10,6 +10,8 @@ public class TimeManager : MonoBehaviour {
 
     public bool slowDown = false;
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,7 +19,7 @@ public class TimeManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        //slowDown = 
         Time.timeScale += (1f / slowDownLength) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
 
@@ -35,7 +37,6 @@ public class TimeManager : MonoBehaviour {
 
     public void DoSlowMotion()
     {
-
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
