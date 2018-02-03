@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour {
     public GameObject platformLight;
     public GameObject redemptionLight;
 
+    public GameObject[] controllerModels;
+
 
     public PlatformScript playerPlatform;
     public GameStartUI gameStartUI;
@@ -75,6 +77,11 @@ public class GameManager : MonoBehaviour {
             gameStart = true;
             playerPlatform.moving = true;
             playerMoveToStadium = true;
+            foreach (GameObject controllerModel in controllerModels)
+            {
+                controllerModel.SetActive(false);
+            }
+
         }
 
         if (!playerPlatform.moving && playerMoveToStadium)

@@ -176,8 +176,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838185816275058}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.12005531, z: 0, w: 0.9927672}
+  m_LocalPosition: {x: -1.1545198, y: 0.36944634, z: 1.8472316}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4357932104611252}
@@ -556,9 +556,10 @@ MonoBehaviour:
   addBulletCapacity: 0
   addNoUseBulletChance: 0
   addBulletCriticalHitChance: 0
+  addBulletRegeneration: 0
   addShieldRegenerationMultiplier: 0
   addShieldHealthMaxMultiplier: 0
-  addShieldAbsorptionChance: 0
+  addShieldAbsorbtionChance: 0
   addShieldSizeMultipler: 0
   addEnemyAdditionalBullets: 0
   addEnemyNegativeHealthMultiplier: 0

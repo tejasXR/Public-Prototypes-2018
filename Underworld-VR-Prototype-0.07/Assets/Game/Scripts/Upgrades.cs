@@ -65,11 +65,7 @@ public class Upgrades : MonoBehaviour {
                 playerController.playerBullets -= upgradeCost;
                 AddUpgradeEffect();
                 upgradeManager.upgradeSelected = true;
-            } else
-            {
-                //
-            }
-            
+            }            
         }
 
         Destroy(other.gameObject);
