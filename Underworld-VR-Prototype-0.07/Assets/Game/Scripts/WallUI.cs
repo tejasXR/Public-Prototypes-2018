@@ -48,13 +48,13 @@ public class WallUI : MonoBehaviour {
 
     private void OnEnable()
     {
-        CheckRoundText();
         transform.position = UIStartPosition.position;
         timerObj.transform.position = timerStartTransform.position;
 
         if (isRoundUI)
         {
             alpha = 0;
+            CheckRoundText();
         }
         if (isRedemptionUI)
         {
