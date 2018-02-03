@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour {
     public WeaponActive weaponActive;
     public Player playerController;
     public MusicManager musicManager;
+    public UpgradeManager upgradeManager;
 
     private void Awake()
     {
@@ -119,15 +120,18 @@ public class GameManager : MonoBehaviour {
 
         if (upgradeActive)
         {
-            upgradeTimerCounter -= Time.deltaTime;
-            if (upgradeTimerCounter <= 0)
+            if (!upgradeManager.upgradeDone && upgradeManager.upgradeStart)
+            {
+                upgradeTimerCounter -= Time.deltaTime;
+            }
+
+            if (upgradeManager.upgradeDone || upgradeTimerCounter <= 0)
             {
                 roundStart = true;
                 upgradeActive = false;
                 upgradeTimerCounter = upgradeTimer;
             }
-
-            musicManager.musicVolume = .5f;
+            
         }
 
         if (redemptionStart && redemptionBufferTime > 0)
@@ -168,6 +172,13 @@ public class GameManager : MonoBehaviour {
             StartRound();
             roundActive = true;
             roundStart = false;
+        }
+
+        // How to start round after upgrade?
+
+        //if (upgradeManager.upgradeDone && !roundStart && mainGameStart)
+        {
+          //  roundStart = true;
         }
 
         // If the player has lost all health (called from Player script) and the round is active, stop round and enter redemption mode

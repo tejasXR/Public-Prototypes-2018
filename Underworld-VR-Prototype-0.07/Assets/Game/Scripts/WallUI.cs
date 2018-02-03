@@ -46,6 +46,7 @@ public class WallUI : MonoBehaviour {
 
     private void OnEnable()
     {
+        CheckRoundText();
         transform.position = UIStartPosition.position;
         timerObj.transform.position = timerStartTransform.position;
 
@@ -108,5 +109,42 @@ public class WallUI : MonoBehaviour {
 
         titleText.alpha = alpha;
 
+    }
+
+    void CheckRoundText()
+    {
+        switch (gameManager.roundCurrent)
+        {
+            case 1:
+                titleText.text = "ROUND ONE";
+                break;
+            case 2:
+                titleText.text = "ROUND TWO";
+                break;
+            case 3:
+                titleText.text = "ROUND THREE";
+                break;
+            case 4:
+                titleText.text = "ROUND FOUR";
+                break;
+            case 5:
+                titleText.text = "ROUND FIVE";
+                break;
+            case 6:
+                titleText.text = "ROUND SIX";
+                break;
+            case 7:
+                titleText.text = "ROUND SEVEN";
+                break;
+            case 8:
+                titleText.text = "ROUND EIGHT";
+                break;
+            case 9:
+                titleText.text = "ROUND NINE";
+                break;
+            case 10:
+                titleText.text = "ROUND TEN";
+                break;
+        }
     }
 }

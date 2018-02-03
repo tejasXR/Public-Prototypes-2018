@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -667331979, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
-  m_Name: Akashi SDF - Earned Bullet Text
+  m_Name: Akashi SDF - Round Title
   m_EditorClassIdentifier: 
-  hashCode: -1956412409
+  hashCode: -1344583544
   material: {fileID: 21139881962045334}
   materialHashCode: -2078106365
   fontAssetType: 1
@@ -967,7 +967,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Akashi SDF Material
   m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
-  m_ShaderKeywords: GLOW_ON
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -1013,8 +1013,8 @@ Material:
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
     - _GlowOffset: 1
-    - _GlowOuter: 0.289
-    - _GlowPower: 0.75
+    - _GlowOuter: 0.43
+    - _GlowPower: 1
     - _GradientScale: 6
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
@@ -1022,11 +1022,11 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.227
+    - _OutlineWidth: 0.146
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.525278
+    - _ScaleRatioB: 0.4734848
     - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1

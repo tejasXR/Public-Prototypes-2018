@@ -34,16 +34,25 @@ public class MusicManager : MonoBehaviour {
 
         if (timeManager.slowDown)
         {
-            musicPitch = .75f;
+            musicPitch = .8f;
         }
         else
         {
             musicPitch = 1f;
         }
 
+        if (gameManager.upgradeActive)
+        {
+            musicVolume = .65f;
+        } else
+        {
+            musicVolume = 1f;
+        }
+
 
         musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, musicVolume, Time.deltaTime * 1.5f);
-        musicPlayer.pitch = Mathf.Lerp(musicPlayer.pitch, musicPitch, Time.deltaTime * 1.5f);
+        musicPlayer.pitch = Mathf.Lerp(musicPlayer.pitch, musicPitch, Time.deltaTime * 5f);
+
 
     }
 

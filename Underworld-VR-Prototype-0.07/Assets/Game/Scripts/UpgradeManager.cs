@@ -34,6 +34,7 @@ public class UpgradeManager : MonoBehaviour {
     public bool upgradeStart = false; // To know that we are in the upgrade process
     public bool upgradesRandomized = false;
     public bool upgradeSelected = false;
+    public bool upgradeDone;
 
     // Booleans used for making sure upgrades are not the same as they are created
     bool upgradesSet;
@@ -67,6 +68,7 @@ public class UpgradeManager : MonoBehaviour {
         if (gameManager.upgradeActive)
         {
             upgradeStart = true;
+            upgradeDone = false;
             if (!upgradesRandomized)
             {
                 upgradeTitle.SetActive(true);
@@ -76,8 +78,10 @@ public class UpgradeManager : MonoBehaviour {
                 //RandomizeUpgrades();
                 //UpgradesNull();
                 //UpgradesCreated();
+            } else
+            {
+                UpgradePlacement();
             }
-            UpgradePlacement();
         }
 
         if ((upgradeSelected || !gameManager.upgradeActive) && upgradeStart)
@@ -271,8 +275,6 @@ public class UpgradeManager : MonoBehaviour {
             upgradesRandomized = false;
             UpgradesNull();
         }
-
-        gameManager.upgradeActive = false;
     }
 
     void UpgradesNull()
@@ -285,6 +287,7 @@ public class UpgradeManager : MonoBehaviour {
         }
         upgradeStart = false;
         upgradeBufferTimer = 1.5f;
+        upgradeDone = true;
     }
 
     void CheckRound()
