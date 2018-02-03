@@ -19,6 +19,7 @@ public class PlatformLightScript : MonoBehaviour {
     private void Awake()
     {
         light = GetComponent<Light>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //lightIntensityMax = light.intensity;
     }
 
@@ -26,7 +27,7 @@ public class PlatformLightScript : MonoBehaviour {
     void Start () {
         
         
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
 	}
 
     private void OnEnable()

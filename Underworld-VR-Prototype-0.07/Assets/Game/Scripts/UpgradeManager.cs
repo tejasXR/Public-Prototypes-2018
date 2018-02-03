@@ -212,6 +212,7 @@ public class UpgradeManager : MonoBehaviour {
             }
         }
 
+        print("UpgradeRandom Called");
 
     }
 

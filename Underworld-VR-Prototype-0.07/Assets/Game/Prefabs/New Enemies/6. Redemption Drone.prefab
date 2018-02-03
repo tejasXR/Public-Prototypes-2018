@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletFireRate: 2
+  enemyBulletFireRate: 0.9
   enemyAttackTimer: 0
   enemyBulletSpeed: 8
   enemyBulletDamage: 1

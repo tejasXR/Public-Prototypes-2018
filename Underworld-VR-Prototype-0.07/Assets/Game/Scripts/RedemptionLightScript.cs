@@ -17,13 +17,18 @@ public class RedemptionLightScript : MonoBehaviour {
     public float delay;
     public float delayCounter;
 
-    // Use this for initialization
-    void Start () {
+    private void Awake()
+    {
         light = GetComponent<Light>();
 
         lightIntensity = lightIntensityMax;
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    // Use this for initialization
+    void Start () {
+        
 	}
 
     private void OnEnable()

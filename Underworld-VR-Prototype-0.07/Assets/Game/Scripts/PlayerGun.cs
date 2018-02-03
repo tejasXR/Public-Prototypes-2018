@@ -49,6 +49,8 @@ public class PlayerGun : MonoBehaviour {
     public GameObject bulletUsedObj;
     public GameObject noBulletsObj;
 
+    private AudioSource gunFireSound;
+
     //public ushort pulseStrength;
 
 
@@ -66,6 +68,8 @@ public class PlayerGun : MonoBehaviour {
         bulletTimer = 0;
 
         gunBodyBaseRotation = gunBody.transform.rotation;
+
+        gunFireSound = GetComponent<AudioSource>();
 
 	}
 
@@ -125,6 +129,7 @@ public class PlayerGun : MonoBehaviour {
         {
             Instantiate(gunSparkEffect, sparkPoint.position, sparkPoint.transform.rotation);
             Instantiate(bulletUsedObj, sparkPoint.position, sparkPoint.transform.rotation);
+            gunFireSound.Play();
             GunHaptics();
             // Adds ability to instantiate multiple bullets
             for (int i = 0; i < bulletsInstantiated; i++)

@@ -49,6 +49,15 @@ public class WallUI : MonoBehaviour {
         transform.position = UIStartPosition.position;
         timerObj.transform.position = timerStartTransform.position;
 
+        if (isRoundUI)
+        {
+            alpha = 0;
+        }
+        if (isRedemptionUI)
+        {
+            alpha = 1;
+        }
+
     }
 
     // Update is called once per frame

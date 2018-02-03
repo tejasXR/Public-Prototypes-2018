@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
             {
                 //roundActive = true;
                 //StartRound();
-                //playerShield.SetActive(true);
+                playerShield.SetActive(true);
                 weaponActive.WeaponToActivate("PISTOL");
                 roundStart = true;
                 mainGameStart = true;
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour {
         if (redemptionStart && redemptionBufferTime > 0)
         {
             redemptionBufferTime -= Time.deltaTime;
-            if (redemptionBufferTime < 6 && !redemptionPreStart)
+            if (redemptionBufferTime < 3 && !redemptionPreStart)
             {
                 PreRedemption();
                 redemptionPreStart = true;
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour {
             print("redemption start");
         }
 
-        if (redemptionStart)
+        if (redemptionStart && roundActive)
         {
             TurnOffForRedemption(); // Turn stuff off for redemption
             //redemptionActive = true; // Not false here, will call when redemption buffer timer runs down
@@ -178,11 +178,13 @@ public class GameManager : MonoBehaviour {
         {
             roundCurrent -= 1; // Reset the round number to when the player died
             StopRedemption();
-            StartRound(); // Start the wave
+           
             //redemptionMeter
             playerController.playerHealth += playerController.playerHealthMax / 2;
+            roundStart = true;
             redemptionActive = false;
-            
+            //StartRound(); // Start the wave
+
         }
         else if (redemptionMeter <= 0 && !gameOver && redemptionActive)
         {
@@ -253,7 +255,7 @@ public class GameManager : MonoBehaviour {
     void StartRedemption()
     {
         redemptionUI.SetActive(true);
-        playerShield.SetActive(true);
+        playerShield.SetActive(false);
     }
 
     // Turn on light and give player sword for pre-redemption timing

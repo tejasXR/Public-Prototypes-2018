@@ -43,6 +43,11 @@ public class Upgrades : MonoBehaviour {
     public bool unlockSaberSword;
     public bool unlockLaserRifle;
 
+    private void Awake()
+    {
+        
+    }
+
 
     // Use this for initialization
     void Start () {
