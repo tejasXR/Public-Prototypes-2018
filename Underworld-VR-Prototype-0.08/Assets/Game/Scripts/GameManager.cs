@@ -245,7 +245,7 @@ public class GameManager : MonoBehaviour {
         CheckRound();
         //Instantiate(roundText);
         wallUI.SetActive(true);
-        roundUntilNextUpgrade--;
+        //roundUntilNextUpgrade--;
         
         
        
@@ -261,7 +261,7 @@ public class GameManager : MonoBehaviour {
                 enemiesToSpawn = 3; //Thirty seconds
                 enemiesOnScreenMax = 1;
 
-                roundUntilNextUpgrade = 1; // Tells us in the next round, player will upgrade
+                //roundUntilNextUpgrade = 1; // Tells us in the next round, player will upgrade
                 //upgradeRound = false;
                 break;
             case 2:
