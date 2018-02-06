@@ -13,6 +13,10 @@ public class EnemySpawnManager : MonoBehaviour
 
     //public GameObject enemySpawner;
 
+    public int enemiesToSpawn;
+    public int enemiesOnScreen;
+    public int enemiesOnScreenMax;
+
     public bool spawnNow;
     public Vector3 enemySpawnPosition;
 
@@ -47,7 +51,7 @@ public class EnemySpawnManager : MonoBehaviour
         {
             enemySpawnTimer -= Time.deltaTime;
 
-            if (enemySpawnTimer <= 0)
+            if (enemySpawnTimer <= 0 && enemiesOnScreen <= enemiesOnScreenMax)
             {
                 spawnNow = false;
                 SpawnEnemy();
@@ -61,11 +65,19 @@ public class EnemySpawnManager : MonoBehaviour
             ResetSpawnTimer();
             redemptionResetTimer = true;
         }
+
+        if (gameManager.roundStart)
+        {
+            // When the round starts, check the initialization variables, not every time an enemy is spawned
+            CheckRound(); 
+        }
+
     }
 
     void SpawnEnemy()
     {
-        CheckRound();
+        enemiesOnScreen++;
+        enemiesToSpawn--;
         int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
         //print(enemy);
 
@@ -94,6 +106,9 @@ public class EnemySpawnManager : MonoBehaviour
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 6f;
 
+                    enemiesToSpawn = 3;
+                    enemiesOnScreenMax = 1;
+
                     enemyProbability[0] = 100; // Light drones
                     //enemyProbability[1] = 0; // Fast Drones
                     //enemyProbability[2] = 0; // Heavy Drones
@@ -102,6 +117,9 @@ public class EnemySpawnManager : MonoBehaviour
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 6f;
 
+                    enemiesOnScreenMax = 3;
+                    enemiesToSpawn = 5;
+
                     enemyProbability[0] = 80; // Light drones
                     enemyProbability[1] = 20; // Fast Drones
                     //enemyProbability[2] = 0; // Heavy Drones
@@ -109,6 +127,8 @@ public class EnemySpawnManager : MonoBehaviour
                 case 3:
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 6f;
+
+                    enemiesToSpawn = 10;
 
                     enemyProbability[0] = 50; // Light drones
                     enemyProbability[1] = 50; // Fast Drones
