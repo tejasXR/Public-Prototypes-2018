@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour {
     public float timeLeftCounter; //The variable that counts down in the update statement
     public float timeLeft; //The variable that shows how long each wave lasts
 
-    public int enemiesToSpawn;
-    public int enemiesOnScreen;
+    public int enemiesToSpawn; //Keeps track of how many total enemies to Spawn in a round
+    public int enemiesDestroyed; //Keeps track of how many enemies the player has destroyed
+    //public int enemiesLeft;
+    public int enemiesOnScreen; //Keeps track of how many enemies are currently on screen
     public int enemiesOnScreenMax;
 
     //public int redemptionEnemiestoSpawn;
@@ -121,8 +123,8 @@ public class GameManager : MonoBehaviour {
 
         if (roundActive)
         {
-            UpdateTimer();
-            timeLeftCounter -= Time.deltaTime;
+            //UpdateTimer();
+            //timeLeftCounter -= Time.deltaTime;
 
         }
 
@@ -165,7 +167,9 @@ public class GameManager : MonoBehaviour {
 
         // If the counter has counted down to zero and the player is currently in a round, stop the timer and enter upgrade mode
         //if (timeLeftCounter <= 0 && roundActive && !redemptionActive)
-        if (enemiesToSpawn <= 0 && roundActive && !redemptionActive)
+
+
+        if (enemiesDestroyed == enemiesToSpawn && enemiesOnScreen <= 0 && roundActive && !redemptionActive)
         {
             //timeLeftCounter = 0;
             upgradeActive = true;
@@ -236,7 +240,7 @@ public class GameManager : MonoBehaviour {
         
         
        
-        timeLeftCounter = timeLeft;
+        //timeLeftCounter = timeLeft;
         
     }
 
@@ -244,14 +248,13 @@ public class GameManager : MonoBehaviour {
     {
         switch (roundCurrent)
         {
-            case 0:
-                enemiesToSpawn = 1; //Thirty seconds
-                break;
             case 1:
-                enemiesToSpawn = 3; //Thirty seconds
+                enemiesToSpawn = 1; //Thirty seconds
+                enemiesOnScreenMax = 1;
                 break;
             case 2:
-                enemiesToSpawn = 5; // A minute
+                enemiesToSpawn = 3; // A minute
+                enemiesOnScreenMax = 2;
                 break;
             case 3:
                 enemiesToSpawn = 10; // A minute and a half
@@ -267,6 +270,7 @@ public class GameManager : MonoBehaviour {
                 break;
         }
 
+        enemiesDestroyed = 0;
 
         /*
         switch (roundCurrent)

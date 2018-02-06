@@ -85,7 +85,7 @@ public class StadiumEnable : MonoBehaviour {
     IEnumerator StadiumFlash()
     {
         yield return new WaitForSeconds(delay);
-        abovePlatform.SetActive(true);
+        /*abovePlatform.SetActive(true);
         yield return new WaitForSeconds(.25f);
         abovePlatform.SetActive(false);
         yield return new WaitForSeconds(.25f);
@@ -122,7 +122,7 @@ public class StadiumEnable : MonoBehaviour {
         abovePlatform.SetActive(false);
         yield return new WaitForSeconds(.0005f);
         abovePlatform.SetActive(true);
-        yield return new WaitForSeconds(.0005f);
+        yield return new WaitForSeconds(.0005f);*/
 
         abovePlatform.GetComponent<StadiumFlicker>().shouldFlicker = true;
     }

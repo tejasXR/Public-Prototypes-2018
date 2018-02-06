@@ -16,6 +16,8 @@ public class WallUI : MonoBehaviour {
 
     public GameObject wallUIWhole;
 
+    public float enemiesLeft; // A smooth counter that lerps to the enemiesToSpawn var from the gameManager;
+
     public float moveSpeed;
     public float alpha;
     public float bufferTime; // buffer time before the timer ui drops down
@@ -54,7 +56,7 @@ public class WallUI : MonoBehaviour {
         if (isRoundUI)
         {
             alpha = 0;
-            CheckRoundText();
+            //CheckRoundText();
         }
         if (isRedemptionUI)
         {
@@ -110,6 +112,10 @@ public class WallUI : MonoBehaviour {
         }     
 
         titleText.alpha = alpha;
+
+        enemiesLeft = Mathf.Lerp(enemiesLeft, (gameManager.enemiesToSpawn - gameManager.enemiesDestroyed), Time.deltaTime * 2f);
+
+        titleText.text = Mathf.RoundToInt(enemiesLeft).ToString();
 
     }
 

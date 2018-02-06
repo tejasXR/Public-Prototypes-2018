@@ -100,7 +100,9 @@ public class EnemyParent : MonoBehaviour {
         }
 
         Instantiate(explosionPrefab, transform.position, transform.rotation);
-        enemySpawnManager.enemiesOnScreen--;
+
+        gameManager.enemiesOnScreen--;
+        gameManager.enemiesDestroyed++;
     }
 
     public void DisappearAfterWave()

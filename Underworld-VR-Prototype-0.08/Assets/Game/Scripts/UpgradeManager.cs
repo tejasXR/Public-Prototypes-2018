@@ -212,11 +212,14 @@ public class UpgradeManager : MonoBehaviour {
             for (int i = 0; i < 3; i++)
             {
                 upgrades[i] = Instantiate(upgrades[i], transform.position, transform.rotation) as GameObject;
-                upgradesRandomized = true;
             }
+
+            upgradesRandomized = true;
+            upgrade1Set = false;
+            upgrade2Set = false;
+            print("Upgrades Randomized = True");
         }
 
-        print("UpgradeRandom Called");
 
     }
 

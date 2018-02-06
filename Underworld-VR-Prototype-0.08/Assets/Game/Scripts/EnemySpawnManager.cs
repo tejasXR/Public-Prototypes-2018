@@ -45,12 +45,16 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if (gameManager.roundActive || gameManager.redemptionActive)
         {
-            enemySpawnTimer -= Time.deltaTime;
 
-            if (enemySpawnTimer <= 0 && (gameManager.enemiesOnScreen <= gameManager.enemiesOnScreenMax) && (gameManager.enemiesToSpawn > 0))
+            if (((gameManager.enemiesToSpawn - gameManager.enemiesDestroyed) > gameManager.enemiesOnScreen) && gameManager.enemiesOnScreen < gameManager.enemiesOnScreenMax)
             {
-                spawnNow = false;
-                SpawnEnemy();
+                enemySpawnTimer -= Time.deltaTime;
+                if (enemySpawnTimer <= 0)
+                {
+                    spawnNow = false;
+                    CheckRound();
+                    SpawnEnemy();
+                }
             }
         }
 
@@ -72,21 +76,23 @@ public class EnemySpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        gameManager.enemiesOnScreen++;
-        gameManager.enemiesToSpawn--;
+
         int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
         //print(enemy);
 
         RandomPosition();
 
         // Spawns enemy spawner objects at the spawn positions
-        Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
+        if (spawnNow)
+        {
+            Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
+            gameManager.enemiesOnScreen++;
+        }
 
 
         // OLD -->>Instantiate(enemySpawner, enemySpawnPos, Quaternion.identity);
         //enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
 
-        ResetSpawnTimer();
     }
 
     void CheckRound()
@@ -102,8 +108,7 @@ public class EnemySpawnManager : MonoBehaviour
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 6f;
 
-                    enemiesToSpawn = 3;
-                    enemiesOnScreenMax = 1;
+                   
 
                     enemyProbability[0] = 100; // Light drones
                     //enemyProbability[1] = 0; // Fast Drones
@@ -113,8 +118,7 @@ public class EnemySpawnManager : MonoBehaviour
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 6f;
 
-                    enemiesOnScreenMax = 3;
-                    enemiesToSpawn = 5;
+                   
 
                     enemyProbability[0] = 80; // Light drones
                     enemyProbability[1] = 20; // Fast Drones
@@ -124,7 +128,7 @@ public class EnemySpawnManager : MonoBehaviour
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 6f;
 
-                    enemiesToSpawn = 10;
+                  
 
                     enemyProbability[0] = 50; // Light drones
                     enemyProbability[1] = 50; // Fast Drones
@@ -225,10 +229,11 @@ public class EnemySpawnManager : MonoBehaviour
             Ray ray = new Ray(playerController.transform.position, randomPosition);
             enemySpawnPosition = ray.GetPoint(Random.Range(10f, 12f));
 
-            // if there are no enemies with a 1 unit radius
-            if (!Physics.CheckSphere(enemySpawnPosition, 1f))
+            // if there are no enemies with a 2 unit radius
+            if (!Physics.CheckSphere(enemySpawnPosition, 2f))
             {
                 spawnNow = true;
+                ResetSpawnTimer();
             }
         }
         
