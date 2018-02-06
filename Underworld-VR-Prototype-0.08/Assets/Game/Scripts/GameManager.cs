@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour {
 
     //public int redemptionEnemiestoSpawn;
 
-
+    //public bool upgradeRound;
+    //public int roundUntilNextUpgrade; // a bool that tells is the player will upgrade 
     public float upgradeTimer;
     public float upgradeTimerCounter;
 
@@ -171,13 +172,21 @@ public class GameManager : MonoBehaviour {
 
         if (enemiesDestroyed == enemiesToSpawn && enemiesOnScreen <= 0 && roundActive && !redemptionActive)
         {
+            //if (upgradeRound)
+            {
+                upgradeActive = true;
+                roundStart = false;
+                roundActive = false;  //stop the wave after the waveTimer is over to put the player in upgrade mode
+            } //else
+            {
+              //  roundStart = true;
+             //   roundActive = false;
+            }
             //timeLeftCounter = 0;
-            upgradeActive = true;
-            roundStart = false;
-            roundActive = false;  //stop the wave after the waveTimer is over to put the player in upgrade mode
+           
 
             //print("Upgrade!");
-        }
+        } 
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
         if (roundStart && !upgradeActive && !roundActive && !redemptionActive)
@@ -236,7 +245,7 @@ public class GameManager : MonoBehaviour {
         CheckRound();
         //Instantiate(roundText);
         wallUI.SetActive(true);
-        
+        roundUntilNextUpgrade--;
         
         
        
@@ -249,15 +258,22 @@ public class GameManager : MonoBehaviour {
         switch (roundCurrent)
         {
             case 1:
-                enemiesToSpawn = 1; //Thirty seconds
+                enemiesToSpawn = 3; //Thirty seconds
                 enemiesOnScreenMax = 1;
+
+                roundUntilNextUpgrade = 1; // Tells us in the next round, player will upgrade
+                //upgradeRound = false;
                 break;
             case 2:
-                enemiesToSpawn = 3; // A minute
+                enemiesToSpawn = 10; // A minute
                 enemiesOnScreenMax = 2;
+
+                //upgradeRound = true;
+
                 break;
             case 3:
                 enemiesToSpawn = 10; // A minute and a half
+
                 break;
             case 4:
                 enemiesToSpawn = 15; //Two minutes

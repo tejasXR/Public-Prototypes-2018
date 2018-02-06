@@ -9,6 +9,7 @@ public class PlayerGun : MonoBehaviour {
     private SteamVR_Controller.Device device;
 
     public Player playerController;
+    private GameManager gameManager;
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -59,6 +60,8 @@ public class PlayerGun : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         bulletSpawnStart = bulletSpawn.transform.position;
 
         // Recheck multipliers after upgrades
@@ -129,7 +132,7 @@ public class PlayerGun : MonoBehaviour {
         if (bulletTimer <= 0)
         {
             Instantiate(gunSparkEffect, sparkPoint.position, sparkPoint.transform.rotation);
-            Instantiate(bulletUsedObj, sparkPoint.position, sparkPoint.transform.rotation);
+            
             gunFireSound.Play();
             GunHaptics();
             // Adds ability to instantiate multiple bullets
@@ -154,7 +157,11 @@ public class PlayerGun : MonoBehaviour {
                 //print(bulletNoUseChance);
                 if (bulletNoUseChance > playerController.playerNoUseBulletChance)
                 {
-                    playerController.playerBullets -= 1;
+                    if (gameManager.roundActive)
+                    {
+                        playerController.playerBullets -= 1;
+                        Instantiate(bulletUsedObj, sparkPoint.position, sparkPoint.transform.rotation);
+                    }
                     //print("bullet used");
 
                 }
