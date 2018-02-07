@@ -34,6 +34,7 @@ public class UpgradeMenu : MonoBehaviour {
     public int oldWeaponUpgradeItem;
 
     public bool upgradeSelected;
+    public bool upgradeDone;
     public float upgradeTimer;
     public float upgradeTimerCounter;
 
@@ -115,6 +116,7 @@ public class UpgradeMenu : MonoBehaviour {
             {
                 upgradeTimerCounter = upgradeTimer;
                 upgradeSelected = false;
+                upgradeDone = true;
             }
         }
     }
@@ -129,6 +131,7 @@ public class UpgradeMenu : MonoBehaviour {
         {
             upgradeMenuOpen = true;
             upgradeMenuActive = true;
+            upgradeDone = false;
         }
 
        
@@ -179,10 +182,10 @@ public class UpgradeMenu : MonoBehaviour {
 
 
             }
+            // Attack Upgrade Menu
             else if (250 < angleFromCenter && angleFromCenter <= 290)
             {
-                currentMainMenuItem = 1; //Attack Upgrades
-                //print("attack upgrades");
+                currentMainMenuItem = 1;
 
                 if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
                 {
@@ -305,11 +308,12 @@ public class UpgradeMenu : MonoBehaviour {
                 currentAttackMenuItem = 4; //Bullets Earned
                 //attackUpgradeBoards[4].SetActive(true);
                 //print("attack 5");
-            } else
+            }
+            else
             {
                 foreach (AttackUpgradeBoards board in attackUpgradeBoardList)
                 {
-                    foreach(GameObject obj in board.levelBoards)
+                    foreach (GameObject obj in board.levelBoards)
                     {
                         obj.SetActive(false);
                     }
@@ -332,21 +336,32 @@ public class UpgradeMenu : MonoBehaviour {
             {
                 if (attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().upgradeCost <= playerController.playerBullets)
                 {
-                    upgradeSelected = true;
-                    print(upgradeSelected);
+                    // Applies upgrade effect after upgrade timer
+                    StartCoroutine(ApplyUpgrade(attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>()));
 
-                    attackUpgradeBoardList[currentAttackMenuItem].level++;
+                    //print(attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level]);
 
-                    attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().AddUpgradeEffect();
                     playerController.playerBullets -= attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().upgradeCost;
 
-                   
+                    upgradeSelected = true;
+
+                    //attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().AddUpgradeEffect();
+
+                    attackUpgradeBoardList[currentAttackMenuItem].level++;
+                    if (attackUpgradeBoardList[currentAttackMenuItem].level > (attackUpgradeBoardList[currentAttackMenuItem].levelBoards.Length - 1))
+                    {
+                        attackUpgradeBoardList[currentAttackMenuItem].level = attackUpgradeBoardList[currentAttackMenuItem].levelBoards.Length - 1;
+                    }
                 }
             }
         }
+    }
 
-
-
+    IEnumerator ApplyUpgrade(Upgrades upgrade)
+    {
+        yield return new WaitForSeconds(upgradeTimer);
+        upgrade.AddUpgradeEffect();
+        //print("upgrade applied");
     }
 
     void OpenDefenseUpgradeMenu()

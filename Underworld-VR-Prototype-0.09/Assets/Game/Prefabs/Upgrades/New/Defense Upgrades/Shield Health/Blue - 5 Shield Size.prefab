@@ -1024,9 +1024,9 @@ MonoBehaviour:
   addBulletCriticalHitChance: 0
   addBulletRegeneration: 0
   addShieldRegenerationMultiplier: 0
-  addShieldHealthMaxMultiplier: 0
+  addShieldHealthMaxMultiplier: 0.05
   addShieldAbsorbtionChance: 0
-  addShieldSizeMultipler: 0.05
+  addShieldSizeMultipler: 0
   addEnemyAdditionalBullets: 0
   addEnemyNegativeHealthMultiplier: 0
   unlockRifle: 0
