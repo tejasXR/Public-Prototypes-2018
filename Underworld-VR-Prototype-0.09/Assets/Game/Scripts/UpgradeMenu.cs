@@ -33,7 +33,9 @@ public class UpgradeMenu : MonoBehaviour {
     public int currentWeaponUpgradeItem;
     public int oldWeaponUpgradeItem;
 
-    private bool upgradeSelected;
+    public bool upgradeSelected;
+    public float upgradeTimer;
+    public float upgradeTimerCounter;
 
     private Vector2 touchpad;
     public GameObject upgradeMenu;
@@ -86,12 +88,14 @@ public class UpgradeMenu : MonoBehaviour {
         MenuReset();
         //attackMenuItem = null;
         //Instantiate(attackMenuItem, transform.position, Quaternion.identity);
+
+        upgradeTimerCounter = upgradeTimer;
 		
 	}
 
     void Update()
     {
-        if (upgradeMenuOpen)
+        if (upgradeMenuOpen && !upgradeSelected)
         {
             OpenUpgradeMenu();
         }
@@ -99,6 +103,19 @@ public class UpgradeMenu : MonoBehaviour {
         if (attackUpgradeOpen)
         {
             OpenAttackUpgradeMenu();
+        }
+
+        if (upgradeSelected)
+        {
+           
+            MenuReset();
+               
+            upgradeTimerCounter -= Time.deltaTime;
+            if (upgradeTimerCounter <= 0)
+            {
+                upgradeTimerCounter = upgradeTimer;
+                upgradeSelected = false;
+            }
         }
     }
 
@@ -108,15 +125,17 @@ public class UpgradeMenu : MonoBehaviour {
 
         device = SteamVR_Controller.Input((int)trackedObj.index);
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !upgradeMenuOpen && !upgradeSelected)
         {
             upgradeMenuOpen = true;
             upgradeMenuActive = true;
         }
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && upgradeMenuOpen)
-        {
+       
 
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && upgradeMenuOpen && upgradeMenuActive)
+        {
+            //MenuReset();
         }
 
         
@@ -199,8 +218,16 @@ public class UpgradeMenu : MonoBehaviour {
 
     void MenuReset()
     {
-        upgradeMenu.SetActive(false);
+
         upgradeMenuOpen = false;
+        upgradeMenuActive = false;
+        attackUpgradeOpen = false;
+        attackUpgradeActive = false;
+        defenseUpgradeOpen = false;
+        defenseUpgradeActive = false;
+        weaponUpgradeOpen = false;
+        weaponUpgradeActive = false;          
+
 
         foreach(GameObject upgrade in attackUpgradeUI)
         {
@@ -216,6 +243,17 @@ public class UpgradeMenu : MonoBehaviour {
         {
             upgrade.SetActive(false);
         }
+
+        foreach (AttackUpgradeBoards board in attackUpgradeBoardList)
+        {
+            foreach (GameObject obj in board.levelBoards)
+            {
+                obj.SetActive(false);
+            }
+        }
+
+        upgradeMenu.SetActive(false);
+
     }
 
     void OpenAttackUpgradeMenu()
@@ -227,7 +265,7 @@ public class UpgradeMenu : MonoBehaviour {
             upgrade.SetActive(true);
         }
 
-        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && attackUpgradeActive && !weaponUpgradeActive && !defenseUpgradeActive)
+        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && attackUpgradeActive && !weaponUpgradeActive && !defenseUpgradeActive && !upgradeSelected)
         {
             // Fire Rate
             if (349 < angleFromCenter || angleFromCenter <= 11)
@@ -290,15 +328,19 @@ public class UpgradeMenu : MonoBehaviour {
             }
 
 
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && currentAttackMenuItem >= 0 && attackUpgradeActive && !weaponUpgradeActive && !upgradeMenuActive && !defenseUpgradeActive)
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && currentAttackMenuItem >= 0 && attackUpgradeActive && !weaponUpgradeActive && !upgradeMenuActive && !defenseUpgradeActive && !upgradeSelected)
             {
                 if (attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().upgradeCost <= playerController.playerBullets)
                 {
-                    attackUpgradeBoardList[currentAttackMenuItem].level++;
+                    upgradeSelected = true;
+                    print(upgradeSelected);
 
+                    attackUpgradeBoardList[currentAttackMenuItem].level++;
 
                     attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().AddUpgradeEffect();
                     playerController.playerBullets -= attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().upgradeCost;
+
+                   
                 }
             }
         }
@@ -338,6 +380,7 @@ public class UpgradeMenu : MonoBehaviour {
         public string name;
         public int level;
         public GameObject[] levelBoards;
+        //public float levelUpTime;
         //public bool hasWeapon;
         //public AudioClip recording;
         //public Image sceneImage;
