@@ -25,7 +25,7 @@ public class UpgradeMenu : MonoBehaviour {
     public int currentAttackMenuItem; // To see what is currently highlighted in the attack menu
     public int oldAttackMenuItem;
 
-    public int[] attackUpgradeItem; //Keeps track of what level each upgrade is at
+    //public int[] attackUpgradeItem; //Keeps track of what level each upgrade is at
 
     public int currentDefenseUpgradeItem;
     public int oldDefenseUpgradeItem;
@@ -39,6 +39,7 @@ public class UpgradeMenu : MonoBehaviour {
     public GameObject upgradeMenu;
 
     public GameObject cursor;
+    public Vector3 cursorPlacement;
 
     public bool upgradeMenuOpen;
     public bool upgradeMenuActive;
@@ -55,8 +56,8 @@ public class UpgradeMenu : MonoBehaviour {
     public GameObject[] attackUpgradeUI;
 
     //  Attack Upgrade UI and Levels
-    public GameObject[] fireRateUpgradeBoard;
-    public int fireRateUpgradeLevel;
+    //public GameObject[] fireRateUpgradeBoard;
+    //public int fireRateUpgradeLevel;
 
     //public GameObject[] damageUpgradeBoard;
     //public int[] damageUpgradeLevel;
@@ -110,6 +111,7 @@ public class UpgradeMenu : MonoBehaviour {
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
             upgradeMenuOpen = true;
+            upgradeMenuActive = true;
         }
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && upgradeMenuOpen)
@@ -127,7 +129,13 @@ public class UpgradeMenu : MonoBehaviour {
     {
         upgradeMenu.SetActive(true);
 
-        cursor.transform.localPosition = touchpad * .1f;
+        if (upgradeMenuActive)
+        {
+            cursor.transform.localPosition = touchpad * .125f;
+        } else if (attackUpgradeActive)
+        {
+            cursor.transform.localPosition = new Vector2(-.1f, 0) + (touchpad * .07f);
+        }
 
         touchpad.x = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x;
         touchpad.y = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).y;
@@ -157,9 +165,13 @@ public class UpgradeMenu : MonoBehaviour {
                 currentMainMenuItem = 1; //Attack Upgrades
                 //print("attack upgrades");
 
-                if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+                if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
                 {
                     attackUpgradeOpen = true;
+                }
+
+                if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+                {
                     attackUpgradeActive = true;
                     upgradeMenuActive = false;
                 }
@@ -236,6 +248,10 @@ public class UpgradeMenu : MonoBehaviour {
             else if (259 < angleFromCenter && angleFromCenter <= 281)
             {
                 currentAttackMenuItem = 2; //Accuracy
+
+                //print(attackUpgradeBoardList[currentAttackMenuItem].level);
+
+
                 //attackUpgradeBoards[2].SetActive(true);
                 //print("attack 3");
             }
@@ -261,15 +277,20 @@ public class UpgradeMenu : MonoBehaviour {
                     }
                 }
 
-                attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(false);
+                //attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(false);
 
                 currentAttackMenuItem = -1;
             }
 
-            attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(true);
+            //print(attackUpgradeBoardList[currentAttackMenuItem].level);
+
+            if (currentAttackMenuItem >= 0)
+            {
+                attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(true);
+            }
 
 
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && currentAttackMenuItem >= 0)
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && currentAttackMenuItem >= 0 && attackUpgradeActive && !weaponUpgradeActive && !upgradeMenuActive && !defenseUpgradeActive)
             {
                 if (attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().upgradeCost <= playerController.playerBullets)
                 {

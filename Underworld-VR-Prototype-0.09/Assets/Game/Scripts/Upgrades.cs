@@ -47,7 +47,7 @@ public class Upgrades : MonoBehaviour {
     {
         upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
-        playerShield = GameObject.FindGameObjectWithTag("Shield").GetComponent<PlayerShield>();
+        //playerShield = GameObject.FindGameObjectWithTag("Shield").GetComponent<PlayerShield>();
         weaponActive = GameObject.FindGameObjectWithTag("WeaponHand").GetComponent<WeaponActive>();
     }
 
