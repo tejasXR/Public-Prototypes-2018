@@ -34,18 +34,23 @@ public class UpgradeMenu : MonoBehaviour {
     public bool upgradeMenuOpen;
     public bool upgradeMenuActive;
 
-    public bool attackUpgradesOpen;
-    public bool attackUpgradesActive;
+    public bool attackUpgradeOpen;
+    public bool attackUpgradeActive;
 
-    public bool weaponUpgradesOpen;
-    public bool weaponUpgradesActive;
+    public bool weaponUpgradeOpen;
+    public bool weaponUpgradeActive;
 
-    public bool defenseUpgradesOpen;
-    public bool defenseUpgradesActive;
+    public bool defenseUpgradeOpen;
+    public bool defenseUpgradeActive;
 
-    public GameObject[] attackUpgrades;
-    public GameObject[] defenseUpgrades;
-    public GameObject[] weaponUpgrades;
+    public GameObject[] attackUpgradeUI;
+    public GameObject[] attackUpgradeBoards;
+    //public GameObject attackMenuItem;
+
+
+    public GameObject[] defenseUpgradesUI;
+    public GameObject[] weaponUpgradeUI;
+
 
     
 
@@ -54,7 +59,8 @@ public class UpgradeMenu : MonoBehaviour {
     void Start () {
 
         MenuReset();
-        
+        //attackMenuItem = null;
+        //Instantiate(attackMenuItem, transform.position, Quaternion.identity);
 		
 	}
 
@@ -65,7 +71,7 @@ public class UpgradeMenu : MonoBehaviour {
             OpenUpgradeMenu();
         }
 
-        if (attackUpgradesOpen)
+        if (attackUpgradeOpen)
         {
             OpenAttackUpgradeMenu();
         }
@@ -110,25 +116,25 @@ public class UpgradeMenu : MonoBehaviour {
             angleFromCenter = 360 - angleFromCenter;
         }
 
-        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && upgradeMenuActive && !attackUpgradesActive && !defenseUpgradesActive && !weaponUpgradesActive)
+        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && upgradeMenuActive && !attackUpgradeActive && !defenseUpgradeActive && !weaponUpgradeActive)
         {
             //map angle from center to specific buttons;
             if (340 < angleFromCenter || angleFromCenter <= 20)
             {
                 currentMainMenuItem = 0; //Weapon Upgrades
-                print("Weapon upgrades");
+                //print("Weapon upgrades");
 
 
             }
             else if (250 < angleFromCenter && angleFromCenter <= 290)
             {
                 currentMainMenuItem = 1; //Attack Upgrades
-                print("attack upgrades");
+                //print("attack upgrades");
 
                 if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
                 {
-                    attackUpgradesOpen = true;
-                    attackUpgradesActive = true;
+                    attackUpgradeOpen = true;
+                    attackUpgradeActive = true;
                     upgradeMenuActive = false;
                 }
 
@@ -136,7 +142,7 @@ public class UpgradeMenu : MonoBehaviour {
             else if (70 < angleFromCenter && angleFromCenter <= 110)
             {
                 currentMainMenuItem = 2; //Defense Upgrades
-                print("defense upgrades");
+                //print("defense upgrades");
 
             }
         }
@@ -159,17 +165,17 @@ public class UpgradeMenu : MonoBehaviour {
         upgradeMenu.SetActive(false);
         upgradeMenuOpen = false;
 
-        foreach(GameObject upgrade in attackUpgrades)
+        foreach(GameObject upgrade in attackUpgradeUI)
         {
             upgrade.SetActive(false);
         }
 
-        foreach (GameObject upgrade in defenseUpgrades)
+        foreach (GameObject upgrade in defenseUpgradesUI)
         {
             upgrade.SetActive(false);
         }
 
-        foreach (GameObject upgrade in weaponUpgrades)
+        foreach (GameObject upgrade in weaponUpgradeUI)
         {
             upgrade.SetActive(false);
         }
@@ -177,38 +183,51 @@ public class UpgradeMenu : MonoBehaviour {
 
     void OpenAttackUpgradeMenu()
     {
-        foreach (GameObject upgrade in attackUpgrades)
+        //attackMenuItem.SetActive(true);
+
+        foreach (GameObject upgrade in attackUpgradeUI)
         {
             upgrade.SetActive(true);
         }
 
-        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && attackUpgradesActive && !weaponUpgradesActive && !defenseUpgradesActive)
+        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && attackUpgradeActive && !weaponUpgradeActive && !defenseUpgradeActive)
         {
             if (349 < angleFromCenter || angleFromCenter <= 11)
             {
-                currentMainMenuItem = 0; //Weapon Upgrades
-                print("attack 1");
+                currentAttackUpgradeItem = 0; //Weapon Upgrades
+                attackUpgradeBoards[0].SetActive(true);
+                //print("attack 1");
             }
             else if (304 < angleFromCenter && angleFromCenter <= 326)
             {
-                currentMainMenuItem = 1; //Attack Upgrades
-                print("attack 2");
+                currentAttackUpgradeItem = 1; //Attack Upgrades
+                attackUpgradeBoards[1].SetActive(true);
+                //print("attack 2");
             }
             else if (259 < angleFromCenter && angleFromCenter <= 281)
             {
-                currentMainMenuItem = 2; //Attack Upgrades
-                print("attack 3");
+                currentAttackUpgradeItem = 2; //Attack Upgrades
+                attackUpgradeBoards[2].SetActive(true);
+                //print("attack 3");
             }
             else if (214 < angleFromCenter && angleFromCenter <= 236)
             {
-                currentMainMenuItem = 3; //Defense Upgrades
-                print("attack 4");
+                currentAttackUpgradeItem = 3; //Defense Upgrades
+                attackUpgradeBoards[3].SetActive(true);
+                //print("attack 4");
 
             }
             else if (169 < angleFromCenter && angleFromCenter <= 191)
             {
-                currentMainMenuItem = 4; //Defense Upgrades
-                print("attack 5");
+                currentAttackUpgradeItem = 4; //Defense Upgrades
+                attackUpgradeBoards[4].SetActive(true);
+                //print("attack 5");
+            } else
+            {
+                foreach (GameObject board in attackUpgradeBoards)
+                {
+                    board.SetActive(false);
+                }
             }
         }
 
