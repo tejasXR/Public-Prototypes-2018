@@ -17,14 +17,14 @@ public class SlowMotion : MonoBehaviour {
 	void FixedUpdate () {
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
 
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
             timeManager.slowDown = true;
 
             timeManager.DoSlowMotion();
         }
 
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             timeManager.slowDown = false;
 
