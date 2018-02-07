@@ -803,9 +803,10 @@ MonoBehaviour:
   addBulletCapacity: 0
   addNoUseBulletChance: 0
   addBulletCriticalHitChance: 0
+  addBulletRegeneration: 0
   addShieldRegenerationMultiplier: 0
   addShieldHealthMaxMultiplier: 0
-  addShieldAbsorptionChance: 0
+  addShieldAbsorbtionChance: 0
   addShieldSizeMultipler: 0
   addEnemyAdditionalBullets: 0
   addEnemyNegativeHealthMultiplier: 0
