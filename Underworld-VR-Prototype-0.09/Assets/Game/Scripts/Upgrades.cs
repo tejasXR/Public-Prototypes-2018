@@ -45,7 +45,10 @@ public class Upgrades : MonoBehaviour {
 
     private void Awake()
     {
-        
+        upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
+        playerController = GameObject.Find("PlayerController").GetComponent<Player>();
+        playerShield = GameObject.FindGameObjectWithTag("Shield").GetComponent<PlayerShield>();
+        weaponActive = GameObject.FindGameObjectWithTag("WeaponHand").GetComponent<WeaponActive>();
     }
 
 
@@ -58,10 +61,10 @@ public class Upgrades : MonoBehaviour {
 
     private void OnEnable()
     {
-        upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
-        playerController = GameObject.Find("PlayerController").GetComponent<Player>();
-        playerShield = GameObject.FindGameObjectWithTag("Shield").GetComponent<PlayerShield>();
-        weaponActive = GameObject.FindGameObjectWithTag("WeaponHand").GetComponent<WeaponActive>();
+        //upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
+        //playerController = GameObject.Find("PlayerController").GetComponent<Player>();
+        //playerShield = GameObject.FindGameObjectWithTag("Shield").GetComponent<PlayerShield>();
+        //weaponActive = GameObject.FindGameObjectWithTag("WeaponHand").GetComponent<WeaponActive>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -79,7 +82,7 @@ public class Upgrades : MonoBehaviour {
         Destroy(other.gameObject);
     }
 
-    void AddUpgradeEffect()
+    public void AddUpgradeEffect()
     {
         // Attack Effects
         playerController.bulletFireRateMultiplier += addBulletFireRateMultiplier;
