@@ -12,8 +12,9 @@ public class UpgradeMenu : MonoBehaviour {
 
     private Player playerController;
 
-    public List<AttackUpgradeUI> upgradeUIList = new List<AttackUpgradeUI>(); //creates a list of menu buttons to access
+    public List<MainMenuUI> mainMenuUIList = new List<MainMenuUI>(); //creates a list of menu buttons to access
 
+    public List<AttackUpgradeUI> attackUpgradeUIList = new List<AttackUpgradeUI>(); //creates a list of menu buttons to access
     public List<AttackUpgradeBoards> attackUpgradeBoardList = new List<AttackUpgradeBoards>(); //creates a list of menu buttons to access
 
 
@@ -43,6 +44,8 @@ public class UpgradeMenu : MonoBehaviour {
 
     public GameObject cursor;
     public Vector3 cursorPlacement;
+
+    public GameObject upgradeProgress;
 
     public bool upgradeMenuOpen;
     public bool upgradeMenuActive;
@@ -108,7 +111,7 @@ public class UpgradeMenu : MonoBehaviour {
 
         if (upgradeSelected)
         {
-           
+            upgradeProgress.SetActive(true);
             MenuReset();
                
             upgradeTimerCounter -= Time.deltaTime;
@@ -117,6 +120,7 @@ public class UpgradeMenu : MonoBehaviour {
                 upgradeTimerCounter = upgradeTimer;
                 upgradeSelected = false;
                 upgradeDone = true;
+                
             }
         }
     }
@@ -130,11 +134,16 @@ public class UpgradeMenu : MonoBehaviour {
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !upgradeMenuOpen && !upgradeSelected)
         {
             upgradeMenuOpen = true;
-            upgradeMenuActive = true;
             upgradeDone = false;
+            upgradeProgress.SetActive(false);
         }
 
-       
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && upgradeMenuOpen && !upgradeSelected && !attackUpgradeActive && !defenseUpgradeActive && !weaponUpgradeActive)
+        {
+            upgradeMenuActive = true;
+        }
+
+
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && upgradeMenuOpen && upgradeMenuActive)
         {
@@ -173,41 +182,61 @@ public class UpgradeMenu : MonoBehaviour {
             angleFromCenter = 360 - angleFromCenter;
         }
 
-        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && upgradeMenuActive && !attackUpgradeActive && !defenseUpgradeActive && !weaponUpgradeActive)
+        if (upgradeMenuActive && !attackUpgradeActive && !defenseUpgradeActive && !weaponUpgradeActive)
         {
-            //map angle from center to specific buttons;
-            if (340 < angleFromCenter || angleFromCenter <= 20)
+            if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f)
             {
-                currentMainMenuItem = 0; //Weapon Upgrades
-                //print("Weapon upgrades");
-
-
-            }
-            // Attack Upgrade Menu
-            else if (250 < angleFromCenter && angleFromCenter <= 290)
-            {
-                currentMainMenuItem = 1;
-
-                if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+                //map angle from center to specific buttons;
+                if (340 < angleFromCenter || angleFromCenter <= 20)
                 {
-                    attackUpgradeOpen = true;
-                }
+                    currentMainMenuItem = 0; //Weapon Upgrades
+                                             //print("Weapon upgrades");
 
-                if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+
+                }
+                // Attack Upgrade Menu
+                else if (250 < angleFromCenter && angleFromCenter <= 290)
                 {
-                    attackUpgradeActive = true;
-                    upgradeMenuActive = false;
-                }
+                    currentMainMenuItem = 1;
 
-            }
-            else if (70 < angleFromCenter && angleFromCenter <= 110)
+                    if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+                    {
+                        attackUpgradeOpen = true;
+                    }
+
+                    if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+                    {
+                        attackUpgradeActive = true;
+                        upgradeMenuActive = false;
+                    }
+
+                }
+                else if (70 < angleFromCenter && angleFromCenter <= 110)
+                {
+                    currentMainMenuItem = 2; //Defense Upgrades
+                                             //print("defense upgrades");
+
+                }
+            } else
             {
-                currentMainMenuItem = 2; //Defense Upgrades
-                //print("defense upgrades");
+                currentMainMenuItem = 3; // button to close main menu
+
+                if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+                {
+                    MenuReset();
+                }
 
             }
         }
-        
+
+        if (currentMainMenuItem != oldMainMenuItem)
+        {
+            mainMenuUIList[oldMainMenuItem].sceneImage.color = mainMenuUIList[oldMainMenuItem].normalColor;
+            oldMainMenuItem = currentMainMenuItem;
+            mainMenuUIList[currentMainMenuItem].sceneImage.color = mainMenuUIList[currentMainMenuItem].highlightColor;
+            //print("changing color");
+        }
+
 
 
 
@@ -230,13 +259,30 @@ public class UpgradeMenu : MonoBehaviour {
         defenseUpgradeOpen = false;
         defenseUpgradeActive = false;
         weaponUpgradeOpen = false;
-        weaponUpgradeActive = false;          
+        weaponUpgradeActive = false;
+
+        currentMainMenuItem = 0;
+        oldMainMenuItem = 1;
+
+        currentAttackMenuItem = 0;
+        oldAttackMenuItem = 1;
+
+        currentDefenseUpgradeItem = 0;
+        oldDefenseUpgradeItem = 1;
+
+        currentWeaponUpgradeItem = 0;
+        oldWeaponUpgradeItem = 1;
+
+        for (int i = 0; i < 5; i++)
+        {
+            attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
+        }
 
 
-        foreach(GameObject upgrade in attackUpgradeUI)
+        /*foreach (GameObject upgrade in attackUpgradeUI)
         {
             upgrade.SetActive(false);
-        }
+        }*/
 
         foreach (GameObject upgrade in defenseUpgradesUI)
         {
@@ -272,71 +318,96 @@ public class UpgradeMenu : MonoBehaviour {
             upgrade.SetActive(true);
         }
 
-        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f && attackUpgradeActive && !weaponUpgradeActive && !defenseUpgradeActive && !upgradeSelected)
+        if (attackUpgradeActive && !weaponUpgradeActive && !defenseUpgradeActive && !upgradeSelected)
         {
-            // Fire Rate
-            if (349 < angleFromCenter || angleFromCenter <= 11)
+            if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f)
             {
-                currentAttackMenuItem = 0; // To see what is currently highlighted in the attack menu
-
-
-                //fireRateUpgradeBoard[attackUpgradeItem[currentAttackMenuItem]].SetActive(true);
-                //attackUpgradeBoards[attackUpgradeItem[currentAttackMenuItem]].SetActive(true);
-                //print("attack 1");
-            }
-            else if (304 < angleFromCenter && angleFromCenter <= 326)
-            {
-                currentAttackMenuItem = 1; //Damage
-                //attackUpgradeBoards[1].SetActive(true);
-                //print("attack 2");
-            }
-            else if (259 < angleFromCenter && angleFromCenter <= 281)
-            {
-                currentAttackMenuItem = 2; //Accuracy
-
-                //print(attackUpgradeBoardList[currentAttackMenuItem].level);
-
-
-                //attackUpgradeBoards[2].SetActive(true);
-                //print("attack 3");
-            }
-            else if (214 < angleFromCenter && angleFromCenter <= 236)
-            {
-                currentAttackMenuItem = 3; //Bullet Capacity
-                //attackUpgradeBoards[3].SetActive(true);
-                //print("attack 4");
-
-            }
-            else if (169 < angleFromCenter && angleFromCenter <= 191)
-            {
-                currentAttackMenuItem = 4; //Bullets Earned
-                //attackUpgradeBoards[4].SetActive(true);
-                //print("attack 5");
-            }
-            else
-            {
-                foreach (AttackUpgradeBoards board in attackUpgradeBoardList)
+                // Fire Rate
+                if (349 < angleFromCenter || angleFromCenter <= 11)
                 {
-                    foreach (GameObject obj in board.levelBoards)
-                    {
-                        obj.SetActive(false);
-                    }
+                    currentAttackMenuItem = 0; // To see what is currently highlighted in the attack menu
+
+
+                    //fireRateUpgradeBoard[attackUpgradeItem[currentAttackMenuItem]].SetActive(true);
+                    //attackUpgradeBoards[attackUpgradeItem[currentAttackMenuItem]].SetActive(true);
+                    //print("attack 1");
                 }
+                else if (304 < angleFromCenter && angleFromCenter <= 326)
+                {
+                    currentAttackMenuItem = 1; //Damage
+                                               //attackUpgradeBoards[1].SetActive(true);
+                                               //print("attack 2");
+                }
+                else if (259 < angleFromCenter && angleFromCenter <= 281)
+                {
+                    currentAttackMenuItem = 2; //Accuracy
 
-                //attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(false);
+                    //print(attackUpgradeBoardList[currentAttackMenuItem].level);
+                    //attackUpgradeBoards[2].SetActive(true);
+                    //print("attack 3");
+                }
+                else if (214 < angleFromCenter && angleFromCenter <= 236)
+                {
+                    currentAttackMenuItem = 3; //Bullet Capacity
+                                               //attackUpgradeBoards[3].SetActive(true);
+                                               //print("attack 4");
 
-                currentAttackMenuItem = -1;
-            }
+                }
+                else if (169 < angleFromCenter && angleFromCenter <= 191)
+                {
+                    currentAttackMenuItem = 4; //Bullets Earned
+                                               //attackUpgradeBoards[4].SetActive(true);
+                                               //print("attack 5");
+                }
+                else
+                {
+                    foreach (AttackUpgradeBoards board in attackUpgradeBoardList)
+                    {
+                        foreach (GameObject obj in board.levelBoards)
+                        {
+                            obj.SetActive(false);
+                        }
+                    }
 
-            //print(attackUpgradeBoardList[currentAttackMenuItem].level);
+                    //attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(false);
 
-            if (currentAttackMenuItem >= 0)
+                    currentAttackMenuItem = -1;
+                }
+            } else
             {
-                attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(true);
+                currentAttackMenuItem = 5; // Back button is highlighted
             }
+            
+        }
 
 
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && currentAttackMenuItem >= 0 && attackUpgradeActive && !weaponUpgradeActive && !upgradeMenuActive && !defenseUpgradeActive && !upgradeSelected)
+
+        if (currentAttackMenuItem != oldAttackMenuItem && currentAttackMenuItem >= 0)
+        {
+            attackUpgradeUIList[oldAttackMenuItem].sceneImage.color = attackUpgradeUIList[oldAttackMenuItem].normalColor;
+            oldAttackMenuItem = currentAttackMenuItem;
+            attackUpgradeUIList[currentAttackMenuItem].sceneImage.color = attackUpgradeUIList[currentAttackMenuItem].highlightColor;
+            //print("changing color");
+        }
+
+        if (currentAttackMenuItem < 0)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].normalColor;
+            }
+        }
+
+        //print(attackUpgradeBoardList[currentAttackMenuItem].level);
+
+        if (currentAttackMenuItem >= 0 && currentAttackMenuItem < 5)
+        {
+            attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].SetActive(true);
+        }
+
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && attackUpgradeActive && !weaponUpgradeActive && !upgradeMenuActive && !defenseUpgradeActive && !upgradeSelected)
+        {
+            if (currentAttackMenuItem >= 0 && currentAttackMenuItem < 5)
             {
                 if (attackUpgradeBoardList[currentAttackMenuItem].levelBoards[attackUpgradeBoardList[currentAttackMenuItem].level].GetComponent<Upgrades>().upgradeCost <= playerController.playerBullets)
                 {
@@ -357,8 +428,27 @@ public class UpgradeMenu : MonoBehaviour {
                         attackUpgradeBoardList[currentAttackMenuItem].level = attackUpgradeBoardList[currentAttackMenuItem].levelBoards.Length - 1;
                     }
                 }
+            } else if (currentAttackMenuItem == 5)
+            {
+                CloseAttackUpgradeMenu();
             }
         }
+    }
+
+    void CloseAttackUpgradeMenu()
+    {
+        attackUpgradeOpen = false;
+        attackUpgradeActive = false;
+
+        upgradeMenuActive = true;
+
+        for (int i = 0; i < 5; i++)
+        {
+            attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
+        }
+
+        cursor.transform.localPosition = new Vector2(0f, 0f);
+        upgradeMenu.transform.localPosition = new Vector3(0f, .1f, .1f);
     }
 
     IEnumerator ApplyUpgrade(Upgrades upgrade)
@@ -378,6 +468,20 @@ public class UpgradeMenu : MonoBehaviour {
 
     }
 
+    [System.Serializable]
+    public class MainMenuUI
+    {
+        public string name;
+        //public bool hasWeapon;
+        //public AudioClip recording;
+        public Image sceneImage;
+        public Color normalColor = Color.white;
+        public Color highlightColor = Color.grey;
+        public Color pressedColor = Color.yellow;
+        //public Color unavailableColor = Color.black;
+
+    }
+
 
     [System.Serializable]
     public class AttackUpgradeUI
@@ -389,7 +493,7 @@ public class UpgradeMenu : MonoBehaviour {
         public Color normalColor = Color.white;
         public Color highlightColor = Color.grey;
         public Color pressedColor = Color.yellow;
-        //public Color unavailableColor = Color.black;
+        public Color unavailableColor = Color.black;
 
     }
 
