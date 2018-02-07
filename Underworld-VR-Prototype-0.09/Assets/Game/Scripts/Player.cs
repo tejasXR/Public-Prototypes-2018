@@ -10,31 +10,36 @@ public class Player : MonoBehaviour {
     // Player Basic Variables
     public float playerBullets;
     public string bulletString;
+    public float playerBulletCapacity;
 
     public float playerHealth;
     public float playerHealthMax;
-
     public float playerRedemptionHealth;
 
-
+    // Player Attack Upgrades
+    public float bulletFireRateMultiplier = 1;
+    public float bulletDamageMultiplier = 1;
+    public float bulletAccuracyMultiplier = 1;
     public float enemyGiveAdditionalBullets;
-    public float enemyNegativeHealthMultiplier;
+
+    // Player Defense Upgrades
+    public float playerHealthMaxMultiplier = 1;
+    public float playerHealthChance = 0;
+
+
+    //public float enemyNegativeHealthMultiplier;
 
     //public float playerRedemptionHealth
 
     // Player Health Multipliers
-    public float playerHealthMaxMultiplier = 1;
-    public float playerHealthRegenMultiplier = 0;
 
     // Player Attack Multipliers
-    public float bulletFireRateMultiplier = 1;
-    public float bulletDamageMultiplier = 1;
+    
     //public float bulletSpeedMultiplier = 1;
-    public float bulletAccuracyMultiplier = 1;
-    public float playerBulletCapacity = 200;
-    public float playerNoUseBulletChance = 0;
-    public float playerBulletCriticalHitChance = 0;
-    public float playerBulletRegeneration = 0;
+    
+    //public float playerNoUseBulletChance = 0;
+    //public float playerBulletCriticalHitChance = 0;
+    //public float playerBulletRegeneration = 0;
 
 
     public TextMeshPro[] bulletCounters;
@@ -73,16 +78,18 @@ public class Player : MonoBehaviour {
 
         if (gameManager.roundActive)
         {
-            playerHealth += Time.deltaTime * playerHealthRegenMultiplier;
-            playerBullets += Mathf.RoundToInt(Time.deltaTime * playerBulletRegeneration);
+           // playerHealth += Time.deltaTime * playerHealthRegenMultiplier;
+            //playerBullets += Mathf.RoundToInt(Time.deltaTime * playerBulletRegeneration);
 
 
-            if (playerHealth >= (playerHealthMax * playerHealthMaxMultiplier))
-            {
-                playerHealth = playerHealthMax * playerHealthMaxMultiplier;
-            }
+            
 
 
+        }
+
+        if (playerHealth >= (playerHealthMax * playerHealthMaxMultiplier))
+        {
+            playerHealth = playerHealthMax * playerHealthMaxMultiplier;
         }
 
         if (playerBullets >= playerBulletCapacity)

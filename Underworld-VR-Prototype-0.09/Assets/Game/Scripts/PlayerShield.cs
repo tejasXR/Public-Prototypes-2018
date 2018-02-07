@@ -14,12 +14,12 @@ public class PlayerShield : MonoBehaviour {
     private float shieldHealthSmooth;
     public float shieldRechargeSpeed;
 
-    public float shieldRechargeSpeedMultiplier = 1;
+    public float shieldRegenMultiplier = 1;
     public float shieldHealthMaxMultiplier = 1;
 
-    public float shieldSizeMultiplier = 1;
+    //public float shieldSizeMultiplier = 1;
 
-    public float shieldAbsorbtionChance = 0;
+    public float shieldBulletAbsorbtionAmount = 1;
 
     //private float scaleOriginal;
     //private float scaleCurrent;
@@ -49,7 +49,7 @@ public class PlayerShield : MonoBehaviour {
 
         shieldHealthSmooth = Mathf.SmoothStep(shieldHealthSmooth, shieldHealth, Time.deltaTime * 10f);
 
-        shieldHealth += Time.deltaTime * shieldRechargeSpeed * shieldRechargeSpeedMultiplier;
+        shieldHealth += Time.deltaTime * shieldRechargeSpeed * shieldRegenMultiplier;
 
         if (shieldHealth >= shieldHealthMax * shieldHealthMaxMultiplier)
         {
@@ -57,7 +57,10 @@ public class PlayerShield : MonoBehaviour {
         }
 
         flickerSpeedCurrent = Mathf.Lerp(flickerSpeedCurrent, 0, Time.deltaTime * 3f);
-        scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal * shieldSizeMultiplier, Time.deltaTime * 3f);
+        //scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal * shieldSizeMultiplier, Time.deltaTime * 3f);
+
+        scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal, Time.deltaTime * 3f);
+
 
         rend.material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
         rend.material.SetFloat("_ScanTiling", scanTileCurrent);
@@ -86,10 +89,10 @@ public class PlayerShield : MonoBehaviour {
             StartCoroutine(ShieldVibration(1, 2000));
 
             // A chance to absorb an incoming bullet
-            float shieldAbsorption = Random.Range(0f, 1f);
-            if (shieldAbsorption > shieldAbsorbtionChance)
+            //float shieldAbsorption = Random.Range(0f, 1f);
+            //if (shieldAbsorption > shieldBulletAbsorbtionAmount)
             {
-                playerController.playerBullets++;
+                playerController.playerBullets += shieldBulletAbsorbtionAmount;
             }
 
             //print("Hit");

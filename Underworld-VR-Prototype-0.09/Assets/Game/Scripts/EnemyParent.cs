@@ -36,7 +36,7 @@ public class EnemyParent : MonoBehaviour {
 
         earnedBulletText.text = "+ " + enemyGiveBullets.ToString();
 
-        enemyHealth -= (enemyHealth * playerController.enemyNegativeHealthMultiplier);
+        //enemyHealth -= (enemyHealth * playerController.enemyNegativeHealthMultiplier);
     }
 
     void OnCollisionEnter(Collision other)
@@ -48,10 +48,17 @@ public class EnemyParent : MonoBehaviour {
             if (other.gameObject.tag == "Bullet")
             {
                 // Add chance for critical hit, one-hit kill
-                float criticalHit = Random.Range(0f, 1f);
+                /*float criticalHit = Random.Range(0f, 1f);
                 if (criticalHit > playerController.playerBulletCriticalHitChance)
                 {
                     damage = enemyHealth;
+                }*/
+
+                // Add chance for health to regenerate by a point
+                float healthRegenChance = Random.Range(0f, 1f);
+                if (healthRegenChance > playerController.playerHealthChance)
+                {
+                    playerController.playerHealth++;
                 }
 
                 damage = other.gameObject.GetComponent<Bullet>().damage;

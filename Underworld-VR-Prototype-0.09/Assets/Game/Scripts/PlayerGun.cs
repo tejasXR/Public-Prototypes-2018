@@ -153,9 +153,9 @@ public class PlayerGun : MonoBehaviour {
                 var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.LookRotation(bulletDirection));
 
                 // Creates a chance that the gun will use no bullets when firing
-                float bulletNoUseChance = Random.Range(0f, 1f);
+                //float bulletNoUseChance = Random.Range(0f, 1f);
                 //print(bulletNoUseChance);
-                if (bulletNoUseChance > playerController.playerNoUseBulletChance)
+                //if (bulletNoUseChance > playerController.playerNoUseBulletChance)
                 {
                     if (gameManager.roundActive)
                     {

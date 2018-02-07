@@ -11,37 +11,35 @@ public class Upgrades : MonoBehaviour {
 
     public float upgradeCost;
 
-    // Player Health Upgrades
-    public float addPlayerHealth;
-    public float addPlayerHealthMaxMultiplier;
-    public float addPlayerHealthRegenMultiplier;
-
     // Player Attack Upgrades
     public float addBulletFireRateMultiplier;
     public float addBulletDamageMultiplier;
-    //public float addBulletSpeedMultiplier; <--- No one really know why we should have this
     public float addBulletAccuracyMultiplier;
     public float addBulletCapacity;
-    public float addNoUseBulletChance;
-    public float addBulletCriticalHitChance;
-    public float addBulletRegeneration;
-
+    public float addEnemyAdditionalBullets;
 
     // Player Defense Upgrades
-    public float addShieldRegenerationMultiplier;
     public float addShieldHealthMaxMultiplier;
-    public float addShieldAbsorbtionChance;
-    public float addShieldSizeMultipler;
+    public float addShieldRegenerationMultiplier;
+    public float addShieldAbsorbtionBulletAmount;
+    public float addPlayerHealthMaxMultiplier;
+    public float addPlayerHealthChance;
 
-    // Enemy Upgrades
-    public float addEnemyAdditionalBullets;
-    public float addEnemyNegativeHealthMultiplier;
-
-    // Weapon Upgrades
+    // Player Weapon Unlocks
+    public bool unlockPistol;
     public bool unlockRifle;
     public bool unlockShotgun;
     public bool unlockSaberSword;
     public bool unlockLaserRifle;
+
+    // UNUSED UPGRADE VARIABLES
+    //public float addBulletSpeedMultiplier; <--- No one really know why we should have this
+    //public float addNoUseBulletChance;
+    //public float addBulletCriticalHitChance;
+    //public float addBulletRegeneration;
+    //public float addShieldSizeMultipler;
+    //public float addPlayerHealthRegenMultiplier;
+    //public float addEnemyNegativeHealthMultiplier;
 
     private void Awake()
     {
@@ -84,35 +82,30 @@ public class Upgrades : MonoBehaviour {
 
     public void AddUpgradeEffect()
     {
-        // Attack Effects
+        // Attack Upgrade Effects
         playerController.bulletFireRateMultiplier += addBulletFireRateMultiplier;
         playerController.bulletDamageMultiplier += addBulletDamageMultiplier;
         playerController.bulletAccuracyMultiplier += addBulletAccuracyMultiplier;
         playerController.playerBulletCapacity += addBulletCapacity;
-        playerController.playerNoUseBulletChance += addNoUseBulletChance;
-        playerController.playerBulletCriticalHitChance += addBulletCriticalHitChance;
-
-        // Player Health Effects
-        playerController.playerHealthMaxMultiplier += addPlayerHealthMaxMultiplier;
-        playerController.playerHealth += addPlayerHealth;
-        playerController.playerHealthRegenMultiplier += addPlayerHealthRegenMultiplier;
-
-
-        // Player Defense Effects
-        playerShield.shieldRechargeSpeedMultiplier += addShieldRegenerationMultiplier;
-        playerShield.shieldHealthMaxMultiplier += addShieldHealthMaxMultiplier;
-        playerShield.shieldAbsorbtionChance += addShieldAbsorbtionChance;
-        playerShield.shieldSizeMultiplier += addShieldSizeMultipler;
-
-        // Enemy Effects
         playerController.enemyGiveAdditionalBullets += addEnemyAdditionalBullets;
-        playerController.enemyNegativeHealthMultiplier += addEnemyNegativeHealthMultiplier;
 
-        if (unlockRifle)
+        // Player Defense Upgrade Effects
+        playerShield.shieldHealthMaxMultiplier += addShieldHealthMaxMultiplier;
+        playerShield.shieldRegenMultiplier += addShieldRegenerationMultiplier;
+        playerShield.shieldBulletAbsorbtionAmount += addShieldAbsorbtionBulletAmount;
+        playerController.playerHealthMaxMultiplier += addPlayerHealthMaxMultiplier;
+        playerController.playerHealthChance += addPlayerHealthChance;
+
+        // Player Weapon Unlocks
+        if (unlockPistol)
+        {
+            weaponActive.WeaponToActivate("PISTOL");
+        }
+        else if (unlockRifle)
         {
             weaponActive.WeaponToActivate("RIFLE");
         }
-        else if(unlockShotgun)
+        else if (unlockShotgun)
         {
             weaponActive.WeaponToActivate("SHOTGUN");
         }
@@ -124,6 +117,16 @@ public class Upgrades : MonoBehaviour {
         {
             weaponActive.WeaponToActivate("LASER RIFLE");
         }
+
+        // UNUSED Upgrade Effects
+
+        //playerController.playerNoUseBulletChance += addNoUseBulletChance;
+        //playerController.playerBulletCriticalHitChance += addBulletCriticalHitChance;
+        //playerController.playerHealthRegenMultiplier += addPlayerHealthRegenMultiplier;       
+        //playerShield.shieldSizeMultiplier += addShieldSizeMultipler;      
+        //playerController.enemyNegativeHealthMultiplier += addEnemyNegativeHealthMultiplier;
+
+
 
 
 
