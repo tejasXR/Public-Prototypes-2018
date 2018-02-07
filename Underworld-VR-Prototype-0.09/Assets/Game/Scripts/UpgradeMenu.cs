@@ -157,6 +157,7 @@ public class UpgradeMenu : MonoBehaviour {
         } else if (attackUpgradeActive)
         {
             cursor.transform.localPosition = new Vector2(-.1f, 0) + (touchpad * .07f);
+            upgradeMenu.transform.localPosition = new Vector3(.1f, .1f, .1f);
         }
 
         touchpad.x = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x;
@@ -254,6 +255,9 @@ public class UpgradeMenu : MonoBehaviour {
                 obj.SetActive(false);
             }
         }
+
+        cursor.transform.localPosition = new Vector2(0f, 0f);
+        upgradeMenu.transform.localPosition = new Vector3(0f, .1f, .1f);
 
         upgradeMenu.SetActive(false);
 
