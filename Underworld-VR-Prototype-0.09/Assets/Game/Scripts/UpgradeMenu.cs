@@ -10,6 +10,8 @@ public class UpgradeMenu : MonoBehaviour
 
     private Player playerController;
     private TimeManager timeManager;
+    public GameObject playerShield;
+    private GameManager gameManager;
 
     public List<MainMenuUI> mainMenuUIList = new List<MainMenuUI>(); //creates a list of menu buttons to access
 
@@ -75,6 +77,8 @@ public class UpgradeMenu : MonoBehaviour
     {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         MenuReset();
 
         upgradeTimerCounter = upgradeTimer;
@@ -102,6 +106,11 @@ public class UpgradeMenu : MonoBehaviour
         {
             OpenUpgradeMenu();
             timeManager.DoSlowMotion();
+            playerShield.SetActive(false);
+        }
+        else if (upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart && !gameManager.redemptionActive)
+        {
+            playerShield.SetActive(true);
         }
 
         if (attackUpgradeOpen)
