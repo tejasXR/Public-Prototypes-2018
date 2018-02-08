@@ -156,7 +156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4518477195641184
 Transform:
   m_ObjectHideFlags: 1
@@ -794,22 +794,17 @@ MonoBehaviour:
   playerShield: {fileID: 0}
   weaponActive: {fileID: 0}
   upgradeCost: 400
-  addPlayerHealth: 0
-  addPlayerHealthMaxMultiplier: 0
-  addPlayerHealthRegenMultiplier: 0
   addBulletFireRateMultiplier: 0
   addBulletDamageMultiplier: 0
   addBulletAccuracyMultiplier: 0
   addBulletCapacity: 0
-  addNoUseBulletChance: 0
-  addBulletCriticalHitChance: 0
-  addBulletRegeneration: 0
-  addShieldRegenerationMultiplier: 0
-  addShieldHealthMaxMultiplier: 0
-  addShieldAbsorbtionChance: 0
-  addShieldSizeMultipler: 0
   addEnemyAdditionalBullets: 0
-  addEnemyNegativeHealthMultiplier: 0
+  addShieldHealthMaxMultiplier: 0
+  addShieldRegenerationMultiplier: 0
+  addShieldAbsorbtionBulletAmount: 0
+  addPlayerHealthMaxMultiplier: 0
+  addPlayerHealthChance: 0
+  unlockPistol: 0
   unlockRifle: 0
   unlockShotgun: 1
   unlockSaberSword: 0
