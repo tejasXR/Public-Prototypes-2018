@@ -16,7 +16,7 @@ public class StadiumFlicker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        flickerTimer = flickerFrequency;
+        //flickerTimer = flickerFrequency;
         flickerDurationTimer = flickerDuration;
 	}
 	

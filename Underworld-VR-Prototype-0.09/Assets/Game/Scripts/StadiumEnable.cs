@@ -39,12 +39,12 @@ public class StadiumEnable : MonoBehaviour {
         if (isPlatformTriangles)
         {
             scaleCurrent = 0;
-            //StartCoroutine(PlatformTraingleFlash());
+            StartCoroutine(PlatformTraingleFlash());
 
-            foreach (GameObject platformTriangle in platformTriangles)
+            /*foreach (GameObject platformTriangle in platformTriangles)
             {
                 platformTriangle.SetActive(false);
-            }
+            }*/
 
         }
     }
@@ -52,33 +52,34 @@ public class StadiumEnable : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (delayCounter >= 0)
+        if (isPlatformTriangles)
         {
-            delayCounter -= Time.deltaTime;
-        } else
-        {
-            delayCounter = 0;
-            scaling = true;
-        }
-
-        if (scaling && !scalingDone)
-        {
-            if (isPlatformTriangles)
+            if (delayCounter >= 0)
             {
+                delayCounter -= Time.deltaTime;
+            }
+            else
+            {
+                delayCounter = 0;
+                scaling = true;
+            }
+
+            if (scaling && !scalingDone)
+            {
+               
                 foreach (GameObject platformTriangle in platformTriangles)
                 {
                     platformTriangle.SetActive(true);
                 }
+                
+                scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal, Time.deltaTime);
+                abovePlatform.transform.localScale = new Vector3(abovePlatform.transform.localScale.x, scaleCurrent, abovePlatform.transform.localScale.z);
             }
 
-            scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal, Time.deltaTime);
-            abovePlatform.transform.localScale = new Vector3(abovePlatform.transform.localScale.x, scaleCurrent, abovePlatform.transform.localScale.z);
-        }
-
-
-        if ((scaleCurrent / scaleOriginal) > .98f)
-        {
-            scalingDone = true;
+            if ((scaleCurrent / scaleOriginal) > .98f)
+            {
+                scalingDone = true;
+            }
         }
 	}
 
@@ -131,28 +132,44 @@ public class StadiumEnable : MonoBehaviour {
     {
         yield return new WaitForSeconds(delay);
 
-        for (int i = 0; i < 4; i++)
+        //for (int i = 0; i < 4; i++)
         {
-            platformTriangles[i].SetActive(false);
+          //  platformTriangles[i].SetActive(false);
         }
 
-        platformTriangles[0].SetActive(true);
+        /*platformTriangles[0].SetActive(true);
         yield return new WaitForSeconds(.5f);
         platformTriangles[1].SetActive(true);
         yield return new WaitForSeconds(.5f);
         platformTriangles[2].SetActive(true);
         yield return new WaitForSeconds(.5f);
+        */
+
+        yield return new WaitForSeconds(1f);
 
         platformTriangles[1].SetActive(false);
         yield return new WaitForSeconds(.05f);
         platformTriangles[1].SetActive(true);
         yield return new WaitForSeconds(.05f);
 
-        platformTriangles[3].SetActive(true);
+        platformTriangles[3].SetActive(false);
         yield return new WaitForSeconds(.1f);
 
         platformTriangles[2].SetActive(false);
         yield return new WaitForSeconds(.02f);
+
+        platformTriangles[1].SetActive(false);
+        yield return new WaitForSeconds(.05f);
+
+        platformTriangles[3].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+
+        platformTriangles[1].SetActive(true);
+        yield return new WaitForSeconds(.05f);
+
+       
+
+
         platformTriangles[2].SetActive(true);
         yield return new WaitForSeconds(.02f);
         platformTriangles[2].SetActive(false);
@@ -161,21 +178,21 @@ public class StadiumEnable : MonoBehaviour {
         yield return new WaitForSeconds(.01f);
 
         platformTriangles[0].SetActive(true);
-        yield return new WaitForSeconds(.01f);
+        yield return new WaitForSeconds(.05f);
         platformTriangles[0].SetActive(false);
-        yield return new WaitForSeconds(.01f);
+        yield return new WaitForSeconds(.05f);
+        platformTriangles[0].SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        platformTriangles[0].SetActive(false);
+        yield return new WaitForSeconds(.05f);
         platformTriangles[0].SetActive(true);
         yield return new WaitForSeconds(.01f);
         platformTriangles[0].SetActive(false);
         yield return new WaitForSeconds(.01f);
         platformTriangles[0].SetActive(true);
-        yield return new WaitForSeconds(.005f);
+        yield return new WaitForSeconds(.01f);
         platformTriangles[0].SetActive(false);
-        yield return new WaitForSeconds(.005f);
-        platformTriangles[0].SetActive(true);
-        yield return new WaitForSeconds(.005f);
-        platformTriangles[0].SetActive(false);
-        yield return new WaitForSeconds(.005f);
+        yield return new WaitForSeconds(.01f);
         platformTriangles[0].SetActive(true);
         yield return new WaitForSeconds(.005f);
         platformTriangles[0].SetActive(false);
