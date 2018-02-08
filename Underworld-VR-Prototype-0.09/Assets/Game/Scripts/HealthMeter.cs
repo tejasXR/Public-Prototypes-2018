@@ -24,6 +24,7 @@ public class HealthMeter : MonoBehaviour {
     private void OnEnable()
     {
         scaleCurrent = 0;
+        meterXCurrent = meterXOriginal - scaleOriginal / 2;
     }
 
     // Update is called once per frame

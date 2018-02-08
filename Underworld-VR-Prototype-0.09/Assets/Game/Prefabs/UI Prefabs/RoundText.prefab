@@ -75,7 +75,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 21982047819019848, guid: be7403e889a7d8c4eb5b6027444739b3, type: 2}
+  - {fileID: 21139881962045334, guid: 465fc295183d6b14088229ebd871621e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,8 +153,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Wave One
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: be7403e889a7d8c4eb5b6027444739b3, type: 2}
-  m_sharedMaterial: {fileID: 21982047819019848, guid: be7403e889a7d8c4eb5b6027444739b3,
+  m_fontAsset: {fileID: 11400000, guid: 465fc295183d6b14088229ebd871621e, type: 2}
+  m_sharedMaterial: {fileID: 21139881962045334, guid: 465fc295183d6b14088229ebd871621e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -219,12 +219,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114923947219076326}
-    characterCount: 3
+    characterCount: 8
     spriteCount: 0
-    spaceCount: 0
+    spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1

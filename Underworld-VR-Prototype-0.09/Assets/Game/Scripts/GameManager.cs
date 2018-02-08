@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
     public float redemptionMeter; //Was a timer before, but now a chain-like meeter
     public float redemptionMeterMax;
 
-    //public GameObject roundText;
+    public GameObject roundText;
     public GameObject wallUI;
     public GameObject redemptionUI;
 
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour {
     {
         roundCurrent++;
         CheckRound();
-        //Instantiate(roundText);
+        Instantiate(roundText);
         wallUI.SetActive(true);
         //roundUntilNextUpgrade--;
         

@@ -71,6 +71,8 @@ public class UpgradeMenu : MonoBehaviour
     public bool attackPressUp;
     public bool defensePressUp;
 
+    public bool shieldHide;
+
 
     // Use this for initialization
     void Start()
@@ -107,10 +109,12 @@ public class UpgradeMenu : MonoBehaviour
             OpenUpgradeMenu();
             timeManager.DoSlowMotion();
             playerShield.SetActive(false);
+            shieldHide = true;
         }
-        else if (upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart && !gameManager.redemptionActive)
+        else if (!upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart && !gameManager.redemptionActive)
         {
             playerShield.SetActive(true);
+            shieldHide = false;
         }
 
         if (attackUpgradeOpen)

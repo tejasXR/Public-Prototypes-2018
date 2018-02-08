@@ -6,9 +6,11 @@ using UnityEngine;
 public class BulletTextCounter : MonoBehaviour {
 
     private Player playerController;
-    private float bulletSmoothCount;
+    public float bulletSmoothCount;
     private TextMeshPro bulletTextCounter;
-    public float countSpeed;
+    public float countSpeed = 85f;
+    private bool adjust;
+
     // Use this for initialization
     void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
@@ -22,9 +24,33 @@ public class BulletTextCounter : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerController.playerBullets, Time.deltaTime * countSpeed));
 
-        bulletTextCounter.text = "" + bulletSmoothCount.ToString();
+        if (adjust)
+        {
+            if (bulletSmoothCount <= playerController.playerBullets)
+            {
+                bulletSmoothCount += Time.deltaTime * countSpeed;
+            }
+            else
+            {
+                bulletSmoothCount -= Time.deltaTime * countSpeed;
+            }
+        }
+
+        if (Mathf.Abs(bulletSmoothCount - playerController.playerBullets) > .5f)
+        {
+            adjust = true;
+        } else
+        {
+            adjust = false;
+        }
+       
+
+        
+
+        //bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerController.playerBullets, Time.deltaTime * countSpeed));
+
+        bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
 
 
     }
