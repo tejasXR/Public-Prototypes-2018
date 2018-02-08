@@ -17,8 +17,8 @@ public class LightsaberTrailController : MonoBehaviour {
 
     void Update()
     {
-        lightsaberTrail.Iterate(Time.time);
-        lightsaberTrail.UpdateTrail(Time.time, 0f);
+        lightsaberTrail.Iterate(Time.unscaledTime);
+        lightsaberTrail.UpdateTrail(Time.unscaledTime, 0f);
     }
 
 }
