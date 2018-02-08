@@ -117,6 +117,7 @@ public class EnemyParent : MonoBehaviour {
         enemyDestroyTimer -= Time.deltaTime;
         if (enemyDestroyTimer <= 0)
         {
+            //gameManager.enemiesOnScreen--;
             Destroy(this.gameObject);
         }
 
@@ -124,6 +125,8 @@ public class EnemyParent : MonoBehaviour {
 
     public void BomberDestroy()
     {
+        gameManager.enemiesOnScreen--;
+
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }

@@ -7,9 +7,9 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Body
-  m_Shader: {fileID: 4800000, guid: 3f387b3c7760d5a488b5596b42425701, type: 3}
+  m_Shader: {fileID: 4800000, guid: a6b700a358a79f445add9a15b906f33b, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -71,8 +71,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MKGlowPower: 1.89
-    - _MKGlowTexStrength: 5.04
+    - _MKGlowPower: 0.2
+    - _MKGlowTexStrength: 2
     - _Metallic: 0.22
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -85,5 +85,5 @@ Material:
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _MKGlowColor: {r: 0.9647059, g: 0, b: 0.37922937, a: 1}
-    - _MKGlowTexColor: {r: 0.99607843, g: 0.019607835, b: 0.4438673, a: 1}
+    - _MKGlowColor: {r: 0.9264706, g: 0.040873684, b: 0.13248684, a: 1}
+    - _MKGlowTexColor: {r: 0.92549026, g: 0.039215688, b: 0.13333334, a: 1}

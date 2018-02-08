@@ -199,9 +199,9 @@ public class GameManager : MonoBehaviour {
             {
                 roundCurrent -= 1; // Reset the round number to when the player died
                 StopRedemption();
-
+                print("out of redemption");
                 //redemptionMeter
-                playerController.playerHealth += playerController.playerHealthMax / 2;
+                playerController.playerHealth += (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier) / 2;
                 roundStart = true;
                 redemptionActive = false;
                 redemptionPreStart = false;
