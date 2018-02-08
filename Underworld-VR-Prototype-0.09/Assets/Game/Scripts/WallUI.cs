@@ -45,16 +45,11 @@ public class WallUI : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        
-
         transform.position = UIStartPosition.position;
 	}
 
     private void OnEnable()
     {
-        transform.position = UIStartPosition.position;
-        timerObj.transform.position = timerStartTransform.position;
-
         if (isRoundUI)
         {
             alpha = 0;
@@ -64,6 +59,11 @@ public class WallUI : MonoBehaviour {
         {
             alpha = 1;
         }
+
+        transform.position = UIStartPosition.position;
+        timerObj.transform.position = timerStartTransform.position;
+
+        
 
     }
 
@@ -75,7 +75,7 @@ public class WallUI : MonoBehaviour {
         {
             if (isRoundUI)
             {
-                alpha = Mathf.SmoothStep(alpha, 1, Time.deltaTime * 2.5f);
+                alpha = Mathf.SmoothStep(alpha, 1, Time.deltaTime * 5f);
             }
 
             if (isRedemptionUI)
@@ -118,7 +118,7 @@ public class WallUI : MonoBehaviour {
             text.alpha = alpha;
         }
 
-        enemiesLeft = Mathf.Lerp(enemiesLeft, (gameManager.enemiesToSpawn - gameManager.enemiesDestroyed), Time.deltaTime * 2f);
+        enemiesLeft = Mathf.Lerp(enemiesLeft, (gameManager.enemiesToSpawn - gameManager.enemiesDestroyed), Time.deltaTime * 5f);
 
         killCountText.text = Mathf.RoundToInt(enemiesLeft).ToString();
 

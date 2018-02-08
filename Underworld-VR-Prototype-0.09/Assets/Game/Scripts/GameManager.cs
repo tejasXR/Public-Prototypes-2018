@@ -382,6 +382,7 @@ public class GameManager : MonoBehaviour {
 
     void StopRedemption()
     {
+        redemptionPlatform.SetActive(false);
         redemptionUI.SetActive(false);
         purpleStadium.SetActive(true);
         bluePlatform.SetActive(true);
