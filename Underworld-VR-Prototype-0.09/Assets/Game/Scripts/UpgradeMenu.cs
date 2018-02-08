@@ -95,7 +95,7 @@ public class UpgradeMenu : MonoBehaviour
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && upgradeMenuOpen)
         {
             firstPressUp = true;
-            print("menuactive");
+            //print("menuactive");
         }
 
         if (upgradeMenuOpen && !upgradeSelected)
@@ -428,7 +428,7 @@ public class UpgradeMenu : MonoBehaviour
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && attackPressUp && attackUpgradeActive && attackUpgradeOpen && !weaponUnlockActive && !upgradeMenuActive && !defenseUpgradeActive && !upgradeSelected)
         {
-            print("called");
+            //print("called");
             if (currentAttackUpgradeItem >= 0 && currentAttackUpgradeItem < 5)
             {
                 if (attackUpgradeBoardList[currentAttackUpgradeItem].levelBoards[attackUpgradeBoardList[currentAttackUpgradeItem].level].GetComponent<Upgrades>().upgradeCost <= playerController.playerBullets)
