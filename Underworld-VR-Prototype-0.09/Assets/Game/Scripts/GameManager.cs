@@ -127,6 +127,34 @@ public class GameManager : MonoBehaviour {
             //UpdateTimer();
             //timeLeftCounter -= Time.deltaTime;
 
+            if (enemiesDestroyed == enemiesToSpawn && enemiesOnScreen <= 0 && !redemptionActive)
+            {
+                //if (upgradeRound)
+                {
+                    //upgradeActive = true;
+                    //roundStart = false;
+                    //roundActive = false;  //stop the wave after the waveTimer is over to put the player in upgrade mode
+                } //else
+                {
+                    //  roundStart = true;
+                    //   roundActive = false;
+                }
+                //timeLeftCounter = 0;
+
+                roundStart = true;
+                roundActive = false;
+                //print("Upgrade!");
+            }
+
+            if (redemptionStart)
+            {
+                TurnOffForRedemption(); // Turn stuff off for redemption
+                                        //redemptionActive = true; // Not false here, will call when redemption buffer timer runs down
+                hadRedemption = true;
+                roundActive = false;
+                //redemptionStart = false; // Not false here becuase we need the buffer time to run out first
+            }
+
         }
 
         if (upgradeActive)
@@ -164,30 +192,32 @@ public class GameManager : MonoBehaviour {
         if (redemptionActive)
         {
             redemptionMeter -= Time.deltaTime;
+
+            if (enemiesDestroyed == enemiesToSpawn) // If the play has destroyed all the enemies
+            {
+                roundCurrent -= 1; // Reset the round number to when the player died
+                StopRedemption();
+
+                //redemptionMeter
+                playerController.playerHealth += playerController.playerHealthMax / 2;
+                roundStart = true;
+                redemptionActive = false;
+                redemptionPreStart = false;
+                //StartRound(); // Start the wave
+
+            }
+            else if (redemptionMeter <= 0 && !gameOver)
+            {
+                // If the player fails redemption, end the game
+                GameOver();
+            }
         }
 
         // If the counter has counted down to zero and the player is currently in a round, stop the timer and enter upgrade mode
         //if (timeLeftCounter <= 0 && roundActive && !redemptionActive)
 
 
-        if (enemiesDestroyed == enemiesToSpawn && enemiesOnScreen <= 0 && roundActive && !redemptionActive)
-        {
-            //if (upgradeRound)
-            {
-                //upgradeActive = true;
-                //roundStart = false;
-                //roundActive = false;  //stop the wave after the waveTimer is over to put the player in upgrade mode
-            } //else
-            {
-              //  roundStart = true;
-             //   roundActive = false;
-            }
-            //timeLeftCounter = 0;
-
-            roundStart = true;
-            roundActive = false;
-            //print("Upgrade!");
-        } 
+        
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
         if (roundStart && !upgradeActive && !roundActive && !redemptionActive)
@@ -211,33 +241,9 @@ public class GameManager : MonoBehaviour {
             print("redemption start");
         }
 
-        if (redemptionStart && roundActive)
-        {
-            TurnOffForRedemption(); // Turn stuff off for redemption
-            //redemptionActive = true; // Not false here, will call when redemption buffer timer runs down
-            hadRedemption = true;
-            roundActive = false;
-            //redemptionStart = false; // Not false here becuase we need the buffer time to run out first
-        }
+        
 
-        if (redemptionMeter >= redemptionMeterMax && redemptionActive)
-        {
-            roundCurrent -= 1; // Reset the round number to when the player died
-            StopRedemption();
-           
-            //redemptionMeter
-            playerController.playerHealth += playerController.playerHealthMax / 2;
-            roundStart = true;
-            redemptionActive = false;
-            redemptionPreStart = false;
-            //StartRound(); // Start the wave
-
-        }
-        else if (redemptionMeter <= 0 && !gameOver && redemptionActive)
-        {
-            // If the player fails redemption, end the game
-            GameOver();
-        }
+        
     }
 
     public void StartRound()
@@ -256,36 +262,46 @@ public class GameManager : MonoBehaviour {
 
     void CheckRound()
     {
-        switch (roundCurrent)
+        if (roundStart)
         {
-            case 1:
-                enemiesToSpawn = 3; //Thirty seconds
-                enemiesOnScreenMax = 1;
+            switch (roundCurrent)
+            {
+                case 1:
+                    enemiesToSpawn = 3; //Thirty seconds
+                    enemiesOnScreenMax = 1;
 
-                //roundUntilNextUpgrade = 1; // Tells us in the next round, player will upgrade
-                //upgradeRound = false;
-                break;
-            case 2:
-                enemiesToSpawn = 10; // A minute
-                enemiesOnScreenMax = 2;
+                    //roundUntilNextUpgrade = 1; // Tells us in the next round, player will upgrade
+                    //upgradeRound = false;
+                    break;
+                case 2:
+                    enemiesToSpawn = 10; // A minute
+                    enemiesOnScreenMax = 2;
 
-                //upgradeRound = true;
+                    //upgradeRound = true;
 
-                break;
-            case 3:
-                enemiesToSpawn = 10; // A minute and a half
+                    break;
+                case 3:
+                    enemiesToSpawn = 10; // A minute and a half
 
-                break;
-            case 4:
-                enemiesToSpawn = 15; //Two minutes
-                break;
-            case 5:
-                enemiesToSpawn = 20; //Three minutes
-                break;
-            case 6:
-                enemiesToSpawn = 30; //5 Minutes
-                break;
+                    break;
+                case 4:
+                    enemiesToSpawn = 15; //Two minutes
+                    break;
+                case 5:
+                    enemiesToSpawn = 20; //Three minutes
+                    break;
+                case 6:
+                    enemiesToSpawn = 30; //5 Minutes
+                    break;
+            }
         }
+
+        if (redemptionStart)
+        {
+            enemiesToSpawn = 10; //Thirty seconds
+            enemiesOnScreenMax = 1;
+        }
+        
 
         enemiesDestroyed = 0;
 
@@ -344,7 +360,9 @@ public class GameManager : MonoBehaviour {
     void PreRedemption()
     {
         weaponActive.WeaponToActivate("SABER SWORD");
+        playerShield.SetActive(false);
         redemptionLight.SetActive(true);
+        CheckRound();
     }
 
     // Turn stuff off (black-out) for the redemption buffer timer to run down

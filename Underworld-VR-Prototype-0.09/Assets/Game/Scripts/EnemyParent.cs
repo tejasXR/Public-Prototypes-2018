@@ -16,7 +16,7 @@ public class EnemyParent : MonoBehaviour {
     //Define Basic Enemy Variables
     public float enemyHealth;
     public float enemyGiveBullets; //Amount of bullets enemy gives to player after it is destroyed
-    public float enemyRedemptionPoints;
+    //public float enemyRedemptionPoints;
 
     //Enemy On Destroy
     public GameObject explosionPrefab; //the explosion effect when destroyed
@@ -101,9 +101,9 @@ public class EnemyParent : MonoBehaviour {
             Instantiate(earnedBulletObj, transform.position, transform.rotation);
         }
 
-        if (enemyRedemptionPoints > 0)
+        if (gameManager.redemptionActive)
         {
-            gameManager.redemptionMeter += enemyRedemptionPoints;
+            gameManager.redemptionMeter = gameManager.redemptionMeterMax; // Fill up the redemption meter so it can properly count down again
         }
 
         Instantiate(explosionPrefab, transform.position, transform.rotation);

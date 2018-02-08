@@ -30,9 +30,9 @@ public class HealthMeter : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        healthSmoothPercent = Mathf.Lerp(healthSmoothPercent, playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier), Time.deltaTime);
+        healthSmoothPercent = Mathf.Lerp(healthSmoothPercent, playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier), Time.deltaTime * 5f);
 
-        scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal * healthSmoothPercent, Time.deltaTime * 1.5f);
+        scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal * healthSmoothPercent, Time.deltaTime * 3f);
         meterXCurrent = Mathf.Lerp(meterXCurrent, (meterXOriginal - scaleOriginal/2) +  ((scaleOriginal/2) * healthSmoothPercent), Time.deltaTime * 3f);
 
         transform.localScale = new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
