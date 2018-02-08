@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 
     // Player Basic Variables
     public float playerBullets;
+    private float bulletSmoothCount;
     public string bulletString;
     public float playerBulletCapacity;
 
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour {
 	
 	void Update ()
     {
+        //bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerBullets, Time.deltaTime * 5f));
+
         if (bulletString != playerBullets.ToString())
         {
             foreach (TextMeshPro bulletCounter in bulletCounters)
