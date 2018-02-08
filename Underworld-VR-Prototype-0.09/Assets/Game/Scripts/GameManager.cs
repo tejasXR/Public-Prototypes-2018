@@ -174,17 +174,18 @@ public class GameManager : MonoBehaviour {
         {
             //if (upgradeRound)
             {
-                upgradeActive = true;
-                roundStart = false;
-                roundActive = false;  //stop the wave after the waveTimer is over to put the player in upgrade mode
+                //upgradeActive = true;
+                //roundStart = false;
+                //roundActive = false;  //stop the wave after the waveTimer is over to put the player in upgrade mode
             } //else
             {
               //  roundStart = true;
              //   roundActive = false;
             }
             //timeLeftCounter = 0;
-           
 
+            roundStart = true;
+            roundActive = false;
             //print("Upgrade!");
         } 
 
