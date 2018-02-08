@@ -614,13 +614,15 @@ MonoBehaviour:
   timerStartTransform: {fileID: 4165622919357070}
   timerTargetTransform: {fileID: 4764445251816738}
   timerObj: {fileID: 1452334617848390}
-  titleText: {fileID: 114666488340675306}
+  killCountText: {fileID: 114666488340675306}
+  textAlphaControl:
+  - {fileID: 114666488340675306}
   wallUIWhole: {fileID: 0}
   enemiesLeft: 0
   moveSpeed: 0.25
   alpha: 0
   bufferTime: 1.5
-  isRoundUI: 0
+  isRoundUI: 1
   isRedemptionUI: 0
 --- !u!114 &114666488340675306
 MonoBehaviour:

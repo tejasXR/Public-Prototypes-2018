@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour {
     public GameObject purpleStadium;
     public GameObject bluePlatform;
     public GameObject synthCity;
+    public GameObject redemptionPlatform;
 
     public GameObject playerStartArea;
     public GameObject playerShield;
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         CheckRound();
         upgradeTimerCounter = upgradeTimer;
+        GameReset(); // sets all controlled objects active / inactive at the very start of the game
     }
 
     // Update is called once per frame
@@ -304,6 +306,7 @@ public class GameManager : MonoBehaviour {
         
 
         enemiesDestroyed = 0;
+        enemiesOnScreen = 0;
 
         /*
         switch (roundCurrent)
@@ -362,6 +365,7 @@ public class GameManager : MonoBehaviour {
         weaponActive.WeaponToActivate("SABER SWORD");
         playerShield.SetActive(false);
         redemptionLight.SetActive(true);
+        redemptionPlatform.SetActive(true);
         CheckRound();
     }
 
@@ -394,6 +398,31 @@ public class GameManager : MonoBehaviour {
         synthCity.SetActive(false);
         playerStartArea.SetActive(false);
         platformLight.SetActive(true);
+    }
+
+    void GameReset()
+    {
+        // Controller Models
+        controllerModels[0].SetActive(true);
+        controllerModels[1].SetActive(true);
+
+        // Environment
+        bluePlatform.SetActive(false);
+        purpleStadium.SetActive(false);
+        synthCity.SetActive(true);
+        playerStartArea.SetActive(true);
+        redemptionPlatform.SetActive(false);
+
+        // Lights
+        platformLight.SetActive(false);
+        redemptionLight.SetActive(false);
+
+        // UI
+        wallUI.SetActive(false);
+        redemptionUI.SetActive(false);
+
+        // Props
+        playerShield.SetActive(false);
     }
 
     void GameOver()

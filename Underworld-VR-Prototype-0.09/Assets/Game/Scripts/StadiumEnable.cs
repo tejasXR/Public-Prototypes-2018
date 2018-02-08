@@ -15,6 +15,7 @@ public class StadiumEnable : MonoBehaviour {
 
     public bool isStadium;
     public bool isPlatformTriangles;
+    public bool isRedemptionTriangles;
 
     public float delay;
     public float delayCounter;
@@ -22,7 +23,7 @@ public class StadiumEnable : MonoBehaviour {
     public GameObject[] platformTriangles;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         scaleOriginal = abovePlatform.transform.localScale.y;
     }
 
@@ -40,19 +41,24 @@ public class StadiumEnable : MonoBehaviour {
         {
             scaleCurrent = 0;
             StartCoroutine(PlatformTraingleFlash());
+        }
 
-            /*foreach (GameObject platformTriangle in platformTriangles)
+        if (isRedemptionTriangles)
+        {
+            foreach (GameObject platformTriangle in platformTriangles)
             {
                 platformTriangle.SetActive(false);
-            }*/
+            }
 
+            scaleCurrent = 0;
+            StartCoroutine(PlatformTraingleFlash());
         }
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
-        if (isPlatformTriangles)
+        if (isPlatformTriangles || isRedemptionTriangles)
         {
             if (delayCounter >= 0)
             {
@@ -81,7 +87,37 @@ public class StadiumEnable : MonoBehaviour {
                 scalingDone = true;
             }
         }
-	}
+
+        if (isPlatformTriangles)
+        {
+            if (delayCounter >= 0)
+            {
+                delayCounter -= Time.deltaTime;
+            }
+            else
+            {
+                delayCounter = 0;
+                scaling = true;
+            }
+
+            if (scaling && !scalingDone)
+            {
+
+                foreach (GameObject platformTriangle in platformTriangles)
+                {
+                    platformTriangle.SetActive(true);
+                }
+
+                scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal, Time.deltaTime);
+                abovePlatform.transform.localScale = new Vector3(abovePlatform.transform.localScale.x, scaleCurrent, abovePlatform.transform.localScale.z);
+            }
+
+            if ((scaleCurrent / scaleOriginal) > .98f)
+            {
+                scalingDone = true;
+            }
+        }
+    }
 
     IEnumerator StadiumFlash()
     {

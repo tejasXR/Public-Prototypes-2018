@@ -40,7 +40,7 @@ public class RedemptionLightScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.redemptionActive)
+        //if (gameManager.redemptionActive)
         {
             delayCounter -= Time.deltaTime;
             if (delayCounter <= 0)

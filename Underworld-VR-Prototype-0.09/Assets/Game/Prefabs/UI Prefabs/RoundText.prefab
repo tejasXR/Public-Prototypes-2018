@@ -151,7 +151,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Wave One
+  m_text: ROUND ONE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 465fc295183d6b14088229ebd871621e, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 465fc295183d6b14088229ebd871621e,
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0

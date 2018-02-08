@@ -12,7 +12,9 @@ public class WallUI : MonoBehaviour {
     public Transform timerStartTransform;
     public Transform timerTargetTransform;
     public GameObject timerObj;
-    public TextMeshPro titleText;
+    public TextMeshPro killCountText;
+
+    public TextMeshPro[] textAlphaControl;
 
     public GameObject wallUIWhole;
 
@@ -109,13 +111,16 @@ public class WallUI : MonoBehaviour {
         if ((isRoundUI && gameManager.redemptionActive) || (isRedemptionUI && gameManager.roundActive))
         {
             wallUIWhole.SetActive(false);
-        }     
+        }
 
-        titleText.alpha = alpha;
+        foreach (TextMeshPro text in textAlphaControl)
+        {
+            text.alpha = alpha;
+        }
 
         enemiesLeft = Mathf.Lerp(enemiesLeft, (gameManager.enemiesToSpawn - gameManager.enemiesDestroyed), Time.deltaTime * 2f);
 
-        titleText.text = Mathf.RoundToInt(enemiesLeft).ToString();
+        killCountText.text = Mathf.RoundToInt(enemiesLeft).ToString();
 
     }
 
@@ -124,34 +129,34 @@ public class WallUI : MonoBehaviour {
         switch (gameManager.roundCurrent)
         {
             case 1:
-                titleText.text = "ROUND ONE";
+                killCountText.text = "ROUND ONE";
                 break;
             case 2:
-                titleText.text = "ROUND TWO";
+                killCountText.text = "ROUND TWO";
                 break;
             case 3:
-                titleText.text = "ROUND THREE";
+                killCountText.text = "ROUND THREE";
                 break;
             case 4:
-                titleText.text = "ROUND FOUR";
+                killCountText.text = "ROUND FOUR";
                 break;
             case 5:
-                titleText.text = "ROUND FIVE";
+                killCountText.text = "ROUND FIVE";
                 break;
             case 6:
-                titleText.text = "ROUND SIX";
+                killCountText.text = "ROUND SIX";
                 break;
             case 7:
-                titleText.text = "ROUND SEVEN";
+                killCountText.text = "ROUND SEVEN";
                 break;
             case 8:
-                titleText.text = "ROUND EIGHT";
+                killCountText.text = "ROUND EIGHT";
                 break;
             case 9:
-                titleText.text = "ROUND NINE";
+                killCountText.text = "ROUND NINE";
                 break;
             case 10:
-                titleText.text = "ROUND TEN";
+                killCountText.text = "ROUND TEN";
                 break;
         }
     }
