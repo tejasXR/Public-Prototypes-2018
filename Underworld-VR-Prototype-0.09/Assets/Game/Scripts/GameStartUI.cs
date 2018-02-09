@@ -31,7 +31,7 @@ public class GameStartUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         controllerRight = SteamVR_Controller.Input((int)trackedRight.index);
-        controllerLeft = SteamVR_Controller.Input((int)trackedLeft.index);        
+        controllerLeft = SteamVR_Controller.Input((int)trackedLeft.index);
     }
 
     private void OnTriggerStay(Collider other)

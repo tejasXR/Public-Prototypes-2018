@@ -12,7 +12,7 @@ public class FillBoards : MonoBehaviour {
     public Vector3 scaleOriginal;
     public Vector3 scaleCurrent;
 
-    //public TextMeshPro percentText;
+    public TextMeshPro percentText;
 
     public Color colorCurrent;
     public Color colorOriginal;
@@ -48,11 +48,11 @@ public class FillBoards : MonoBehaviour {
         if (gameManager.roundActive)
         {
             //print(gameManager.enemiesDestroyed / gameManager.enemiesToSpawn);
-            enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3f);
+            enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3.5f);
 
-            scaleCurrent = Vector3.Lerp(scaleCurrent, scaleOriginal * enemiesDestroyedPercent, Time.deltaTime * 3f);
+            scaleCurrent = Vector3.Lerp(scaleCurrent, scaleOriginal * enemiesDestroyedPercent, Time.deltaTime * 3.5f);
 
-            //percentText.text = Mathf.RoundToInt(enemiesDestroyedPercent).ToString();
+            percentText.text = Mathf.RoundToInt(enemiesDestroyedPercent * 100).ToString() + "%";
 
             solidFill.transform.localScale = scaleCurrent;
 
