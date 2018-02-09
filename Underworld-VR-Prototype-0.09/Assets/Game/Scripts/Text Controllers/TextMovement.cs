@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TextMovement : MonoBehaviour {
 
-    public GameObject player; //cameraEye object
+    public GameObject playerEye; //cameraEye object
     public GameObject textObject;
     //public TextMesh text;
     public float secondsAlive;
@@ -13,13 +13,14 @@ public class TextMovement : MonoBehaviour {
     public bool panMove;
     public bool follow;
     //public bool lookAtPlayer;
+    public float distanceFromPlayer;
 
 
 
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
 
         if(flash)
         {
@@ -31,7 +32,7 @@ public class TextMovement : MonoBehaviour {
     void Update()
     {
         
-        var playerDirection = player.transform.position - transform.position;
+        var playerDirection = playerEye.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = rotation;
 
@@ -42,7 +43,7 @@ public class TextMovement : MonoBehaviour {
 
         if (follow)
         {
-            transform.position = Vector3.Lerp(transform.position, player.transform.forward * 5, Time.deltaTime * 2f);
+            transform.position = Vector3.Lerp(transform.position, playerEye.transform.forward/* * distanceFromPlayer*/, Time.deltaTime * 2f);
         }
     }
 

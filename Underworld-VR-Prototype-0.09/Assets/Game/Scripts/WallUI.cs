@@ -61,7 +61,7 @@ public class WallUI : MonoBehaviour {
         }
 
         transform.position = UIStartPosition.position;
-        timerObj.transform.position = timerStartTransform.position;
+        //timerObj.transform.position = timerStartTransform.position;
 
         
 
@@ -85,18 +85,23 @@ public class WallUI : MonoBehaviour {
 
             transform.position = Vector3.Lerp(transform.position, UITargetPosition.position, Time.deltaTime * moveSpeed);
 
-            bufferTime -= Time.deltaTime;
-            if (bufferTime <= 0)
+            if (isRedemptionUI)
             {
-                timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerTargetTransform.position, Time.deltaTime);
-                bufferTime = 0;
+                bufferTime -= Time.deltaTime;
+                if (bufferTime <= 0)
+                {
+                    timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerTargetTransform.position, Time.deltaTime);
+                    bufferTime = 0;
+                }
             }
+
+            
         }
         else //automatically fade out if the player is not in a round
         {
             if (isRoundUI)
             {
-                timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerStartTransform.position, Time.deltaTime * 1.5f);
+                //timerObj.transform.position = Vector3.Lerp(timerObj.transform.position, timerStartTransform.position, Time.deltaTime * 1.5f);
                 alpha = Mathf.SmoothStep(alpha, 0, Time.deltaTime * 7f);
 
                 if (alpha < .01)

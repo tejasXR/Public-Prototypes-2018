@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
     public float redemptionMeterMax;
 
     public GameObject roundText;
+    public GameObject roundCompleteUI;
+
     public GameObject wallUI;
     public GameObject redemptionUI;
 
@@ -252,7 +254,8 @@ public class GameManager : MonoBehaviour {
     {
         roundCurrent++;
         CheckRound();
-        Instantiate(roundText);
+        roundCompleteUI.SetActive(true);
+        //Instantiate(roundText);
         wallUI.SetActive(true);
         //roundUntilNextUpgrade--;
         

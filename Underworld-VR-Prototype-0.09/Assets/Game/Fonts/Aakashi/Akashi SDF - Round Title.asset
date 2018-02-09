@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: -667331979, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: Akashi SDF - Round Title
   m_EditorClassIdentifier: 
-  hashCode: -1344583544
+  hashCode: 497238919
   material: {fileID: 21139881962045334}
   materialHashCode: -2078106365
   fontAssetType: 1
@@ -1011,9 +1011,9 @@ Material:
     - _FaceDilate: 0
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
-    - _GlowInner: 0.05
+    - _GlowInner: 0.044
     - _GlowOffset: 1
-    - _GlowOuter: 0.43
+    - _GlowOuter: 0
     - _GlowPower: 1
     - _GradientScale: 6
     - _LightAngle: 3.1416
@@ -1022,11 +1022,11 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.146
+    - _OutlineWidth: 0.211
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.4734848
+    - _ScaleRatioB: 0.6770833
     - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
