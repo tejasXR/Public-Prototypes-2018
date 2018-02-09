@@ -23,6 +23,9 @@ public class FillBoards : MonoBehaviour {
 
     public float enemiesDestroyedCounter;
 
+    public StadiumFlicker outlineFlicker;
+
+
 
 
     // Use this for initialization
@@ -60,6 +63,14 @@ public class FillBoards : MonoBehaviour {
             {
                 colorCurrent = Color.white;
                 enemiesDestroyedCounter = gameManager.enemiesDestroyed;
+            }
+
+            if (Mathf.Abs(enemiesDestroyedPercent - (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn)) < .01f)
+            {
+                outlineFlicker.shouldFlicker = false;
+            } else
+            {
+                outlineFlicker.shouldFlicker = true;
             }
 
             colorCurrent = Color.Lerp(colorCurrent, colorOriginal, Time.deltaTime * 1.5f);

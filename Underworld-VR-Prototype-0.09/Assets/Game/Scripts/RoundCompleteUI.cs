@@ -18,6 +18,11 @@ public class RoundCompleteUI : MonoBehaviour {
 
     public GameObject UIWhole;
 
+    public int triangleCurrent;
+
+
+
+
 	// Use this for initialization
 	void Start () {
         //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -36,13 +41,15 @@ public class RoundCompleteUI : MonoBehaviour {
 
     private void OnEnable()
     {
+        triangleCurrent = gameManager.roundCurrent - 1;
+
         foreach (GameObject mesh in triangleMeshes)
         {
             Renderer rend = mesh.GetComponent<Renderer>();
             rend.material = mats[0]; //sets all triangles to incomplete round UI material
         }
 
-        for (int i = 0; i <= (gameManager.roundCurrent - 1); i++)
+        for (int i = 0; i <= (triangleCurrent); i++)
         {
             Renderer rend = triangleMeshes[i].GetComponent<Renderer>();
             rend.material = mats[1]; //sets all triangles to complete round UI material
@@ -54,6 +61,8 @@ public class RoundCompleteUI : MonoBehaviour {
 
         randomTextNum = Random.Range(1, 20);
         RandomText();
+
+       
 
     }
 
@@ -187,73 +196,75 @@ public class RoundCompleteUI : MonoBehaviour {
 
     IEnumerator RoundCurrentTriangleFlash()
     {
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        UIWhole.SetActive(true);
+
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
 
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[gameManager.roundCurrent].SetActive(false);
+        triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
 
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
 
-        triangleMeshes[gameManager.roundCurrent].SetActive(true);
+
+        triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(1f);
 
         UIWhole.gameObject.SetActive(false);

@@ -14,6 +14,8 @@ public class StadiumFlicker : MonoBehaviour {
 
     public bool shouldFlicker;
 
+    public bool alwaysFlicker;
+
 	// Use this for initialization
 	void Start () {
         //flickerTimer = flickerFrequency;
@@ -39,10 +41,18 @@ public class StadiumFlicker : MonoBehaviour {
                     triangleStadiums[triangleStadiumCount].SetActive(true);
                     triangleStadiumCount++;
 
-                    if (triangleStadiumCount == (triangleStadiums.Length))
+                    if (triangleStadiumCount == (triangleStadiums.Length) )
                     {
+                        shouldFlicker = false;
                         flickerTimer = flickerFrequency;
                         triangleStadiumCount = 0;
+
+                        if (alwaysFlicker)
+                        {
+                            shouldFlicker = true;
+                        }
+
+
                     }
                     else
                     {
