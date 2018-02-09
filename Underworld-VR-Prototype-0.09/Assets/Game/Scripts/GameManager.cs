@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     public GameObject roundText;
     public GameObject roundCompleteUI;
 
-    public GameObject wallUI;
+    public GameObject roundUI;
     public GameObject redemptionUI;
 
      public float roundFirstStartBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour {
         {
             redemptionMeter -= Time.deltaTime;
 
-            if (enemiesDestroyed == enemiesToSpawn) // If the play has destroyed all the enemies
+            if (enemiesDestroyed >= 5) // If the play has destroyed all the enemies
             {
                 roundCurrent -= 1; // Reset the round number to when the player died
                 StopRedemption();
@@ -256,7 +256,7 @@ public class GameManager : MonoBehaviour {
         CheckRound();
         roundCompleteUI.SetActive(true);
         //Instantiate(roundText);
-        wallUI.SetActive(true);
+        roundUI.SetActive(true);
         //roundUntilNextUpgrade--;
         
         
@@ -304,7 +304,7 @@ public class GameManager : MonoBehaviour {
         if (redemptionStart)
         {
             enemiesToSpawn = 10; //Thirty seconds
-            enemiesOnScreenMax = 1;
+            enemiesOnScreenMax = 2;
         }
         
 
@@ -375,7 +375,7 @@ public class GameManager : MonoBehaviour {
     // Turn stuff off (black-out) for the redemption buffer timer to run down
     void TurnOffForRedemption()
     {
-        wallUI.SetActive(false);
+        roundUI.SetActive(false);
         purpleStadium.SetActive(false);
         bluePlatform.SetActive(false);
         platformLight.SetActive(false);
@@ -422,7 +422,7 @@ public class GameManager : MonoBehaviour {
         redemptionLight.SetActive(false);
 
         // UI
-        wallUI.SetActive(false);
+        roundUI.SetActive(false);
         redemptionUI.SetActive(false);
 
         // Props
