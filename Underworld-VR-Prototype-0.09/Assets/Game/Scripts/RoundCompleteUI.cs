@@ -20,7 +20,7 @@ public class RoundCompleteUI : MonoBehaviour {
 	void Start () {
         //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        foreach (GameObject mesh in triangleMeshes)
+        /*foreach (GameObject mesh in triangleMeshes)
         {
             Renderer rend = mesh.GetComponent<Renderer>();
             rend.material = mats[0]; //sets all triangles to incomplete round UI material
@@ -28,7 +28,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
         StartCoroutine(RoundCurrentTriangleFlash());
 
-        transform.position = new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z);
+        transform.position = new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z);*/
 
     }
 
@@ -40,7 +40,7 @@ public class RoundCompleteUI : MonoBehaviour {
             rend.material = mats[0]; //sets all triangles to incomplete round UI material
         }
 
-        for (int i = 0; i <= gameManager.roundCurrent; i++)
+        for (int i = 1; i <= gameManager.roundCurrent; i++)
         {
             Renderer rend = triangleMeshes[i].GetComponent<Renderer>();
             rend.material = mats[1]; //sets all triangles to complete round UI material
@@ -60,7 +60,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
         if (moveBack)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z), Time.deltaTime * 1.5f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z), Time.deltaTime * 5f);
         }
         else
         {
@@ -217,7 +217,7 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(1f);
 
         moveBack = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         done = true;
 

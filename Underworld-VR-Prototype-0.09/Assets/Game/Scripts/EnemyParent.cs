@@ -66,10 +66,12 @@ public class EnemyParent : MonoBehaviour {
             {
                 damage = other.gameObject.GetComponent<EnemyBullet>().damage;
             }
+            Destroy(other.gameObject);
             enemyHealth -= damage;            
 
             if (enemyHealth <= 0)
             {
+                print("enemyDestroyCalled");
                 EnemyDestroy();
                 Destroy(this.gameObject);
             }

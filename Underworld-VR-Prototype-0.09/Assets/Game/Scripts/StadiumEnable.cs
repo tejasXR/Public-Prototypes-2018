@@ -189,7 +189,7 @@ public class StadiumEnable : MonoBehaviour {
         yield return new WaitForSeconds(.05f);
 
         platformTriangles[3].SetActive(false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.03f);
 
         platformTriangles[2].SetActive(false);
         yield return new WaitForSeconds(.02f);
@@ -198,7 +198,7 @@ public class StadiumEnable : MonoBehaviour {
         yield return new WaitForSeconds(.05f);
 
         platformTriangles[3].SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.03f);
 
         platformTriangles[1].SetActive(true);
         yield return new WaitForSeconds(.05f);
