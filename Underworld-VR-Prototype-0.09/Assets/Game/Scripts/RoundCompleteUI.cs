@@ -218,6 +218,30 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(.1f);
         triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(.1f);
+
+
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+
+        /*
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        triangleMeshes[triangleCurrent].SetActive(true);
+        yield return new WaitForSeconds(.1f);
         triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
 
@@ -241,28 +265,7 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(.1f);
         triangleMeshes[triangleCurrent].SetActive(false);
         yield return new WaitForSeconds(.1f);
-
-        triangleMeshes[triangleCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(true);
-        yield return new WaitForSeconds(.1f);
-        triangleMeshes[triangleCurrent].SetActive(false);
-        yield return new WaitForSeconds(.1f);
-
+        */
 
         triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(1f);
@@ -281,6 +284,8 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(.05f);
         UIWhole.gameObject.SetActive(false);
         yield return new WaitForSeconds(.05f);
+
+        /*
         UIWhole.gameObject.SetActive(true);
         yield return new WaitForSeconds(.05f);
         UIWhole.gameObject.SetActive(false);
@@ -289,7 +294,7 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(.05f);
         UIWhole.gameObject.SetActive(false);
         yield return new WaitForSeconds(.05f);
-        
+        */
 
         //moveBack = true;
         //yield return new WaitForSeconds(1f);

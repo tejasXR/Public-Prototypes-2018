@@ -44,6 +44,11 @@ public class FillBoards : MonoBehaviour {
 
     }
 
+    private void OnEnable()
+    {
+        outlineFlicker.shouldFlicker = true;
+    }
+
     // Update is called once per frame
     void Update () {
 
@@ -62,12 +67,13 @@ public class FillBoards : MonoBehaviour {
             if (enemiesDestroyedCounter < gameManager.enemiesDestroyed)
             {
                 colorCurrent = Color.white;
+                //outlineFlicker.shouldFlicker = true;
                 enemiesDestroyedCounter = gameManager.enemiesDestroyed;
             }
 
             if (Mathf.Abs(enemiesDestroyedPercent - (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn)) < .01f)
             {
-                outlineFlicker.shouldFlicker = false;
+                //outlineFlicker.shouldFlicker = false;
             } else
             {
                 outlineFlicker.shouldFlicker = true;
