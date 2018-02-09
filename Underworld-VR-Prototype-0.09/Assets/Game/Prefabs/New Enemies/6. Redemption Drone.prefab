@@ -493,10 +493,10 @@ MonoBehaviour:
   enemyGiveBullets: 0
   explosionPrefab: {fileID: 1587944432538656, guid: 08691fc65ec26f341a8116e4fce1f92c,
     type: 2}
-  earnedBulletObj: {fileID: 1962754777400622, guid: 9ca3869d5b15b8842a2e47b18eaa56c2,
+  explosionTextObj: {fileID: 1962754777400622, guid: 9ca3869d5b15b8842a2e47b18eaa56c2,
     type: 2}
-  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
-    type: 2}
+  explosionText: {fileID: 0}
+  isRedemptionDrone: 1
 --- !u!114 &114619853065379972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletFireRate: 1.25
+  enemyBulletFireRate: 0.75
   enemyAttackTimer: 0
   enemyBulletSpeed: 8
   enemyBulletDamage: 1

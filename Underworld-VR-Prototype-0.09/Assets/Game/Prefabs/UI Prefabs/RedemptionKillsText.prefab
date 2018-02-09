@@ -39,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4113880592662400}
   - component: {fileID: 114573016002721612}
+  - component: {fileID: 114253571993297214}
   m_Layer: 0
   m_Name: RedemptionKillsText
   m_TagString: Untagged
@@ -101,6 +102,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214148207314790}
   m_Mesh: {fileID: 0}
+--- !u!114 &114253571993297214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962754777400622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615ea7aefd3d1ff4dbb4145925f4c3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killNumText: {fileID: 114923947219076326}
 --- !u!114 &114573016002721612
 MonoBehaviour:
   m_ObjectHideFlags: 1

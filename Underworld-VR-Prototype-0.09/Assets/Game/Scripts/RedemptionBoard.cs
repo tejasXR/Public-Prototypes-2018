@@ -34,10 +34,12 @@ public class RedemptionBoard : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (countDown)
+        
+
+        if (!countDown && gameManager.redemptionActive)
         {
             StartCoroutine(RedemptionBoardCountDown());
-            countDown = false;
+            countDown = true;
         }
 
 		

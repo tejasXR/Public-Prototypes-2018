@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour {
         if (redemptionStart && redemptionBufferTime > 0)
         {
             redemptionBufferTime -= Time.deltaTime;
-            if (redemptionBufferTime < 2 && !redemptionPreStart)
+            if (redemptionBufferTime < 3 && !redemptionPreStart)
             {
                 PreRedemption();
                 redemptionPreStart = true;
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour {
         {
             redemptionMeter -= Time.deltaTime;
 
-            if (enemiesDestroyed >= 5) // If the play has destroyed all the enemies
+            if (enemiesDestroyed >= 3) // If the play has destroyed all the enemies
             {
                 roundCurrent -= 1; // Reset the round number to when the player died
                 StopRedemption();
@@ -358,7 +358,7 @@ public class GameManager : MonoBehaviour {
 
     void StartRedemption()
     {
-        redemptionUI.SetActive(true);
+        //redemptionUI.SetActive(true);
         playerShield.SetActive(false);
     }
 
@@ -367,6 +367,7 @@ public class GameManager : MonoBehaviour {
     {
         weaponActive.WeaponToActivate("SABER SWORD");
         playerShield.SetActive(false);
+        redemptionUI.SetActive(true);
         redemptionLight.SetActive(true);
         redemptionPlatform.SetActive(true);
         CheckRound();

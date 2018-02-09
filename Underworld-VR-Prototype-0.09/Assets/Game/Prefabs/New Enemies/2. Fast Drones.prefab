@@ -3127,16 +3127,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  enemySpawnManager: {fileID: 0}
   player: {fileID: 0}
   enemyHealth: 1
   enemyGiveBullets: 10
-  enemyRedemptionPoints: 0
   explosionPrefab: {fileID: 1957070108246546, guid: 67832243d348c7447bb24e3375b1ffc6,
     type: 2}
-  earnedBulletObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+  explosionTextObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}
-  earnedBulletText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+  explosionText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}
+  isRedemptionDrone: 0
 --- !u!114 &114847947163347374
 MonoBehaviour:
   m_ObjectHideFlags: 1

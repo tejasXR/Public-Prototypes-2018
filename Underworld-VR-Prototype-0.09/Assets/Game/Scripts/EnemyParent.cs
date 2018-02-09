@@ -20,9 +20,11 @@ public class EnemyParent : MonoBehaviour {
 
     //Enemy On Destroy
     public GameObject explosionPrefab; //the explosion effect when destroyed
-    public GameObject earnedBulletObj; //the text object that tells players how many bullets they've earned
-    public TextMeshPro earnedBulletText;
+    public GameObject explosionTextObj; //the text object that tells players how many bullets they've earned
+    public TextMeshPro explosionText;
     private float enemyDestroyTimer = 2f;
+
+    public bool isRedemptionDrone;
 
 
 
@@ -34,7 +36,10 @@ public class EnemyParent : MonoBehaviour {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
 
-        earnedBulletText.text = "+ " + enemyGiveBullets.ToString();
+        if (!isRedemptionDrone)
+        {
+            explosionText.text = "+ " + enemyGiveBullets.ToString();
+        }
 
         //enemyHealth -= (enemyHealth * playerController.enemyNegativeHealthMultiplier);
     }
@@ -100,12 +105,13 @@ public class EnemyParent : MonoBehaviour {
         if (enemyGiveBullets > 0)
         {
             playerController.playerBullets += enemyGiveBullets + playerController.enemyGiveAdditionalBullets;
-            Instantiate(earnedBulletObj, transform.position, transform.rotation);
+            Instantiate(explosionTextObj, transform.position, transform.rotation);
         }
 
         if (gameManager.redemptionActive)
         {
-            gameManager.redemptionMeter = gameManager.redemptionMeterMax; // Fill up the redemption meter so it can properly count down again
+            Instantiate(explosionTextObj, transform.position, transform.rotation);
+            //gameManager.redemptionMeter = gameManager.redemptionMeterMax; // Fill up the redemption meter so it can properly count down again
         }
 
         Instantiate(explosionPrefab, transform.position, transform.rotation);
