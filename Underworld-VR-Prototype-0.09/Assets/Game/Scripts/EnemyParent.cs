@@ -71,7 +71,7 @@ public class EnemyParent : MonoBehaviour {
 
             if (enemyHealth <= 0)
             {
-                print("enemyDestroyCalled");
+                //print("enemyDestroyCalled");
                 EnemyDestroy();
                 Destroy(this.gameObject);
             }

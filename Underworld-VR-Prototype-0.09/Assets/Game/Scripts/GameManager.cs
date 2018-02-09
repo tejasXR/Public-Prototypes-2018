@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour {
     public float timeLeftCounter; //The variable that counts down in the update statement
     public float timeLeft; //The variable that shows how long each wave lasts
 
-    public int enemiesToSpawn; //Keeps track of how many total enemies to Spawn in a round
-    public int enemiesDestroyed; //Keeps track of how many enemies the player has destroyed
+    public float enemiesToSpawn; //Keeps track of how many total enemies to Spawn in a round
+    public float enemiesDestroyed; //Keeps track of how many enemies the player has destroyed
     //public int enemiesLeft;
-    public int enemiesOnScreen; //Keeps track of how many enemies are currently on screen
-    public int enemiesOnScreenMax;
+    public float enemiesOnScreen; //Keeps track of how many enemies are currently on screen
+    public float enemiesOnScreenMax;
 
     //public int redemptionEnemiestoSpawn;
 
