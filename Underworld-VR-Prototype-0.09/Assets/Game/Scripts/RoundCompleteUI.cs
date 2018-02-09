@@ -16,6 +16,8 @@ public class RoundCompleteUI : MonoBehaviour {
     public TextMeshPro textSaying;
     public int randomTextNum;
 
+    public GameObject UIWhole;
+
 	// Use this for initialization
 	void Start () {
         //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -40,7 +42,7 @@ public class RoundCompleteUI : MonoBehaviour {
             rend.material = mats[0]; //sets all triangles to incomplete round UI material
         }
 
-        for (int i = 1; i <= gameManager.roundCurrent; i++)
+        for (int i = 0; i <= (gameManager.roundCurrent - 1); i++)
         {
             Renderer rend = triangleMeshes[i].GetComponent<Renderer>();
             rend.material = mats[1]; //sets all triangles to complete round UI material
@@ -60,7 +62,8 @@ public class RoundCompleteUI : MonoBehaviour {
 
         if (moveBack)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z), Time.deltaTime * 5f);
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z), Time.deltaTime * 5f);
+            done = true;
         }
         else
         {
@@ -80,6 +83,42 @@ public class RoundCompleteUI : MonoBehaviour {
 
     void RandomText()
     {
+
+        switch (gameManager.roundCurrent)
+        {
+            case 1:
+                textSaying.text = "Round One";
+                break;
+            case 2:
+                textSaying.text = "Round Two";
+                break;
+            case 3:
+                textSaying.text = "Round Three";
+                break;
+            case 4:
+                textSaying.text = "Round Four";
+                break;
+            case 5:
+                textSaying.text = "Round Five";
+                break;
+            case 6:
+                textSaying.text = "Round Six";
+                break;
+            case 7:
+                textSaying.text = "Round Seven";
+                break;
+            case 8:
+                textSaying.text = "Round Eight";
+                break;
+            case 9:
+                textSaying.text = "Round Nine";
+                break;
+            case 10:
+                textSaying.text = "Round Ten";
+                break;
+        }
+
+        /*
         switch (randomTextNum)
         {
             case 1:
@@ -143,6 +182,7 @@ public class RoundCompleteUI : MonoBehaviour {
                 textSaying.text = "Holy macanoli!";
                 break;
         }
+        */
     }
 
     IEnumerator RoundCurrentTriangleFlash()
@@ -216,8 +256,32 @@ public class RoundCompleteUI : MonoBehaviour {
         triangleMeshes[gameManager.roundCurrent].SetActive(true);
         yield return new WaitForSeconds(1f);
 
-        moveBack = true;
-        yield return new WaitForSeconds(1f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        
+
+        //moveBack = true;
+        //yield return new WaitForSeconds(1f);
 
         done = true;
 
