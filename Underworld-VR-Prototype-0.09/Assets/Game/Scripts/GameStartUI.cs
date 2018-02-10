@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameStartUI : MonoBehaviour {
@@ -10,9 +11,13 @@ public class GameStartUI : MonoBehaviour {
     private SteamVR_Controller.Device controllerRight;
     private SteamVR_Controller.Device controllerLeft;
 
-    public Material[] mats;
+    //public TMP_FontAsset[] fonts;
+
+    public Color32[] textColor;
 
     private GameManager gameManager;
+
+    private TextMeshPro text;
 
     //public GameObject interactionUI;
 
@@ -23,8 +28,8 @@ public class GameStartUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rend = GetComponent<Renderer>();
-        rend.material = mats[0];
-
+        //rend.material = mats[0];
+        text = GetComponent<TextMeshPro>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 	
@@ -36,7 +41,9 @@ public class GameStartUI : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        rend.material = mats[1];
+        //rend.material = mats[1];
+
+        text.color = new Color32(255, 255, 255, 255);
 
         if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
@@ -48,7 +55,10 @@ public class GameStartUI : MonoBehaviour {
     {
         if (!gameStart)
         {
-            rend.material = mats[0];
+            //rend.material = mats[0];
+
+            text.color = new Color32(0, 0, 0, 255);
+
         }
     }
 }
