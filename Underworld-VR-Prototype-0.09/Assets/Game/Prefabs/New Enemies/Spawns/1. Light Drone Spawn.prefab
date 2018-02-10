@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnTimer: 0.5
-  enemySpawnObj: {fileID: 1939284057369390, guid: b1c133328078c3a44af2859d5ca387bc,
+  enemySpawnObj: {fileID: 1645465024364282, guid: 2f2926683732a514695d3c634155f982,
     type: 2}
   spawnPoint: {fileID: 4017920081385994}
   mesh: {fileID: 1772129945141078}
