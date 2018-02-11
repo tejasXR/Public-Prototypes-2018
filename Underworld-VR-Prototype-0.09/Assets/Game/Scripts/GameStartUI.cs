@@ -31,7 +31,9 @@ public class GameStartUI : MonoBehaviour {
         //rend.material = mats[0];
         text = GetComponent<TextMeshPro>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-	}
+
+        text.color = textColor[0];
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,7 +45,7 @@ public class GameStartUI : MonoBehaviour {
     {
         //rend.material = mats[1];
 
-        text.color = new Color32(255, 255, 255, 255);
+        text.color = textColor[1];
 
         if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
@@ -57,7 +59,7 @@ public class GameStartUI : MonoBehaviour {
         {
             //rend.material = mats[0];
 
-            text.color = new Color32(0, 0, 0, 255);
+            text.color = textColor[0];
 
         }
     }
