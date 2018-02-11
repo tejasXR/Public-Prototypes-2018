@@ -29,11 +29,11 @@ public class BulletTextCounter : MonoBehaviour {
         {
             if (bulletSmoothCount <= playerController.playerBullets)
             {
-                bulletSmoothCount += Time.deltaTime * countSpeed;
+                bulletSmoothCount += Time.unscaledDeltaTime * countSpeed;
             }
             else
             {
-                bulletSmoothCount -= Time.deltaTime * countSpeed;
+                bulletSmoothCount -= Time.unscaledDeltaTime * countSpeed;
             }
         }
 
