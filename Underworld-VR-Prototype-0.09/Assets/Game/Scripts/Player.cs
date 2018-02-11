@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
     //public float playerBulletRegeneration = 0;
 
 
-    public TextMeshPro[] bulletCounters;
+    ///public TextMeshPro[] bulletCounters;
 
     //public WeaponActive weaponActive; // Keeps track of the current weapons that the player is using
 
@@ -52,11 +52,11 @@ public class Player : MonoBehaviour {
 
 	void Start ()
     {
-        foreach (TextMeshPro bulletCounter in bulletCounters)
+        /*foreach (TextMeshPro bulletCounter in bulletCounters)
         {
             bulletCounter.text = "" + playerBullets.ToString();
         }
-        bulletString = playerBullets.ToString();
+        bulletString = playerBullets.ToString();*/
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
@@ -65,13 +65,13 @@ public class Player : MonoBehaviour {
     {
         //bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerBullets, Time.deltaTime * 5f));
 
-        if (bulletString != playerBullets.ToString())
+        /*if (bulletString != playerBullets.ToString())
         {
             foreach (TextMeshPro bulletCounter in bulletCounters)
             {
                 bulletCounter.text = "" + playerBullets.ToString();                
             }
-        }
+        }*/
 
         if (playerHealth <= 0)
         {
