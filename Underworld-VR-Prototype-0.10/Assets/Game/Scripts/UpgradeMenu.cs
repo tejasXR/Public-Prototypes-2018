@@ -355,7 +355,7 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentWeaponUnlockItem != oldWeaponUnlockItem && currentWeaponUnlockItem >= 0)
         {
-            weaponUnlockUIList[oldWeaponUnlockItem].sphere.GetComponent<Renderer>().material = menuMat[0];
+            weaponUnlockUIList[oldWeaponUnlockItem].sphere.GetComponent<Renderer>().material = menuMat[2];
             oldWeaponUnlockItem = currentWeaponUnlockItem;
 
             if (currentWeaponUnlockItem == 5)
@@ -372,13 +372,14 @@ public class UpgradeMenu : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+                weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
             }
         }
 
         if (currentWeaponUnlockItem >= 0 && currentWeaponUnlockItem < 5)
         {
             weaponUnlockBoardList[currentWeaponUnlockItem].weaponUpgrade.SetActive(true);
+            //weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition = Vector3.Lerp(weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition, new Vector3(weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition.x, weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition.y, -0.45f), Time.unscaledDeltaTime * 10f);
         }
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && weaponPressUp && weaponUnlockActive && !attackUpgradeActive && !upgradeMenuActive && !defenseUpgradeActive && !upgradeSelected)
@@ -456,7 +457,7 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentAttackUpgradeItem != oldAttackUpgradeItem && currentAttackUpgradeItem >= 0)
         {
-            attackUpgradeUIList[oldAttackUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[0];
+            attackUpgradeUIList[oldAttackUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[2];
             oldAttackUpgradeItem = currentAttackUpgradeItem;
 
             if (currentAttackUpgradeItem == 5)
@@ -478,7 +479,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+                attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
             }
         }
 
@@ -568,7 +569,7 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentDefenseUpgradeItem != oldDefenseUpgradeItem && currentDefenseUpgradeItem >= 0)
         {
-            defenseUpgradeUIList[oldDefenseUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[0];
+            defenseUpgradeUIList[oldDefenseUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[2];
             oldDefenseUpgradeItem = currentDefenseUpgradeItem;
 
             if (currentDefenseUpgradeItem == 5)
@@ -587,7 +588,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+                defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
             }
         }
 
@@ -633,7 +634,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
             //attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
         }
 
@@ -660,7 +661,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+            weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
         }
 
         foreach (WeaponUnlockBoards weapon in weaponUnlockBoardList)
@@ -682,7 +683,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+            defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
         }
 
         foreach (DefenseUpgradeBoards board in defenseUpgradeBoardList)
@@ -713,15 +714,24 @@ public class UpgradeMenu : MonoBehaviour
 
     void MenuReset()
     {
-        firstPressUp = false;
         upgradeMenuOpen = false;
         upgradeMenuActive = false;
+
         attackUpgradeOpen = false;
         attackUpgradeActive = false;
+
         defenseUpgradeOpen = false;
         defenseUpgradeActive = false;
+
         weaponUnlockOpen = false;
         weaponUnlockActive = false;
+
+        firstPressUp = false;
+        weaponPressUp = false;
+        attackPressUp = false;
+        defensePressUp = false;
+
+        shieldHide = true;
 
         currentMainMenuItem = 0;
         oldMainMenuItem = 1;
@@ -739,18 +749,18 @@ public class UpgradeMenu : MonoBehaviour
         // Make all extending UI unavailable
         for (int i = 0; i < 5; i++)
         {
-            weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0]; ;
+            weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2]; ;
         }
 
         for (int i = 0; i < 5; i++)
         {
-            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
             //attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
         }
 
         for (int i = 0; i < 5; i++)
         {
-            defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+            defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
         }
 
         // Make all extending description boards unavailable

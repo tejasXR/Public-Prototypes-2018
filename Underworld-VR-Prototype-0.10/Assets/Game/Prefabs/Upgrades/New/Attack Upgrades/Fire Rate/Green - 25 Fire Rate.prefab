@@ -93,7 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4236876683644450}
   - component: {fileID: 114540920062353318}
-  - component: {fileID: 65363767331078186}
   m_Layer: 0
   m_Name: Green - 25 Fire Rate
   m_TagString: Untagged
@@ -182,7 +181,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1485149429041626}
-  m_LocalRotation: {x: 0.008726418, y: -0, z: -0, w: 0.9999619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_Children:
@@ -466,18 +465,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65363767331078186
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1485149429041626}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.45, y: 1.65, z: 0.13}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114012276576908620
 MonoBehaviour:
