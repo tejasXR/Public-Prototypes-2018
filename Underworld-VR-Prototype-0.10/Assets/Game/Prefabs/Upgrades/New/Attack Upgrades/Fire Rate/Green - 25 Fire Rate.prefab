@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4236876683644450}
   - component: {fileID: 114540920062353318}
+  - component: {fileID: 114013665404262476}
   m_Layer: 0
   m_Name: Green - 25 Fire Rate
   m_TagString: Untagged
@@ -579,6 +580,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114013665404262476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1485149429041626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58185345a509b44bbd8154a8a212798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114118319118588658
 MonoBehaviour:
   m_ObjectHideFlags: 1

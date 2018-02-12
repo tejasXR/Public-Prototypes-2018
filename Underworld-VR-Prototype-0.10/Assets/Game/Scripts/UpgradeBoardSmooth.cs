@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class UpgradeBoardSmooth : MonoBehaviour {
 
-    public Vector3 originalPos;
     //public GameObject player;
 
     // Use this for initialization
     private void Awake()
     {
         //player = GameObject.FindGameObjectWithTag("Player");
-        transform.localPosition = originalPos;
         transform.localPosition = Vector3.zero;
 
     }
