@@ -178,7 +178,7 @@ public class UpgradeMenu : MonoBehaviour
         }
         else if (attackUpgradeActive)
         {
-            cursor.transform.localPosition = new Vector2(-.075f, 0) + (touchpad * .07f);
+            cursor.transform.localPosition = new Vector2(-.075f, 0) + (touchpad * .075f);
             upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(.075f, .1f, .1f), Time.unscaledDeltaTime * 2f);
 
             mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .025f), Time.unscaledDeltaTime * 2f);
@@ -188,7 +188,7 @@ public class UpgradeMenu : MonoBehaviour
         }
         else if (weaponUnlockActive)
         {
-            cursor.transform.localPosition = new Vector2(0f, .075f) + (touchpad * .07f);
+            cursor.transform.localPosition = new Vector2(0f, .075f) + (touchpad * .075f);
             upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(0f, 0f, .1f), Time.unscaledDeltaTime * 2f);
 
             mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .025f), Time.unscaledDeltaTime * 2f);
@@ -197,7 +197,7 @@ public class UpgradeMenu : MonoBehaviour
 
         } else if (defenseUpgradeActive)
         {
-            cursor.transform.localPosition = new Vector2(.1f, 0) + (touchpad * .07f);
+            cursor.transform.localPosition = new Vector2(.1f, 0) + (touchpad * .075f);
             upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(-.075f, .1f, .1f), Time.unscaledDeltaTime * 2f);
 
             mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .025f), Time.unscaledDeltaTime * 2f);
@@ -446,16 +446,23 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentAttackUpgradeItem != oldAttackUpgradeItem && currentAttackUpgradeItem >= 0)
         {
-            attackUpgradeUIList[oldAttackUpgradeItem].sceneImage.color = attackUpgradeUIList[oldAttackUpgradeItem].normalColor;
+            attackUpgradeUIList[oldAttackUpgradeItem].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[oldAttackUpgradeItem].normalMat;
             oldAttackUpgradeItem = currentAttackUpgradeItem;
-            attackUpgradeUIList[currentAttackUpgradeItem].sceneImage.color = attackUpgradeUIList[currentAttackUpgradeItem].highlightColor;
+            attackUpgradeUIList[currentAttackUpgradeItem].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[currentAttackUpgradeItem].highlightMat;
+
+
+
+
+            //attackUpgradeUIList[oldAttackUpgradeItem].sceneImage.color = attackUpgradeUIList[oldAttackUpgradeItem].normalColor;
+            //oldAttackUpgradeItem = currentAttackUpgradeItem;
+            //attackUpgradeUIList[currentAttackUpgradeItem].sceneImage.color = attackUpgradeUIList[currentAttackUpgradeItem].highlightColor;
         }
 
         if (currentAttackUpgradeItem < 0)
         {
             for (int i = 0; i < 5; i++)
             {
-                attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].normalColor;
+                attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[i].normalMat;
             }
         }
 
@@ -600,7 +607,8 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
+            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[i].normalMat;
+            //attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
         }
 
         foreach (AttackUpgradeBoards board in attackUpgradeBoardList)
@@ -702,7 +710,8 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
+            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[i].normalMat;
+            //attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
         }
 
         for (int i = 0; i < 5; i++)
@@ -780,11 +789,14 @@ public class UpgradeMenu : MonoBehaviour
         public string name;
         //public bool hasWeapon;
         //public AudioClip recording;
-        public Image sceneImage;
-        public Color normalColor = Color.white;
-        public Color highlightColor = Color.grey;
-        public Color pressedColor = Color.yellow;
-        public Color unavailableColor = Color.black;
+        //public Image sceneImage;
+        public GameObject sphere;
+        public Material normalMat;
+        public Material highlightMat;
+        //public Color normalColor = Color.white;
+        //public Color highlightColor = Color.grey;
+        //public Color pressedColor = Color.yellow;
+        //public Color unavailableColor = Color.black;
 
     }
 

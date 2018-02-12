@@ -34,7 +34,7 @@ Material:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
     - _MKGlowOffSet: 0
-    - _MKGlowPower: 0.052
+    - _MKGlowPower: 0.276
     - _MKGlowTexStrength: 10
     m_Colors:
     - _Color: {r: 0, g: 0.047058586, b: 1, a: 1}
