@@ -76,6 +76,9 @@ public class UpgradeMenu : MonoBehaviour
 
     public bool shieldHide;
 
+    public Material[] menuMat;
+    public Material[] itemLevelMat;
+
 
     // Use this for initialization
     void Start()
@@ -295,9 +298,9 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentMainMenuItem != oldMainMenuItem)
         {
-            mainMenuUIList[oldMainMenuItem].sceneImage.color = mainMenuUIList[oldMainMenuItem].normalColor;
+            mainMenuUIList[oldMainMenuItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldMainMenuItem = currentMainMenuItem;
-            mainMenuUIList[currentMainMenuItem].sceneImage.color = mainMenuUIList[currentMainMenuItem].highlightColor;
+            mainMenuUIList[currentMainMenuItem].sphere.GetComponent<Renderer>().material = menuMat[1];
 
         }
     }
@@ -353,16 +356,16 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentWeaponUnlockItem != oldWeaponUnlockItem && currentWeaponUnlockItem >= 0)
         {
-            weaponUnlockUIList[oldWeaponUnlockItem].sceneImage.color = weaponUnlockUIList[oldWeaponUnlockItem].normalColor;
+            weaponUnlockUIList[oldWeaponUnlockItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldWeaponUnlockItem = currentWeaponUnlockItem;
-            weaponUnlockUIList[currentWeaponUnlockItem].sceneImage.color = weaponUnlockUIList[currentWeaponUnlockItem].highlightColor;
+            weaponUnlockUIList[currentWeaponUnlockItem].sphere.GetComponent<Renderer>().material = itemLevelMat[currentWeaponUnlockItem];
         }
 
         if (currentWeaponUnlockItem < 0)
         {
             for (int i = 0; i < 5; i++)
             {
-                weaponUnlockUIList[i].sceneImage.color = weaponUnlockUIList[i].normalColor;
+                weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
             }
         }
 
@@ -446,9 +449,9 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentAttackUpgradeItem != oldAttackUpgradeItem && currentAttackUpgradeItem >= 0)
         {
-            attackUpgradeUIList[oldAttackUpgradeItem].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[oldAttackUpgradeItem].normalMat;
+            attackUpgradeUIList[oldAttackUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldAttackUpgradeItem = currentAttackUpgradeItem;
-            attackUpgradeUIList[currentAttackUpgradeItem].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[currentAttackUpgradeItem].highlightMat;
+            attackUpgradeUIList[currentAttackUpgradeItem].sphere.GetComponent<Renderer>().material = itemLevelMat[attackUpgradeBoardList[currentAttackUpgradeItem].level];
 
 
 
@@ -462,7 +465,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[i].normalMat;
+                attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
             }
         }
 
@@ -552,16 +555,16 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentDefenseUpgradeItem != oldDefenseUpgradeItem && currentDefenseUpgradeItem >= 0)
         {
-            defenseUpgradeUIList[oldDefenseUpgradeItem].sceneImage.color = defenseUpgradeUIList[oldDefenseUpgradeItem].normalColor;
+            defenseUpgradeUIList[oldDefenseUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldDefenseUpgradeItem = currentDefenseUpgradeItem;
-            defenseUpgradeUIList[currentDefenseUpgradeItem].sceneImage.color = defenseUpgradeUIList[currentDefenseUpgradeItem].highlightColor;
+            defenseUpgradeUIList[currentDefenseUpgradeItem].sphere.GetComponent<Renderer>().material = itemLevelMat[defenseUpgradeBoardList[currentDefenseUpgradeItem].level];
         }
 
         if (currentDefenseUpgradeItem < 0)
         {
             for (int i = 0; i < 5; i++)
             {
-                defenseUpgradeUIList[i].sceneImage.color = defenseUpgradeUIList[i].normalColor;
+                defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
             }
         }
 
@@ -607,7 +610,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[i].normalMat;
+            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
             //attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
         }
 
@@ -634,7 +637,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            weaponUnlockUIList[i].sceneImage.color = weaponUnlockUIList[i].unavailableColor;
+            weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
         }
 
         foreach (WeaponUnlockBoards weapon in weaponUnlockBoardList)
@@ -656,7 +659,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            defenseUpgradeUIList[i].sceneImage.color = defenseUpgradeUIList[i].unavailableColor;
+            defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
         }
 
         foreach (DefenseUpgradeBoards board in defenseUpgradeBoardList)
@@ -710,7 +713,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = attackUpgradeUIList[i].normalMat;
+            attackUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
             //attackUpgradeUIList[i].sceneImage.color = attackUpgradeUIList[i].unavailableColor;
         }
 
@@ -752,12 +755,13 @@ public class UpgradeMenu : MonoBehaviour
     public class MainMenuUI
     {
         public string name;
+        public GameObject sphere;
         //public bool hasWeapon;
         //public AudioClip recording;
-        public Image sceneImage;
-        public Color normalColor = Color.white;
-        public Color highlightColor = Color.grey;
-        public Color pressedColor = Color.yellow;
+        //public Image sceneImage;
+        //public Color normalColor = Color.white;
+        //public Color highlightColor = Color.grey;
+        //public Color pressedColor = Color.yellow;
         //public Color unavailableColor = Color.black;
 
     }
@@ -766,12 +770,13 @@ public class UpgradeMenu : MonoBehaviour
     public class WeaponUnlockUI
     {
         public string name;
+        public GameObject sphere;
         //public bool hasWeapon;
-        public Image sceneImage;
-        public Color normalColor = Color.white;
-        public Color highlightColor = Color.grey;
-        public Color pressedColor = Color.yellow;
-        public Color unavailableColor = Color.black;
+        //public Image sceneImage;
+        //public Color normalColor = Color.white;
+        //public Color highlightColor = Color.grey;
+        //public Color pressedColor = Color.yellow;
+        //public Color unavailableColor = Color.black;
 
     }
 
@@ -791,8 +796,8 @@ public class UpgradeMenu : MonoBehaviour
         //public AudioClip recording;
         //public Image sceneImage;
         public GameObject sphere;
-        public Material normalMat;
-        public Material highlightMat;
+        //public Material normalMat;
+        //public Material highlightMat;
         //public Color normalColor = Color.white;
         //public Color highlightColor = Color.grey;
         //public Color pressedColor = Color.yellow;
@@ -812,11 +817,12 @@ public class UpgradeMenu : MonoBehaviour
     public class DefenseUpgradeUI
     {
         public string name;
-        public Image sceneImage;
-        public Color normalColor = Color.white;
-        public Color highlightColor = Color.grey;
-        public Color pressedColor = Color.yellow;
-        public Color unavailableColor = Color.black;
+        public GameObject sphere;
+        //public Image sceneImage;
+        //public Color normalColor = Color.white;
+        //public Color highlightColor = Color.grey;
+        //public Color pressedColor = Color.yellow;
+        //public Color unavailableColor = Color.black;
     }
 
     [System.Serializable]
