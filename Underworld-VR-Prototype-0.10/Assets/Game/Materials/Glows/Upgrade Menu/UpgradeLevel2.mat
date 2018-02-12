@@ -78,7 +78,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MKGlowPower: 0.07
+    - _MKGlowPower: 0.15
     - _MKGlowTexStrength: 1
     - _Metallic: 0
     - _Mode: 0
@@ -101,6 +101,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _MKGlowColor: {r: 0.034482718, g: 1, b: 0, a: 1}
-    - _MKGlowTexColor: {r: 0.07586217, g: 1, b: 0, a: 1}
+    - _MKGlowTexColor: {r: 0.7794118, g: 0.7794118, b: 0.7794118, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}

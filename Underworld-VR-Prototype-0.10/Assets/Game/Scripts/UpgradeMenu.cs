@@ -169,43 +169,42 @@ public class UpgradeMenu : MonoBehaviour
 
         if (upgradeMenuActive)
         {
-            cursor.transform.localPosition = touchpad * .125f;
-            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(0f, .1f, .1f), Time.unscaledDeltaTime * 2f);
+            cursor.transform.localPosition = Vector3.Lerp(cursor.transform.localPosition, touchpad * .125f, Time.unscaledDeltaTime * 10f);
+            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(0f, .1f, .1f), Time.unscaledDeltaTime * 10f);
 
-            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, Vector3.zero, Time.unscaledDeltaTime * 2f);
-            attackMenu.transform.localPosition = Vector3.Lerp(attackMenu.transform.localPosition, new Vector3(-.075f, 0f, 0f), Time.unscaledDeltaTime * 2f);
-            weaponMenu.transform.localPosition = Vector3.Lerp(weaponMenu.transform.localPosition, new Vector3(0f, .075f, 0f), Time.unscaledDeltaTime * 2f);
-            defenseMenu.transform.localPosition = Vector3.Lerp(defenseMenu.transform.localPosition, new Vector3(.075f, .0f, 0f), Time.unscaledDeltaTime * 2f);
-
+            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, Vector3.zero, Time.unscaledDeltaTime * 10f);
+            attackMenu.transform.localPosition = Vector3.Lerp(attackMenu.transform.localPosition, new Vector3(-.075f, 0f, 0f), Time.unscaledDeltaTime * 10f);
+            weaponMenu.transform.localPosition = Vector3.Lerp(weaponMenu.transform.localPosition, new Vector3(0f, .075f, 0f), Time.unscaledDeltaTime * 10f);
+            defenseMenu.transform.localPosition = Vector3.Lerp(defenseMenu.transform.localPosition, new Vector3(.075f, .0f, 0f), Time.unscaledDeltaTime * 10f);
 
         }
         else if (attackUpgradeActive)
         {
-            cursor.transform.localPosition = new Vector2(-.075f, 0) + (touchpad * .095f);
-            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(.075f, .1f, .1f), Time.unscaledDeltaTime * 2f);
+            cursor.transform.localPosition = Vector2.Lerp(cursor.transform.localPosition, new Vector2(-.075f, 0) + (touchpad * .095f), Time.unscaledDeltaTime * 10f);
+            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(.075f, .1f, .1f), Time.unscaledDeltaTime * 10f);
 
-            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .025f), Time.unscaledDeltaTime * 2f);
-            weaponMenu.transform.localPosition = Vector3.Lerp(weaponMenu.transform.localPosition, new Vector3(0f, .075f, .025f), Time.unscaledDeltaTime * 2f);
-            defenseMenu.transform.localPosition = Vector3.Lerp(defenseMenu.transform.localPosition, new Vector3(.075f, 0f, .025f), Time.unscaledDeltaTime * 2f);
+            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .1f), Time.unscaledDeltaTime * 10f);
+            weaponMenu.transform.localPosition = Vector3.Lerp(weaponMenu.transform.localPosition, new Vector3(0f, .075f, .1f), Time.unscaledDeltaTime * 10f);
+            defenseMenu.transform.localPosition = Vector3.Lerp(defenseMenu.transform.localPosition, new Vector3(.075f, 0f, .1f), Time.unscaledDeltaTime * 10f);
 
         }
         else if (weaponUnlockActive)
         {
-            cursor.transform.localPosition = new Vector2(0f, .075f) + (touchpad * .075f);
-            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(0f, 0f, .1f), Time.unscaledDeltaTime * 2f);
+            cursor.transform.localPosition = Vector2.Lerp(cursor.transform.localPosition, new Vector2(0f, .075f) + (touchpad * .095f), Time.unscaledDeltaTime * 10f);
+            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(0f, 0f, .1f), Time.unscaledDeltaTime * 10f);
 
-            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .025f), Time.unscaledDeltaTime * 2f);
-            attackMenu.transform.localPosition = Vector3.Lerp(attackMenu.transform.localPosition, new Vector3(-.075f, 0f, .025f), Time.unscaledDeltaTime * 2f);
-            defenseMenu.transform.localPosition = Vector3.Lerp(defenseMenu.transform.localPosition, new Vector3(.075f, 0f, .025f), Time.unscaledDeltaTime * 2f);
+            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .1f), Time.unscaledDeltaTime * 10f);
+            attackMenu.transform.localPosition = Vector3.Lerp(attackMenu.transform.localPosition, new Vector3(-.075f, 0f, .1f), Time.unscaledDeltaTime * 10f);
+            defenseMenu.transform.localPosition = Vector3.Lerp(defenseMenu.transform.localPosition, new Vector3(.075f, 0f, .1f), Time.unscaledDeltaTime * 10f);
 
         } else if (defenseUpgradeActive)
         {
-            cursor.transform.localPosition = new Vector2(.1f, 0) + (touchpad * .075f);
-            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(-.075f, .1f, .1f), Time.unscaledDeltaTime * 2f);
+            cursor.transform.localPosition = Vector2.Lerp(cursor.transform.localPosition, new Vector2(.075f, 0) + (touchpad * .095f), Time.unscaledDeltaTime * 10f);
+            upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(-.075f, .1f, .1f), Time.unscaledDeltaTime * 10f);
 
-            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .025f), Time.unscaledDeltaTime * 2f);
-            attackMenu.transform.localPosition = Vector3.Lerp(attackMenu.transform.localPosition, new Vector3(-.075f, 0f, .025f), Time.unscaledDeltaTime * 2f);
-            weaponMenu.transform.localPosition = Vector3.Lerp(weaponMenu.transform.localPosition, new Vector3(0f, .075f, .025f), Time.unscaledDeltaTime * 2f);
+            mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .1f), Time.unscaledDeltaTime * 10f);
+            attackMenu.transform.localPosition = Vector3.Lerp(attackMenu.transform.localPosition, new Vector3(-.075f, 0f, .1f), Time.unscaledDeltaTime * 10f);
+            weaponMenu.transform.localPosition = Vector3.Lerp(weaponMenu.transform.localPosition, new Vector3(0f, .075f, .1f), Time.unscaledDeltaTime * 10f);
 
         }
 
@@ -237,7 +236,7 @@ public class UpgradeMenu : MonoBehaviour
                         weaponUnlockOpen = true;
                         weaponUnlockActive = true;
                         upgradeMenuActive = false;
-
+                        StartCoroutine(ButtonPressHaptics());
                     }
 
                     if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponUnlockOpen)
@@ -702,6 +701,14 @@ public class UpgradeMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(upgradeTimer);
         upgrade.AddUpgradeEffect();
+    }
+
+    IEnumerator ButtonPressHaptics()
+    {
+        device.TriggerHapticPulse(500);
+        yield return new WaitForSeconds(.1f);
+        device.TriggerHapticPulse(500);
+
     }
 
     void MenuReset()
