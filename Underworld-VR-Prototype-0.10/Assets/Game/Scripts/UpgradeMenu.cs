@@ -181,7 +181,7 @@ public class UpgradeMenu : MonoBehaviour
         }
         else if (attackUpgradeActive)
         {
-            cursor.transform.localPosition = new Vector2(-.075f, 0) + (touchpad * .075f);
+            cursor.transform.localPosition = new Vector2(-.075f, 0) + (touchpad * .095f);
             upgradeMenu.transform.localPosition = Vector3.Lerp(upgradeMenu.transform.localPosition, new Vector3(.075f, .1f, .1f), Time.unscaledDeltaTime * 2f);
 
             mainDial.transform.localPosition = Vector3.Lerp(mainDial.transform.localPosition, new Vector3(0f, 0f, .025f), Time.unscaledDeltaTime * 2f);
@@ -358,7 +358,15 @@ public class UpgradeMenu : MonoBehaviour
         {
             weaponUnlockUIList[oldWeaponUnlockItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldWeaponUnlockItem = currentWeaponUnlockItem;
-            weaponUnlockUIList[currentWeaponUnlockItem].sphere.GetComponent<Renderer>().material = itemLevelMat[currentWeaponUnlockItem];
+
+            if (currentWeaponUnlockItem == 5)
+            {
+                weaponUnlockUIList[currentWeaponUnlockItem].sphere.GetComponent<Renderer>().material = menuMat[1];
+            } else
+            {
+                weaponUnlockUIList[currentWeaponUnlockItem].sphere.GetComponent<Renderer>().material = itemLevelMat[currentWeaponUnlockItem];
+            }
+           
         }
 
         if (currentWeaponUnlockItem < 0)
@@ -451,10 +459,16 @@ public class UpgradeMenu : MonoBehaviour
         {
             attackUpgradeUIList[oldAttackUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldAttackUpgradeItem = currentAttackUpgradeItem;
-            attackUpgradeUIList[currentAttackUpgradeItem].sphere.GetComponent<Renderer>().material = itemLevelMat[attackUpgradeBoardList[currentAttackUpgradeItem].level];
 
-
-
+            if (currentAttackUpgradeItem == 5)
+            {
+                attackUpgradeUIList[5].sphere.GetComponent<Renderer>().material = menuMat[1];
+            }
+            else
+            {
+                attackUpgradeUIList[currentAttackUpgradeItem].sphere.GetComponent<Renderer>().material = itemLevelMat[attackUpgradeBoardList[currentAttackUpgradeItem].level];
+                //print(itemLevelMat[attackUpgradeBoardList[currentAttackUpgradeItem].level]);
+            }
 
             //attackUpgradeUIList[oldAttackUpgradeItem].sceneImage.color = attackUpgradeUIList[oldAttackUpgradeItem].normalColor;
             //oldAttackUpgradeItem = currentAttackUpgradeItem;
@@ -557,7 +571,17 @@ public class UpgradeMenu : MonoBehaviour
         {
             defenseUpgradeUIList[oldDefenseUpgradeItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldDefenseUpgradeItem = currentDefenseUpgradeItem;
-            defenseUpgradeUIList[currentDefenseUpgradeItem].sphere.GetComponent<Renderer>().material = itemLevelMat[defenseUpgradeBoardList[currentDefenseUpgradeItem].level];
+
+            if (currentDefenseUpgradeItem == 5)
+            {
+                defenseUpgradeUIList[currentWeaponUnlockItem].sphere.GetComponent<Renderer>().material = menuMat[1];
+            }
+            else
+            {
+                defenseUpgradeUIList[currentDefenseUpgradeItem].sphere.GetComponent<Renderer>().material = itemLevelMat[defenseUpgradeBoardList[currentDefenseUpgradeItem].level];
+            }
+
+
         }
 
         if (currentDefenseUpgradeItem < 0)
@@ -708,7 +732,7 @@ public class UpgradeMenu : MonoBehaviour
         // Make all extending UI unavailable
         for (int i = 0; i < 5; i++)
         {
-            weaponUnlockUIList[i].sceneImage.color = weaponUnlockUIList[i].unavailableColor;
+            weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0]; ;
         }
 
         for (int i = 0; i < 5; i++)
@@ -719,7 +743,7 @@ public class UpgradeMenu : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            defenseUpgradeUIList[i].sceneImage.color = defenseUpgradeUIList[i].unavailableColor;
+            defenseUpgradeUIList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
         }
 
         // Make all extending description boards unavailable
