@@ -40,13 +40,14 @@ public class WeaponsMenu : MonoBehaviour {
         weaponsMenu.SetActive(false);
         weaponActive = GetComponent<WeaponActive>();
 
-        foreach (Weapon weapon in weaponList)
+        for (int i = 0; i < 5; i++)
         {
-            weapon.sphere.GetComponent<Renderer>().material = menuMat[1]; // set all icons to unavailable
-
-            if (weapon.hasWeapon)
+            if (weaponList[i].hasWeapon)
             {
-                weapon.sphere.GetComponent<Renderer>().material = menuMat[0]; // set all weapons that you have as available but inactive
+                weaponList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+            } else
+            {
+                weaponList[i].sphere.GetComponent<Renderer>().material = menuMat[1];
             }
         }
 
@@ -80,9 +81,9 @@ public class WeaponsMenu : MonoBehaviour {
 
         //touchpad = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !weaponsMenuOpen)
         {
-            OpenWeaponsMenu();
+            weaponsMenuOpen = true;
         }
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen)
@@ -95,7 +96,13 @@ public class WeaponsMenu : MonoBehaviour {
             WeaponSelected();
         }*/
 
-        
+        if (weaponsMenuOpen)
+        {
+            OpenWeaponsMenu();
+        }
+
+
+
 
     }
 
@@ -109,6 +116,8 @@ public class WeaponsMenu : MonoBehaviour {
 
         Vector2 fromVector2 = new Vector2(0, 1);
         Vector2 toVector2 = touchpad;
+
+        cursor.transform.localPosition = Vector3.Lerp(cursor.transform.localPosition, touchpad * .125f, Time.unscaledDeltaTime * 10f);
 
         angleFromCenter = Vector2.Angle(fromVector2, toVector2);
         Vector3 cross = Vector3.Cross(fromVector2, toVector2);
@@ -146,16 +155,18 @@ public class WeaponsMenu : MonoBehaviour {
                 currentMenuItem = 4;
             } else
             {
-                foreach (GameObject weapon in weapons)
-                {
-                    weapon.SetActive(false);
-                }
+                
 
                 currentMenuItem = -1;
             }
         } // BACK BUTTON TO MAIN MENU
         else
         {
+            foreach (GameObject weapon in weapons)
+            {
+                weapon.SetActive(false);
+            }
+
             currentMenuItem = 5; // Back button is highlighted
         }
 
@@ -167,6 +178,7 @@ public class WeaponsMenu : MonoBehaviour {
                 weaponList[oldMenuItem].sphere.GetComponent<Renderer>().material = menuMat[0];
                 //weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
                 oldMenuItem = currentMenuItem;
+                weapons[currentMenuItem].SetActive(true);
                 //weaponList[currentMenuItem].sceneImage.color = weaponList[currentMenuItem].highlightColor;
                 //print("changing color");
 
@@ -181,6 +193,18 @@ public class WeaponsMenu : MonoBehaviour {
 
             }
         }
+
+        /*if (currentMenuItem >= 0 && currentMenuItem < 5 && weaponList[currentMenuItem].hasWeapon)
+        {
+            weapons[currentMenuItem].SetActive(true);
+        } else
+        {
+            foreach (GameObject weapon in weapons)
+            {
+                weapon.SetActive(false);
+            }
+        }*/
+
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen && firstPressUp)
         {
