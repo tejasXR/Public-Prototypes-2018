@@ -222,21 +222,22 @@ public class UpgradeMenu : MonoBehaviour
             angleFromCenter = 360 - angleFromCenter;
         }
 
-        if (firstPressUp && !attackPressUp && !weaponPressUp && !defensePressUp)
+        if (firstPressUp && !attackPressUp  && !weaponPressUp && !defensePressUp)//  && !attackUpgradeOpen && !weaponUnlockOpen && !defenseUpgradeOpen)
         {
             if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f)
             {
                 // OPEN WEAPON UNLOCK MENU
-                if (340 < angleFromCenter || angleFromCenter <= 20)
+                if (340 < angleFromCenter || angleFromCenter <= 20 && !attackUpgradeOpen && !weaponUnlockOpen && !defenseUpgradeOpen)
                 {
                     currentMainMenuItem = 0;
 
-                    if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+                    if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) )
                     {
                         weaponUnlockOpen = true;
                         weaponUnlockActive = true;
                         upgradeMenuActive = false;
-                        StartCoroutine(ButtonPressHaptics());
+
+                        StartCoroutine(ButtonPressHaptics(1000));
                     }
 
                     if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponUnlockOpen)
@@ -246,7 +247,7 @@ public class UpgradeMenu : MonoBehaviour
                     }
                 }
                 // OPEN ATTACK UPGRADES MENU
-                else if (250 < angleFromCenter && angleFromCenter <= 290)
+                else if (250 < angleFromCenter && angleFromCenter <= 290 && !attackUpgradeOpen && !weaponUnlockOpen && !defenseUpgradeOpen)
                 {
                     currentMainMenuItem = 1;
 
@@ -256,17 +257,19 @@ public class UpgradeMenu : MonoBehaviour
                         attackUpgradeActive = true;
                         upgradeMenuActive = false;
 
-
+                        StartCoroutine(ButtonPressHaptics(1000));
                     }
 
                     if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && attackUpgradeOpen)
                     {
                         attackPressUp = true;
+
+
                     }
 
                 }
                 // OPEN DEFENSE UPGRADES MENU
-                else if (70 < angleFromCenter && angleFromCenter <= 110)
+                else if (70 < angleFromCenter && angleFromCenter <= 110 && !attackUpgradeOpen && !weaponUnlockOpen && !defenseUpgradeOpen)
                 {
                     currentMainMenuItem = 2;
 
@@ -275,11 +278,15 @@ public class UpgradeMenu : MonoBehaviour
                         defenseUpgradeOpen = true;
                         defenseUpgradeActive = true;
                         upgradeMenuActive = false;
+
+                        StartCoroutine(ButtonPressHaptics(1000));
                     }
 
                     if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && defenseUpgradeOpen)
                     {
                         defensePressUp = true;
+
+
                     }
                 }
             }
@@ -288,7 +295,7 @@ public class UpgradeMenu : MonoBehaviour
             {
                 currentMainMenuItem = 3;
 
-                if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+                if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !attackUpgradeOpen && !weaponUnlockOpen && !defenseUpgradeOpen)
                 {
                     MenuReset();
                 }
@@ -355,6 +362,8 @@ public class UpgradeMenu : MonoBehaviour
 
         if (currentWeaponUnlockItem != oldWeaponUnlockItem && currentWeaponUnlockItem >= 0)
         {
+            StartCoroutine(ButtonPressHaptics(500));
+
             weaponUnlockUIList[oldWeaponUnlockItem].sphere.GetComponent<Renderer>().material = menuMat[2];
             oldWeaponUnlockItem = currentWeaponUnlockItem;
 
@@ -704,11 +713,10 @@ public class UpgradeMenu : MonoBehaviour
         upgrade.AddUpgradeEffect();
     }
 
-    IEnumerator ButtonPressHaptics()
+    IEnumerator ButtonPressHaptics(float strength)
     {
-        device.TriggerHapticPulse(500);
+        device.TriggerHapticPulse((ushort)strength);
         yield return new WaitForSeconds(.1f);
-        device.TriggerHapticPulse(500);
 
     }
 

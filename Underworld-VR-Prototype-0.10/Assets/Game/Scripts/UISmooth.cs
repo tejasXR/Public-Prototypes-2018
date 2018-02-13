@@ -11,6 +11,7 @@ public class UISmooth : MonoBehaviour
     private Vector3 hidePos;
 
     public UpgradeMenu upgradeMenu;
+    public WeaponsMenu weaponsMenu;
 
     public bool move2;
     public bool move3;
@@ -20,6 +21,8 @@ public class UISmooth : MonoBehaviour
     public bool isWeaponMenu;
     public bool isAttackMenu;
     public bool isDefenseMenu;
+
+    public bool isIndiependantWeaponMenu;
 
     public float moveSpeed;
     public float percentToMove;
@@ -105,6 +108,17 @@ public class UISmooth : MonoBehaviour
                 ShowIcons();
             }
             else
+            {
+                HideIcons();
+            }
+        }
+
+        if (isIndiependantWeaponMenu)
+        {
+            if (weaponsMenu.weaponsMenuOpen)
+            {
+                ShowIcons();
+            } else
             {
                 HideIcons();
             }

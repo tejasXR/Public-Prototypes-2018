@@ -117,7 +117,7 @@ public class WeaponsMenu : MonoBehaviour {
         Vector2 fromVector2 = new Vector2(0, 1);
         Vector2 toVector2 = touchpad;
 
-        cursor.transform.localPosition = Vector3.Lerp(cursor.transform.localPosition, touchpad * .125f, Time.unscaledDeltaTime * 10f);
+        cursor.transform.localPosition = Vector3.Lerp(cursor.transform.localPosition, touchpad * .1f, Time.unscaledDeltaTime * 10f);
 
         angleFromCenter = Vector2.Angle(fromVector2, toVector2);
         Vector3 cross = Vector3.Cross(fromVector2, toVector2);
@@ -171,16 +171,20 @@ public class WeaponsMenu : MonoBehaviour {
         }
 
         //If we have the tape for the selected menu item
-        if (weaponList[currentMenuItem].hasWeapon && currentMenuItem >= 0)
+        if (currentMenuItem >= 0)
         {
-            if (currentMenuItem != oldMenuItem)
+            if (currentMenuItem != oldMenuItem && weaponList[currentMenuItem].hasWeapon)
             {
                 weaponList[oldMenuItem].sphere.GetComponent<Renderer>().material = menuMat[0];
+                //weapons[oldMenuItem].SetActive(false);
                 //weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
                 oldMenuItem = currentMenuItem;
-                weapons[currentMenuItem].SetActive(true);
+                //weapons[currentMenuItem].SetActive(true);
                 //weaponList[currentMenuItem].sceneImage.color = weaponList[currentMenuItem].highlightColor;
                 //print("changing color");
+
+                //if (currentMenuItem >= 0 && )
+
 
                 if (currentMenuItem == 5)
                 {
@@ -194,10 +198,10 @@ public class WeaponsMenu : MonoBehaviour {
             }
         }
 
-        /*if (currentMenuItem >= 0 && currentMenuItem < 5 && weaponList[currentMenuItem].hasWeapon)
+        if (currentMenuItem >= 0 && currentMenuItem < 5 && weaponList[currentMenuItem].hasWeapon)
         {
             weapons[currentMenuItem].SetActive(true);
-        } else
+        }/* else
         {
             foreach (GameObject weapon in weapons)
             {
@@ -206,7 +210,7 @@ public class WeaponsMenu : MonoBehaviour {
         }*/
 
 
-        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen && firstPressUp)
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen && firstPressUp)
         {
             if (currentMenuItem >= 0 && currentMenuItem < 5)
             {
