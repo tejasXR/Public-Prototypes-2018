@@ -9,10 +9,14 @@ public class UpgradeProgress : MonoBehaviour {
     private SteamVR_Controller.Device device;
 
     public UpgradeMenu upgradeMenu;
-    public Image image;
+    public GameObject dial;
+    private Renderer rend;
+
+    public Vector3 scaleOriginal;
+    public Vector3 scaleCurrent;
 
     public float upgradePercent;
-    public float imageAlpha;
+    public float textureStrength;
     public Color c;
 
     public bool hapticProgress;
@@ -21,18 +25,28 @@ public class UpgradeProgress : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //image = GetComponent<Image>();
+        scaleOriginal = dial.transform.localScale;
+        rend = dial.GetComponent<Renderer>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        scaleCurrent = Vector3.zero;
+        textureStrength = 1;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
 
         if (!upgradeMenu.upgradeDone && upgradeMenu.upgradeSelected)
         {
             upgradePercent = 1 - (upgradeMenu.upgradeTimerCounter / upgradeMenu.upgradeTimer);
-            image.fillAmount = upgradePercent;
-            imageAlpha = 1;
+            scaleCurrent = scaleOriginal * upgradePercent;
+            dial.transform.localScale = Vector3.Lerp(dial.transform.localScale, scaleCurrent, Time.unscaledDeltaTime * 10f);
+            //image.fillAmount = upgradePercent;
+            //imageAlpha = 1;
 
             if (!hapticProgress)
             {
@@ -46,11 +60,11 @@ public class UpgradeProgress : MonoBehaviour {
 
         if (!upgradeMenu.upgradeSelected && upgradeMenu.upgradeDone)
         {
-            image.fillAmount = 1;
-            imageAlpha += Time.deltaTime;
-            if (imageAlpha >= 1)
+            //image.fillAmount = 1;
+            textureStrength -= Time.deltaTime;
+            if (textureStrength <= 0)
             {
-                imageAlpha = 0;
+                textureStrength = 1;
             }
 
             hapticProgress = false;
@@ -63,8 +77,10 @@ public class UpgradeProgress : MonoBehaviour {
 
         }
 
-        c.a = imageAlpha;
-        image.color = c;
+        rend.material.SetFloat("_MKGlowTexStrength", textureStrength);
+
+        //c.a = textureStrength;
+        //image.color = c;
 
 
     }

@@ -30,7 +30,7 @@ public class Upgrades : MonoBehaviour {
     public bool unlockRifle;
     public bool unlockShotgun;
     public bool unlockSaberSword;
-    public bool unlockLaserRifle;
+    public bool unlockHyperRifle;
 
     // UNUSED UPGRADE VARIABLES
     //public float addBulletSpeedMultiplier; <--- No one really know why we should have this
@@ -67,7 +67,7 @@ public class Upgrades : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Bullet" && !upgradeManager.upgradeSelected)
+        /*if(other.gameObject.tag == "Bullet" && !upgradeManager.upgradeSelected)
         {
             if (playerController.playerBullets >= upgradeCost)
             {
@@ -77,7 +77,7 @@ public class Upgrades : MonoBehaviour {
             }            
         }
 
-        Destroy(other.gameObject);
+        Destroy(other.gameObject);*/
     }
 
     public void AddUpgradeEffect()
@@ -99,23 +99,32 @@ public class Upgrades : MonoBehaviour {
         // Player Weapon Unlocks
         if (unlockPistol)
         {
+            weaponActive.unlockPistol = true;
             weaponActive.WeaponToActivate("PISTOL");
         }
         else if (unlockRifle)
         {
+            weaponActive.unlockRifle = true;
+
             weaponActive.WeaponToActivate("RIFLE");
         }
         else if (unlockShotgun)
         {
+            weaponActive.unlockShotgun = true;
+
             weaponActive.WeaponToActivate("SHOTGUN");
         }
         else if (unlockSaberSword)
         {
+            weaponActive.unlockSaberSword = true;
+
             weaponActive.WeaponToActivate("SABER SWORD");
         }
-        else if (unlockLaserRifle)
+        else if (unlockHyperRifle)
         {
-            weaponActive.WeaponToActivate("LASER RIFLE");
+            weaponActive.unlockHyperRifle = true;
+
+            weaponActive.WeaponToActivate("HYPER RIFLE");
         }
 
         // UNUSED Upgrade Effects

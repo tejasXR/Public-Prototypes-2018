@@ -8,6 +8,11 @@ public class WeaponActive : MonoBehaviour {
     private int weaponInt; // Used for internal counting purposes
     public string currentWeapon;
     public string previousWeapon;
+    public bool unlockPistol;
+    public bool unlockRifle;
+    public bool unlockShotgun;
+    public bool unlockSaberSword;
+    public bool unlockHyperRifle;
     //public GameObject weaponActive; // The specific weapon that is active in the moment;
 
     // Use this for initialization
@@ -31,24 +36,39 @@ public class WeaponActive : MonoBehaviour {
         switch (weaponName)
         {
             case "PISTOL":
-                weapons[0].SetActive(true);
-                weaponInt = 0;
+                if (unlockPistol)
+                {
+                    weapons[0].SetActive(true);
+                    weaponInt = 0;
+                }
                 break;
             case "RIFLE":
-                weapons[1].SetActive(true);
-                weaponInt = 1;
+                if (unlockRifle)
+                {
+                    weapons[1].SetActive(true);
+                    weaponInt = 1;
+                }
                 break;
             case "SHOTGUN":
-                weapons[2].SetActive(true);
-                weaponInt = 2;
+                if (unlockShotgun)
+                {
+                    weapons[2].SetActive(true);
+                    weaponInt = 2;
+                }
                 break;
             case "SABER SWORD":
-                weapons[3].SetActive(true);
-                weaponInt = 3;
+                if (unlockSaberSword)
+                {
+                    weapons[3].SetActive(true);
+                    weaponInt = 3;
+                }
                 break;
-            case "LASER RIFLE":
-                weapons[4].SetActive(true);
-                weaponInt = 4;
+            case "HYPER RIFLE":
+                if (unlockHyperRifle)
+                {
+                    weapons[4].SetActive(true);
+                    weaponInt = 4;
+                }
                 break;
            
         }
@@ -73,7 +93,7 @@ public class WeaponActive : MonoBehaviour {
                 previousWeapon = "SABER SWORD";
                 break;
             case 4:
-                previousWeapon = "LASER RIFLE";
+                previousWeapon = "HYPER RIFLE";
                 break;
         }
 
