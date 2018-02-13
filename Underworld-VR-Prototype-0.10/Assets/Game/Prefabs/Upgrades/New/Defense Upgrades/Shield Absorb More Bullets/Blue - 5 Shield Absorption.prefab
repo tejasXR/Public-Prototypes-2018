@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 222678597771938650}
   - component: {fileID: 114474721441508158}
   m_Layer: 0
-  m_Name: Rarity
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,14 +151,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4663534739246560}
   - component: {fileID: 114411099718084556}
-  - component: {fileID: 65231509703807734}
+  - component: {fileID: 114655872829514802}
   m_Layer: 0
   m_Name: Blue - 5 Shield Absorption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1894946052095714
 GameObject:
   m_ObjectHideFlags: 1
@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 1839550244289644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_Children:
   - {fileID: 4840001841593244}
   - {fileID: 224882072022116144}
@@ -455,18 +455,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649789560762070}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65231509703807734
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1839550244289644}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.45, y: 1.65, z: 0.13}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65934881652383350
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -737,22 +725,17 @@ MonoBehaviour:
   playerShield: {fileID: 0}
   weaponActive: {fileID: 0}
   upgradeCost: 100
-  addPlayerHealth: 0
-  addPlayerHealthMaxMultiplier: 0
-  addPlayerHealthRegenMultiplier: 0
   addBulletFireRateMultiplier: 0
   addBulletDamageMultiplier: 0
   addBulletAccuracyMultiplier: 0
   addBulletCapacity: 0
-  addNoUseBulletChance: 0
-  addBulletCriticalHitChance: 0
-  addBulletRegeneration: 0
-  addShieldRegenerationMultiplier: 0
-  addShieldHealthMaxMultiplier: 0
-  addShieldAbsorbtionChance: 0.05
-  addShieldSizeMultipler: 0
   addEnemyAdditionalBullets: 0
-  addEnemyNegativeHealthMultiplier: 0
+  addShieldHealthMaxMultiplier: 0
+  addShieldRegenerationMultiplier: 0
+  addShieldAbsorbtionBulletAmount: 1
+  addPlayerHealthMaxMultiplier: 0
+  addPlayerHealthChance: 0
+  unlockPistol: 0
   unlockRifle: 0
   unlockShotgun: 0
   unlockSaberSword: 0
@@ -776,7 +759,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Increases Shield Absorption by 5%
+  m_text: shield absrobs +1 more bullets
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -844,7 +827,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114445184986600574}
-    characterCount: 33
+    characterCount: 30
     spriteCount: 0
     spaceCount: 4
     wordCount: 5
@@ -889,7 +872,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: COMMON
+  m_text: level 1 / 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -923,7 +906,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
@@ -957,10 +940,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114474721441508158}
-    characterCount: 6
+    characterCount: 11
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 3
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -1117,6 +1100,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114655872829514802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1839550244289644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58185345a509b44bbd8154a8a212798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114908479672329108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1215,7 +1209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.262}
+  m_AnchoredPosition: {x: 0, y: -0.2}
   m_SizeDelta: {x: 1.29, y: 0.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224080309106776246
@@ -1269,7 +1263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.228}
+  m_AnchoredPosition: {x: 0, y: 0.28}
   m_SizeDelta: {x: 1.11, y: 0.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224511883294091622
