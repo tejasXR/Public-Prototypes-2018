@@ -176,7 +176,7 @@ public class WeaponsMenu : MonoBehaviour {
             if (currentMenuItem != oldMenuItem && weaponList[currentMenuItem].hasWeapon)
             {
                 weaponList[oldMenuItem].sphere.GetComponent<Renderer>().material = menuMat[0];
-                //weapons[oldMenuItem].SetActive(false);
+                weapons[oldMenuItem].SetActive(false);
                 //weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
                 oldMenuItem = currentMenuItem;
                 //weapons[currentMenuItem].SetActive(true);
@@ -272,6 +272,11 @@ public class WeaponsMenu : MonoBehaviour {
             {
                 weapon.sphere.GetComponent<Renderer>().material = menuMat[0]; // set all weapons that you have as available but inactive
             }
+        }
+
+        foreach (GameObject weapon in weapons)
+        {
+            weapon.SetActive(false);
         }
 
         /*
