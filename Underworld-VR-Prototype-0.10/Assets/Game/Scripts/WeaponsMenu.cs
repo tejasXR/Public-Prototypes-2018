@@ -24,7 +24,11 @@ public class WeaponsMenu : MonoBehaviour {
     public bool weaponsMenuOpen;
     private bool weaponsSelected;
 
-    public GameObject[] weapons; //Here are the weapon gameObject that we will show or hide depending on what weapon the user picks in the weapons menu
+    public GameObject cursor;
+
+    //public GameObject[] weapons; //Here are the weapon gameObject that we will show or hide depending on what weapon the user picks in the weapons menu
+
+    public Material inactiveMat;
 
     public WeaponActive weaponActive; // Adding weapon active to set the current active weapon
     
@@ -36,18 +40,20 @@ public class WeaponsMenu : MonoBehaviour {
 
         foreach (Weapon weapon in weaponList)
         {
-            weapon.sceneImage.color = weapon.unavailableColor;
+            weapon.weaponObj.GetComponent<Renderer>().material = inactiveMat;
         }
 
         for (int i = 0; i <= 4; i++)
         {
             if (weaponList[i].hasWeapon)
             {
-                weaponList[i].sceneImage.color = weaponList[i].normalColor;
+                weaponList[i].weaponObj.SetActive(true);
+                //weaponList[i].sceneImage.color = weaponList[i].normalColor;
             }
             else
             {
-                weaponList[i].sceneImage.color = weaponList[i].unavailableColor;
+                weaponList[i].weaponObj.SetActive(false);
+                //weaponList[i].sceneImage.color = weaponList[i].unavailableColor;
             }
         }
 
@@ -93,60 +99,58 @@ public class WeaponsMenu : MonoBehaviour {
 
         angleFromCenter = Vector2.Angle(fromVector2, toVector2);
         Vector3 cross = Vector3.Cross(fromVector2, toVector2);
+
         if (cross.z > 0)
         {
             angleFromCenter = 360 - angleFromCenter;
         }
 
-        //map angle from center to specific buttons;
-        if (324 < angleFromCenter || angleFromCenter <= 36)
+        if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f)
         {
-            currentMenuItem = 0; //Tape 1
-            //print("hi");
+            //PISTOL
+            if (324 < angleFromCenter || angleFromCenter <= 36)
+            {
+                currentMenuItem = 0;
+
+            }
+            //RIFLE
+            else if (36 < angleFromCenter && angleFromCenter <= 108)
+            {
+                currentMenuItem = 1;
+            }
+            //SHOTGUN
+            else if (108 < angleFromCenter && angleFromCenter <= 180)
+            {
+                currentMenuItem = 2;
+            }
+            //SABER SWORD
+            else if (180 < angleFromCenter && angleFromCenter <= 252)
+            {
+                currentMenuItem = 3;
+            }
+            //HYPER RIFLE
+            else if (252 < angleFromCenter && angleFromCenter <= 324)
+            {
+                currentMenuItem = 4;
+            }
+        } else
+        {
+            currentMenuItem = -1;
         }
-        else if (36 < angleFromCenter && angleFromCenter <= 108)
-        {
-            currentMenuItem = 1; //Tape 2
-        }
-        else if (108 < angleFromCenter && angleFromCenter <= 180)
-        {
-            currentMenuItem = 2; //Tape 3
-        }
-        else if (180 < angleFromCenter && angleFromCenter <= 252)
-        {
-            currentMenuItem = 3; //Tape 4
-        }
-        else if (252 < angleFromCenter && angleFromCenter <= 324)
-        {
-            currentMenuItem = 4; //Tape 5
-        }
-        /*else if (225 < angleFromCenter && angleFromCenter <= 270)
-        {
-            currentMenuItem = 5; //Tape 6
-        }
-        else if (270 < angleFromCenter && angleFromCenter <= 315)
-        {
-            currentMenuItem = 6; //Tape 7
-        }
-        else if (315 < angleFromCenter && angleFromCenter <= 360)
-        {
-            currentMenuItem = 7; //Tape 8
-        }
-        else if (360 < angleFromCenter && angleFromCenter <= 0)
-        {
-            currentMenuItem = 8; //Tape 9
-        }*/
+        
 
         //To tell when to light up or not
 
         //If we have the tape for the selected menu item
-        if (weaponList[currentMenuItem].hasWeapon)
+        if (weaponList[currentMenuItem].hasWeapon && currentMenuItem >= 0)
         {
             if (currentMenuItem != oldMenuItem)
             {
-                weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
+                weaponList[oldMenuItem].weaponObj.GetComponent<Renderer>().material = inactiveMat;
+                //weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
                 oldMenuItem = currentMenuItem;
-                weaponList[currentMenuItem].sceneImage.color = weaponList[currentMenuItem].highlightColor;
+                weaponList[currentMenuItem].weaponObj.GetComponent<Renderer>().material = weaponList[currentMenuItem].highlightMat;
+                //weaponList[currentMenuItem].sceneImage.color = weaponList[currentMenuItem].highlightColor;
                 //print("changing color");
             }
         }
@@ -219,11 +223,13 @@ public class WeaponsMenu : MonoBehaviour {
         public string name;
         public bool hasWeapon;
         //public AudioClip recording;
-        public Image sceneImage;
-        public Color normalColor = Color.white;
-        public Color highlightColor = Color.grey;
-        public Color pressedColor = Color.yellow;
-        public Color unavailableColor = Color.black;
+        public GameObject weaponObj;
+        public Material highlightMat;
+        //public Image sceneImage;
+        //public Color normalColor = Color.white;
+        //public Color highlightColor = Color.grey;
+        //public Color pressedColor = Color.yellow;
+        //public Color unavailableColor = Color.black;
 
     }
 }
