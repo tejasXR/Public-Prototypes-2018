@@ -83,7 +83,11 @@ public class WeaponsMenu : MonoBehaviour {
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !weaponsMenuOpen)
         {
+            StartCoroutine(ButtonPressHaptics(1000));
+            weaponActive.DisableAllWeapons();
+
             weaponsMenuOpen = true;
+
         }
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen)
@@ -157,14 +161,19 @@ public class WeaponsMenu : MonoBehaviour {
             {
                 
 
-                currentMenuItem = -1;
+                //currentMenuItem = -1;
             }
         } // BACK BUTTON TO MAIN MENU
         else
         {
-            foreach (GameObject weapon in weapons)
+            /*foreach (GameObject weapon in weapons)
             {
                 weapon.SetActive(false);
+            }*/
+
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen && firstPressUp)
+            {
+                MenuReset();
             }
 
             currentMenuItem = 5; // Back button is highlighted
@@ -175,8 +184,16 @@ public class WeaponsMenu : MonoBehaviour {
         {
             if (currentMenuItem != oldMenuItem && weaponList[currentMenuItem].hasWeapon)
             {
+
+                StartCoroutine(ButtonPressHaptics(300));
+
+                if (oldMenuItem < 5)
+                {
+                    weapons[oldMenuItem].SetActive(false);
+
+                }
+
                 weaponList[oldMenuItem].sphere.GetComponent<Renderer>().material = menuMat[0];
-                weapons[oldMenuItem].SetActive(false);
                 //weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
                 oldMenuItem = currentMenuItem;
                 //weapons[currentMenuItem].SetActive(true);
@@ -214,10 +231,8 @@ public class WeaponsMenu : MonoBehaviour {
         {
             if (currentMenuItem >= 0 && currentMenuItem < 5)
             {
+                StartCoroutine(ButtonPressHaptics(1000));
                 WeaponSelected();
-                MenuReset();
-            } else if (currentMenuItem == 5)
-            {
                 MenuReset();
             }
         }
@@ -262,7 +277,10 @@ public class WeaponsMenu : MonoBehaviour {
 
     private void MenuReset()
     {
-        weaponsMenu.SetActive(false);
+        firstPressUp = false;
+        weaponsMenuOpen = false;
+        weaponsSelected = false;
+        
 
         foreach (Weapon weapon in weaponList)
         {
@@ -278,6 +296,8 @@ public class WeaponsMenu : MonoBehaviour {
         {
             weapon.SetActive(false);
         }
+
+        weaponsMenu.SetActive(false);
 
         /*
         //Reset colors for the buttons
@@ -303,6 +323,13 @@ public class WeaponsMenu : MonoBehaviour {
 
         currentMenuItem = 0;
         oldMenuItem = 0;
+    }
+
+    IEnumerator ButtonPressHaptics(float strength)
+    {
+        device.TriggerHapticPulse((ushort)strength);
+        yield return new WaitForSeconds(.1f);
+
     }
 
     [System.Serializable]

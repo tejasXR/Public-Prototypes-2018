@@ -55,10 +55,15 @@ public class UISmooth : MonoBehaviour
 
     private void OnEnable()
     {
-        /*foreach(GameObject icon in icons)
+        if (isIndiependantWeaponMenu)
         {
-            icon.transform.localPosition = Vector3.zero;
-        }*/
+            foreach (GameObject icon in icons)
+            {
+                icon.transform.localPosition = hidePos;
+            }
+        }
+
+        
 
 
 
