@@ -311,27 +311,27 @@ public class UpgradeMenu : MonoBehaviour
         {
             if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f)
             {
-                // FIRE RATE UPGRADES
+                // PISTOL
                 if (259 < angleFromCenter && angleFromCenter <= 281)
                 {
                     currentWeaponUnlockItem = 0;
                 }
-                // DAMAGE UPGRADES
+                // RIFLE
                 else if (304 < angleFromCenter && angleFromCenter <= 326)
                 {
                     currentWeaponUnlockItem = 1;
                 }
-                // ACCURACY UPGRADES
+                // SHOTGUN
                 else if (349 < angleFromCenter || angleFromCenter <= 11)
                 {
                     currentWeaponUnlockItem = 2;
                 }
-                // BULLET CAPACITY UPGRADES
+                // SABER SWORD
                 else if (34 < angleFromCenter && angleFromCenter <= 56)
                 {
                     currentWeaponUnlockItem = 3;
                 }
-                // BULLETS PER KILL UPGRADES
+                // HYPER RIFLE
                 else if (79 < angleFromCenter && angleFromCenter <= 101)
                 {
                     currentWeaponUnlockItem = 4;

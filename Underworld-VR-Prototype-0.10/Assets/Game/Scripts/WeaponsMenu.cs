@@ -26,12 +26,14 @@ public class WeaponsMenu : MonoBehaviour {
 
     public GameObject cursor;
 
-    //public GameObject[] weapons; //Here are the weapon gameObject that we will show or hide depending on what weapon the user picks in the weapons menu
+    public GameObject[] weapons; //Here are the weapon gameObject that we will show or hide depending on what weapon the user picks in the weapons menu
 
-    public Material inactiveMat;
+    public Material[] menuMat;
 
-    public WeaponActive weaponActive; // Adding weapon active to set the current active weapon
-    
+    private WeaponActive weaponActive; // Adding weapon active to set the current active weapon
+
+    public bool firstPressUp;
+
 
     // Use this for initialization
     void Start () {
@@ -40,22 +42,32 @@ public class WeaponsMenu : MonoBehaviour {
 
         foreach (Weapon weapon in weaponList)
         {
-            weapon.weaponObj.GetComponent<Renderer>().material = inactiveMat;
+            weapon.sphere.GetComponent<Renderer>().material = menuMat[1]; // set all icons to unavailable
+
+            if (weapon.hasWeapon)
+            {
+                weapon.sphere.GetComponent<Renderer>().material = menuMat[0]; // set all weapons that you have as available but inactive
+            }
         }
 
-        for (int i = 0; i <= 4; i++)
+        foreach (GameObject weapon in weapons)
+        {
+            weapon.SetActive(false);
+        }
+
+        /*for (int i = 0; i <= 4; i++)
         {
             if (weaponList[i].hasWeapon)
             {
-                weaponList[i].weaponObj.SetActive(true);
+                weaponList[i].sphere.GetComponent<Renderer>.material = menuMat[0]; // set all weapons that you have as available but inactive
                 //weaponList[i].sceneImage.color = weaponList[i].normalColor;
             }
-            else
+            /*else
             {
                 weaponList[i].weaponObj.SetActive(false);
                 //weaponList[i].sceneImage.color = weaponList[i].unavailableColor;
-            }
-        }
+            }*/
+        
 
         currentMenuItem = 0;
         oldMenuItem = 1;
@@ -68,9 +80,14 @@ public class WeaponsMenu : MonoBehaviour {
 
         //touchpad = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 
-        if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
             OpenWeaponsMenu();
+        }
+
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen)
+        {
+            firstPressUp = true;
         }
 
         /*if (weaponsMenuOpen && device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
@@ -78,11 +95,7 @@ public class WeaponsMenu : MonoBehaviour {
             WeaponSelected();
         }*/
 
-        if (weaponsMenuOpen && device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
-        {
-            WeaponSelected();
-            MenuReset();
-        }
+        
 
     }
 
@@ -107,54 +120,81 @@ public class WeaponsMenu : MonoBehaviour {
 
         if (Mathf.Abs(touchpad.x) > .3f || Mathf.Abs(touchpad.y) > .3f)
         {
-            //PISTOL
-            if (324 < angleFromCenter || angleFromCenter <= 36)
+            // PISTOL
+            if (259 < angleFromCenter && angleFromCenter <= 281)
             {
                 currentMenuItem = 0;
-
             }
-            //RIFLE
-            else if (36 < angleFromCenter && angleFromCenter <= 108)
+            // RIFLE
+            else if (304 < angleFromCenter && angleFromCenter <= 326)
             {
                 currentMenuItem = 1;
             }
-            //SHOTGUN
-            else if (108 < angleFromCenter && angleFromCenter <= 180)
+            // SHOTGUN
+            else if (349 < angleFromCenter || angleFromCenter <= 11)
             {
                 currentMenuItem = 2;
             }
-            //SABER SWORD
-            else if (180 < angleFromCenter && angleFromCenter <= 252)
+            // SABER SWORD
+            else if (34 < angleFromCenter && angleFromCenter <= 56)
             {
                 currentMenuItem = 3;
             }
-            //HYPER RIFLE
-            else if (252 < angleFromCenter && angleFromCenter <= 324)
+            // HYPER RIFLE
+            else if (79 < angleFromCenter && angleFromCenter <= 101)
             {
                 currentMenuItem = 4;
-            }
-        } else
-        {
-            currentMenuItem = -1;
-        }
-        
+            } else
+            {
+                foreach (GameObject weapon in weapons)
+                {
+                    weapon.SetActive(false);
+                }
 
-        //To tell when to light up or not
+                currentMenuItem = -1;
+            }
+        } // BACK BUTTON TO MAIN MENU
+        else
+        {
+            currentMenuItem = 5; // Back button is highlighted
+        }
 
         //If we have the tape for the selected menu item
         if (weaponList[currentMenuItem].hasWeapon && currentMenuItem >= 0)
         {
             if (currentMenuItem != oldMenuItem)
             {
-                weaponList[oldMenuItem].weaponObj.GetComponent<Renderer>().material = inactiveMat;
+                weaponList[oldMenuItem].sphere.GetComponent<Renderer>().material = menuMat[0];
                 //weaponList[oldMenuItem].sceneImage.color = weaponList[oldMenuItem].normalColor;
                 oldMenuItem = currentMenuItem;
-                weaponList[currentMenuItem].weaponObj.GetComponent<Renderer>().material = weaponList[currentMenuItem].highlightMat;
                 //weaponList[currentMenuItem].sceneImage.color = weaponList[currentMenuItem].highlightColor;
                 //print("changing color");
+
+                if (currentMenuItem == 5)
+                {
+                    weaponList[currentMenuItem].sphere.GetComponent<Renderer>().material = menuMat[2];
+                }
+                else
+                {
+                    weaponList[currentMenuItem].sphere.GetComponent<Renderer>().material = weaponList[currentMenuItem].highlightMat;
+                }
+
+            }
+        }
+
+        if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponsMenuOpen && firstPressUp)
+        {
+            if (currentMenuItem >= 0 && currentMenuItem < 5)
+            {
+                WeaponSelected();
+                MenuReset();
+            } else if (currentMenuItem == 5)
+            {
+                MenuReset();
             }
         }
     }
+
 
     void WeaponSelected()
     {
@@ -196,22 +236,37 @@ public class WeaponsMenu : MonoBehaviour {
     {
         weaponsMenu.SetActive(false);
 
+        foreach (Weapon weapon in weaponList)
+        {
+            weapon.sphere.GetComponent<Renderer>().material = menuMat[1]; // set all icons to unavailable
+
+            if (weapon.hasWeapon)
+            {
+                weapon.sphere.GetComponent<Renderer>().material = menuMat[0]; // set all weapons that you have as available but inactive
+            }
+        }
+
+        /*
         //Reset colors for the buttons
         foreach (Weapon weapon in weaponList)
         {
-            weapon.sceneImage.color = weapon.normalColor;
+            weapon.sphere.GetComponent<Renderer>().material = inactiveMat;
+            //weapon.sceneImage.color = weapon.normalColor;
         }
+
         for (int i = 0; i <= 4; i++)
         {
             if (weaponList[i].hasWeapon)
             {
-                weaponList[i].sceneImage.color = weaponList[i].normalColor;
+                weaponList[i].weaponObj.SetActive(true);
+                //weaponList[i].sceneImage.color = weaponList[i].normalColor;
             }
             else
             {
-                weaponList[i].sceneImage.color = weaponList[i].unavailableColor;
+                weaponList[i].weaponObj.SetActive(false);
+                //weaponList[i].sceneImage.color = weaponList[i].unavailableColor;
             }
-        }
+        }*/
 
         currentMenuItem = 0;
         oldMenuItem = 0;
@@ -223,7 +278,7 @@ public class WeaponsMenu : MonoBehaviour {
         public string name;
         public bool hasWeapon;
         //public AudioClip recording;
-        public GameObject weaponObj;
+        public GameObject sphere;
         public Material highlightMat;
         //public Image sceneImage;
         //public Color normalColor = Color.white;
