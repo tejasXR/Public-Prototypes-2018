@@ -20,7 +20,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
     public int triangleCurrent;
 
-
+    public float endDelay;
 
 
 	// Use this for initialization
@@ -268,7 +268,7 @@ public class RoundCompleteUI : MonoBehaviour {
         */
 
         triangleMeshes[triangleCurrent].SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(endDelay);
 
         UIWhole.gameObject.SetActive(false);
         yield return new WaitForSeconds(.05f);

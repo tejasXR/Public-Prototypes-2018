@@ -96,7 +96,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         device = SteamVR_Controller.Input((int)trackedObj.index);
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !upgradeMenuOpen && !upgradeSelected)
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !upgradeMenuOpen && !upgradeSelected && !gameManager.inRedemption)
         {
             upgradeMenuOpen = true;
             upgradeMenuActive = true;
@@ -161,7 +161,10 @@ public class UpgradeMenu : MonoBehaviour
             upgradeProgress.SetActive(true);
             MenuReset();
 
-            upgradeTimerCounter -= Time.deltaTime;
+            if (!gameManager.inRedemption)
+            {
+                upgradeTimerCounter -= Time.deltaTime;
+            }
             if (upgradeTimerCounter <= 0)
             {
                 upgradeTimerCounter = upgradeTimer;

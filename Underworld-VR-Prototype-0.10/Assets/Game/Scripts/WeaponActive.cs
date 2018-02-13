@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponActive : MonoBehaviour {
 
     public GameObject[] weapons; // The list of weapons
+    private GameManager gameManager;
     private int weaponInt; // Used for internal counting purposes
     public string currentWeapon;
     public string previousWeapon;
@@ -17,7 +18,7 @@ public class WeaponActive : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         // In the start, set all weapons to in active
 
         DisableAllWeapons();
@@ -57,7 +58,7 @@ public class WeaponActive : MonoBehaviour {
                 }
                 break;
             case "SABER SWORD":
-                if (unlockSaberSword)
+                if (unlockSaberSword || gameManager.inRedemption)
                 {
                     weapons[3].SetActive(true);
                     weaponInt = 3;
@@ -102,6 +103,8 @@ public class WeaponActive : MonoBehaviour {
 
     public void DisableAllWeapons()
     {
+        CheckCurrentWeapon();
+
         foreach (GameObject weapon in weapons)
         {
             weapon.SetActive(false);

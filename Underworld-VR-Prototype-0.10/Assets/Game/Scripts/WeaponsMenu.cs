@@ -34,12 +34,14 @@ public class WeaponsMenu : MonoBehaviour {
 
     public bool firstPressUp;
 
+    private GameManager gameManager;
+
 
     // Use this for initialization
     void Start () {
         weaponsMenu.SetActive(false);
         weaponActive = GetComponent<WeaponActive>();
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         CheckWeapons();
 
         for (int i = 0; i < 5; i++)
@@ -83,7 +85,7 @@ public class WeaponsMenu : MonoBehaviour {
 
         //touchpad = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !weaponsMenuOpen)
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !weaponsMenuOpen && !gameManager.inRedemption)
         {
             StartCoroutine(ButtonPressHaptics(1000));
             weaponActive.DisableAllWeapons();
@@ -301,6 +303,8 @@ public class WeaponsMenu : MonoBehaviour {
         }
 
         weaponsMenu.SetActive(false);
+
+        weaponActive.WeaponToActivate(weaponActive.previousWeapon);
 
         /*
         //Reset colors for the buttons

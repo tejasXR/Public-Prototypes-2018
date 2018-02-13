@@ -33,8 +33,10 @@ public class GameManager : MonoBehaviour {
     public GameObject roundUI;
     public GameObject redemptionUI;
 
-     public float roundFirstStartBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
-     public float redemptionBufferTime; // Time between redemption mode starting and the meter counting down
+    public float roundFirstStartBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
+    public float roundBufferTime;
+    private float roundBufferTimeCounter; // The float that counts down between rounds
+    public float redemptionBufferTime; // Time between redemption mode starting and the meter counting down
 
     public TextMeshPro[] timeTextMeshPro;
 
@@ -44,11 +46,14 @@ public class GameManager : MonoBehaviour {
     public bool mainGameStart;
     public bool roundStart;
     public bool roundActive; //To see if the player is currently in a round
+    public bool inRound; // To see if the player is in any part of the round mode
+
     public bool upgradeActive; //To see if the player is currently upgrading
 
     public bool redemptionStart;
     public bool redemptionPreStart;
-    public bool redemptionActive; //To see if the player is currently in redemption mode
+    public bool redemptionActive; //To see if the player is currently in redemption mode with enemies
+    public bool inRedemption; // To see if the player is in any part of redemption mode;
     public bool hadRedemption; //Check if the player has gone through redemption in this play session
 
     public bool gameOver;
@@ -57,6 +62,8 @@ public class GameManager : MonoBehaviour {
     public GameObject bluePlatform;
     public GameObject synthCity;
     public GameObject redemptionPlatform;
+    public GameObject encapsulatingStadium;
+    //public GameObject platformPieces;
 
     public GameObject playerStartArea;
     public GameObject playerShield;
@@ -83,6 +90,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         CheckRound();
         upgradeTimerCounter = upgradeTimer;
+        roundBufferTimeCounter = roundBufferTime;
         GameReset(); // sets all controlled objects active / inactive at the very start of the game
     }
 
@@ -133,6 +141,15 @@ public class GameManager : MonoBehaviour {
 
             if (enemiesDestroyed == enemiesToSpawn && enemiesOnScreen <= 0 && !redemptionActive)
             {
+                roundBufferTimeCounter -= Time.deltaTime;
+                if (roundBufferTimeCounter <= 0)
+                {
+                    inRound = true;
+                    inRedemption = false;
+                    roundStart = true;
+                    roundActive = false;
+                    roundBufferTimeCounter = roundBufferTime;
+                }
                 //if (upgradeRound)
                 {
                     //upgradeActive = true;
@@ -144,9 +161,7 @@ public class GameManager : MonoBehaviour {
                     //   roundActive = false;
                 }
                 //timeLeftCounter = 0;
-
-                roundStart = true;
-                roundActive = false;
+               
                 //print("Upgrade!");
             }
 
@@ -155,6 +170,8 @@ public class GameManager : MonoBehaviour {
                 TurnOffForRedemption(); // Turn stuff off for redemption
                                         //redemptionActive = true; // Not false here, will call when redemption buffer timer runs down
                 hadRedemption = true;
+                inRedemption = true;
+                inRound = false;
                 roundActive = false;
                 //redemptionStart = false; // Not false here becuase we need the buffer time to run out first
             }
@@ -403,6 +420,7 @@ public class GameManager : MonoBehaviour {
         synthCity.SetActive(false);
         playerStartArea.SetActive(false);
         platformLight.SetActive(true);
+        encapsulatingStadium.SetActive(true);
     }
 
     void GameReset()

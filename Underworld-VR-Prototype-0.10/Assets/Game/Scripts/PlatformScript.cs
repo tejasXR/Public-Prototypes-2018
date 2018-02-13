@@ -7,6 +7,8 @@ public class PlatformScript : MonoBehaviour {
     private GameManager gameManager;
     private GameObject playerController;
 
+    public GameObject platformPieces;
+
     public float scaleCurrent;
     public float scaleOriginal;
 
@@ -67,11 +69,18 @@ public class PlatformScript : MonoBehaviour {
             //scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal + ((1 - scaleOriginal) * distancePercent), Time.deltaTime * 2f);
             //scaleCurrent = Mathf.Lerp(scaleCurrent, 1, Time.deltaTime);
             // Simple scaling i.e., scale when at the top of the stadium
-            scaleCurrent = Mathf.Lerp(scaleCurrent, 1, Time.deltaTime * 1.25f);
+            scaleCurrent = Mathf.Lerp(scaleCurrent, .5f, Time.deltaTime);
             transform.localScale = new Vector3(scaleCurrent, scaleCurrent, scaleCurrent);
+            platformPieces.SetActive(true);
+            platformPieces.GetComponent<PlatformPieces>().go = true;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 2f);
 
-            if ((scaleCurrent / 1) > .999f)
+
+            if ((scaleCurrent / .5f) > .98f)
             {
+                transform.localScale = new Vector3(1, 1, 1);
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+                platformPieces.SetActive(false);
                 scaling = false;
             }
 

@@ -67,14 +67,14 @@ public class PlayerHealth : MonoBehaviour {
         //////////////// Watch out for performance issues //////////////////////////
 
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             triangleCurrentColors[i] = Color.Lerp(triangleRedColors[i], triangleBlueColors[i], healthSmooth - .15f);
             //triangleCurrentColors[i] = Color.Lerp(triangleBlueColors[i], triangleRedColors[i], healthPercent);
         }
 
-        rendPlatform.material.SetColor("_MKGlowColor", triangleCurrentColors[0]);
-        rendPlatform.material.SetColor("_MKGlowTexColor", triangleCurrentColors[0]);
+        rendPlatform.material.SetColor("_MKGlowColor", triangleCurrentColors[4]);
+        //rendPlatform.material.SetColor("_MKGlowTexColor", triangleCurrentColors[0]);
         platformLight.color = triangleCurrentColors[0];
 
         // Here we are directly accessing the materials of the triangle objects, and changing them permanently at runtime
