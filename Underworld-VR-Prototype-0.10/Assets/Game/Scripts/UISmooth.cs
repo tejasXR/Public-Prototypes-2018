@@ -24,6 +24,8 @@ public class UISmooth : MonoBehaviour
 
     public bool isIndiependantWeaponMenu;
 
+    public bool isMainMenu;
+
     public float moveSpeed;
     public float percentToMove;
 
@@ -55,7 +57,7 @@ public class UISmooth : MonoBehaviour
 
     private void OnEnable()
     {
-        if (isIndiependantWeaponMenu)
+        if (isIndiependantWeaponMenu || isMainMenu)
         {
             foreach (GameObject icon in icons)
             {
@@ -126,6 +128,19 @@ public class UISmooth : MonoBehaviour
             } else
             {
                 HideIcons();
+            }
+        }
+
+
+        if (isMainMenu)
+        {
+            if (upgradeMenu.upgradeMenuOpen)
+            {
+                ShowMainMenu();
+            }
+            else
+            {
+                HideMainMenu();
             }
         }
 
@@ -255,6 +270,56 @@ public class UISmooth : MonoBehaviour
             }
         }
 
+    }
+
+    void ShowMainMenu()
+    {
+        icons[0].transform.localPosition = Vector3.Lerp(icons[0].transform.localPosition, iconOriginalPos[0], Time.unscaledDeltaTime * moveSpeed);
+
+        if (move2)
+        {
+            icons[1].transform.localPosition = Vector3.Lerp(icons[1].transform.localPosition, iconOriginalPos[1], Time.unscaledDeltaTime * moveSpeed);
+        }
+
+        if (move3)
+        {
+            icons[2].transform.localPosition = Vector3.Lerp(icons[2].transform.localPosition, iconOriginalPos[2], Time.unscaledDeltaTime * moveSpeed);
+
+        }
+
+        if (Vector3.Distance(icons[0].transform.localPosition, iconOriginalPos[0]) < (1.5f - (percentToMove * 1.5f)))
+        {
+            move2 = true;
+            if (Vector3.Distance(icons[1].transform.localPosition, iconOriginalPos[1]) < (1.5f - (percentToMove * 1.5f)))
+            {
+                move3 = true;
+            }
+        }
+    }
+
+    void HideMainMenu()
+    {
+        icons[0].transform.localPosition = Vector3.Lerp(icons[0].transform.localPosition, hidePos, Time.unscaledDeltaTime * moveSpeed);
+
+        if (!move2)
+        {
+            icons[1].transform.localPosition = Vector3.Lerp(icons[1].transform.localPosition, hidePos, Time.unscaledDeltaTime * moveSpeed);
+        }
+
+        if (!move3)
+        {
+            icons[2].transform.localPosition = Vector3.Lerp(icons[2].transform.localPosition, hidePos, Time.unscaledDeltaTime * moveSpeed);
+
+        }
+
+        if (Vector3.Distance(icons[0].transform.localPosition, iconOriginalPos[0]) < (1.5f - (percentToMove * 1.5f)))
+        {
+            move2 = false;
+            if (Vector3.Distance(icons[1].transform.localPosition, iconOriginalPos[1]) < (1.5f - (percentToMove * 1.5f)))
+            {
+                move3 = false;
+            }
+        }
     }
 }
 
