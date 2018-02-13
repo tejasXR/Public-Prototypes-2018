@@ -40,6 +40,8 @@ public class WeaponsMenu : MonoBehaviour {
         weaponsMenu.SetActive(false);
         weaponActive = GetComponent<WeaponActive>();
 
+        CheckWeapons();
+
         for (int i = 0; i < 5; i++)
         {
             if (weaponList[i].hasWeapon)
@@ -85,6 +87,7 @@ public class WeaponsMenu : MonoBehaviour {
         {
             StartCoroutine(ButtonPressHaptics(1000));
             weaponActive.DisableAllWeapons();
+            CheckWeapons(); //check what weapons we have unlocked so we can show this accordingly via UI
 
             weaponsMenuOpen = true;
 
@@ -323,6 +326,34 @@ public class WeaponsMenu : MonoBehaviour {
 
         currentMenuItem = 0;
         oldMenuItem = 0;
+    }
+
+    void CheckWeapons()
+    {
+        if (weaponActive.unlockPistol)
+        {
+            weaponList[0].hasWeapon = true;
+        }
+
+        if (weaponActive.unlockRifle)
+        {
+            weaponList[1].hasWeapon = true;
+        }
+
+        if (weaponActive.unlockShotgun)
+        {
+            weaponList[2].hasWeapon = true;
+        }
+
+        if (weaponActive.unlockSaberSword)
+        {
+            weaponList[3].hasWeapon = true;
+        }
+
+        if (weaponActive.unlockHyperRifle)
+        {
+            weaponList[4].hasWeapon = true;
+        }
     }
 
     IEnumerator ButtonPressHaptics(float strength)

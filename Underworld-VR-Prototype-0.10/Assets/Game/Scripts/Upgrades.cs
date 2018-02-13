@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Upgrades : MonoBehaviour {
 
-    public UpgradeManager upgradeManager;
+    //public UpgradeManager upgradeManager;
     public Player playerController;
     public PlayerShield playerShield;
     public WeaponActive weaponActive;
@@ -43,7 +43,7 @@ public class Upgrades : MonoBehaviour {
 
     private void Awake()
     {
-        upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
+        //upgradeManager = GameObject.Find("UpgradeManager").GetComponent<UpgradeManager>();
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         //playerShield = GameObject.FindGameObjectWithTag("Shield").GetComponent<PlayerShield>();
         weaponActive = GameObject.FindGameObjectWithTag("WeaponHand").GetComponent<WeaponActive>();

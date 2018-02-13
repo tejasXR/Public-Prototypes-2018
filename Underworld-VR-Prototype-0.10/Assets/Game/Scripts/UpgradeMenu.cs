@@ -402,7 +402,7 @@ public class UpgradeMenu : MonoBehaviour
 
             if (oldWeaponUnlockItem < 5)
             {
-                weaponUnlockBoardList[oldWeaponUnlockItem].weaponUpgrade.SetActive(false);
+                weaponUnlockBoardList[oldWeaponUnlockItem].weaponBoards[weaponUnlockBoardList[oldWeaponUnlockItem].level].SetActive(false);
             }
 
             oldWeaponUnlockItem = currentWeaponUnlockItem;
@@ -428,7 +428,7 @@ public class UpgradeMenu : MonoBehaviour
         
         if (currentWeaponUnlockItem >= 0 && currentWeaponUnlockItem < 5 && oldWeaponUnlockItem < 5)
         {
-            weaponUnlockBoardList[currentWeaponUnlockItem].weaponUpgrade.SetActive(true);
+            weaponUnlockBoardList[currentWeaponUnlockItem].weaponBoards[weaponUnlockBoardList[currentWeaponUnlockItem].level].SetActive(true);
             //weaponUnlockBoardList[oldWeaponUnlockItem].weaponUpgrade.SetActive(false);
 
             //weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition = Vector3.Lerp(weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition, new Vector3(weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition.x, weaponUnlockUIList[currentWeaponUnlockItem].sphere.transform.localPosition.y, -0.45f), Time.unscaledDeltaTime * 10f);
@@ -436,14 +436,15 @@ public class UpgradeMenu : MonoBehaviour
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && weaponPressUp && weaponUnlockActive && !attackUpgradeActive && !upgradeMenuActive && !defenseUpgradeActive && !upgradeSelected)
         {
-            if (currentWeaponUnlockItem >= 0 && currentWeaponUnlockItem < 5)
+            if (currentWeaponUnlockItem >= 0 && currentWeaponUnlockItem < 5 && weaponUnlockBoardList[currentWeaponUnlockItem].level < 1)
             {
-                if (weaponUnlockBoardList[currentWeaponUnlockItem].weaponUpgrade.GetComponent<Upgrades>().upgradeCost <= playerController.playerBullets)
+                if (weaponUnlockBoardList[currentWeaponUnlockItem].weaponBoards[weaponUnlockBoardList[currentWeaponUnlockItem].level].GetComponent<Upgrades>().upgradeCost <= playerController.playerBullets)
                 {
                     // Applies upgrade effect after upgrade timer
-                    StartCoroutine(ApplyUpgrade(weaponUnlockBoardList[currentWeaponUnlockItem].weaponUpgrade.GetComponent<Upgrades>()));
+                    StartCoroutine(ApplyUpgrade(weaponUnlockBoardList[currentWeaponUnlockItem].weaponBoards[weaponUnlockBoardList[currentWeaponUnlockItem].level].GetComponent<Upgrades>()));
+                    playerController.playerBullets -= weaponUnlockBoardList[currentWeaponUnlockItem].weaponBoards[weaponUnlockBoardList[currentWeaponUnlockItem].level].GetComponent<Upgrades>().upgradeCost;
 
-                    playerController.playerBullets -= weaponUnlockBoardList[currentWeaponUnlockItem].weaponUpgrade.GetComponent<Upgrades>().upgradeCost;
+                    weaponUnlockBoardList[currentWeaponUnlockItem].level++;
 
                     upgradeSelected = true;
                 }
@@ -733,9 +734,12 @@ public class UpgradeMenu : MonoBehaviour
             weaponUnlockUIList[i].sphere.GetComponent<Renderer>().material = menuMat[2];
         }
 
-        foreach (WeaponUnlockBoards weapon in weaponUnlockBoardList)
+        foreach (WeaponUnlockBoards board in weaponUnlockBoardList)
         {
-            weapon.weaponUpgrade.SetActive(false);
+            foreach (GameObject obj in board.weaponBoards)
+            {
+                obj.SetActive(false);
+            }
         }
 
         //cursor.transform.localPosition = new Vector2(0f, 0f);
@@ -832,9 +836,12 @@ public class UpgradeMenu : MonoBehaviour
         }
 
         // Make all extending description boards unavailable
-        foreach (WeaponUnlockBoards weapon in weaponUnlockBoardList)
+        foreach (WeaponUnlockBoards board in weaponUnlockBoardList)
         {
-            weapon.weaponUpgrade.SetActive(false);
+            foreach (GameObject obj in board.weaponBoards)
+            {
+                obj.SetActive(false);
+            }
         }
 
         foreach (AttackUpgradeBoards board in attackUpgradeBoardList)
@@ -893,8 +900,8 @@ public class UpgradeMenu : MonoBehaviour
     public class WeaponUnlockBoards
     {
         public string name;
-        //public int level;
-        public GameObject weaponUpgrade;
+        public int level;
+        public GameObject[] weaponBoards;
     }
 
     [System.Serializable]
