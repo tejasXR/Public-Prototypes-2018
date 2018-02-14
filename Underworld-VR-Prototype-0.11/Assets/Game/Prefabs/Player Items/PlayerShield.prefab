@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  moveSpeed: 15
-  rotationSpeed: 15
+  moveSpeed: 12
+  rotationSpeed: 12
 --- !u!114 &114887576262498682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -349,9 +349,8 @@ MonoBehaviour:
   shieldHealthMax: 10
   shieldHealth: 0
   shieldRechargeSpeed: 0.15
-  shieldRechargeSpeedMultiplier: 1
+  shieldRegenMultiplier: 1
   shieldHealthMaxMultiplier: 1
-  shieldSizeMultiplier: 1
-  shieldAbsorbtionChance: 0
+  shieldBulletAbsorbtionAmount: 1
   shieldMesh: {fileID: 1543676957293910}
   flickerSpeedMax: 100

@@ -441,16 +441,16 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4955210162491196}
+  - component: {fileID: 114255682838590628}
   - component: {fileID: 114708851954637552}
   - component: {fileID: 82447754354459742}
-  - component: {fileID: 114255682838590628}
   m_Layer: 8
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4074735595092644
 Transform:
   m_ObjectHideFlags: 1
@@ -471,7 +471,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504227268057058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1127, y: 0.1038, z: -0.1005}
+  m_LocalPosition: {x: -0.1244, y: 0.1038, z: -0.1292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4485432269748390}
@@ -484,7 +484,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1420394693267658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1301, y: 0.106, z: -0.097}
+  m_LocalPosition: {x: -0.1301, y: 0.1037, z: -0.132}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224054515016845838}
@@ -580,7 +580,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221525748528336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13209999, y: 0.09920001, z: -0.08370006}
+  m_LocalPosition: {x: -0.13209999, y: 0.09920001, z: -0.13279998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224932421217450234}
@@ -1584,6 +1584,9 @@ MonoBehaviour:
   scaleCurrent: 0
   meterXCurrent: 0
   meterXOriginal: 0
+  meterZCurrent: 0
+  meterZOriginal: 0
+  isOnSaberSword: 0
 --- !u!114 &114973429985388542
 MonoBehaviour:
   m_ObjectHideFlags: 1

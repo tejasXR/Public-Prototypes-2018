@@ -5,6 +5,8 @@ using UnityEngine;
 public class HealthMeter : MonoBehaviour {
 
     private Player playerController;
+    private GameManager gameManager;
+
     public float healthSmoothPercent;
 
     public float scaleOriginal;
@@ -23,6 +25,8 @@ public class HealthMeter : MonoBehaviour {
 	void Start () {
 
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         scaleOriginal = transform.localScale.x;
         meterXOriginal = transform.localPosition.x;
 
@@ -39,7 +43,13 @@ public class HealthMeter : MonoBehaviour {
 
         if (isOnSaberSword)
         {
-            meterZCurrent = meterZOriginal - scaleOriginal / 2;
+            if (gameManager.inRedemption)
+            {
+                this.gameObject.SetActive(false);
+            } else
+            {
+                meterZCurrent = meterZOriginal - scaleOriginal / 2;
+            }
         }
     }
 
