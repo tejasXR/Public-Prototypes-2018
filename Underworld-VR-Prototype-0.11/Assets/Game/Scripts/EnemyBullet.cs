@@ -20,6 +20,7 @@ public class EnemyBullet : MonoBehaviour {
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //print(rb.velocity);
         //print(transform.rotation);
         transformStart = transform.position;

@@ -15,6 +15,11 @@ public class Bullet : MonoBehaviour {
 
     private float step;
 
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     //public GameObject bulletDissolveEffect;
 
     private void Update()
@@ -49,6 +54,6 @@ public class Bullet : MonoBehaviour {
 
     private void OnDestroy()
     {
-        Instantiate(bulletHitEnemyEffect, transform.position, transform.rotation);
+        //Instantiate(bulletHitEnemyEffect, transform.position, transform.rotation);
     }
 }
