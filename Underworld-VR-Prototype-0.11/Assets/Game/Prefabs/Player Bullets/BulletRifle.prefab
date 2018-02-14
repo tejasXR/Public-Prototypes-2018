@@ -288,9 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  bulletHitEnemyEffect: {fileID: 1918055969258948, guid: a1ef5e69316a6d24bb3771eeaa94f2ab,
-    type: 2}
-  bulletSolidEnemyEffect: {fileID: 1918055969258948, guid: a1ef5e69316a6d24bb3771eeaa94f2ab,
+  bulletHitEnemyEffect: {fileID: 1590730722307724, guid: e880b9b105bf7ec4ea4687ddc6acb268,
     type: 2}
   bulletDirection: {x: 0, y: 0, z: 0}
   bulletSpeed: 0

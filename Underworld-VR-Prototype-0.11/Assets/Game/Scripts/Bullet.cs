@@ -6,10 +6,12 @@ public class Bullet : MonoBehaviour {
 
     [HideInInspector] public float damage;
     public GameObject bulletHitEnemyEffect;
-    public GameObject bulletSolidEnemyEffect;
+    //public GameObject bulletSolidEnemyEffect;
 
     [HideInInspector] public Vector3 bulletDirection;
     [HideInInspector] public float bulletSpeed;
+
+    private GameManager gameManager;
 
     private float step;
 
@@ -17,6 +19,10 @@ public class Bullet : MonoBehaviour {
 
     private void Update()
     {
+        if (gameManager.inRedemption)
+        {
+            Destroy(this.gameObject);
+        }
         //step = bulletSpeed * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, bulletDirection, step);
     }

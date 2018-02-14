@@ -13,6 +13,9 @@ public class EnemyBullet : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 transformStart;
     public GameObject enemyParent;
+    public GameManager gameManager;
+
+    public bool isRedemptionBullet;
 
     private void Start()
     {
@@ -28,9 +31,23 @@ public class EnemyBullet : MonoBehaviour {
 
     }
 
+    private void Update()
+    {
+        if(gameManager.inRedemption && !isRedemptionBullet)
+        {
+            Destroy(this.gameObject);
+;        }
+
+        if (gameManager.inRound && isRedemptionBullet)
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
+        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
         {
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
             Destroy(this.gameObject);
@@ -97,5 +114,11 @@ public class EnemyBullet : MonoBehaviour {
     private void OnDestroy()
     {
         //Instantiate(bulletHitEffect, transform.position, transform.rotation);
+    }
+
+    void BulletDestroy()
+    {
+        Instantiate(bulletHitEffect, transform.position, transform.rotation);
+        Destroy(this.gameObject);
     }
 }

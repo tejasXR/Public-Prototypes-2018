@@ -513,7 +513,7 @@ MonoBehaviour:
   enemyBulletSpeed: 8
   enemyBulletDamage: 1
   enemyBulletAccuracy: 0.6
-  enemyBulletPrefab: {fileID: 1871618839054336, guid: 1f2f088599c9dcd408ff5c043be1b1fc,
+  enemyBulletPrefab: {fileID: 1871618839054336, guid: 5bcba94bc5f720e46bd6e75b6e1940df,
     type: 2}
   enemyBulletSpawns:
   - {fileID: 4090613579304144}

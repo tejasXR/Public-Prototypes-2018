@@ -44,6 +44,14 @@ public class EnemyParent : MonoBehaviour {
         //enemyHealth -= (enemyHealth * playerController.enemyNegativeHealthMultiplier);
     }
 
+    private void Update()
+    {
+        if (gameManager.inRedemption && !isRedemptionDrone)
+        {
+            EnemyDestroyNoBullets();
+        }
+    }
+
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "DeflectedBullet")
@@ -137,5 +145,14 @@ public class EnemyParent : MonoBehaviour {
 
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(this.gameObject);
+    }
+
+    void EnemyDestroyNoBullets()
+    {
+        //Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Destroy(this.gameObject);
+
+        //gameManager.enemiesOnScreen--;
+        //gameManager.enemiesDestroyed++;
     }
 }
