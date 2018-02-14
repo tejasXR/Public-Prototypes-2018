@@ -21,6 +21,10 @@ public class PlatformScript : MonoBehaviour {
     public float distanceTotal;
     public float distanceCurrent;
 
+    //private Renderer rend;
+    //private Renderer platformPiecesRend;
+
+
 
     // Use this for initialization
     void Start () {
@@ -30,6 +34,8 @@ public class PlatformScript : MonoBehaviour {
         scaleOriginal = transform.localScale.x;
         scaleCurrent = transform.localScale.x;
         distanceTotal = Vector3.Distance(transform.position, Vector3.zero);
+
+        //rend = GetComponent<Renderer>();
     }
 	
 	// Update is called once per frame
@@ -38,6 +44,11 @@ public class PlatformScript : MonoBehaviour {
         distanceCurrent = Vector3.Distance(transform.position, Vector3.zero);
         float distancePercent = (distanceTotal - distanceCurrent) / distanceTotal;
         //print(distancePercent);
+
+        /*foreach(GameObject piece in platformPieces.GetComponent<PlatformPieces>().pieces)
+        {
+            piece.GetComponent<Renderer>().material = rend.material;
+        }*/
 
         if (moving)
         {
@@ -73,7 +84,7 @@ public class PlatformScript : MonoBehaviour {
             transform.localScale = new Vector3(scaleCurrent, scaleCurrent, scaleCurrent);
             platformPieces.SetActive(true);
             platformPieces.GetComponent<PlatformPieces>().go = true;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 2f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 4f);
 
 
             if ((scaleCurrent / .5f) > .98f)

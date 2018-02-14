@@ -48,7 +48,7 @@ public class PlatformPieces : MonoBehaviour {
 
             for (int i = 0; i < 3; i++)
             {
-                pieces[i].transform.localPosition = Vector3.Lerp(pieces[i].transform.localPosition, targetPos[i], Time.deltaTime  *2f);
+                pieces[i].transform.localPosition = Vector3.Lerp(pieces[i].transform.localPosition, targetPos[i], Time.deltaTime * 4f);
             }
         }
 
