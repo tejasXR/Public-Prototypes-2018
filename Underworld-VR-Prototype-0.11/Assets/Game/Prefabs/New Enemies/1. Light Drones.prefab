@@ -3344,6 +3344,21 @@ MonoBehaviour:
   explosionText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}
   isRedemptionDrone: 0
+  meshToChangeOnFlash:
+  - {fileID: 1665976983528666}
+  - {fileID: 1493193179998260}
+  - {fileID: 1108897346837230}
+  - {fileID: 1936174802583614}
+  - {fileID: 1507564394575254}
+  - {fileID: 1264036587672228}
+  - {fileID: 1375636102162950}
+  - {fileID: 1939231667627336}
+  - {fileID: 1053109698007694}
+  - {fileID: 1750986930414590}
+  - {fileID: 1538357887806540}
+  enemyFlashMat: {fileID: 2100000, guid: 643b265319fbedf46b2e4bff52f05241, type: 2}
+  enemyFlashHitDuration: 0.15
+  flash: 0
 --- !u!114 &114849565329831140
 MonoBehaviour:
   m_ObjectHideFlags: 1

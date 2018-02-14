@@ -18,6 +18,8 @@ public class Bullet : MonoBehaviour {
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        Destroy(this.gameObject, 2.0f);
     }
 
     //public GameObject bulletDissolveEffect;

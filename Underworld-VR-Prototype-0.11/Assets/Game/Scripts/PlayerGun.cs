@@ -175,7 +175,7 @@ public class PlayerGun : MonoBehaviour {
 
                 
                 // Destroy the bullet after 2 seconds
-                Destroy(bullet, 2.0f);
+                //Destroy(bullet, 2.0f);
 
                 //transform.localPosition -= transform.;
                 //transform.localRotation = Quaternion.Euler(Random.Range(0, -20), 0, 0);

@@ -26,6 +26,14 @@ public class EnemyParent : MonoBehaviour {
 
     public bool isRedemptionDrone;
 
+    public GameObject[] meshToChangeOnFlash;
+    private Material[] meshRendererOriginals;
+    public Material enemyFlashMat;
+    public float enemyFlashHitDuration;
+    //private float enemyFlashHitCounter;
+
+    public bool flash;
+
 
 
     void Start () {
@@ -41,6 +49,13 @@ public class EnemyParent : MonoBehaviour {
             explosionText.text = "+ " + enemyGiveBullets.ToString();
         }
 
+        // Sets all the mesh renderers stored safely in another array
+        meshRendererOriginals = new Material[meshToChangeOnFlash.Length];
+        for(int i = 0; i < meshToChangeOnFlash.Length; i++)
+        {
+            meshRendererOriginals[i] = meshToChangeOnFlash[i].GetComponent<Renderer>().material;
+        }
+
         //enemyHealth -= (enemyHealth * playerController.enemyNegativeHealthMultiplier);
     }
 
@@ -50,12 +65,20 @@ public class EnemyParent : MonoBehaviour {
         {
             EnemyDestroyNoBullets();
         }
+
+        /*if (flash)
+        {
+            StartCoroutine(EnemyHitFlash());
+            flash = false;
+        }*/
     }
 
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "DeflectedBullet")
         {
+            StartCoroutine(EnemyHitFlash());
+
             float damage = 0;
 
             if (other.gameObject.tag == "Bullet")
@@ -108,6 +131,21 @@ public class EnemyParent : MonoBehaviour {
     }*/
 
     //If destroyed by a bullet, explode into shiny things and give the player bullets
+
+    IEnumerator EnemyHitFlash()
+    {
+        for (int i = 0; i < meshToChangeOnFlash.Length; i++)
+        {
+            meshToChangeOnFlash[i].GetComponent<Renderer>().material = enemyFlashMat;
+        }
+        yield return new WaitForSeconds(enemyFlashHitDuration);
+        for (int i = 0; i < meshToChangeOnFlash.Length; i++)
+        {
+            meshToChangeOnFlash[i].GetComponent<Renderer>().material = meshRendererOriginals[i];
+        }
+
+    }
+
     void EnemyDestroy()
     {
         if (enemyGiveBullets > 0)
