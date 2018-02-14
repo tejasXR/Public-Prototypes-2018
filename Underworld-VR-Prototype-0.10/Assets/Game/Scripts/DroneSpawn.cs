@@ -6,19 +6,31 @@ public class DroneSpawn : MonoBehaviour {
 
     public float enemySpawnTimer;
     private float spawnBufferTimer = 1.5f;
+
+    public float destroyTimer;
+    //private float destroyTimerCounter;
+
     public GameObject enemySpawnObj;
     public Transform spawnPoint;
     private GameObject playerController;
 
     public GameObject mesh;
     private Renderer triangleRend;
-    public float triangleAlpha = 0f;
-    public float alphaSpeed;
+    //public float fadeSpeed = 0f;
+    public float fadeSpeed;
     private bool hasSpawnedEnemy;
+
+    public Color mainColor;
+    public Color glowColor;
 
     private void Awake()
     {
-        triangleAlpha = 1f;
+        triangleRend = mesh.GetComponent<Renderer>();
+
+        //triangleAlpha = 1f;
+
+        mainColor = triangleRend.material.GetColor("_Color");
+        glowColor = triangleRend.material.GetColor("_MKGlowColor");
     }
 
 
@@ -34,7 +46,9 @@ public class DroneSpawn : MonoBehaviour {
         //transform.rotation = Quaternion.LookRotation(looking, Vector3.up);
         transform.LookAt(playerController.transform.position);
 
-        triangleRend = mesh.GetComponent<Renderer>();
+
+
+
 	}
 	
 	// Update is called once per frame
@@ -55,9 +69,16 @@ public class DroneSpawn : MonoBehaviour {
               //  Destroy(this.gameObject);
             }
 
-            triangleAlpha = Mathf.Lerp(triangleAlpha, 0f, Time.deltaTime * alphaSpeed);
+            destroyTimer -= Time.deltaTime;
+            mainColor = Color.Lerp(mainColor, new Color(0, 0, 0, 0), Time.deltaTime * fadeSpeed);
 
-            if (triangleAlpha < .01)
+            glowColor = Color.Lerp(glowColor, new Color(0, 0, 0, 0), Time.deltaTime * fadeSpeed);
+
+            
+
+            //triangleAlpha = Mathf.Lerp(triangleAlpha, 0f, Time.deltaTime * alphaSpeed);
+
+            if (destroyTimer <= 0)
             {
                 Destroy(this.gameObject);
             }
@@ -75,8 +96,9 @@ public class DroneSpawn : MonoBehaviour {
             triangleAlpha = Mathf.Lerp(triangleAlpha, 0f, Time.deltaTime * alphaSpeed);
         }*/
 
-        triangleRend.material.SetFloat("_MKGlowPower", triangleAlpha);
+        //triangleRend.material.SetFloat("_MKGlowPower", triangleAlpha);
 
-
+        triangleRend.material.SetColor("_Color", mainColor);
+        triangleRend.material.SetColor("_MKGlowColor", glowColor);
     }
 }
