@@ -32,7 +32,7 @@ public class WeaponActive : MonoBehaviour {
     {
         DisableAllWeapons();
 
-        CheckCurrentWeapon(); // Gets the name of the weapon player has before switching to a new weapon
+        //CheckCurrentWeapon(); // Gets the name of the weapon player has before switching to a new weapon
 
         switch (weaponName)
         {
@@ -41,11 +41,13 @@ public class WeaponActive : MonoBehaviour {
                 {
                     weapons[0].SetActive(true);
                     weaponInt = 0;
+                    //print("PISTOL");
                 }
                 break;
             case "RIFLE":
                 if (unlockRifle)
                 {
+                    //print("Rifle");
                     weapons[1].SetActive(true);
                     weaponInt = 1;
                 }

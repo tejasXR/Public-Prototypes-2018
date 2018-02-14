@@ -304,7 +304,7 @@ public class WeaponsMenu : MonoBehaviour {
 
         weaponsMenu.SetActive(false);
 
-        weaponActive.WeaponToActivate(weaponActive.previousWeapon);
+        weaponActive.WeaponToActivate(weaponActive.currentWeapon);
 
         /*
         //Reset colors for the buttons
