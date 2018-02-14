@@ -32,7 +32,7 @@ public class EnemyAttack : MonoBehaviour {
         enemyParent = GetComponent<EnemyParent>();
         enemyMovement = GetComponent<EnemyMovement>();
 
-        enemyAttackTimer = (1 /enemyBulletFireRate) + Random.Range(-.25f, .25f);
+        enemyAttackTimer = (1 /enemyBulletFireRate) + Random.Range(-.05f, .05f);
     }
 
     // Update is called once per frame

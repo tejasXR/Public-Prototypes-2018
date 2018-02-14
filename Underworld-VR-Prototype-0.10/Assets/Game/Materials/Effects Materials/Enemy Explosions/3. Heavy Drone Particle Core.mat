@@ -32,7 +32,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
-    - _TintColor: {r: 0, g: 0.83823526, b: 0.040466603, a: 0.11764706}
+    - _TintColor: {r: 0.83823526, g: 0.39888436, b: 0, a: 0.11764706}
     - _TintColorB: {r: 0.6137934, g: 0, b: 1, a: 0}
     - _TintColorG: {r: 0.7484788, g: 0.41176468, b: 1, a: 0}
     - _TintColorR: {r: 0.45476675, g: 0.38235295, b: 1, a: 0.47058824}
