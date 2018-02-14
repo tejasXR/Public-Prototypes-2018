@@ -75,8 +75,7 @@ public class PlayerShield : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
@@ -100,6 +99,31 @@ public class PlayerShield : MonoBehaviour {
             //Destroy(other.gameObject);
         }
     }
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+            float otherDamage = other.gameObject.GetComponent<EnemyBullet>().damage;
+            shieldHealth -= otherDamage;
+
+            scanTileCurrent = 0;
+            flickerSpeedCurrent = flickerSpeedMax;
+
+            StartCoroutine(ShieldVibration(1, 2000));
+
+            // A chance to absorb an incoming bullet
+            //float shieldAbsorption = Random.Range(0f, 1f);
+            //if (shieldAbsorption > shieldBulletAbsorbtionAmount)
+            {
+                playerController.playerBullets += shieldBulletAbsorbtionAmount;
+            }
+
+            //print("Hit");
+
+            //Destroy(other.gameObject);
+        }
+    }*/
 
     IEnumerator ShieldVibration(float length, ushort strength)
     {

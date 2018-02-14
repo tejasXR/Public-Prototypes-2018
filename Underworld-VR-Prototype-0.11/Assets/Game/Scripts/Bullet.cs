@@ -56,6 +56,6 @@ public class Bullet : MonoBehaviour {
 
     private void OnDestroy()
     {
-        //Instantiate(bulletHitEnemyEffect, transform.position, transform.rotation);
+        Instantiate(bulletHitEnemyEffect, transform.position, transform.rotation);
     }
 }

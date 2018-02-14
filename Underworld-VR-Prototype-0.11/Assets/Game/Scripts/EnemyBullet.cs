@@ -51,6 +51,9 @@ public class EnemyBullet : MonoBehaviour {
         if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
         {
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
+
+            //print(collision.gameObject.tag);
+
             Destroy(this.gameObject);
         }
 

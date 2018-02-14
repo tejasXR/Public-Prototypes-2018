@@ -288,10 +288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b294dbda82eea4f96d7d4ec4e048cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletHitEffect: {fileID: 1918055969258948, guid: bee95c0f7b3d32f44918ee8db92c953d,
+  bulletHitEffect: {fileID: 1918055969258948, guid: be8aceff824222f458d0853422450440,
     type: 2}
   damage: 1
   enemyParent: {fileID: 0}
+  gameManager: {fileID: 0}
+  isRedemptionBullet: 0
 --- !u!136 &136642876076122152
 CapsuleCollider:
   m_ObjectHideFlags: 1
