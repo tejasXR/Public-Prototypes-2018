@@ -79,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1180408355382406
 GameObject:
   m_ObjectHideFlags: 1
@@ -1753,9 +1753,9 @@ MonoBehaviour:
   isShotgun: 0
   isLaserRifle: 1
   noBulletHaptic: 0
-  bulletUsedObj: {fileID: 1913003000877222, guid: 9d8aa5837353c7b42a361a8b8e2400fa,
+  bulletUsedObj: {fileID: 1889865909195924, guid: c45716836252a924ead23fdf6de1bad9,
     type: 2}
-  noBulletsObj: {fileID: 1913003000877222, guid: f3fac8a814e42ef458a6c61d594f4de8,
+  noBulletsObj: {fileID: 1360243708616898, guid: a9e36370c2d23004c943094e975a1322,
     type: 2}
 --- !u!114 &114483896883153150
 MonoBehaviour:

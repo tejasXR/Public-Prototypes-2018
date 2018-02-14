@@ -21,7 +21,7 @@ public class EnemyParent : MonoBehaviour {
     //Enemy On Destroy
     public GameObject explosionPrefab; //the explosion effect when destroyed
     public GameObject explosionTextObj; //the text object that tells players how many bullets they've earned
-    public TextMeshPro explosionText;
+    //public TextMeshPro[] explosionText;
     private float enemyDestroyTimer = 2f;
 
     public bool isRedemptionDrone;
@@ -44,10 +44,16 @@ public class EnemyParent : MonoBehaviour {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
 
-        if (!isRedemptionDrone)
+        explosionTextObj.GetComponent<EarnedBulletText>().bulletNumber = enemyGiveBullets;
+
+        /*if (!isRedemptionDrone)
         {
-            explosionText.text = "+ " + enemyGiveBullets.ToString();
-        }
+            foreach(TextMeshPro text in explosionText)
+            {
+                text.text = "+ " + enemyGiveBullets.ToString();
+
+            }
+        }*/
 
         // Sets all the mesh renderers stored safely in another array
         meshRendererOriginals = new Material[meshToChangeOnFlash.Length];

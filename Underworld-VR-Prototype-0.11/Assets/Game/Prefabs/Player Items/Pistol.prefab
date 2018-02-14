@@ -1633,7 +1633,7 @@ MonoBehaviour:
   isShotgun: 0
   isLaserRifle: 0
   noBulletHaptic: 0
-  bulletUsedObj: {fileID: 1913003000877222, guid: 9d8aa5837353c7b42a361a8b8e2400fa,
+  bulletUsedObj: {fileID: 1181103088315190, guid: 4bbb3e582efd6614f91b74a8a6916ab5,
     type: 2}
   noBulletsObj: {fileID: 1913003000877222, guid: f3fac8a814e42ef458a6c61d594f4de8,
     type: 2}

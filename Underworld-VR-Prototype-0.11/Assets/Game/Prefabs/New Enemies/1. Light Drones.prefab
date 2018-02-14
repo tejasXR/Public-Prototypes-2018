@@ -3339,7 +3339,7 @@ MonoBehaviour:
   enemyGiveBullets: 10
   explosionPrefab: {fileID: 1791950710268172, guid: 508faf91813c2f248aed6f78763379de,
     type: 2}
-  explosionTextObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+  explosionTextObj: {fileID: 1157587441603694, guid: c9dfea72e479aab44b6e693335e90a10,
     type: 2}
   explosionText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
     type: 2}

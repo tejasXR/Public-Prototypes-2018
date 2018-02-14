@@ -484,7 +484,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1420394693267658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1301, y: 0.1037, z: -0.132}
+  m_LocalPosition: {x: -0.1301, y: 0.15839998, z: -0.17200002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224054515016845838}
@@ -580,7 +580,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221525748528336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13209999, y: 0.09920001, z: -0.13279998}
+  m_LocalPosition: {x: -0.13209999, y: 0.1539, z: -0.1728}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224932421217450234}
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1420394693267658}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79364cc00cfe13b4aa5e148861c647af, type: 3}
   m_Name: 
@@ -1510,9 +1510,9 @@ MonoBehaviour:
   isShotgun: 1
   isLaserRifle: 0
   noBulletHaptic: 0
-  bulletUsedObj: {fileID: 1913003000877222, guid: 27105838f9fc0914fabc6dc576286eda,
+  bulletUsedObj: {fileID: 1141972136093172, guid: 11bc16e1370b1b441ba07da134c0daef,
     type: 2}
-  noBulletsObj: {fileID: 1913003000877222, guid: f3fac8a814e42ef458a6c61d594f4de8,
+  noBulletsObj: {fileID: 1233562928902320, guid: a0651e32096d24f4b81e99c804650fde,
     type: 2}
 --- !u!114 &114723559940519588
 MonoBehaviour:
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221525748528336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79364cc00cfe13b4aa5e148861c647af, type: 3}
   m_Name: 
