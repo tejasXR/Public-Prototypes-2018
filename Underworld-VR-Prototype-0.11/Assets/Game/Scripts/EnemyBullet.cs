@@ -14,7 +14,7 @@ public class EnemyBullet : MonoBehaviour {
     private Vector3 transformStart;
     public GameObject enemyParent;
     public GameManager gameManager;
-
+    public Material defelectedBulletMat;
     public bool isRedemptionBullet;
 
     private void Start()
@@ -51,6 +51,11 @@ public class EnemyBullet : MonoBehaviour {
         if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
         {
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
+
+            if (this.gameObject. tag == "DefelctedBullet" && collision.gameObject.tag == "EnemyBullet")
+            {
+                Destroy(collision.gameObject);
+            }
 
             //print(collision.gameObject.tag);
 

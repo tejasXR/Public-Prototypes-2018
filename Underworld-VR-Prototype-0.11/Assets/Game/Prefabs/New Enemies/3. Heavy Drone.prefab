@@ -2715,7 +2715,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541307603904862}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 0.65
   m_AngularDrag: 1
   m_UseGravity: 0

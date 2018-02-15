@@ -64,6 +64,9 @@ public class SwordScript : MonoBehaviour {
         {
             var enemyBullet = other.gameObject.GetComponent<EnemyBullet>();
             var enemyBulletRb = other.gameObject.GetComponent<Rigidbody>();
+            var enemyBulletRend = other.gameObject.GetComponent<Renderer>();
+
+            enemyBulletRend.material = other.gameObject.GetComponent<EnemyBullet>().defelectedBulletMat;
             Vector3 bulletDirection;
 
             device.TriggerHapticPulse(300);

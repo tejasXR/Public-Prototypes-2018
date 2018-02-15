@@ -209,8 +209,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletHitEffect: {fileID: 1918055969258948, guid: 96ae2c153f67d1042b93e509350e047c,
     type: 2}
-  damage: 0
+  damage: 3
   enemyParent: {fileID: 0}
+  gameManager: {fileID: 0}
+  defelectedBulletMat: {fileID: 2100000, guid: 510c57ece3da4524a9a0344a1bd84f6d, type: 2}
+  isRedemptionBullet: 0
 --- !u!136 &136642876076122152
 CapsuleCollider:
   m_ObjectHideFlags: 1
