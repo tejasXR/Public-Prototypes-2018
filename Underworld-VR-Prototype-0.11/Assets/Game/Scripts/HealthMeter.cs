@@ -20,12 +20,16 @@ public class HealthMeter : MonoBehaviour {
 
     public bool isOnSaberSword;
 
-
-	// Use this for initialization
-	void Start () {
-
+    private void Awake()
+    {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    // Use this for initialization
+    void Start () {
+
+        
 
         scaleOriginal = transform.localScale.x;
         meterXOriginal = transform.localPosition.x;

@@ -44,7 +44,10 @@ public class EnemyParent : MonoBehaviour {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
 
-        explosionTextObj.GetComponent<EarnedBulletText>().bulletNumber = enemyGiveBullets;
+        if (!isRedemptionDrone)
+        {
+            explosionTextObj.GetComponent<EarnedBulletText>().bulletNumber = enemyGiveBullets;
+        }
 
         /*if (!isRedemptionDrone)
         {
