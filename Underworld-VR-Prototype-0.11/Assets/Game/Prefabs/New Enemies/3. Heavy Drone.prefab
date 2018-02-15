@@ -3355,9 +3355,7 @@ MonoBehaviour:
   enemyGiveBullets: 50
   explosionPrefab: {fileID: 1560450553902976, guid: d8eaa550c28298043b66bfb0082335d6,
     type: 2}
-  explosionTextObj: {fileID: 1962754777400622, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
-    type: 2}
-  explosionText: {fileID: 114923947219076326, guid: 5f7b9bf543096a448a8ab4fe053fcea0,
+  explosionTextObj: {fileID: 1887531103206774, guid: 27947d45bd62a6b4ca3b385a4b5eb056,
     type: 2}
   isRedemptionDrone: 0
   meshToChangeOnFlash:

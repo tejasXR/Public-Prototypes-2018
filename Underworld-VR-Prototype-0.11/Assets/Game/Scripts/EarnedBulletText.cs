@@ -7,10 +7,11 @@ public class EarnedBulletText : MonoBehaviour {
 
     public GameObject playerEye;
 
-    public GameObject textOutline1;
-    public GameObject textOutline2;
+    //public GameObject textOutline1;
+   // public GameObject textOutline2;
     public GameObject textSolid;
-    public TextMeshPro[] texts;
+    //public TextMeshPro[] texts;
+    public TextMeshPro text;
     public float bulletNumber;
     public float countSpeed = 85f;
 
@@ -18,15 +19,13 @@ public class EarnedBulletText : MonoBehaviour {
     public float bulletSmoothCount;
 
     public Vector3 moveDirection;
-
+    public Vector3 targetPos;
+    public float movespeed;
 
 	// Use this for initialization
 	void Start () {
         playerEye = GameObject.FindGameObjectWithTag("Player");
-
-       
-
-        textOutline1.SetActive(false);
+        //textOutline1.SetActive(false);
         textSolid.SetActive(false);
         StartCoroutine(EarnedBulletSpawn());
 	}
@@ -38,11 +37,11 @@ public class EarnedBulletText : MonoBehaviour {
         {
             if (bulletSmoothCount <= bulletNumber)
             {
-                bulletSmoothCount += Time.unscaledDeltaTime * countSpeed;
+                bulletSmoothCount += Time.deltaTime * countSpeed;
             }
             else
             {
-                bulletSmoothCount -= Time.unscaledDeltaTime * countSpeed;
+                //bulletSmoothCount -= Time.unscaledDeltaTime * countSpeed;
             }
         }
 
@@ -61,12 +60,21 @@ public class EarnedBulletText : MonoBehaviour {
         transform.LookAt(playerEye.transform.position);
         //transform.position = Vector3.Lerp(transform.position, transform.forward, Time.deltaTime * .01f);
 
-        transform.position = Vector3.Lerp(transform.position, playerEye.transform.position, Time.deltaTime * .01f);
+        //transform.position = Vector3.Lerp(transform.position, playerEye.transform.position, Time.deltaTime * .01f);
+        //transform.Translate(0, 0, 1f * Time.deltaTime);
+        targetPos.z += .1f * Time.deltaTime;
+        //textSolid.transform.localPosition = Vector3.Lerp(textSolid.transform.localPosition, targetPos, Time.deltaTime * movespeed);
 
-        foreach (TextMeshPro text in texts)
+
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * movespeed);
+
+
+        text.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
+
+        /*foreach (TextMeshPro text in texts)
         {
-            text.text = "" + bulletNumber.ToString();
-        }
+            text.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
+        }*/
 
     }
 
@@ -78,7 +86,9 @@ public class EarnedBulletText : MonoBehaviour {
 
         Ray ray = new Ray(transform.position, moveDirection);
 
-        yield return new WaitForSeconds(.25f);
+        targetPos = ray.GetPoint(.5f);
+
+        //yield return new WaitForSeconds(.25f);
 
         //textOutline1.transform.position = ray.GetPoint(0f);
         //textOutline1.SetActive(true);
