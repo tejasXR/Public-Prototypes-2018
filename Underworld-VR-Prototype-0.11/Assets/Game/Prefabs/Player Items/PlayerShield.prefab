@@ -445,6 +445,8 @@ MonoBehaviour:
   shieldMesh: {fileID: 1543676957293910}
   flickerSpeedMax: 100
   healthText: {fileID: 114997723362589436}
+  bulletGainedObj: {fileID: 1141972136093172, guid: d8a3a844c1ef9d249b1fd8ef155c2df5,
+    type: 2}
 --- !u!114 &114997723362589436
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour {
                 controllerModel.SetActive(false);
             }
 
+            playerController.playerBullets = 25;
+
         }
 
         if (!playerPlatform.moving && playerMoveToStadium)

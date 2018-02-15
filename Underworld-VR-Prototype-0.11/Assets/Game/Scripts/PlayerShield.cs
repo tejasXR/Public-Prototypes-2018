@@ -38,6 +38,7 @@ public class PlayerShield : MonoBehaviour {
     private float scanTileOriginal;
 
     public TextMeshPro healthText;
+    public GameObject bulletGainedObj;
 
 
 	// Use this for initialization
@@ -107,6 +108,8 @@ public class PlayerShield : MonoBehaviour {
             //if (shieldAbsorption > shieldBulletAbsorbtionAmount)
             {
                 playerController.playerBullets += shieldBulletAbsorbtionAmount;
+                Instantiate(bulletGainedObj, other.gameObject.transform.position, other.gameObject.transform.rotation);
+
             }
 
             //print("Hit");

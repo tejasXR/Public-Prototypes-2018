@@ -32,6 +32,7 @@ public class TutorialManager : MonoBehaviour {
             inTutorial = true;
             //tutorialBoardInt++;
             tutorialStart = true;
+            tutorialShieldObj.SetActive(true);
         }
 
         if (tutorialStart)
@@ -62,11 +63,11 @@ public class TutorialManager : MonoBehaviour {
             tutorialBoardCounter = tutorialInt;
         }
 
-        tutorialShieldObj.SetActive(true);
+        
 
         if (tutorialInt == 0)
         {
-            if (tutorialShield.shieldHealth < 6)
+            if (tutorialShield.shieldHealth < 8)
             {
                 tutorialInt++;
             }
@@ -114,7 +115,12 @@ public class TutorialManager : MonoBehaviour {
 
         if (tutorialInt == 6)
         {
-            if (weaponMenu.weaponSelected)
+            /*if (weaponMenu.weaponSelected)
+            {
+                tutorialInt++;
+            }*/
+
+            if (tutorialDrone.enemyHealth <= 0)
             {
                 tutorialInt++;
             }
@@ -123,10 +129,10 @@ public class TutorialManager : MonoBehaviour {
 
         if (tutorialInt == 7)
         {
-            if (tutorialDrone.enemyHealth <= 0)
+            /*if (tutorialDrone.enemyHealth <= 0)
             {
                 tutorialInt++;
-            }
+            }*/
         }
 
 
