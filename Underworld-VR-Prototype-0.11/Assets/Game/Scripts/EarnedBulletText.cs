@@ -20,7 +20,7 @@ public class EarnedBulletText : MonoBehaviour {
 
     public Vector3 moveDirection;
     public Vector3 targetPos;
-    public float movespeed;
+    public float moveSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -66,7 +66,7 @@ public class EarnedBulletText : MonoBehaviour {
         //textSolid.transform.localPosition = Vector3.Lerp(textSolid.transform.localPosition, targetPos, Time.deltaTime * movespeed);
 
 
-        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * movespeed);
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * moveSpeed);
 
 
         text.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
@@ -86,7 +86,7 @@ public class EarnedBulletText : MonoBehaviour {
 
         Ray ray = new Ray(transform.position, moveDirection);
 
-        targetPos = ray.GetPoint(.5f);
+        targetPos = ray.GetPoint(1f);
 
         //yield return new WaitForSeconds(.25f);
 

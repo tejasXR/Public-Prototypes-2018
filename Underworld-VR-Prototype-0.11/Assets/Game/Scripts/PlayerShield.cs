@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerShield : MonoBehaviour {
@@ -12,6 +13,7 @@ public class PlayerShield : MonoBehaviour {
     public float shieldHealthMax;
     public float shieldHealth;
     private float shieldHealthSmooth;
+    private float shieldHealthPercent;
     public float shieldRechargeSpeed;
 
     public float shieldRegenMultiplier = 1;
@@ -35,6 +37,8 @@ public class PlayerShield : MonoBehaviour {
     private float scanTileCurrent;
     private float scanTileOriginal;
 
+    public TextMeshPro healthText;
+
 
 	// Use this for initialization
 	void Start () {
@@ -55,6 +59,13 @@ public class PlayerShield : MonoBehaviour {
         {
             shieldHealth = shieldHealthMax * shieldHealthMaxMultiplier;
         }
+        
+        if (shieldHealth <= 0)
+        {
+            shieldHealth = 0;
+        }
+
+        shieldHealthPercent = Mathf.Lerp(shieldHealthPercent, (shieldHealthSmooth / (shieldHealthMax * shieldHealthMaxMultiplier)) * 100, Time.deltaTime * 2f);
 
         flickerSpeedCurrent = Mathf.Lerp(flickerSpeedCurrent, 0, Time.deltaTime * 3f);
         //scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal * shieldSizeMultiplier, Time.deltaTime * 3f);
@@ -68,7 +79,11 @@ public class PlayerShield : MonoBehaviour {
         float modelScale = shieldHealthSmooth / (shieldHealthMax * shieldHealthMaxMultiplier);
 
         transform.localScale = new Vector3(modelScale, modelScale, modelScale);
-	}
+
+        healthText.text = "shield health: " + Mathf.RoundToInt(shieldHealthSmooth) + " / " + Mathf.RoundToInt(shieldHealthMax * shieldHealthMaxMultiplier);
+        healthText.text = "" + Mathf.RoundToInt(shieldHealthPercent) + "%";
+
+    }
 
     private void FixedUpdate()
     {

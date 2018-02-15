@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSmoothCount: 0
-  countSpeed: 85
+  countSpeed: 35
 --- !u!114 &114647930825711592
 MonoBehaviour:
   m_ObjectHideFlags: 1
