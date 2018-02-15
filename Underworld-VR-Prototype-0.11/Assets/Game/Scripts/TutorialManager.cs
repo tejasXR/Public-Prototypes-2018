@@ -8,11 +8,12 @@ public class TutorialManager : MonoBehaviour {
     public bool tutorialStart;
 
     public int tutorialInt;
-    private int tutorialBoardCounter;
+    public int tutorialBoardCounter = -1;
     public TutorialStartUI tutorialStartUI;
     public GameObject[] tutorialBoards;
 
     public PlayerShield tutorialShield;
+    public GameObject tutorialShieldObj;
     public GameObject tutorialPistol;
     public UpgradeMenu upgradeMenu;
     public WeaponsMenu weaponMenu;
@@ -61,7 +62,7 @@ public class TutorialManager : MonoBehaviour {
             tutorialBoardCounter = tutorialInt;
         }
 
-        tutorialShield.gameObject.SetActive(true);
+        tutorialShieldObj.SetActive(true);
 
         if (tutorialInt == 0)
         {
