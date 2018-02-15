@@ -130,14 +130,14 @@ public class UpgradeMenu : MonoBehaviour
 
         }
 
-        if (upgradeMenuOpen && !upgradeSelected && !gameManager.redemptionPreStart && !tutorialManager.inTutorial)
+        if (upgradeMenuOpen && !upgradeSelected && !gameManager.redemptionPreStart)
         {
             OpenUpgradeMenu();
             timeManager.DoSlowMotion();
             playerShield.SetActive(false);
             shieldHide = true;
         }
-        else if (!upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart &&  !gameManager.redemptionPreStart && !tutorialManager.inTutorial)
+        else if (!upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart && !gameManager.redemptionPreStart)
         {
             playerShield.SetActive(true);
             shieldHide = false;
