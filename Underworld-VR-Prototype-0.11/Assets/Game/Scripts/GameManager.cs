@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour {
                 playerShield.SetActive(true);
                 weaponActive.WeaponToActivate("PISTOL");
                 roundStart = true;
+                inRound = true;
                 mainGameStart = true;
             }
         }
@@ -218,7 +219,6 @@ public class GameManager : MonoBehaviour {
             {
                 roundCurrent -= 1; // Reset the round number to when the player died
                 StopRedemption();
-                print("out of redemption");
                 //redemptionMeter
                 playerController.playerHealth += (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier) / 2;
                 roundStart = true;
@@ -415,12 +415,12 @@ public class GameManager : MonoBehaviour {
 
     void EnableStadium()
     {
+        encapsulatingStadium.SetActive(true);
         bluePlatform.SetActive(true);
         purpleStadium.SetActive(true);
         synthCity.SetActive(false);
         playerStartArea.SetActive(false);
         platformLight.SetActive(true);
-        encapsulatingStadium.SetActive(true);
     }
 
     void GameReset()

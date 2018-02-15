@@ -22,9 +22,13 @@ public class EarnedBulletText : MonoBehaviour {
     public Vector3 targetPos;
     public float moveSpeed;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
         playerEye = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    // Use this for initialization
+    void Start () {
         //textOutline1.SetActive(false);
         textSolid.SetActive(false);
         StartCoroutine(EarnedBulletSpawn());

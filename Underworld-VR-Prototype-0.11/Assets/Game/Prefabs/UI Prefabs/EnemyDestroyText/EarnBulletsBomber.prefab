@@ -1037,7 +1037,7 @@ MonoBehaviour:
   bulletSmoothCount: 0
   moveDirection: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
-  movespeed: 8
+  moveSpeed: 7
 --- !u!114 &114519715798788136
 MonoBehaviour:
   m_ObjectHideFlags: 1
