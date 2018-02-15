@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour {
     public Player playerController;
     public MusicManager musicManager;
     public UpgradeManager upgradeManager;
+    public TutorialManager tutorialManager;
 
     private void Awake()
     {
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour {
             playerPlatform.moving = true;
             playerMoveToStadium = true;
             musicManager.musicVolume = 1f;
+            tutorialManager.TutorialReset();
             foreach (GameObject controllerModel in controllerModels)
             {
                 controllerModel.SetActive(false);

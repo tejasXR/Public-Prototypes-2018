@@ -134,9 +134,18 @@ public class TutorialManager : MonoBehaviour {
                 tutorialInt++;
             }*/
         }
+    }
 
+    public void TutorialReset()
+    {
+        inTutorial = false;
+        //tutorialBoardInt++;
+        tutorialStart = false;
+        tutorialShieldObj.SetActive(false);
 
-
-
+        for (int i = 0; i < tutorialBoards.Length; i++)
+        {
+            tutorialBoards[i].SetActive(false);
+        }
     }
 }

@@ -12,6 +12,7 @@ public class UpgradeMenu : MonoBehaviour
     private TimeManager timeManager;
     public GameObject playerShield;
     private GameManager gameManager;
+    private TutorialManager tutorialManager;
 
     public List<MainMenuUI> mainMenuUIList = new List<MainMenuUI>(); //creates a list of menu buttons to access
 
@@ -86,6 +87,7 @@ public class UpgradeMenu : MonoBehaviour
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
 
         MenuReset();
 
@@ -128,14 +130,14 @@ public class UpgradeMenu : MonoBehaviour
 
         }
 
-        if (upgradeMenuOpen && !upgradeSelected && !gameManager.redemptionPreStart)
+        if (upgradeMenuOpen && !upgradeSelected && !gameManager.redemptionPreStart && !tutorialManager.inTutorial)
         {
             OpenUpgradeMenu();
             timeManager.DoSlowMotion();
             playerShield.SetActive(false);
             shieldHide = true;
         }
-        else if (!upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart &&  !gameManager.redemptionPreStart)
+        else if (!upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart &&  !gameManager.redemptionPreStart && !tutorialManager.inTutorial)
         {
             playerShield.SetActive(true);
             shieldHide = false;
