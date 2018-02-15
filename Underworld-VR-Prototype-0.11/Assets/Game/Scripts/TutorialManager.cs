@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour {
 
-    public bool tutorialStart;
+    public bool inTutorial;
+
+    public TutorialStartUI tutorialStartUI;
 
 
 	// Use this for initialization
