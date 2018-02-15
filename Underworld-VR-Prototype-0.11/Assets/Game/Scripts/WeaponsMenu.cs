@@ -32,6 +32,8 @@ public class WeaponsMenu : MonoBehaviour {
 
     private WeaponActive weaponActive; // Adding weapon active to set the current active weapon
 
+    public bool weaponSelected;
+
     public bool firstPressUp;
 
     private GameManager gameManager;
@@ -249,6 +251,7 @@ public class WeaponsMenu : MonoBehaviour {
         //weaponsSelected = true;
 
         // Linking to WeaponActive script for better managing of the current active weapon
+        weaponSelected = true;
 
         switch(currentMenuItem)
         {
@@ -284,6 +287,7 @@ public class WeaponsMenu : MonoBehaviour {
     {
         firstPressUp = false;
         weaponsMenuOpen = false;
+        weaponSelected = false;
         weaponsSelected = false;
         
 
