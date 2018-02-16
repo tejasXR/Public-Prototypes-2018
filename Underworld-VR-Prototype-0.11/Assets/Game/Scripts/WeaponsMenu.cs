@@ -268,7 +268,7 @@ public class WeaponsMenu : MonoBehaviour {
                 weaponActive.WeaponToActivate("SABER SWORD");
                 break;
             case 4:
-                weaponActive.WeaponToActivate("LASER RIFLE");
+                weaponActive.WeaponToActivate("HYPER RIFLE");
                 break;
         }
         

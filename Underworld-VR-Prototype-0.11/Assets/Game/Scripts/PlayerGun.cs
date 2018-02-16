@@ -45,7 +45,7 @@ public class PlayerGun : MonoBehaviour {
     public bool isPistol;
     public bool isRifle;
     public bool isShotgun;
-    public bool isLaserRifle;
+    public bool isHyperRifle;
 
     public bool noBulletHaptic;
 
@@ -214,7 +214,7 @@ public class PlayerGun : MonoBehaviour {
 
         }
 
-        if (isLaserRifle)
+        if (isHyperRifle)
         {
             StartCoroutine(GunVibration(1f, 3000));
         }

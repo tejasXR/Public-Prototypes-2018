@@ -6,7 +6,7 @@ public class WeaponActive : MonoBehaviour {
 
     public GameObject[] weapons; // The list of weapons
     private GameManager gameManager;
-    private int weaponInt; // Used for internal counting purposes
+    public int weaponInt; // Used for internal counting purposes
     public string currentWeapon;
     public string previousWeapon;
     public bool unlockPistol;
