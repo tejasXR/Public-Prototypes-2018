@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour {
         bulletFiredSound.Play();
         bulletNormalSound.Play();
 
-        Destroy(this.gameObject, .1f);
+        Destroy(this.gameObject, 2f);
     }
 
     //public GameObject bulletDissolveEffect;
