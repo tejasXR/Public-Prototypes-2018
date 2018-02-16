@@ -6,6 +6,8 @@ public class EnemyBullet : MonoBehaviour {
 
     //public float damage;
     public GameObject bulletHitEffect;
+    public GameObject deflectedBulletHitEffect;
+
     //public GameObject bulletSolidEnemyEffect;
     //public GameObject bulletDissolveEffect;
 
@@ -13,9 +15,15 @@ public class EnemyBullet : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 transformStart;
     public GameObject enemyParent;
-    public GameManager gameManager;
+    private GameManager gameManager;
     public Material defelectedBulletMat;
     public bool isRedemptionBullet;
+
+    public AudioSource bulletFiredSound;
+    public AudioSource bulletNormalSound;
+
+
+
 
     private void Start()
     {
@@ -24,6 +32,12 @@ public class EnemyBullet : MonoBehaviour {
         //print(rb.velocity);
         //print(transform.rotation);
         transformStart = transform.position;
+
+        bulletFiredSound.pitch = 1f + Random.Range(-.05f, .05f);
+        bulletNormalSound.pitch = 1f + Random.Range(-.05f, .05f);
+
+        bulletFiredSound.Play();
+        bulletNormalSound.Play();
 
         //Finds enemy that fired bullet
         //enemyParent = 

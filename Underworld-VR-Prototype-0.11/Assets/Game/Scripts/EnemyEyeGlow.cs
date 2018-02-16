@@ -20,6 +20,8 @@ public class EnemyEyeGlow : MonoBehaviour {
     private float textureStrengthCurrent;
     private Color colorCurrent;
 
+    public bool beforeAttack;
+
     
 
     // Use this for initialization
@@ -34,9 +36,19 @@ public class EnemyEyeGlow : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        glowPowerCurrent = Mathf.SmoothStep(glowPowerCurrent, glowPowerOriginal, Time.deltaTime * lerpSpeed);
-        textureStrengthCurrent = Mathf.SmoothStep(textureStrengthCurrent, textureStrengthOriginal, Time.deltaTime * lerpSpeed);
-        colorCurrent = Color.Lerp(colorCurrent, colorOriginal, Time.deltaTime * lerpSpeed);
+        if (beforeAttack)
+        {
+            glowPowerCurrent = Mathf.SmoothStep(glowPowerCurrent, glowPowerTarget, Time.deltaTime * lerpSpeed * 2f);
+            textureStrengthCurrent = Mathf.SmoothStep(textureStrengthCurrent, textureStrengthTarget, Time.deltaTime * lerpSpeed * 2f);
+            colorCurrent = Color.Lerp(colorCurrent, colorTarget, Time.deltaTime * lerpSpeed * 2f);
+
+        } else
+        {
+            glowPowerCurrent = Mathf.SmoothStep(glowPowerCurrent, glowPowerOriginal, Time.deltaTime * lerpSpeed);
+            textureStrengthCurrent = Mathf.SmoothStep(textureStrengthCurrent, textureStrengthOriginal, Time.deltaTime * lerpSpeed);
+            colorCurrent = Color.Lerp(colorCurrent, colorOriginal, Time.deltaTime * lerpSpeed);
+        }
+        
 
         rend.material.SetFloat("_MKGlowPower", glowPowerCurrent);
         rend.material.SetFloat("_MKGlowTexStrength", textureStrengthCurrent);

@@ -61,11 +61,13 @@ public class UpgradeProgress : MonoBehaviour {
         if (!upgradeMenu.upgradeSelected && upgradeMenu.upgradeDone)
         {
             //image.fillAmount = 1;
-            textureStrength -= Time.deltaTime;
+            /*textureStrength -= Time.deltaTime;
             if (textureStrength <= 0)
             {
                 textureStrength = 1;
-            }
+            }*/
+
+            dial.transform.localScale = Vector3.Lerp(dial.transform.localScale, Vector3.zero, Time.unscaledDeltaTime * 4f);
 
             hapticProgress = false;
 

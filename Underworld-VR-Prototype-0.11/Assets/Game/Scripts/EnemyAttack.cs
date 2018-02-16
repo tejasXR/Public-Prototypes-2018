@@ -45,17 +45,24 @@ public class EnemyAttack : MonoBehaviour {
         {
             enemyAttackTimer -= Time.deltaTime;
             //If the attack timer equals the fire rate, then attack, else keep increasing the timer
-            if (enemyAttackTimer <= 0)
+            if (enemyAttackTimer <= .75f)
+            {
+                eyeObject.beforeAttack = true;
+            }
+
+            if (enemyAttackTimer <= 0 && (enemyMovement.canFire || isRedemptiionDrone))
             {
                 Fire();
-               // print("fireCalled");
+                eyeObject.beforeAttack = false;
+                eyeObject.Flash();
+                // print("fireCalled");
             }
         }
     }
 
     void Fire()
     {
-        if (enemyMovement.canFire || isRedemptiionDrone)
+        //if (enemyMovement.canFire || isRedemptiionDrone)
         {
             //print("firing");
             float spreadFactor = 1 - enemyBulletAccuracy;
@@ -77,7 +84,6 @@ public class EnemyAttack : MonoBehaviour {
             //{
 
             // Eye Glow effect
-            eyeObject.Flash();
 
                 //Instantiate bullet
                 var bullet = Instantiate(enemyBulletPrefab, enemyBulletSpawns[enemyBulletSpawnCounter].position, Quaternion.LookRotation(enemyBulletDirection));

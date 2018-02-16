@@ -11,6 +11,12 @@ public class Bullet : MonoBehaviour {
     [HideInInspector] public Vector3 bulletDirection;
     [HideInInspector] public float bulletSpeed;
 
+    public AudioSource bulletFiredSound;
+    public AudioSource bulletNormalSound;
+
+    //public AudioClip bulletFiredSound;
+    //public AudioClip bulletNormalSound;
+
     private GameManager gameManager;
 
     private float step;
@@ -18,6 +24,12 @@ public class Bullet : MonoBehaviour {
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        bulletFiredSound.pitch = 1f + Random.Range(-.05f, .05f);
+        bulletNormalSound.pitch = 1f + Random.Range(-.05f, .05f);
+
+        bulletFiredSound.Play();
+        bulletNormalSound.Play();
 
         Destroy(this.gameObject, 2.0f);
     }
