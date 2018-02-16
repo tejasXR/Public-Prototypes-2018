@@ -22,7 +22,14 @@ public class EnemyBullet : MonoBehaviour {
     public AudioSource bulletFiredSound;
     public AudioSource bulletNormalSound;
 
+    private float bulletFiredSoundPitchOriginal;
+    private float bulletNormalSoundPitchOriginal;
 
+    private void Awake()
+    {
+        bulletFiredSoundPitchOriginal = bulletFiredSound.pitch;
+        bulletNormalSoundPitchOriginal = bulletNormalSound.pitch;
+    }
 
 
     private void Start()
@@ -38,6 +45,8 @@ public class EnemyBullet : MonoBehaviour {
 
         bulletFiredSound.Play();
         bulletNormalSound.Play();
+
+        
 
         //Finds enemy that fired bullet
         //enemyParent = 
@@ -57,6 +66,10 @@ public class EnemyBullet : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
+        bulletFiredSound.pitch = Mathf.Lerp(bulletFiredSound.pitch, bulletFiredSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+        bulletNormalSound.pitch = Mathf.Lerp(bulletNormalSound.pitch, bulletNormalSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+
 
     }
 

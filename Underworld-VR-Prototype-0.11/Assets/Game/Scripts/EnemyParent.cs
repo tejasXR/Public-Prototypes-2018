@@ -30,6 +30,13 @@ public class EnemyParent : MonoBehaviour {
     private Material[] meshRendererOriginals;
     public Material enemyFlashMat;
     public float enemyFlashHitDuration;
+
+    //public AudioSource explosionSound;
+    public AudioSource enemyHitSound;
+
+    //private float explosionSoundPitchOriginal;
+    private float enemyHitSoundPitchOriginal;
+
     //private float enemyFlashHitCounter;
 
     public bool flash;
@@ -48,6 +55,10 @@ public class EnemyParent : MonoBehaviour {
         {
             explosionTextObj.GetComponent<EarnedBulletText>().bulletNumber = enemyGiveBullets;
         }
+
+        //explosionSoundPitchOriginal = explosionSound.pitch;
+        enemyHitSoundPitchOriginal = enemyHitSound.pitch;
+
 
         /*if (!isRedemptionDrone)
         {
@@ -75,6 +86,12 @@ public class EnemyParent : MonoBehaviour {
             EnemyDestroyNoBullets();
         }
 
+        // Slow Down Audio
+        enemyHitSound.pitch = Mathf.Lerp(enemyHitSound.pitch,  enemyHitSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+        //explosionSound.pitch = Mathf.Lerp(explosionSound.pitch, explosionSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+
+
+
         /*if (flash)
         {
             StartCoroutine(EnemyHitFlash());
@@ -86,6 +103,9 @@ public class EnemyParent : MonoBehaviour {
     {
         if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "DeflectedBullet")
         {
+            enemyHitSound.pitch = enemyHitSound.pitch + Random.Range(-.05f, .05f);
+            enemyHitSound.Play();
+
             StartCoroutine(EnemyHitFlash());
 
             float damage = 0;
@@ -173,6 +193,9 @@ public class EnemyParent : MonoBehaviour {
 
         gameManager.enemiesOnScreen--;
         gameManager.enemiesDestroyed++;
+
+        //explosionSound.pitch = explosionSound.pitch + Random.Range(-.05f, .05f);
+        //explosionSound.Play();
     }
 
     public void DisappearAfterWave()
@@ -190,6 +213,8 @@ public class EnemyParent : MonoBehaviour {
     {
         gameManager.enemiesOnScreen--;
 
+
+
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }
@@ -202,4 +227,6 @@ public class EnemyParent : MonoBehaviour {
         //gameManager.enemiesOnScreen--;
         //gameManager.enemiesDestroyed++;
     }
+
+
 }

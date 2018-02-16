@@ -22,6 +22,7 @@ public class StadiumEnable : MonoBehaviour {
 
     public GameObject[] platformTriangles;
     public AudioSource[] platformSoundOn;
+    public AudioSource[] platformSoundNormal;
 
     // Use this for initialization
     void Start() {
@@ -123,6 +124,12 @@ public class StadiumEnable : MonoBehaviour {
                 scalingDone = true;
             }
         }
+
+        foreach(AudioSource audio in platformSoundNormal)
+        {
+            audio.pitch = .6f * Time.timeScale;
+        }
+
     }
 
     IEnumerator StadiumFlash()

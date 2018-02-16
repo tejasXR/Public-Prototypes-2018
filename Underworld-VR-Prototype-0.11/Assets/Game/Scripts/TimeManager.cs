@@ -37,6 +37,8 @@ public class TimeManager : MonoBehaviour {
 
     public void DoSlowMotion()
     {
+        //Time.timeScale = Mathf.Lerp(Time.timeScale, slowDownFactor, Time.unscaledDeltaTime);
+
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 

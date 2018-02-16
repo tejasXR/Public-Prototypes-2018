@@ -14,12 +14,21 @@ public class Bullet : MonoBehaviour {
     public AudioSource bulletFiredSound;
     public AudioSource bulletNormalSound;
 
+    private float bulletFiredSoundPitchOriginal;
+    private float bulletNormalSoundPitchOriginal;
+
     //public AudioClip bulletFiredSound;
     //public AudioClip bulletNormalSound;
 
     private GameManager gameManager;
 
     private float step;
+
+    private void Awake()
+    {
+        bulletFiredSoundPitchOriginal = bulletFiredSound.pitch;
+        bulletNormalSoundPitchOriginal = bulletNormalSound.pitch;
+    }
 
     private void Start()
     {
@@ -42,6 +51,10 @@ public class Bullet : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+
+        bulletFiredSound.pitch = Mathf.Lerp(bulletFiredSound.pitch, bulletFiredSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+        bulletNormalSound.pitch = Mathf.Lerp(bulletNormalSound.pitch, bulletNormalSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+
         //step = bulletSpeed * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, bulletDirection, step);
     }

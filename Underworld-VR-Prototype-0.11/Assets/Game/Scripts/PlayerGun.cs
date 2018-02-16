@@ -199,7 +199,7 @@ public class PlayerGun : MonoBehaviour {
     {
         if (isPistol)
         {
-            StartCoroutine(GunVibration(.4f, 1000));
+            StartCoroutine(GunVibration(.4f, 1500));
         }
 
         if (isRifle)

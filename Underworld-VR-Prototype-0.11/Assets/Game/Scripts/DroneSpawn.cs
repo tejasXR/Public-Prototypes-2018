@@ -23,6 +23,10 @@ public class DroneSpawn : MonoBehaviour {
     public Color mainColor;
     public Color glowColor;
 
+    public AudioSource spawnSound;
+    private float spawnSoundPitchOriginal;
+
+
     private void Awake()
     {
         triangleRend = mesh.GetComponent<Renderer>();
@@ -31,11 +35,16 @@ public class DroneSpawn : MonoBehaviour {
 
         mainColor = triangleRend.material.GetColor("_Color");
         glowColor = triangleRend.material.GetColor("_MKGlowColor");
+
+        spawnSoundPitchOriginal = spawnSound.pitch;
+
     }
 
 
     // Use this for initialization
     void Start () {
+
+
 
         //enemySpawnObj.GetComponent<EnemyMovement>().RandomPosition();
         //print(enemySpawnObj.GetComponent<EnemyMovement>().targetPosition);
@@ -82,9 +91,9 @@ public class DroneSpawn : MonoBehaviour {
             {
                 Destroy(this.gameObject);
             }
-            
 
 
+            spawnSound.pitch = Mathf.Lerp(spawnSound.pitch, spawnSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
 
         }
 
