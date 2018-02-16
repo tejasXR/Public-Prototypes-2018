@@ -21,6 +21,7 @@ public class StadiumEnable : MonoBehaviour {
     public float delayCounter;
 
     public GameObject[] platformTriangles;
+    public AudioSource[] platformSoundOn;
 
     // Use this for initialization
     void Start() {
@@ -29,6 +30,11 @@ public class StadiumEnable : MonoBehaviour {
 
     private void OnEnable()
     {
+        foreach (AudioSource sound in platformSoundOn)
+        {
+            sound.enabled = false;
+        }
+
         delayCounter = delay;
 
         if (isStadium)
@@ -180,12 +186,19 @@ public class StadiumEnable : MonoBehaviour {
         platformTriangles[2].SetActive(true);
         yield return new WaitForSeconds(.5f);
         */
+        foreach(AudioSource sound in platformSoundOn)
+        {
+            sound.enabled = true;
+        }
 
         yield return new WaitForSeconds(1f);
+
+
 
         platformTriangles[1].SetActive(false);
         yield return new WaitForSeconds(.05f);
         platformTriangles[1].SetActive(true);
+        
         yield return new WaitForSeconds(.05f);
 
         platformTriangles[3].SetActive(false);

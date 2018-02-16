@@ -38,9 +38,9 @@ public class EnemyEyeGlow : MonoBehaviour {
 
         if (beforeAttack)
         {
-            glowPowerCurrent = Mathf.SmoothStep(glowPowerCurrent, glowPowerTarget, Time.deltaTime * lerpSpeed * 2f);
-            textureStrengthCurrent = Mathf.SmoothStep(textureStrengthCurrent, textureStrengthTarget, Time.deltaTime * lerpSpeed * 2f);
-            colorCurrent = Color.Lerp(colorCurrent, colorTarget, Time.deltaTime * lerpSpeed * 2f);
+            glowPowerCurrent = Mathf.SmoothStep(glowPowerCurrent, glowPowerTarget, Time.deltaTime * lerpSpeed);
+            textureStrengthCurrent = Mathf.SmoothStep(textureStrengthCurrent, textureStrengthTarget, Time.deltaTime * lerpSpeed);
+            colorCurrent = Color.Lerp(colorCurrent, colorTarget, Time.deltaTime * lerpSpeed);
 
         } else
         {
