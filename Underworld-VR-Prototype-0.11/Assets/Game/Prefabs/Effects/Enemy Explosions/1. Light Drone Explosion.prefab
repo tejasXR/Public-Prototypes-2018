@@ -202,10 +202,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ea85d1f476bcf8e47b36964fd2cf9c49, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6f4f710d909edd8409121cf49342e838, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.5
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3729,7 +3729,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -217407298
+  randomSeed: 372260377
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4132,7 +4132,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 2.77, y: 0.37, z: 4.57}
+    m_Scale: {x: 2.77, y: 0.37, z: 6.96}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4146,7 +4146,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1.85
+      value: 0.3
       mode: 0
       spread: 0
       speed:
@@ -5285,7 +5285,7 @@ ParticleSystem:
     magnitude:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
+      scalar: 3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5905,7 +5905,7 @@ ParticleSystem:
     range: {x: 0.2, y: 1}
     separateAxes: 0
   RotationBySpeedModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 3

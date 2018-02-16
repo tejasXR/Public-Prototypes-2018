@@ -142,8 +142,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 34355413e6385d24e98c9a10f990232b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
-  m_Pitch: 1
+  m_Volume: 0.3
+  m_Pitch: 1.25
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   audioSources:
   - {fileID: 82989220484084308}
   randomizePitch: 1
-  randomizeAmount: 0.05
+  randomizeAmount: 0.025
 --- !u!114 &114427351749160772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01312d085de31d743b9c821c785fc59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyInSeconds: 1
+  destroyInSeconds: 3
 --- !u!198 &198507286026292320
 ParticleSystem:
   m_ObjectHideFlags: 1
