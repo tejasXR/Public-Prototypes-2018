@@ -45,7 +45,7 @@ public class EnemyAttack : MonoBehaviour {
         {
             enemyAttackTimer -= Time.deltaTime;
             //If the attack timer equals the fire rate, then attack, else keep increasing the timer
-            if (enemyAttackTimer <= .75f)
+            if (enemyAttackTimer <= .5f)
             {
                 eyeObject.beforeAttack = true;
             }
