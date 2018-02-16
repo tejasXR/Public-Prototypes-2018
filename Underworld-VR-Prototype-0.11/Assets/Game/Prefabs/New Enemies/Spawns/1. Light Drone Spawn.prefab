@@ -388,7 +388,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 100
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
     type: 2}
   spawnPoint: {fileID: 4017920081385994}
   mesh: {fileID: 1772129945141078}
-  fadeSpeed: 2
+  fadeSpeed: 0.5
   mainColor: {r: 0, g: 0, b: 0, a: 0}
   glowColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114694324126129338
@@ -546,6 +546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSources:
   - {fileID: 82365143532260844}
+  randomizePitch: 0
+  randomizeAmount: 0
 --- !u!198 &198490427253412958
 ParticleSystem:
   m_ObjectHideFlags: 1
