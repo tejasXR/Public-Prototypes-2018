@@ -23,8 +23,8 @@ public class DroneSpawn : MonoBehaviour {
     public Color mainColor;
     public Color glowColor;
 
-    public AudioSource spawnSound;
-    private float spawnSoundPitchOriginal;
+    //public AudioSource spawnSound;
+    //private float spawnSoundPitchOriginal;
 
 
     private void Awake()
@@ -36,7 +36,7 @@ public class DroneSpawn : MonoBehaviour {
         mainColor = triangleRend.material.GetColor("_Color");
         glowColor = triangleRend.material.GetColor("_MKGlowColor");
 
-        spawnSoundPitchOriginal = spawnSound.pitch;
+        //spawnSoundPitchOriginal = spawnSound.pitch;
 
     }
 
@@ -93,7 +93,7 @@ public class DroneSpawn : MonoBehaviour {
             }
 
 
-            spawnSound.pitch = Mathf.Lerp(spawnSound.pitch, spawnSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+            //spawnSound.pitch = Mathf.Lerp(spawnSound.pitch, spawnSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
 
         }
 

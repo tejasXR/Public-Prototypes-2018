@@ -40,6 +40,9 @@ public class PlayerShield : MonoBehaviour {
     public TextMeshPro healthText;
     public GameObject bulletGainedObj;
 
+    //public AudioSource shieldHitSound;
+
+
 
 	// Use this for initialization
 	void Start () {

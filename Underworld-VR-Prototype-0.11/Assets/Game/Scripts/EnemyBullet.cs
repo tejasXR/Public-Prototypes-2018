@@ -19,16 +19,16 @@ public class EnemyBullet : MonoBehaviour {
     public Material defelectedBulletMat;
     public bool isRedemptionBullet;
 
-    public AudioSource bulletFiredSound;
-    public AudioSource bulletNormalSound;
+    //public AudioSource bulletFiredSound;
+    //public AudioSource bulletNormalSound;
 
-    private float bulletFiredSoundPitchOriginal;
-    private float bulletNormalSoundPitchOriginal;
+    //private float bulletFiredSoundPitchOriginal;
+    //private float bulletNormalSoundPitchOriginal;
 
     private void Awake()
     {
-        bulletFiredSoundPitchOriginal = bulletFiredSound.pitch;
-        bulletNormalSoundPitchOriginal = bulletNormalSound.pitch;
+        //bulletFiredSoundPitchOriginal = bulletFiredSound.pitch;
+        //bulletNormalSoundPitchOriginal = bulletNormalSound.pitch;
     }
 
 
@@ -40,11 +40,11 @@ public class EnemyBullet : MonoBehaviour {
         //print(transform.rotation);
         transformStart = transform.position;
 
-        bulletFiredSound.pitch = 1f + Random.Range(-.05f, .05f);
-        bulletNormalSound.pitch = 1f + Random.Range(-.05f, .05f);
+        //bulletFiredSound.pitch += Random.Range(-.05f, .05f);
+        //bulletNormalSound.pitch += Random.Range(-.05f, .05f);
 
-        bulletFiredSound.Play();
-        bulletNormalSound.Play();
+        //bulletFiredSound.Play();
+        //bulletNormalSound.Play();
 
         
 
@@ -67,8 +67,8 @@ public class EnemyBullet : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        bulletFiredSound.pitch = Mathf.Lerp(bulletFiredSound.pitch, bulletFiredSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
-        bulletNormalSound.pitch = Mathf.Lerp(bulletNormalSound.pitch, bulletNormalSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+        //bulletFiredSound.pitch = Mathf.Lerp(bulletFiredSound.pitch, bulletFiredSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+        //bulletNormalSound.pitch = Mathf.Lerp(bulletNormalSound.pitch, bulletNormalSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
 
 
     }

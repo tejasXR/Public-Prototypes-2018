@@ -11,11 +11,11 @@ public class Bullet : MonoBehaviour {
     [HideInInspector] public Vector3 bulletDirection;
     [HideInInspector] public float bulletSpeed;
 
-    public AudioSource bulletFiredSound;
-    public AudioSource bulletNormalSound;
+    //public AudioSource bulletFiredSound;
+    //public AudioSource bulletNormalSound;
 
-    private float bulletFiredSoundPitchOriginal;
-    private float bulletNormalSoundPitchOriginal;
+    //private float bulletFiredSoundPitchOriginal;
+    //private float bulletNormalSoundPitchOriginal;
 
     //public AudioClip bulletFiredSound;
     //public AudioClip bulletNormalSound;
@@ -26,19 +26,13 @@ public class Bullet : MonoBehaviour {
 
     private void Awake()
     {
-        bulletFiredSoundPitchOriginal = bulletFiredSound.pitch;
-        bulletNormalSoundPitchOriginal = bulletNormalSound.pitch;
+        //blletFiredSoundPitchOriginal = bulletFiredSound.pitch;
+        //bulletNormalSoundPitchOriginal = bulletNormalSound.pitch;
     }
 
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-        bulletFiredSound.pitch = 1f + Random.Range(-.05f, .05f);
-        bulletNormalSound.pitch = 1f + Random.Range(-.05f, .05f);
-
-        bulletFiredSound.Play();
-        bulletNormalSound.Play();
 
         Destroy(this.gameObject, 2f);
     }
@@ -52,8 +46,8 @@ public class Bullet : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        bulletFiredSound.pitch = Mathf.Lerp(bulletFiredSound.pitch, bulletFiredSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
-        bulletNormalSound.pitch = Mathf.Lerp(bulletNormalSound.pitch, bulletNormalSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+        //bulletFiredSound.pitch = Mathf.Lerp(bulletFiredSound.pitch, bulletFiredSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
+        //bulletNormalSound.pitch = Mathf.Lerp(bulletNormalSound.pitch, bulletNormalSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
 
         //step = bulletSpeed * Time.deltaTime;
         //transform.position = Vector3.MoveTowards(transform.position, bulletDirection, step);

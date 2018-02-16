@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4288952927722028}
   - component: {fileID: 114258505345042390}
+  - component: {fileID: 114790193461730284}
   m_Layer: 0
   m_Name: 1. Light Drone Spawn
   m_TagString: Untagged
@@ -379,7 +380,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: f119c6eed9b27fe48b212d4a7aecb437, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 0.69
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -512,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnTimer: 0.5
-  destroyTimer: 2
+  destroyTimer: 4
   enemySpawnObj: {fileID: 1645465024364282, guid: 2f2926683732a514695d3c634155f982,
     type: 2}
   spawnPoint: {fileID: 4017920081385994}
@@ -520,7 +521,6 @@ MonoBehaviour:
   fadeSpeed: 2
   mainColor: {r: 0, g: 0, b: 0, a: 0}
   glowColor: {r: 0, g: 0, b: 0, a: 0}
-  spawnSound: {fileID: 82365143532260844}
 --- !u!114 &114694324126129338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,6 +533,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyInSeconds: 5
+--- !u!114 &114790193461730284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1230580555338202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d195075aab2ce48a8d777fae0125bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSources:
+  - {fileID: 82365143532260844}
 --- !u!198 &198490427253412958
 ParticleSystem:
   m_ObjectHideFlags: 1
