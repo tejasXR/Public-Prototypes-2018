@@ -41,6 +41,8 @@ public class EnemyParent : MonoBehaviour {
 
     public bool flash;
 
+    private Rigidbody rb;
+
 
 
     void Start () {
@@ -50,6 +52,8 @@ public class EnemyParent : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
+
+        rb = GetComponent<Rigidbody>();
 
         if (!isRedemptionDrone)
         {
@@ -106,7 +110,7 @@ public class EnemyParent : MonoBehaviour {
             enemyHitSound.pitch = enemyHitSound.pitch + Random.Range(-.05f, .05f);
             enemyHitSound.Play();
 
-            StartCoroutine(EnemyHitFlash());
+            StartCoroutine(EnemyHitFlash(enemyFlashHitDuration));
 
             float damage = 0;
 
@@ -131,8 +135,24 @@ public class EnemyParent : MonoBehaviour {
             {
                 damage = other.gameObject.GetComponent<EnemyBullet>().damage;
             }
+            //if ((enemyHealth - damage) <= 0)
+            {
+                //rb.mass = 1;
+                //rb.drag = 0;
+                //rb.angularDrag = .05f;
+                //rb.useGravity = true;
+                //rb.AddForce(Physics.gravity * .25f);
+                //rb.AddForceAtPosition(new Vector3(Random.Range(-10f, 10), Random.Range(-10f, 10f), Random.Range(-10f, 10f)), other.contacts[0].point);
+                //rb.AddExplosionForce(1500f, other.contacts[0].point, 5f);
+            }
+            enemyHealth -= damage;
             Destroy(other.gameObject);
-            enemyHealth -= damage;            
+            //if (enemyHealth <= 0)
+            {
+                //rb.AddForce(Physics.gravity * .25f);
+
+                //StartCoroutine(EnemyExplosion());
+            }
 
             if (enemyHealth <= 0)
             {
@@ -161,13 +181,13 @@ public class EnemyParent : MonoBehaviour {
 
     //If destroyed by a bullet, explode into shiny things and give the player bullets
 
-    IEnumerator EnemyHitFlash()
+    IEnumerator EnemyHitFlash(float flashDuration)
     {
         for (int i = 0; i < meshToChangeOnFlash.Length; i++)
         {
             meshToChangeOnFlash[i].GetComponent<Renderer>().material = enemyFlashMat;
         }
-        yield return new WaitForSeconds(enemyFlashHitDuration);
+        yield return new WaitForSeconds(flashDuration);
         for (int i = 0; i < meshToChangeOnFlash.Length; i++)
         {
             meshToChangeOnFlash[i].GetComponent<Renderer>().material = meshRendererOriginals[i];
@@ -175,8 +195,29 @@ public class EnemyParent : MonoBehaviour {
 
     }
 
-    void EnemyDestroy()
+    IEnumerator EnemyExplosion()
     {
+
+        //rb.AddForce(Physics.gravity * .25f);
+
+        rb.mass = 1;
+        rb.drag = 0;
+        rb.angularDrag = .05f;
+        //rb.useGravity = true;
+        rb.angularVelocity = new Vector3(Random.Range(-100f, 100), Random.Range(-100f, 100f), Random.Range(-100f, 100f));
+
+        yield return new WaitForSeconds(.25f);
+
+        StartCoroutine(EnemyHitFlash(.1f));
+        yield return new WaitForSeconds(.25f);
+
+        StartCoroutine(EnemyHitFlash(.1f));
+        yield return new WaitForSeconds(.25f);
+
+        StartCoroutine(EnemyHitFlash(.1f));
+        yield return new WaitForSeconds(.25f);
+
+
         if (enemyGiveBullets > 0)
         {
             playerController.playerBullets += enemyGiveBullets + playerController.enemyGiveAdditionalBullets;
@@ -190,6 +231,32 @@ public class EnemyParent : MonoBehaviour {
         }
 
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+
+        gameManager.enemiesOnScreen--;
+        gameManager.enemiesDestroyed++;
+
+        Destroy(this.gameObject);
+
+    }
+
+    void EnemyDestroy()
+    {
+        //rb.AddForce(Physics.gravity * .25f);
+        //rb.angularVelocity = new Vector3(Random.Range(-10f, 10), Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+
+        if (enemyGiveBullets > 0)
+        {
+            playerController.playerBullets += enemyGiveBullets + playerController.enemyGiveAdditionalBullets;
+            Instantiate(explosionTextObj, transform.position, transform.rotation);
+        }
+
+        if (gameManager.redemptionActive)
+        {
+            Instantiate(explosionTextObj, transform.position, transform.rotation);
+            //gameManager.redemptionMeter = gameManager.redemptionMeterMax; // Fill up the redemption meter so it can properly count down again
+        }
+
+        //Instantiate(explosionPrefab, transform.position, transform.rotation);
 
         gameManager.enemiesOnScreen--;
         gameManager.enemiesDestroyed++;
