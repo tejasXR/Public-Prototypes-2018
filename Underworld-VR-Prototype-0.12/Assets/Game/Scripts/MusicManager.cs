@@ -46,7 +46,7 @@ public class MusicManager : MonoBehaviour {
             musicVolume = .1f;
         } else
         {
-            musicVolume = .25f;
+            musicVolume = .1f;
         }
 
 

@@ -3236,7 +3236,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0.85
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3452,9 +3452,12 @@ MonoBehaviour:
   enemyTalkTimerDuration: 0
   enemyTalking: 0
   voices:
-  - {fileID: 8300000, guid: ad80a693917447047bb78e7ec26100e7, type: 3}
-  - {fileID: 8300000, guid: e0be2905175442d488e9c8857980047c, type: 3}
-  - {fileID: 8300000, guid: efbe71246d61e454591a6271fef35b0d, type: 3}
+  - {fileID: 8300000, guid: 20125800120280447a14aa7c2b1eba4d, type: 3}
+  - {fileID: 8300000, guid: ed2e974d8c7793944b262f72e53c2003, type: 3}
+  - {fileID: 8300000, guid: 98de11d9b9b29fc4a968280df117b995, type: 3}
+  - {fileID: 8300000, guid: c731f53093e083d40808daa55b7499a7, type: 3}
+  - {fileID: 8300000, guid: 3129ed57582e98d4191221d7d030e901, type: 3}
+  - {fileID: 8300000, guid: 28e2bf617597cba4192444492eb28e2a, type: 3}
   enemyVoices: {fileID: 82709760210187388}
 --- !u!114 &114296626985765706
 MonoBehaviour:
