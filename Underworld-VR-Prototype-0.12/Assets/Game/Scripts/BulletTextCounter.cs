@@ -50,7 +50,7 @@ public class BulletTextCounter : MonoBehaviour {
 
         //bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerController.playerBullets, Time.deltaTime * countSpeed));
 
-        bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
+        bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("000");
 
 
     }

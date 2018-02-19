@@ -92,10 +92,10 @@ public class EnemyParent : MonoBehaviour {
         //explosionSound.pitch = Mathf.Lerp(explosionSound.pitch, explosionSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
 
         // Lerp Glow to 0.1f
-        for (int i = 0; i < meshToChangeOnFlash.Length; i++)
+        /*for (int i = 0; i < meshToChangeOnFlash.Length; i++)
         {
             meshToChangeOnFlash[i].GetComponent<Renderer>().material.SetFloat("_MKGlowPower", Mathf.Lerp(meshToChangeOnFlash[i].GetComponent<Renderer>().material.GetFloat("_MKGlowPower"), .1f, Time.deltaTime));
-        }
+        }*/
 
 
         /*if (flash)
@@ -149,18 +149,18 @@ public class EnemyParent : MonoBehaviour {
             }
             enemyHealth -= damage;
             Destroy(other.gameObject);
-            if (enemyHealth <= 0)
+            //if (enemyHealth <= 0)
             {
                 //rb.AddForce(Physics.gravity * .25f);
 
-                StartCoroutine(EnemyExplosion());
+              //  StartCoroutine(EnemyExplosion());
             }
 
-            //if (enemyHealth <= 0)
+            if (enemyHealth <= 0)
             {
                 //print("enemyDestroyCalled");
-                //EnemyDestroy();
-                //Destroy(this.gameObject);
+                EnemyDestroy();
+                Destroy(this.gameObject);
             }
         }
     }
@@ -208,15 +208,15 @@ public class EnemyParent : MonoBehaviour {
         //rb.useGravity = true;
         //rb.angularVelocity = new Vector3(Random.Range(-100f, 100), Random.Range(-100f, 100f), Random.Range(-100f, 100f));
 
+        yield return new WaitForSeconds(.15f);
+
+        StartCoroutine(EnemyHitFlash(.05f));
         yield return new WaitForSeconds(.1f);
 
-        StartCoroutine(EnemyHitFlash(.1f));
+        StartCoroutine(EnemyHitFlash(.05f));
         yield return new WaitForSeconds(.1f);
 
-        StartCoroutine(EnemyHitFlash(.1f));
-        yield return new WaitForSeconds(.1f);
-
-        StartCoroutine(EnemyHitFlash(.1f));
+        StartCoroutine(EnemyHitFlash(.05f));
         yield return new WaitForSeconds(.1f);
 
 
@@ -243,10 +243,10 @@ public class EnemyParent : MonoBehaviour {
 
     public void EnemyTalkingGlow()
     {
-        for (int i = 0; i < meshToChangeOnFlash.Length; i++)
+        /*for (int i = 0; i < meshToChangeOnFlash.Length; i++)
         {
             meshToChangeOnFlash[i].GetComponent<Renderer>().material.SetFloat("_MKGlowPower", 1f);
-        }
+        }*/
     }
 
     void EnemyDestroy()
@@ -266,7 +266,7 @@ public class EnemyParent : MonoBehaviour {
             //gameManager.redemptionMeter = gameManager.redemptionMeterMax; // Fill up the redemption meter so it can properly count down again
         }
 
-        //Instantiate(explosionPrefab, transform.position, transform.rotation);
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
 
         gameManager.enemiesOnScreen--;
         gameManager.enemiesDestroyed++;

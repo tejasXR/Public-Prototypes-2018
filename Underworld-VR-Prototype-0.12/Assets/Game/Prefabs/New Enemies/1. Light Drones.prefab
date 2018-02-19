@@ -3118,8 +3118,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d9a8b01ba915beb4cb2aa10eac6be5c7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.35
+  m_Pitch: 0.85
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -3449,6 +3449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTalkTimer: 15
+  enemyTalkTimerDuration: 0
   enemyTalking: 0
   voices:
   - {fileID: 8300000, guid: ad80a693917447047bb78e7ec26100e7, type: 3}

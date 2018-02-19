@@ -7,7 +7,7 @@ public class EnemyVoices : MonoBehaviour {
     private EnemyParent enemyParent;
 
     public float enemyTalkTimer;
-    private float enemyTalkTimerDuration;
+    public float enemyTalkTimerDuration;
     public bool enemyTalking;
 
     public AudioClip[] voices;
@@ -30,7 +30,7 @@ public class EnemyVoices : MonoBehaviour {
         {
             enemyTalkTimerDuration = 0;
             EnemyTalk();
-            //enemyTalking = true;
+            enemyTalking = true;
         }
 
     }
@@ -39,17 +39,19 @@ public class EnemyVoices : MonoBehaviour {
     void EnemyTalk()
     {
         var randomInt = Random.Range(0, voices.Length);
-        var timer = voices[randomInt].length;
+        //var timer = voices[randomInt].length;
 
-        if (!enemyTalking)
+        //enemyTalking = true;
+
+        //if (!enemyTalking)
         {
-            timer -= Time.deltaTime;
+            //timer -= Time.deltaTime;
             enemyVoices.PlayOneShot(voices[randomInt]);
-            enemyTalking = true;
+            
 
             enemyParent.EnemyTalkingGlow();
 
-            if (timer <= 0)
+            //if (timer <= 0)
             {
                 enemyTalkTimer += Random.Range(-10f, 10f);
                 enemyTalkTimerDuration = enemyTalkTimer;

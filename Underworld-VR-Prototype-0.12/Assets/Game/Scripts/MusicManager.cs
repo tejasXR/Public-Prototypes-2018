@@ -43,10 +43,10 @@ public class MusicManager : MonoBehaviour {
 
         if (gameManager.upgradeActive)
         {
-            musicVolume = .65f;
+            musicVolume = .25f;
         } else
         {
-            musicVolume = 1f;
+            musicVolume = .45f;
         }
 
 

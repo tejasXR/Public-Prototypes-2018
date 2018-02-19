@@ -45,10 +45,10 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if (gameManager.roundActive || gameManager.redemptionActive)
         {
+            enemySpawnTimer -= Time.deltaTime;
 
             if (((gameManager.enemiesToSpawn - gameManager.enemiesDestroyed) > gameManager.enemiesOnScreen) && gameManager.enemiesOnScreen < gameManager.enemiesOnScreenMax)
             {
-                enemySpawnTimer -= Time.deltaTime;
                 if (enemySpawnTimer <= 0)
                 {
                     spawnNow = false;
