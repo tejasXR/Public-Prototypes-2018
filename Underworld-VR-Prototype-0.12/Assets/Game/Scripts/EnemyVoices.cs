@@ -17,7 +17,7 @@ public class EnemyVoices : MonoBehaviour {
     void Start () {
         enemyParent = GetComponent<EnemyParent>();
 
-        enemyTalkTimer += Random.Range(-10f, 10f);
+        enemyTalkTimer += Random.Range(-2f, 2f);
         enemyTalkTimerDuration = enemyTalkTimer;
 
     }
@@ -53,7 +53,7 @@ public class EnemyVoices : MonoBehaviour {
 
             //if (timer <= 0)
             {
-                enemyTalkTimer += Random.Range(-10f, 10f);
+                enemyTalkTimer += Random.Range(-2f, 2f);
                 enemyTalkTimerDuration = enemyTalkTimer;
                 enemyTalking = false;
             }
