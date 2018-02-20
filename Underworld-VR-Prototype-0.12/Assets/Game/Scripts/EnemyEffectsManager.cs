@@ -7,9 +7,9 @@ public class EnemyEffectsManager : MonoBehaviour {
     private GameManager gameManager;
 
     public float[] enemyEffectsProbability; // the probability to pick one of the effets after each round
-    public float[] enemyEffects; // the total float of effects for each effect
-    public float[] enemyEffectsAmount; // the amount added to each effect
-    public int randomEffectInt;
+    //public float[] enemyEffects; // the total float of effects for each effect
+    //public float[] enemyEffectsAmount; // the amount added to each effect
+    public int randomEffectInt = 4;
 
     private int round = 0;
     // 0 = more enemy health
@@ -75,7 +75,7 @@ public class EnemyEffectsManager : MonoBehaviour {
         // Resets enemy effects probabilities
         ResetEnemyEffectsProbability();
 
-        switch (round)
+        switch (gameManager.roundCurrent)
         {
             case 1:
                 enemyEffectsProbability[4] = 100;

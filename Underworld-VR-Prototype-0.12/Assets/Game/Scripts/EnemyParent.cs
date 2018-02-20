@@ -51,6 +51,7 @@ public class EnemyParent : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
+        enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
 
         rb = GetComponent<Rigidbody>();
 

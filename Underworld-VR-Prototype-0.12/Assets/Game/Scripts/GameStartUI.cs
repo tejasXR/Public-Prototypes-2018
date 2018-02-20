@@ -47,10 +47,15 @@ public class GameStartUI : MonoBehaviour {
 
         text.color = textColor[1];
 
-        if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+        if (trackedRight.gameObject.activeInHierarchy && trackedLeft.gameObject.activeInHierarchy)
         {
-           gameStart = true;
+            if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                gameStart = true;
+            }
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)

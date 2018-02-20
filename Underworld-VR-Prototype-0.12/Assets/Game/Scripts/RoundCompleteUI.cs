@@ -26,27 +26,19 @@ public class RoundCompleteUI : MonoBehaviour {
 
     public EnemyEffectsManager enemyEffectsManager;
 
+    //public GameObject highlightCube;
+
 
 	// Use this for initialization
 	void Start () {
-        //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
-
-        foreach (GameObject mesh in triangleMeshes)
-        {
-            Renderer rend = mesh.GetComponent<Renderer>();
-            rend.material = mats[0]; //sets all triangles to incomplete round UI material
-        }
-
-        StartCoroutine(RoundCurrentTriangleFlash());
-
-        transform.position = new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z);*/
 
     }
 
     private void OnEnable()
     {
-        triangleCurrent = gameManager.roundCurrent - 1;
+        /*triangleCurrent = gameManager.roundCurrent - 1;
 
         foreach (GameObject mesh in triangleMeshes)
         {
@@ -58,13 +50,15 @@ public class RoundCompleteUI : MonoBehaviour {
         {
             Renderer rend = triangleMeshes[i].GetComponent<Renderer>();
             rend.material = mats[1]; //sets all triangles to complete round UI material
-        }
+        }*/
 
         CheckRound();
         CheckEnemyEffects();
 
         transform.position = new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z);
 
+
+        StartCoroutine(NomralFlash());
         //StartCoroutine(RoundCurrentTriangleFlash());
 
         //randomTextNum = Random.Range(1, 20);
@@ -91,7 +85,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
         if (turn)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 180, 0), Time.deltaTime * 3f);
+            UIWhole.transform.localRotation = Quaternion.Lerp(UIWhole.transform.localRotation, Quaternion.Euler(0, 180, 0), Time.deltaTime * 3f);
         }
 
         if (done)
@@ -107,7 +101,9 @@ public class RoundCompleteUI : MonoBehaviour {
 
     void CheckRound()
     {
+        roundText.text = "Round " + gameManager.roundCurrent + " / 10";
 
+        /*
         switch (gameManager.roundCurrent)
         {
             case 1:
@@ -140,7 +136,9 @@ public class RoundCompleteUI : MonoBehaviour {
             case 10:
                 roundText.text = "Round 10 / 10";
                 break;
+
         }
+        */
 
         /*
         switch (randomTextNum)
@@ -304,6 +302,8 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(.1f);
         */
 
+
+
         triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(endDelay);
 
@@ -342,5 +342,29 @@ public class RoundCompleteUI : MonoBehaviour {
 
         done = true;
 
+    }
+
+    IEnumerator NomralFlash()
+    {
+        UIWhole.SetActive(true);
+
+        yield return new WaitForSeconds(endDelay);
+
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.05f);
+        UIWhole.gameObject.SetActive(false);
+        yield return new WaitForSeconds(.05f);
+
+        done = true;
     }
 }

@@ -49,10 +49,14 @@ public class TutorialStartUI : MonoBehaviour {
 
         text.color = textColor[1];
 
-        if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+        if (trackedRight.gameObject.activeInHierarchy && trackedLeft.gameObject.activeInHierarchy)
         {
-            tutorialStart = true;
+            if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                tutorialStart = true;
+            }
         }
+        
     }
 
     private void OnTriggerExit(Collider other)
