@@ -7,6 +7,7 @@ public class EnemyParent : MonoBehaviour {
 
     [HideInInspector] public GameManager gameManager;
     [HideInInspector] public EnemySpawnManager enemySpawnManager;
+    [HideInInspector] public EnemyEffectsManager enemyEffectsManager;
 
     //Define Basic Player Variables
     private Player playerController; //Whole of player object
