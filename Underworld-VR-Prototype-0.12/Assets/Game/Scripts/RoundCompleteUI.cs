@@ -12,6 +12,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
     public bool moveBack;
     public bool done;
+    public bool turn;
 
     public TextMeshPro roundText;
     public TextMeshPro enemyEffectsText;
@@ -31,7 +32,7 @@ public class RoundCompleteUI : MonoBehaviour {
         //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
 
-        /*foreach (GameObject mesh in triangleMeshes)
+        foreach (GameObject mesh in triangleMeshes)
         {
             Renderer rend = mesh.GetComponent<Renderer>();
             rend.material = mats[0]; //sets all triangles to incomplete round UI material
@@ -45,7 +46,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
     private void OnEnable()
     {
-        /*triangleCurrent = gameManager.roundCurrent - 1;
+        triangleCurrent = gameManager.roundCurrent - 1;
 
         foreach (GameObject mesh in triangleMeshes)
         {
@@ -57,7 +58,7 @@ public class RoundCompleteUI : MonoBehaviour {
         {
             Renderer rend = triangleMeshes[i].GetComponent<Renderer>();
             rend.material = mats[1]; //sets all triangles to complete round UI material
-        }*/
+        }
 
         CheckRound();
         CheckEnemyEffects();
@@ -86,6 +87,11 @@ public class RoundCompleteUI : MonoBehaviour {
         else
         {
             transform.position = Vector3.Lerp(transform.position, playerEye.transform.position + playerEye.transform.forward * 3f, Time.deltaTime * 2.5f);
+        }
+
+        if (turn)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 180, 0), Time.deltaTime * 3f);
         }
 
         if (done)
@@ -300,6 +306,10 @@ public class RoundCompleteUI : MonoBehaviour {
 
         triangleMeshes[triangleCurrent].SetActive(true);
         yield return new WaitForSeconds(endDelay);
+
+        turn = true;
+        yield return new WaitForSeconds(endDelay);
+
 
         UIWhole.gameObject.SetActive(false);
         yield return new WaitForSeconds(.05f);
