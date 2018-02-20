@@ -13,7 +13,8 @@ public class RoundCompleteUI : MonoBehaviour {
     public bool moveBack;
     public bool done;
 
-    public TextMeshPro textSaying;
+    public TextMeshPro roundText;
+    public TextMeshPro enemyEffectsText;
     public int randomTextNum;
 
     public GameObject UIWhole;
@@ -22,10 +23,13 @@ public class RoundCompleteUI : MonoBehaviour {
 
     public float endDelay;
 
+    public EnemyEffectsManager enemyEffectsManager;
+
 
 	// Use this for initialization
 	void Start () {
         //gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
 
         /*foreach (GameObject mesh in triangleMeshes)
         {
@@ -41,7 +45,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
     private void OnEnable()
     {
-        triangleCurrent = gameManager.roundCurrent - 1;
+        /*triangleCurrent = gameManager.roundCurrent - 1;
 
         foreach (GameObject mesh in triangleMeshes)
         {
@@ -53,14 +57,19 @@ public class RoundCompleteUI : MonoBehaviour {
         {
             Renderer rend = triangleMeshes[i].GetComponent<Renderer>();
             rend.material = mats[1]; //sets all triangles to complete round UI material
-        }
+        }*/
+
+        CheckRound();
+        CheckEnemyEffects();
 
         transform.position = new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z);
 
-        StartCoroutine(RoundCurrentTriangleFlash());
+        //StartCoroutine(RoundCurrentTriangleFlash());
 
-        randomTextNum = Random.Range(1, 20);
-        RandomText();
+        //randomTextNum = Random.Range(1, 20);
+        //RandomText();
+
+
 
        
 
@@ -90,40 +99,40 @@ public class RoundCompleteUI : MonoBehaviour {
 
     }
 
-    void RandomText()
+    void CheckRound()
     {
 
         switch (gameManager.roundCurrent)
         {
             case 1:
-                textSaying.text = "Round One";
+                roundText.text = "Round 1 / 10";
                 break;
             case 2:
-                textSaying.text = "Round Two";
+                roundText.text = "Round 2 / 10";
                 break;
             case 3:
-                textSaying.text = "Round Three";
+                roundText.text = "Round 3 / 10";
                 break;
             case 4:
-                textSaying.text = "Round Four";
+                roundText.text = "Round 4 / 10";
                 break;
             case 5:
-                textSaying.text = "Round Five";
+                roundText.text = "Round 5 / 10";
                 break;
             case 6:
-                textSaying.text = "Round Six";
+                roundText.text = "Round 6 / 10";
                 break;
             case 7:
-                textSaying.text = "Round Seven";
+                roundText.text = "Round 7 / 10";
                 break;
             case 8:
-                textSaying.text = "Round Eight";
+                roundText.text = "Round 8 / 10";
                 break;
             case 9:
-                textSaying.text = "Round Nine";
+                roundText.text = "Round 9 / 10";
                 break;
             case 10:
-                textSaying.text = "Round Ten";
+                roundText.text = "Round 10 / 10";
                 break;
         }
 
@@ -192,6 +201,28 @@ public class RoundCompleteUI : MonoBehaviour {
                 break;
         }
         */
+    }
+
+    void CheckEnemyEffects()
+    {
+        switch (enemyEffectsManager.randomEffectInt)
+        {
+            case 0:
+                enemyEffectsText.text = "ENEMY HEALTH INCREASED";
+                break;
+            case 1:
+                enemyEffectsText.text = "ENEMY DAMAGE INCREASED";
+                break;
+            case 2:
+                enemyEffectsText.text = "ENEMY ACCURACY INCREASED";
+                break;
+            case 3:
+                enemyEffectsText.text = "ENEMY FIRE RATE INCREASED";
+                break;
+            case 4:
+                enemyEffectsText.text = "NEW ENEMY HAS ARRIVED";
+                break;
+        }
     }
 
     IEnumerator RoundCurrentTriangleFlash()

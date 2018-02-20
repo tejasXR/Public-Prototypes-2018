@@ -9,6 +9,7 @@ public class EnemyEffectsManager : MonoBehaviour {
     public float[] enemyEffectsProbability; // the probability to pick one of the effets after each round
     public float[] enemyEffects; // the total float of effects for each effect
     public float[] enemyEffectsAmount; // the amount added to each effect
+    public int randomEffectInt;
 
     private int round = 0;
     // 0 = more enemy health
@@ -50,20 +51,20 @@ public class EnemyEffectsManager : MonoBehaviour {
     void ApplyEnemyEffects()
     {
         // gets int of random effect to apply
-        int randomEffect = Mathf.RoundToInt(EnemyEffectProbability(enemyEffectsProbability));
+        randomEffectInt = Mathf.RoundToInt(EnemyEffectProbability(enemyEffectsProbability));
         //enemyEffects[randomEffect] += enemyEffectsAmount[randomEffect];
 
 
         
-        switch (randomEffect)
+        switch (randomEffectInt)
         {
-            case 1: addEnemyHealth += addEnemyHealthAmount;
+            case 0: addEnemyHealth += addEnemyHealthAmount;
                 break;
-            case 2: addEnemyDamage += addEnemyDamageAmount;
+            case 1: addEnemyDamage += addEnemyDamageAmount;
                 break;
-            case 3: addEnemyAccuracy += addEnemyAccuracyAmount;
+            case 2: addEnemyAccuracy += addEnemyAccuracyAmount;
                 break;
-            case 4: addEnemyFireRate += addEnemyFireRateAmount;
+            case 3: addEnemyFireRate += addEnemyFireRateAmount;
                 break;
         }
         
