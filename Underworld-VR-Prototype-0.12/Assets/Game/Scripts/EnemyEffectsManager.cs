@@ -32,6 +32,8 @@ public class EnemyEffectsManager : MonoBehaviour {
     void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyEffectsProbability = new float[5];
+        CheckRound();
+        ApplyEnemyEffects();
         //enemyEffectsProbability = new float[5];
         //enemyEffectsProbability = new float[5];
     }
@@ -41,9 +43,9 @@ public class EnemyEffectsManager : MonoBehaviour {
 
         if (round != gameManager.roundCurrent)
         {
+            round = gameManager.roundCurrent;
             CheckRound();
             ApplyEnemyEffects();
-            round = gameManager.roundCurrent;
         }
 		
 	}
@@ -54,8 +56,9 @@ public class EnemyEffectsManager : MonoBehaviour {
         randomEffectInt = Mathf.RoundToInt(EnemyEffectProbability(enemyEffectsProbability));
         //enemyEffects[randomEffect] += enemyEffectsAmount[randomEffect];
 
+        print("Enemy effects manager: " + randomEffectInt);
 
-        
+
         switch (randomEffectInt)
         {
             case 0: addEnemyHealth += addEnemyHealthAmount;
@@ -77,6 +80,9 @@ public class EnemyEffectsManager : MonoBehaviour {
 
         switch (gameManager.roundCurrent)
         {
+            case 0:
+                enemyEffectsProbability[4] = 100;
+                break;
             case 1:
                 enemyEffectsProbability[4] = 100;
                 break;

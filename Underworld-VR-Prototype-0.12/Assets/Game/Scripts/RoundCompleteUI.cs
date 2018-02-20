@@ -52,8 +52,7 @@ public class RoundCompleteUI : MonoBehaviour {
             rend.material = mats[1]; //sets all triangles to complete round UI material
         }*/
 
-        CheckRound();
-        CheckEnemyEffects();
+        
 
         transform.position = new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z);
 
@@ -64,9 +63,10 @@ public class RoundCompleteUI : MonoBehaviour {
         //randomTextNum = Random.Range(1, 20);
         //RandomText();
 
+        CheckRound();
+        //CheckEnemyEffects();
 
 
-       
 
     }
 
@@ -96,6 +96,8 @@ public class RoundCompleteUI : MonoBehaviour {
         }
 
         transform.LookAt(playerEye);
+
+        CheckEnemyEffects();
 
     }
 
@@ -209,6 +211,8 @@ public class RoundCompleteUI : MonoBehaviour {
 
     void CheckEnemyEffects()
     {
+        print("Round Complete UI: " + enemyEffectsManager.randomEffectInt);
+
         switch (enemyEffectsManager.randomEffectInt)
         {
             case 0:
