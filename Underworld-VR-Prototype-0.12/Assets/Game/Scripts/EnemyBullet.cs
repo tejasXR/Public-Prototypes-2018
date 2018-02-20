@@ -8,6 +8,8 @@ public class EnemyBullet : MonoBehaviour {
     public GameObject bulletHitEffect;
     public GameObject deflectedBulletHitEffect;
 
+    public EnemyEffectsManager enemyEffectsManager;
+
     //public GameObject bulletSolidEnemyEffect;
     //public GameObject bulletDissolveEffect;
 
@@ -36,9 +38,11 @@ public class EnemyBullet : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
         //print(rb.velocity);
         //print(transform.rotation);
         transformStart = transform.position;
+        damage += enemyEffectsManager.addEnemyDamage;
 
         //bulletFiredSound.pitch += Random.Range(-.05f, .05f);
         //bulletNormalSound.pitch += Random.Range(-.05f, .05f);

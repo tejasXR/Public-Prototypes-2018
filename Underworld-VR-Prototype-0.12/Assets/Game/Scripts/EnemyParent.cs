@@ -36,7 +36,7 @@ public class EnemyParent : MonoBehaviour {
     public AudioSource enemyHitSound;
 
     //private float explosionSoundPitchOriginal;
-    private float enemyHitSoundPitchOriginal;
+    //private float enemyHitSoundPitchOriginal;
 
     //private float enemyFlashHitCounter;
 
@@ -59,8 +59,10 @@ public class EnemyParent : MonoBehaviour {
             explosionTextObj.GetComponent<EarnedBulletText>().bulletNumber = enemyGiveBullets;
         }
 
+        enemyHealth += enemyEffectsManager.addEnemyHealth;
+
         //explosionSoundPitchOriginal = explosionSound.pitch;
-        enemyHitSoundPitchOriginal = enemyHitSound.pitch;
+        //enemyHitSoundPitchOriginal = enemyHitSound.pitch;
 
         /*if (!isRedemptionDrone)
         {
@@ -110,7 +112,7 @@ public class EnemyParent : MonoBehaviour {
     {
         if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "DeflectedBullet")
         {
-            enemyHitSound.pitch = enemyHitSound.pitch + Random.Range(-.05f, .05f);
+            //enemyHitSound.pitch = enemyHitSound.pitch + Random.Range(-.05f, .05f);
             enemyHitSound.Play();
 
             StartCoroutine(EnemyHitFlash(enemyFlashHitDuration));

@@ -17,7 +17,7 @@ public class EnemyEffectsManager : MonoBehaviour {
     // 3 = better fire rate
     // 4 = new enemy type
 
-    /*public float addEnemyHealth;
+    public float addEnemyHealth;
     public float addEnemyDamage;
     public float addEnemyAccuracy;
     public float addEnemyFireRate;
@@ -25,16 +25,14 @@ public class EnemyEffectsManager : MonoBehaviour {
     public float addEnemyHealthAmount;
     public float addEnemyDamageAmount;
     public float addEnemyAccuracyAmount;
-    public float addEnemyFireRateAmount;*/
+    public float addEnemyFireRateAmount;
 
     // Use this for initialization
     void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyEffectsProbability = new float[5];
-        enemyEffectsProbability = new float[5];
-        enemyEffectsProbability = new float[5];
-
-
+        //enemyEffectsProbability = new float[5];
+        //enemyEffectsProbability = new float[5];
     }
 
     // Update is called once per frame
@@ -53,10 +51,10 @@ public class EnemyEffectsManager : MonoBehaviour {
     {
         // gets int of random effect to apply
         int randomEffect = Mathf.RoundToInt(EnemyEffectProbability(enemyEffectsProbability));
-        enemyEffects[randomEffect] += enemyEffectsAmount[randomEffect];
+        //enemyEffects[randomEffect] += enemyEffectsAmount[randomEffect];
 
 
-        /*
+        
         switch (randomEffect)
         {
             case 1: addEnemyHealth += addEnemyHealthAmount;
@@ -68,7 +66,7 @@ public class EnemyEffectsManager : MonoBehaviour {
             case 4: addEnemyFireRate += addEnemyFireRateAmount;
                 break;
         }
-        */
+        
     }
 
     void CheckRound()

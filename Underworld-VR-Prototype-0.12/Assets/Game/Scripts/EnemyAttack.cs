@@ -28,12 +28,24 @@ public class EnemyAttack : MonoBehaviour {
 
     public EnemyEyeGlow eyeObject;
 
+    public EnemyEffectsManager enemyEffectsManager;
+
     // Use this for initialization
     void Start () {
         enemyParent = GetComponent<EnemyParent>();
+        enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
+
         enemyMovement = GetComponent<EnemyMovement>();
 
         enemyAttackTimer = (1 /enemyBulletFireRate) + Random.Range(-.05f, .05f);
+
+        enemyBulletFireRate += enemyEffectsManager.addEnemyFireRate;
+        enemyBulletAccuracy += enemyEffectsManager.addEnemyAccuracy;
+        if (enemyBulletAccuracy >= 1)
+        {
+            enemyBulletAccuracy = 1;
+        }
+
     }
 
     // Update is called once per frame
