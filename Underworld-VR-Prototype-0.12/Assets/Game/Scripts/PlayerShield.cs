@@ -51,7 +51,7 @@ public class PlayerShield : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         shieldHealth = shieldHealthMax * shieldHealthMaxMultiplier;
-        rend = shieldMesh.GetComponent<Renderer>();
+        //rend = shieldMesh.GetComponent<Renderer>();
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         scanTileOriginal = rend.material.GetFloat("_ScanTiling");
 	}
@@ -78,11 +78,11 @@ public class PlayerShield : MonoBehaviour {
         flickerSpeedCurrent = Mathf.Lerp(flickerSpeedCurrent, 0, Time.deltaTime * 3f);
         //scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal * shieldSizeMultiplier, Time.deltaTime * 3f);
 
-        scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal, Time.deltaTime * 3f);
+        //scanTileCurrent = Mathf.Lerp(scanTileCurrent, scanTileOriginal, Time.deltaTime * 3f);
 
 
-        rend.material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
-        rend.material.SetFloat("_ScanTiling", scanTileCurrent);
+        //rend.material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
+        //rend.material.SetFloat("_ScanTiling", scanTileCurrent);
 
         float modelScale = shieldHealthSmooth / (shieldHealthMax * shieldHealthMaxMultiplier);
 
@@ -97,6 +97,7 @@ public class PlayerShield : MonoBehaviour {
         {
             meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_Alpha", shieldHealthPercent / 100);
             meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", Color.Lerp(meshesToChange[i].GetComponent<Renderer>().material.GetColor("_MainColor"), normalColor, Time.deltaTime * 3f));
+            meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
         }
 
     }
@@ -121,7 +122,7 @@ public class PlayerShield : MonoBehaviour {
 
             shieldHealth -= otherDamage;
 
-            scanTileCurrent = 0;
+            //scanTileCurrent = 0;
             flickerSpeedCurrent = flickerSpeedMax;
 
             StartCoroutine(ShieldVibration(1, 2000));

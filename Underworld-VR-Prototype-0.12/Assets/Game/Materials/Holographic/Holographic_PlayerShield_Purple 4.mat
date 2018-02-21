@@ -94,7 +94,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GlowSpeed: 3.91
+    - _GlowSpeed: 10
     - _GlowTiling: 0.556
     - _Metallic: 0
     - _Mode: 0
