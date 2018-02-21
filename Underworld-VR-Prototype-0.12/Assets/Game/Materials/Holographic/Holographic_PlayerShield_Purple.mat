@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Holographic_PlayerShield_Purple
   m_Shader: {fileID: 4800000, guid: 29fed12d8547e354e90be987488147c1, type: 3}
-  m_ShaderKeywords: SCANLINES _GLOW_ON
+  m_ShaderKeywords: SCANLINES
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
