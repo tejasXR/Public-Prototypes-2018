@@ -56,7 +56,7 @@ public class EnemyEffectsManager : MonoBehaviour {
         randomEffectInt = Mathf.RoundToInt(EnemyEffectProbability(enemyEffectsProbability));
         //enemyEffects[randomEffect] += enemyEffectsAmount[randomEffect];
 
-        print("Enemy effects manager: " + randomEffectInt);
+        //print("Enemy effects manager: " + randomEffectInt);
 
 
         switch (randomEffectInt)

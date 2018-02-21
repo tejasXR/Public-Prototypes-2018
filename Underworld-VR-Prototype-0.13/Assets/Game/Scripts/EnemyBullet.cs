@@ -79,7 +79,7 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
+        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" || /*collision.gameObject.tag == "Shield" ||*/ collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
         {
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
 
@@ -90,8 +90,15 @@ public class EnemyBullet : MonoBehaviour {
 
             //print(collision.gameObject.tag);
 
-            Destroy(this.gameObject);
         }
+
+        if (collision.gameObject.tag == "Shield")
+        {
+            //print("Bullet found shield");
+            Destroy(this.gameObject);
+
+        }
+
 
         /*if (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet")
         {
@@ -122,14 +129,14 @@ public class EnemyBullet : MonoBehaviour {
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             rb.velocity = bulletDirection * 3f;
 
-           
+
 
             //bulletDirection.x += Random.Range(-deflectAccuracy, deflectAccuracy);
             //bulletDirection.y += Random.Range(-deflectAccuracy, deflectAccuracy);
             //bulletDirection.z += Random.Range(-deflectAccuracy, deflectAccuracy);
 
 
-            
+
             this.gameObject.tag = "DeflectedBullet";
             //transform.rotation = collision.gameObject.transform.rotation;
 

@@ -12,13 +12,21 @@ public class BulletTextCounter : MonoBehaviour {
     private bool adjust;
 
     public bool formatXX;
+    public bool changeTextColor;
+
+    public Color32 textColorOriginal;
+    public Color32 textColorGainBullet;
+    public Color32 textColorLoseBullet;
+
     //public bool formatXXX;
 
     // Use this for initialization
     void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         bulletTextCounter = GetComponent<TextMeshPro>();
-	}
+        textColorOriginal = bulletTextCounter.color;
+
+    }
 
     private void OnEnable()
     {
@@ -33,10 +41,19 @@ public class BulletTextCounter : MonoBehaviour {
             if (bulletSmoothCount <= playerController.playerBullets)
             {
                 bulletSmoothCount += Time.unscaledDeltaTime * countSpeed;
+                if (changeTextColor)
+                {
+                    bulletTextCounter.color = textColorGainBullet;
+                }
+
             }
             else
             {
                 bulletSmoothCount -= Time.unscaledDeltaTime * countSpeed;
+                if (changeTextColor)
+                {
+                    bulletTextCounter.color = textColorLoseBullet;
+                }
             }
         }
 
@@ -47,6 +64,10 @@ public class BulletTextCounter : MonoBehaviour {
         {
             adjust = false;
         }
+
+        bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 3f);
+
+
        
 
         

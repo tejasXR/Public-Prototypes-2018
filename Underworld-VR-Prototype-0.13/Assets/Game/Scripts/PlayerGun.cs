@@ -159,7 +159,7 @@ public class PlayerGun : MonoBehaviour {
                     if (gameManager.roundActive)
                     {
                         playerController.playerBullets -= 1;
-                        Instantiate(bulletUsedObj, sparkPoint.position, sparkPoint.transform.rotation);
+                        //Instantiate(bulletUsedObj, sparkPoint.position, sparkPoint.transform.rotation);
                     }
                     //print("bullet used");
 

@@ -53,7 +53,7 @@ public class PlayerShield : MonoBehaviour {
         shieldHealth = shieldHealthMax * shieldHealthMaxMultiplier;
         //rend = shieldMesh.GetComponent<Renderer>();
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
-        scanTileOriginal = rend.material.GetFloat("_ScanTiling");
+        //scanTileOriginal = rend.material.GetFloat("_ScanTiling");
 	}
 	
 	// Update is called once per frame
@@ -84,13 +84,13 @@ public class PlayerShield : MonoBehaviour {
         //rend.material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
         //rend.material.SetFloat("_ScanTiling", scanTileCurrent);
 
-        float modelScale = shieldHealthSmooth / (shieldHealthMax * shieldHealthMaxMultiplier);
+        //float modelScale = shieldHealthSmooth / (shieldHealthMax * shieldHealthMaxMultiplier);
 
-        transform.localScale = new Vector3(modelScale, modelScale, modelScale);
+        //transform.localScale = new Vector3(modelScale, modelScale, modelScale);
 
         healthText.text = "shield health: " + Mathf.RoundToInt(shieldHealthSmooth) + " / " + Mathf.RoundToInt(shieldHealthMax * shieldHealthMaxMultiplier);
         healthText.text = "" + Mathf.RoundToInt(shieldHealthPercent) + "%";
-        healthText.material.SetColor("_GlowColor", Color.Lerp(healthText.material.GetColor("_GlowColor"), normalColor, Time.deltaTime * 3f));
+        //healthText.material.SetColor("_GlowColor", Color.Lerp(healthText.material.GetColor("_GlowColor"), normalColor, Time.deltaTime * 3f));
 
 
         for(int i = 0; i < meshesToChange.Length; i++)
@@ -107,10 +107,55 @@ public class PlayerShield : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObj.index);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
+        //print("Shield collision with something");
+
         if (other.gameObject.tag == "EnemyBullet")
         {
+            Destroy(other.gameObject);
+
+
+            //print("Shield found bullet");
+            float otherDamage = other.gameObject.GetComponent<EnemyBullet>().damage;
+
+            for (int i = 0; i < meshesToChange.Length; i++)
+            {
+                meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", flashColor);
+            }
+
+            healthText.material.SetColor("_GlowColor", flashColor);
+
+            shieldHealth -= otherDamage;
+
+            //scanTileCurrent = 0;
+            flickerSpeedCurrent = flickerSpeedMax;
+
+            StartCoroutine(ShieldVibration(1, 2000));
+
+            // A chance to absorb an incoming bullet
+            //float shieldAbsorption = Random.Range(0f, 1f);
+            //if (shieldAbsorption > shieldBulletAbsorbtionAmount)
+            {
+                playerController.playerBullets += shieldBulletAbsorbtionAmount;
+                //Instantiate(bulletGainedObj, other.gameObject.transform.position, other.gameObject.transform.rotation);
+            }
+
+            //print("Hit");
+
+        }
+    }
+
+    /*
+
+    private void OnCollisionEnter(Collision other)
+    {
+        print("Shield collision with something");
+
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+
+            print("Shield found bullet");
             float otherDamage = other.gameObject.GetComponent<EnemyBullet>().damage;
 
             for (int i = 0; i < meshesToChange.Length; i++)
@@ -140,6 +185,7 @@ public class PlayerShield : MonoBehaviour {
             Destroy(other.gameObject);
         }
     }
+    */
 
     /*private void OnTriggerEnter(Collider other)
     {

@@ -211,7 +211,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
     void CheckEnemyEffects()
     {
-        print("Round Complete UI: " + enemyEffectsManager.randomEffectInt);
+        //print("Round Complete UI: " + enemyEffectsManager.randomEffectInt);
 
         switch (enemyEffectsManager.randomEffectInt)
         {
