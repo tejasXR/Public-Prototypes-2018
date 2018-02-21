@@ -129,9 +129,9 @@ public class HealthMeter : MonoBehaviour {
         }*/
 
 
-        rend.material.SetFloat("_Alpha", Mathf.Lerp(rend.material.GetFloat("_Alpha"), 1.1f - healthSmoothPercent, Time.deltaTime * 2f));
-        rend.material.SetColor("_MainColor", Color.Lerp(rend.material.GetColor("_MainColor"), healthColorOriginal, Time.deltaTime * 2f));
-        healthIcon.material.SetColor("_Color", Color.Lerp(healthIcon.material.GetColor("_Color"), healthIconColorOriginal, Time.deltaTime * 2f));
+        rend.material.SetFloat("_Alpha", Mathf.Lerp(rend.material.GetFloat("_Alpha"), 1.1f - healthSmoothPercent, Time.deltaTime));
+        rend.material.SetColor("_MainColor", Color.Lerp(rend.material.GetColor("_MainColor"), healthColorOriginal, Time.deltaTime));
+        healthIcon.material.SetColor("_Color", Color.Lerp(healthIcon.material.GetColor("_Color"), healthIconColorOriginal, Time.deltaTime));
 
         //transform.localScale = new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
         //transform.localPosition = new Vector3(meterXCurrent, transform.localPosition.y, transform.localPosition.z);

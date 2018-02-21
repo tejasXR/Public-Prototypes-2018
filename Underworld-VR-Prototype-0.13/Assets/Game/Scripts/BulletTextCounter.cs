@@ -101,9 +101,9 @@ public class BulletTextCounter : MonoBehaviour {
             adjust = false;
         }
 
-        bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 2f);
+        bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime);
         //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIcon.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 3f));
-        bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 2f));
+        bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime));
 
         //bulletIconOutline.material.SetColor("_Color", Color.Lerp(bulletIconOutline.material.GetColor("_Color"), bulletIconOutlineOriginal, Time.deltaTime * 3f));
 
