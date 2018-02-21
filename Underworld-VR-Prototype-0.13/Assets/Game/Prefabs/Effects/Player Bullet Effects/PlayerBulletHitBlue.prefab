@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01312d085de31d743b9c821c785fc59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyInSeconds: 1
+  destroyInSeconds: 2
 --- !u!198 &198507286026292320
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1769311394
+  randomSeed: -1646573036
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1699,7 +1699,7 @@ ParticleSystem:
     magnitude:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
