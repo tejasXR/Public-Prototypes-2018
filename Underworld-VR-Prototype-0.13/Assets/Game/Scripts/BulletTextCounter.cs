@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletTextCounter : MonoBehaviour {
 
@@ -12,11 +13,19 @@ public class BulletTextCounter : MonoBehaviour {
     private bool adjust;
 
     public bool formatXX;
+    public bool hasBulletIcon;
+    public bool hasBulletIconOutline;
     public bool changeTextColor;
 
     public Color32 textColorOriginal;
     public Color32 textColorGainBullet;
     public Color32 textColorLoseBullet;
+
+    public Color32 bulletIconOriginal;
+    public Color32 bulletIconOutlineOriginal;
+
+    public Image bulletIcon;
+    public Image bulletIconOutline;
 
     //public bool formatXXX;
 
@@ -24,7 +33,7 @@ public class BulletTextCounter : MonoBehaviour {
     void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         bulletTextCounter = GetComponent<TextMeshPro>();
-        textColorOriginal = bulletTextCounter.color;
+        //textColorOriginal = bulletTextCounter.color;
 
     }
 
@@ -41,19 +50,42 @@ public class BulletTextCounter : MonoBehaviour {
             if (bulletSmoothCount <= playerController.playerBullets)
             {
                 bulletSmoothCount += Time.unscaledDeltaTime * countSpeed;
+
                 if (changeTextColor)
                 {
                     bulletTextCounter.color = textColorGainBullet;
+                }
+
+                if (hasBulletIcon)
+                {
+                    bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorGainBullet);
+
+                    if (hasBulletIconOutline)
+                    {
+                        bulletIconOutline.GetComponent<Renderer>().material.SetColor("_Color", textColorGainBullet);
+                    }
                 }
 
             }
             else
             {
                 bulletSmoothCount -= Time.unscaledDeltaTime * countSpeed;
+
                 if (changeTextColor)
                 {
                     bulletTextCounter.color = textColorLoseBullet;
                 }
+
+                if (hasBulletIcon)
+                {
+                    bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorLoseBullet);
+
+                    if (hasBulletIconOutline)
+                    {
+                        bulletIconOutline.GetComponent<Renderer>().material.SetColor("_Color", textColorLoseBullet);
+                    }
+                }
+
             }
         }
 
@@ -66,11 +98,8 @@ public class BulletTextCounter : MonoBehaviour {
         }
 
         bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 3f);
-
-
-       
-
-        
+        bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIcon.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 3f));
+        bulletIconOutline.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIconOutline.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOutlineOriginal, Time.deltaTime * 3f));
 
         //bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerController.playerBullets, Time.deltaTime * countSpeed));
 
@@ -81,7 +110,5 @@ public class BulletTextCounter : MonoBehaviour {
         {
             bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("000");
         }
-
-
     }
 }
