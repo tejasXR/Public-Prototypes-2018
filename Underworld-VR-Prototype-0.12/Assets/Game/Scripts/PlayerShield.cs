@@ -117,7 +117,7 @@ public class PlayerShield : MonoBehaviour {
 
             //print("Hit");
 
-            //Destroy(other.gameObject);
+            Destroy(other.gameObject);
         }
     }
 
