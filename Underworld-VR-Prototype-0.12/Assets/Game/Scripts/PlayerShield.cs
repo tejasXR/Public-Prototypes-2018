@@ -31,6 +31,10 @@ public class PlayerShield : MonoBehaviour {
 
     private Renderer rend;
 
+    public GameObject[] meshesToChange;
+    public Color32 normalColor;
+    public Color32 flashColor;
+
     public float flickerSpeedMax;
     private float flickerSpeedCurrent;
 
@@ -86,6 +90,14 @@ public class PlayerShield : MonoBehaviour {
 
         healthText.text = "shield health: " + Mathf.RoundToInt(shieldHealthSmooth) + " / " + Mathf.RoundToInt(shieldHealthMax * shieldHealthMaxMultiplier);
         healthText.text = "" + Mathf.RoundToInt(shieldHealthPercent) + "%";
+        healthText.material.SetColor("_GlowColor", Color.Lerp(healthText.material.GetColor("_GlowColor"), normalColor, Time.deltaTime * 3f));
+
+
+        for(int i = 0; i < meshesToChange.Length; i++)
+        {
+            meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_Alpha", shieldHealthPercent / 100);
+            meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", Color.Lerp(meshesToChange[i].GetComponent<Renderer>().material.GetColor("_MainColor"), normalColor, Time.deltaTime * 3f));
+        }
 
     }
 
@@ -99,6 +111,14 @@ public class PlayerShield : MonoBehaviour {
         if (other.gameObject.tag == "EnemyBullet")
         {
             float otherDamage = other.gameObject.GetComponent<EnemyBullet>().damage;
+
+            for (int i = 0; i < meshesToChange.Length; i++)
+            { 
+                meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", flashColor);
+            }
+
+            healthText.material.SetColor("_GlowColor", flashColor);
+
             shieldHealth -= otherDamage;
 
             scanTileCurrent = 0;
@@ -112,7 +132,6 @@ public class PlayerShield : MonoBehaviour {
             {
                 playerController.playerBullets += shieldBulletAbsorbtionAmount;
                 Instantiate(bulletGainedObj, other.gameObject.transform.position, other.gameObject.transform.rotation);
-
             }
 
             //print("Hit");
