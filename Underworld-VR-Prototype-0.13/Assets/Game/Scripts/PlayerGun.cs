@@ -216,7 +216,7 @@ public class PlayerGun : MonoBehaviour {
 
         if (isHyperRifle)
         {
-            StartCoroutine(GunVibration(1f, 3000));
+            StartCoroutine(GunVibration(1f, 4000));
         }
     }
 
