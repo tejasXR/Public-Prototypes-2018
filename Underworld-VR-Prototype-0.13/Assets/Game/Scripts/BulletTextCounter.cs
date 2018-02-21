@@ -58,11 +58,13 @@ public class BulletTextCounter : MonoBehaviour {
 
                 if (hasBulletIcon)
                 {
-                    bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorGainBullet);
+                    //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorGainBullet);
+                    bulletIcon.material.SetColor("_Color", textColorGainBullet);
+
 
                     if (hasBulletIconOutline)
                     {
-                        bulletIconOutline.GetComponent<Renderer>().material.SetColor("_Color", textColorGainBullet);
+                        bulletIconOutline.material.SetColor("_Color", textColorGainBullet);
                     }
                 }
 
@@ -78,11 +80,13 @@ public class BulletTextCounter : MonoBehaviour {
 
                 if (hasBulletIcon)
                 {
-                    bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorLoseBullet);
+                    //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorLoseBullet);
+                    bulletIcon.material.SetColor("_Color", textColorLoseBullet);
+
 
                     if (hasBulletIconOutline)
                     {
-                        bulletIconOutline.GetComponent<Renderer>().material.SetColor("_Color", textColorLoseBullet);
+                        bulletIconOutline.material.SetColor("_Color", textColorLoseBullet);
                     }
                 }
 
@@ -97,9 +101,11 @@ public class BulletTextCounter : MonoBehaviour {
             adjust = false;
         }
 
-        bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 3f);
-        bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIcon.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 3f));
-        bulletIconOutline.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIconOutline.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOutlineOriginal, Time.deltaTime * 3f));
+        bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 2f);
+        //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIcon.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 3f));
+        bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 2f));
+
+        //bulletIconOutline.material.SetColor("_Color", Color.Lerp(bulletIconOutline.material.GetColor("_Color"), bulletIconOutlineOriginal, Time.deltaTime * 3f));
 
         //bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerController.playerBullets, Time.deltaTime * countSpeed));
 

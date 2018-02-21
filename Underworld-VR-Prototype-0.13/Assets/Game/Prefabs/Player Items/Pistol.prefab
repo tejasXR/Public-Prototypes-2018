@@ -79,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1216499409520904
 GameObject:
   m_ObjectHideFlags: 1
@@ -177,7 +177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1318224815331528
 GameObject:
   m_ObjectHideFlags: 1
@@ -630,8 +630,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899414999901490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0132, y: -0.0032, z: -0.0542}
-  m_LocalScale: {x: 0.086273305, y: 0.020661153, z: 0.005}
+  m_LocalPosition: {x: 0.0124, y: -0.0029, z: -0.0542}
+  m_LocalScale: {x: 0.08881645, y: 0.02542716, z: 0.005}
   m_Children: []
   m_Father: {fileID: 4938934457634466}
   m_RootOrder: 1
@@ -1266,8 +1266,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294904832
-  m_fontColor: {r: 0, g: 0.04827571, b: 1, a: 1}
+    rgba: 4292873220
+  m_fontColor: {r: 0.015686275, g: 0.04705883, b: 0.87843144, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: cbe1bf44f416f56418695851676418f2, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: cbe1bf44f416f56418695851676418f2, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1473,6 +1473,22 @@ MonoBehaviour:
   meterZCurrent: 0
   meterZOriginal: 0
   isOnSaberSword: 0
+  adjust: 0
+  hasHealthIcon: 1
+  hasHealthIconOutline: 0
+  healthColorOriginal:
+    serializedVersion: 2
+    rgba: 4279894271
+  gainHealthColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  loseHealthColor:
+    serializedVersion: 2
+    rgba: 4278190335
+  healthIconColorOriginal:
+    serializedVersion: 2
+    rgba: 285212927
+  healthIcon: {fileID: 114690290547056258}
 --- !u!114 &114463176058372784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1485,18 +1501,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSmoothCount: 0
-  countSpeed: 35
+  countSpeed: 50
   formatXX: 1
+  hasBulletIcon: 1
+  hasBulletIconOutline: 0
   changeTextColor: 1
   textColorOriginal:
     serializedVersion: 2
-    rgba: 2113879553
+    rgba: 181998091
   textColorGainBullet:
     serializedVersion: 2
     rgba: 4294967295
   textColorLoseBullet:
     serializedVersion: 2
     rgba: 4278190335
+  bulletIconOriginal:
+    serializedVersion: 2
+    rgba: 33554431
+  bulletIconOutlineOriginal:
+    serializedVersion: 2
+    rgba: 301927424
+  bulletIcon: {fileID: 114902879700639824}
+  bulletIconOutline: {fileID: 0}
 --- !u!114 &114690290547056258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1508,7 +1534,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 7ce210a54f17d874796df8dba275f082, type: 2}
+  m_Material: {fileID: 2100000, guid: 6c35b26cc748540468472acecf6fad77, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1615,7 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 35602b8d761c76e4184c634da7854b3a, type: 2}
+  m_Material: {fileID: 2100000, guid: 4a65553360fc93d458b955d15ee54c92, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
