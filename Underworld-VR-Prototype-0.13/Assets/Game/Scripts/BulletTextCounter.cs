@@ -11,6 +11,9 @@ public class BulletTextCounter : MonoBehaviour {
     public float countSpeed = 85f;
     private bool adjust;
 
+    public bool formatXX;
+    //public bool formatXXX;
+
     // Use this for initialization
     void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
@@ -50,7 +53,13 @@ public class BulletTextCounter : MonoBehaviour {
 
         //bulletSmoothCount = Mathf.RoundToInt(Mathf.Lerp(bulletSmoothCount, playerController.playerBullets, Time.deltaTime * countSpeed));
 
-        bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("000");
+        if (formatXX)
+        {
+            bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("00");
+        } else
+        {
+            bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("000");
+        }
 
 
     }

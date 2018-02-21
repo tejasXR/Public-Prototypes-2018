@@ -37,7 +37,7 @@ public class UISmooth : MonoBehaviour
             iconOriginalPos[i] = icons[i].transform.localPosition;
         }
 
-        hidePos = new Vector3(0f, 0f, .05f);
+        hidePos = new Vector3(0f, 0f, .1f);
 
         foreach (GameObject icon in icons)
         {
