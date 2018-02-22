@@ -8,9 +8,11 @@ public class StadiumEncapsulation : MonoBehaviour {
     public Color[] colors;
     public Color colorCurrent;
     private GameManager gameManager;
+    public float enemiesDestroyedCounter;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rend = GetComponent<Renderer>();
 		
@@ -24,9 +26,8 @@ public class StadiumEncapsulation : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (gameManager.inRound)
+        //if (gameManager.inRound)
         {
-            colorCurrent = Color.Lerp(colorCurrent, colors[0], Time.deltaTime);
         }
 
         /*if (gameManager.inRedemption)
@@ -34,6 +35,17 @@ public class StadiumEncapsulation : MonoBehaviour {
             colorCurrent = Color.Lerp(colorCurrent, colors[1], Time.deltaTime);
         }*/
 
+        if (gameManager.enemiesToSpawn > 0)
+        {
+            if (enemiesDestroyedCounter != gameManager.enemiesDestroyed)
+            {
+                colorCurrent = colors[1];
+                enemiesDestroyedCounter = gameManager.enemiesDestroyed;
+
+            }
+        }
+
+        colorCurrent = Color.Lerp(colorCurrent, colors[0], Time.deltaTime);
         rend.material.SetColor("_MKGlowTexColor", colorCurrent);
     }
 }

@@ -14,7 +14,7 @@ public class FillBoards : MonoBehaviour {
 
     public TextMeshPro percentText;
 
-    public Color colorCurrent;
+    //public Color colorCurrent;
     public Color colorOriginal;
 
     private Renderer rend;
@@ -53,10 +53,14 @@ public class FillBoards : MonoBehaviour {
     void Update () {
 
 
-        if (gameManager.roundActive)
+        //if (gameManager.roundActive)
         {
             //print(gameManager.enemiesDestroyed / gameManager.enemiesToSpawn);
-            enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3.5f);
+            if (gameManager.enemiesToSpawn > 0)
+            {
+                enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3.5f);
+
+            }
 
             //scaleCurrent = Vector3.Lerp(scaleCurrent, scaleOriginal * enemiesDestroyedPercent, Time.deltaTime * 3.5f);
 
@@ -64,26 +68,25 @@ public class FillBoards : MonoBehaviour {
 
             //solidFill.transform.localScale = scaleCurrent;
 
-            if (enemiesDestroyedCounter < gameManager.enemiesDestroyed)
+            if (enemiesDestroyedCounter != gameManager.enemiesDestroyed)
             {
-                colorCurrent = Color.white;
-                outlineFlicker.shouldFlicker = true;
+                //rend.material.SetColor("_Color", Color.white);
                 enemiesDestroyedCounter = gameManager.enemiesDestroyed;
+                outlineFlicker.shouldFlicker = true;
+
+
             }
 
-            if (Mathf.Abs(enemiesDestroyedPercent - (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn)) < .01f)
-            {
-                outlineFlicker.shouldFlicker = false;
-            } else
+            /*if (Mathf.Abs(enemiesDestroyedPercent - (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn)) > .01f)
             {
                 outlineFlicker.shouldFlicker = true;
             }
-
-            colorCurrent = Color.Lerp(colorCurrent, colorOriginal, Time.deltaTime * 1.5f);
+            */
+            //colorCurrent = Color.Lerp(colorCurrent, colorOriginal, Time.deltaTime * 1.5f);
 
         }
 
-        rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), colorCurrent, Time.deltaTime));
+        //rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), colorOriginal, Time.deltaTime));
         //print(rend.material.GetColor("_Color"));
 
         
