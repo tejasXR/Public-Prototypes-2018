@@ -26,6 +26,10 @@ public class HealthMeter : MonoBehaviour {
     public bool hasHealthIcon;
     public bool hasHealthIconOutline;
 
+    public bool healthLowFlash;
+    public float healthFlashDuration;
+    public float healthFlashDurationTimer;
+
     private Renderer rend;
 
     public Color32 healthColorOriginal;
@@ -46,8 +50,8 @@ public class HealthMeter : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        
 
+        healthFlashDurationTimer = healthFlashDuration;
         scaleOriginal = transform.localScale.x;
         meterXOriginal = transform.localPosition.x;
 
@@ -134,6 +138,34 @@ public class HealthMeter : MonoBehaviour {
                 
             }
         }*/
+
+        if ((playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier) < .25f))
+        {
+            //healthLowFlash = true;
+            if (!healthLowFlash)
+            {
+                rend.material.SetColor("_Color", loseHealthColor);
+
+                if (hasHealthIcon)
+                {
+                    healthIcon.material.SetColor("_Color", loseHealthColor);
+                }
+
+                healthLowFlash = true;
+            }
+            
+            healthFlashDurationTimer -= Time.deltaTime;
+            if (healthFlashDurationTimer <= 0)
+            {
+                healthLowFlash = false;
+                healthFlashDurationTimer = healthFlashDuration;
+            }
+        } else
+        {
+            healthLowFlash = false;
+        }
+
+
 
 
         //rend.material.SetFloat("_Alpha", Mathf.Lerp(rend.material.GetFloat("_Alpha"), 1.1f - healthSmoothPercent, Time.deltaTime));
