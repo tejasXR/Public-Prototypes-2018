@@ -12,6 +12,8 @@ public class EnemyParent : MonoBehaviour {
     //Define Basic Player Variables
     private Player playerController; //Whole of player object
     [HideInInspector] public GameObject player; //cameraEye object
+    //public GameObject hitbodyProjection;
+    //private Renderer rendHitbody;
     //public Vector3 playerDirection; //Direction towards the player
 
     //Define Basic Enemy Variables
@@ -52,6 +54,9 @@ public class EnemyParent : MonoBehaviour {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemySpawnManager = GameObject.Find("EnemySpawnManager").GetComponent<EnemySpawnManager>();
         enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
+
+        //rendHitbody = hitbodyProjection.GetComponent<Renderer>();
+
 
         rb = GetComponent<Rigidbody>();
 
@@ -153,18 +158,18 @@ public class EnemyParent : MonoBehaviour {
             }
             enemyHealth -= damage;
             Destroy(other.gameObject);
-            //if (enemyHealth <= 0)
+            if (enemyHealth <= 0)
             {
                 //rb.AddForce(Physics.gravity * .25f);
 
-              //  StartCoroutine(EnemyExplosion());
+                StartCoroutine(EnemyExplosion());
             }
 
-            if (enemyHealth <= 0)
+            //if (enemyHealth <= 0)
             {
                 //print("enemyDestroyCalled");
-                EnemyDestroy();
-                Destroy(this.gameObject);
+                //EnemyDestroy();
+                //Destroy(this.gameObject);
             }
         }
     }
@@ -211,17 +216,17 @@ public class EnemyParent : MonoBehaviour {
         //rb.angularDrag = .05f;
         //rb.useGravity = true;
         //rb.angularVelocity = new Vector3(Random.Range(-100f, 100), Random.Range(-100f, 100f), Random.Range(-100f, 100f));
+        StartCoroutine(EnemyHitFlash(enemyFlashHitDuration));
+        yield return new WaitForSeconds(.01f);
 
-        yield return new WaitForSeconds(.15f);
-
-        StartCoroutine(EnemyHitFlash(.05f));
+        /*StartCoroutine(EnemyHitFlash(.05f));
         yield return new WaitForSeconds(.1f);
 
         StartCoroutine(EnemyHitFlash(.05f));
         yield return new WaitForSeconds(.1f);
 
         StartCoroutine(EnemyHitFlash(.05f));
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.1f);*/
 
 
         if (enemyGiveBullets > 0)

@@ -37,7 +37,7 @@ public class FillBoards : MonoBehaviour {
 
         rend = solidFillMesh.GetComponent<Renderer>();
 
-        colorOriginal = rend.material.GetColor("_Color");
+        //colorOriginal = rend.material.GetColor("_Color");
 
 
 
@@ -56,13 +56,13 @@ public class FillBoards : MonoBehaviour {
         if (gameManager.roundActive)
         {
             //print(gameManager.enemiesDestroyed / gameManager.enemiesToSpawn);
-            enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3.5f);
+            //enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3.5f);
 
-            scaleCurrent = Vector3.Lerp(scaleCurrent, scaleOriginal * enemiesDestroyedPercent, Time.deltaTime * 3.5f);
+            //scaleCurrent = Vector3.Lerp(scaleCurrent, scaleOriginal * enemiesDestroyedPercent, Time.deltaTime * 3.5f);
 
-            percentText.text = Mathf.RoundToInt(enemiesDestroyedPercent * 100).ToString() + "%";
+            //percentText.text = Mathf.RoundToInt(enemiesDestroyedPercent * 100).ToString() + "%";
 
-            solidFill.transform.localScale = scaleCurrent;
+            //solidFill.transform.localScale = scaleCurrent;
 
             if (enemiesDestroyedCounter < gameManager.enemiesDestroyed)
             {
