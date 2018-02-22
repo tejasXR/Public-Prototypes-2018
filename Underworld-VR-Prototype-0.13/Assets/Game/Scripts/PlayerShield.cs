@@ -16,6 +16,10 @@ public class PlayerShield : MonoBehaviour {
     public float shieldHealthPercent;
     public float shieldRechargeSpeed;
 
+    public float shieldHealthTop30;
+    public float shieldHealthMiddle20;
+    public float shieldHealthBottom50;
+
     public float shieldRegenMultiplier = 1;
     public float shieldHealthMaxMultiplier = 1;
 
@@ -49,6 +53,9 @@ public class PlayerShield : MonoBehaviour {
     public GameObject shieldHitEffect;
 
     private bool hit;
+
+    public bool shieldActive;
+    public bool shieldInactive;
 
     // Outline Health meters
     public GameObject[] outlines;
@@ -102,7 +109,7 @@ public class PlayerShield : MonoBehaviour {
             meterXOriginal[i] = outlines[i].transform.localPosition.x;
             meterZOriginal[i] = outlines[i].transform.localPosition.z;
         }
-
+        shieldActive = true;
     }
 
     private void OnEnable()
@@ -116,6 +123,9 @@ public class PlayerShield : MonoBehaviour {
             //meterZCurrent[i] = meterZOriginal[i] - scaleZOriginal[i] / 2;
 
         }
+        shieldHealthTop30 = 1;
+        shieldHealthMiddle20 = 1;
+        shieldHealthBottom50 = 1;
     }
 
     // Update is called once per frame
@@ -124,46 +134,197 @@ public class PlayerShield : MonoBehaviour {
 
         shieldHealthPercent = Mathf.Lerp(shieldHealthPercent, (shieldHealthSmooth / (shieldHealthMax * shieldHealthMaxMultiplier)), Time.deltaTime * 2f);
 
+        if (shieldHealthPercent > .7f)
+        {
+            shieldHealthTop30 = (shieldHealthPercent - .7f) / .3f;
+
+            if (shieldHealthPercent < .7f)
+            {
+                shieldHealthTop30 = 0;
+            }
+
+        }
+
+        if (shieldHealthPercent < .7f)
+        {
+            if (shieldHealthPercent > .5f)
+            {
+                shieldHealthMiddle20 = (shieldHealthPercent - .5f) / .2f;
+            }
+        } else if (shieldHealthPercent < .5f)
+        {
+            shieldHealthMiddle20 = 0;
+        }
+
+
+
+        if (shieldHealthPercent < .5f)
+        {
+            shieldHealthBottom50 = shieldHealthPercent / .5f;            
+        } else
+        {
+            shieldHealthBottom50 = 1;
+        }
+
+
+
+
 
         shieldHealthSmooth = Mathf.SmoothStep(shieldHealthSmooth, shieldHealth, Time.deltaTime * 10f);
 
         // Animate Top Row
 
-        for (int i = 0; i < 2; i++)
+        if (shieldHealthPercent > .7f)
         {
-            scaleXCurrent[i] = Mathf.Lerp(scaleXCurrent[i], scaleXOriginal[i] * shieldHealthPercent, Time.deltaTime * 3f);
-            //scaleZCurrent[i] = Mathf.Lerp(scaleZCurrent[i], scaleZOriginal[i] * shieldHealthPercent, Time.deltaTime * 3f);
-
-            if (i == 0)
+            for (int i = 0; i < 2; i++)
             {
-                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], (meterXOriginal[i] - scaleXOriginal[i] / 2) + ((scaleXOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
-            }
-            if (i == 1)
-            {
-                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], (meterXOriginal[i] + scaleXOriginal[i] / 2) - ((scaleXOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
-            }
-            //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], (meterZOriginal[i] - scaleZOriginal[i] / 2) + ((scaleZOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
+                outlines[i].SetActive(true);
 
-            outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
-            outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, outlines[i].transform.localPosition.z);
-            //outlines[i].transform.localPosition = new
-            //outlines[i].transform.Translate(meterXCurrent[i], 0, 0);
+                scaleXCurrent[i] = Mathf.Lerp(scaleXCurrent[i], scaleXOriginal[i] * shieldHealthTop30, Time.deltaTime * 5f);
+                //scaleZCurrent[i] = Mathf.Lerp(scaleZCurrent[i], scaleZOriginal[i] * shieldHealthPercent, Time.deltaTime * 3f);
+
+                if (i == 0)
+                {
+                    meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], (meterXOriginal[i] - scaleXOriginal[i] / 2) + ((scaleXOriginal[i] / 2) * shieldHealthTop30), Time.deltaTime * 5f);
+                }
+                if (i == 1)
+                {
+                    meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], (meterXOriginal[i] + scaleXOriginal[i] / 2) - ((scaleXOriginal[i] / 2) * shieldHealthTop30), Time.deltaTime * 5f);
+                }
+                //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], (meterZOriginal[i] - scaleZOriginal[i] / 2) + ((scaleZOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
+
+                outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
+                outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, outlines[i].transform.localPosition.z);
+                //outlines[i].transform.localPosition = new
+                //outlines[i].transform.Translate(meterXCurrent[i], 0, 0);
+            }
+        } else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                outlines[i].SetActive(false);
+                shieldHealthTop30 = 0;
+            }
         }
 
-        for (int i = 2; i < 3; i++)
+
+        if (shieldHealthPercent > .5f)
+        {
+            for (int i = 2; i < 4; i++)
+            {
+                outlines[i].SetActive(true);
+
+                scaleXCurrent[i] = Mathf.Lerp(scaleXCurrent[i], scaleXOriginal[i] * shieldHealthMiddle20, Time.deltaTime * 5f);
+
+                //meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
+                //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
+
+                if (i == 2)
+                {
+                    meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - ((Mathf.Abs(-2.2f - meterXOriginal[i])) * (1 - shieldHealthMiddle20)), Time.deltaTime * 5f);
+                    meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(-1.21f - meterZOriginal[i])) * (1 - shieldHealthMiddle20)), Time.deltaTime * 5f);
+                }
+
+                if (i == 3)
+                {
+                    meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] + ((Mathf.Abs(2.2f - meterXOriginal[i])) * (1 - shieldHealthMiddle20)), Time.deltaTime * 5f);
+                    meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(-1.21f - meterZOriginal[i])) * (1 - shieldHealthMiddle20)), Time.deltaTime * 5f);
+                }
+
+                outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
+                outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, meterZCurrent[i]);
+
+            }
+        } else
+        {
+            for (int i = 2; i < 4; i++)
+            {
+                outlines[i].SetActive(false);
+                shieldHealthMiddle20 = 0;
+
+            }
+        }
+
+        if (shieldHealthPercent > 0f)
+        {
+            for (int i = 4; i < 6; i++)
+            {
+
+                outlines[i].SetActive(true);
+                scaleXCurrent[i] = Mathf.Lerp(scaleXCurrent[i], scaleXOriginal[i] * shieldHealthBottom50, Time.deltaTime * 5f);
+
+                //meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
+                //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
+
+
+
+                if (i == 4)
+                {
+                    meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] + ((Mathf.Abs(0f - meterXOriginal[i])) * (1 - shieldHealthBottom50)), Time.deltaTime * 5f);
+                    meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(2.615f - meterZOriginal[i])) * (1 - shieldHealthBottom50)), Time.deltaTime * 5f);
+                }
+
+                if (i == 5)
+                {
+                    meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - ((Mathf.Abs(0f - meterXOriginal[i])) * (1 - shieldHealthBottom50)), Time.deltaTime * 5f);
+                    meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(2.615f - meterZOriginal[i])) * (1 - shieldHealthBottom50)), Time.deltaTime * 5f);
+                }
+
+                outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
+                outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, meterZCurrent[i]);
+
+            }
+        } else
+        {
+            for (int i = 4; i < 6; i++)
+            {
+                outlines[i].SetActive(false);
+                shieldHealthBottom50 = 0;
+            }
+        }
+
+        /*
+        for (int i = 2; i < 6; i++)
         {
             scaleXCurrent[i] = Mathf.Lerp(scaleXCurrent[i], scaleXOriginal[i] * shieldHealthPercent, Time.deltaTime * 3f);
 
             //meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
             //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
 
-            meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - (Mathf.Abs(meterXOriginal[i] - 2.2f)) * (1 - shieldHealthPercent), Time.deltaTime * 3f);
-            meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] - (Mathf.Abs(meterZOriginal[i] - 1.22f)) * (1 - shieldHealthPercent), Time.deltaTime * 3f);
+            if (i == 2)
+            {
+                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - ((Mathf.Abs(-2.2f - meterXOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+                meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(-1.21f - meterZOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+            }
+
+            if (i == 3)
+            {
+                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] + ((Mathf.Abs(2.2f - meterXOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+                meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(-1.21f - meterZOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+            }
+
+            if (i == 4)
+            {
+                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] + ((Mathf.Abs(0f - meterXOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+                meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(2.615f - meterZOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+            }
+
+            if (i == 5)
+            {
+                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - ((Mathf.Abs(0f - meterXOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+                meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + ((Mathf.Abs(2.615f - meterZOriginal[i])) * (1 - shieldHealthPercent)), Time.deltaTime * 3f);
+            }
+
+
+            //meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], -2.2f, (1 - shieldHealthPercent));
+            //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], -1.22f, (1 - shieldHealthPercent));
 
             outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
             outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, meterZCurrent[i]);
 
         }
+        */
+
 
         /*for (int i = 0; i < 3; i++)
         {
@@ -180,9 +341,10 @@ public class PlayerShield : MonoBehaviour {
             shieldHealth = shieldHealthMax * shieldHealthMaxMultiplier;
         }
         
-        if (shieldHealth <= 0)
+        if (shieldHealth <= 0 && shieldActive)
         {
-            shieldHealth = 0;
+
+            //shieldHealth = 0;
         }
 
 
