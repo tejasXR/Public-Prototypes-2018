@@ -37,6 +37,7 @@ public class PlayerShield : MonoBehaviour {
 
     public GameObject[] meshesToChange;
     public Color32 normalColor;
+    public Color32 inactiveColor;
     public Color32 flashColor;
 
     public float flickerSpeedMax;
@@ -71,6 +72,8 @@ public class PlayerShield : MonoBehaviour {
 
     public float[] meterZCurrent;
     public float[] meterZOriginal;
+
+    public Material[] shieldOutlineMats;
 
     //public GameObject[] 
 
@@ -167,7 +170,35 @@ public class PlayerShield : MonoBehaviour {
         }
 
 
+        if (shieldActive)
+        {
+            for(int i = 0; i < outlines.Length; i++)
+            {
+                outlines[i].GetComponent<Renderer>().material = shieldOutlineMats[0];
+            }
 
+            for (int i = 0; i < meshesToChange.Length; i++)
+            {
+                meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_Alpha", shieldHealthPercent);
+                meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", Color.Lerp(meshesToChange[i].GetComponent<Renderer>().material.GetColor("_MainColor"), normalColor, Time.deltaTime * 3f));
+                meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
+            }
+
+
+        } else
+        {
+            for (int i = 0; i < outlines.Length; i++)
+            {
+                outlines[i].GetComponent<Renderer>().material = shieldOutlineMats[1];
+            }
+
+            for (int i = 0; i < meshesToChange.Length; i++)
+            {
+               // meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_Alpha", shieldHealthPercent);
+                meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", Color.Lerp(meshesToChange[i].GetComponent<Renderer>().material.GetColor("_MainColor"), inactiveColor, Time.deltaTime * 3f));
+                //meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
+            }
+        }
 
 
         shieldHealthSmooth = Mathf.SmoothStep(shieldHealthSmooth, shieldHealth, Time.deltaTime * 10f);
@@ -338,13 +369,19 @@ public class PlayerShield : MonoBehaviour {
 
         if (shieldHealth >= shieldHealthMax * shieldHealthMaxMultiplier)
         {
+            if (shieldInactive)
+            {
+                shieldInactive = false;
+                shieldActive = true;
+            }
             shieldHealth = shieldHealthMax * shieldHealthMaxMultiplier;
         }
         
-        if (shieldHealth <= 0 && shieldActive)
+        if (shieldHealth <= 0 && !shieldInactive)
         {
-
-            //shieldHealth = 0;
+            shieldInactive = true;
+            shieldActive = false;
+            shieldHealth = 0;
         }
 
 
@@ -366,12 +403,7 @@ public class PlayerShield : MonoBehaviour {
         //healthText.material.SetColor("_GlowColor", Color.Lerp(healthText.material.GetColor("_GlowColor"), normalColor, Time.deltaTime * 3f));
 
 
-        for(int i = 0; i < meshesToChange.Length; i++)
-        {
-            meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_Alpha", shieldHealthPercent);
-            meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", Color.Lerp(meshesToChange[i].GetComponent<Renderer>().material.GetColor("_MainColor"), normalColor, Time.deltaTime * 3f));
-            meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
-        }
+        
 
     }
 
@@ -384,7 +416,7 @@ public class PlayerShield : MonoBehaviour {
     {
         //print("Shield collision with something");
 
-        if (other.gameObject.tag == "EnemyBullet" && !hit)
+        if (other.gameObject.tag == "EnemyBullet" && !hit && shieldActive)
         {
             hit = true;
 
