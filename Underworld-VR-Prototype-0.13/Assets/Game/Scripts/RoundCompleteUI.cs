@@ -440,7 +440,7 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         roundCompleteFadeIn = false;
         roundCompleteFadeOut = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         roundCountFadeIn = true;
         enemyEffectsFadeIn = true;
