@@ -1624,7 +1624,7 @@ Transform:
   m_GameObject: {fileID: 1845031330482624}
   m_LocalRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999994}
   m_LocalPosition: {x: 1.9190001, y: 0, z: -1.6670002}
-  m_LocalScale: {x: 1.1066101, y: 0.15135005, z: 0.07001011}
+  m_LocalScale: {x: 1.1, y: 0.15, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4014193568039056}
   m_RootOrder: 1
@@ -1704,8 +1704,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1687484603913584}
   m_LocalRotation: {x: -0, y: 0.49999982, z: 0.000000029802319, w: 0.86602557}
-  m_LocalPosition: {x: -1.919, y: -0, z: -1.671}
-  m_LocalScale: {x: 1.10661, y: 0.15139613, z: 0.07000006}
+  m_LocalPosition: {x: -1.934, y: 0, z: -1.66}
+  m_LocalScale: {x: 1.1, y: 0.15, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4014193568039056}
   m_RootOrder: 0
@@ -1816,8 +1816,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4921445284748192}
   - {fileID: 4856850239064534}
+  - {fileID: 4921445284748192}
   m_Father: {fileID: 4282983182792452}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1981,11 +1981,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1809879394345172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.83822125, y: 0, z: -2.124}
-  m_LocalScale: {x: 1.6764416, y: 0.15135011, z: 0.07001012}
+  m_LocalPosition: {x: 0.838, y: 0, z: -2.124}
+  m_LocalScale: {x: 1.67, y: 0.15, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4414170183457694}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4241403706103762
 Transform:
@@ -2259,8 +2259,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4234559030977610}
   - {fileID: 4761279514846582}
+  - {fileID: 4234559030977610}
   m_Father: {fileID: 4282983182792452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2643,11 +2643,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183175047289370}
   m_LocalRotation: {x: 0.000000059604645, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.83822125, y: 0, z: -2.124}
-  m_LocalScale: {x: 1.6764423, y: 0.15138358, z: 0.06995671}
+  m_LocalPosition: {x: -0.838, y: 0, z: -2.124}
+  m_LocalScale: {x: 1.67, y: 0.15, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4414170183457694}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4782512068806814
 Transform:
@@ -2737,11 +2737,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1350725322831684}
   m_LocalRotation: {x: -0, y: 0.8660255, z: -0, w: 0.49999988}
-  m_LocalPosition: {x: -1.0910002, y: -0, z: 0.72000045}
-  m_LocalScale: {x: 4.4424477, y: 0.1513963, z: 0.07000008}
+  m_LocalPosition: {x: -1.1, y: 0, z: 0.7}
+  m_LocalScale: {x: 4.4424477, y: 0.1513963, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4127617041085538}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
 --- !u!4 &4880517274949586
 Transform:
@@ -2842,11 +2842,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028439172775628}
   m_LocalRotation: {x: -0, y: 0.49999997, z: 0.00000002980232, w: 0.86602545}
-  m_LocalPosition: {x: 1.0910002, y: -0, z: 0.72000045}
-  m_LocalScale: {x: 4.442443, y: 0.15139619, z: 0.07000006}
+  m_LocalPosition: {x: 1.1, y: -0, z: 0.7}
+  m_LocalScale: {x: 4.442443, y: 0.15139619, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4127617041085538}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
 --- !u!4 &4923258731244838
 Transform:
@@ -5964,12 +5964,12 @@ MonoBehaviour:
   shieldHitEffect: {fileID: 1971520402319446, guid: 5a86f88a2ebe79542aabdbd5b097d1dd,
     type: 2}
   outlines:
-  - {fileID: 1809879394345172}
   - {fileID: 1183175047289370}
+  - {fileID: 1809879394345172}
   - {fileID: 1687484603913584}
   - {fileID: 1845031330482624}
-  - {fileID: 1028439172775628}
   - {fileID: 1350725322831684}
+  - {fileID: 1028439172775628}
   scaleXOriginal: []
   scaleXCurrent: []
   meterXCurrent: []

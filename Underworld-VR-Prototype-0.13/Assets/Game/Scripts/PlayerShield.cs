@@ -109,11 +109,11 @@ public class PlayerShield : MonoBehaviour {
     {
         for (int i = 0; i < outlines.Length; i++)
         {
-            scaleXCurrent[i] = 0;
-            scaleZOriginal[i] = 0;
+            //scaleXCurrent[i] = 0;
+            //scaleZOriginal[i] = 0;
 
-            meterXCurrent[i] = meterXOriginal[i] - scaleXOriginal[i] / 2;
-            meterZCurrent[i] = meterZOriginal[i] - scaleZOriginal[i] / 2;
+            //meterXCurrent[i] = meterXOriginal[i] - scaleXOriginal[i] / 2;
+            //meterZCurrent[i] = meterZOriginal[i] - scaleZOriginal[i] / 2;
 
         }
     }
@@ -127,19 +127,51 @@ public class PlayerShield : MonoBehaviour {
 
         shieldHealthSmooth = Mathf.SmoothStep(shieldHealthSmooth, shieldHealth, Time.deltaTime * 10f);
 
-        for (int i = 0; i < outlines.Length; i++)
+        // Animate Top Row
+
+        for (int i = 0; i < 2; i++)
         {
             scaleXCurrent[i] = Mathf.Lerp(scaleXCurrent[i], scaleXOriginal[i] * shieldHealthPercent, Time.deltaTime * 3f);
             //scaleZCurrent[i] = Mathf.Lerp(scaleZCurrent[i], scaleZOriginal[i] * shieldHealthPercent, Time.deltaTime * 3f);
 
-            meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], (meterXOriginal[i] - scaleXOriginal[i] / 2) + ((scaleXOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
-            meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], (meterZOriginal[i] - scaleZOriginal[i] / 2) + ((scaleZOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
+            if (i == 0)
+            {
+                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], (meterXOriginal[i] - scaleXOriginal[i] / 2) + ((scaleXOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
+            }
+            if (i == 1)
+            {
+                meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], (meterXOriginal[i] + scaleXOriginal[i] / 2) - ((scaleXOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
+            }
+            //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], (meterZOriginal[i] - scaleZOriginal[i] / 2) + ((scaleZOriginal[i] / 2) * shieldHealthPercent), Time.deltaTime * 3f);
 
             outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
-            outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, meterZCurrent[i]);
+            outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, outlines[i].transform.localPosition.z);
             //outlines[i].transform.localPosition = new
             //outlines[i].transform.Translate(meterXCurrent[i], 0, 0);
         }
+
+        for (int i = 2; i < 3; i++)
+        {
+            scaleXCurrent[i] = Mathf.Lerp(scaleXCurrent[i], scaleXOriginal[i] * shieldHealthPercent, Time.deltaTime * 3f);
+
+            //meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
+            //meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] + (Mathf.Sin((45 * Mathf.PI)/100) * ((scaleXOriginal[i] / 2) * (1 - shieldHealthPercent))), Time.deltaTime * 3f);
+
+            meterXCurrent[i] = Mathf.Lerp(meterXCurrent[i], meterXOriginal[i] - (Mathf.Abs(meterXOriginal[i] - 2.2f)) * (1 - shieldHealthPercent), Time.deltaTime * 3f);
+            meterZCurrent[i] = Mathf.Lerp(meterZCurrent[i], meterZOriginal[i] - (Mathf.Abs(meterZOriginal[i] - 1.22f)) * (1 - shieldHealthPercent), Time.deltaTime * 3f);
+
+            outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
+            outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, meterZCurrent[i]);
+
+        }
+
+        /*for (int i = 0; i < 3; i++)
+        {
+            outlines[i].transform.localScale = new Vector3(scaleXCurrent[i], outlines[i].transform.localScale.y, outlines[i].transform.localScale.z);
+            outlines[i].transform.localPosition = new Vector3(meterXCurrent[i], outlines[i].transform.localPosition.y, outlines[i].transform.localPosition.z);
+        }*/
+
+       
 
         shieldHealth += Time.deltaTime * shieldRechargeSpeed * shieldRegenMultiplier;
 
