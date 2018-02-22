@@ -38,6 +38,8 @@ public class RoundCompleteUI : MonoBehaviour {
 
     public GameObject[] triangleOutline;
 
+    public bool[] triangleScale;
+
     //public GameObject highlightCube;
 
 
@@ -45,7 +47,7 @@ public class RoundCompleteUI : MonoBehaviour {
 	void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyEffectsManager = GameObject.Find("EnemyEffectsManager").GetComponent<EnemyEffectsManager>();
-
+        triangleScale = new bool[triangleOutline.Length];
     }
 
     private void OnEnable()
@@ -60,6 +62,12 @@ public class RoundCompleteUI : MonoBehaviour {
         foreach(GameObject triangle in triangleOutline)
         {
             triangle.transform.localScale = Vector3.zero;
+
+        }
+
+        foreach (GameObject triangle in triangleOutline)
+        {
+            triangle.SetActive(false);
 
         }
         /*triangleCurrent = gameManager.roundCurrent - 1;
@@ -86,6 +94,8 @@ public class RoundCompleteUI : MonoBehaviour {
 
 
         StartCoroutine(NomralFlash());
+        StartCoroutine(TriangleOutlineScale());
+
         //StartCoroutine(RoundCurrentTriangleFlash());
 
         //randomTextNum = Random.Range(1, 20);
@@ -141,11 +151,17 @@ public class RoundCompleteUI : MonoBehaviour {
             }
         }
 
-        foreach (GameObject triangle in triangleOutline)
-        {
-            triangle.transform.localScale = Vector3.Lerp(triangle.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 2f);
 
+        for (int i = 0; i < triangleScale.Length; i++)
+        {
+            if (triangleScale[i])
+            {
+                print("for loop called");
+                triangleOutline[i].transform.localScale = Vector3.Lerp(triangleOutline[i].transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 3f);
+            }
         }
+
+        
 
 
         if (moveBack)
@@ -197,7 +213,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
         if (gameManager.roundCurrent <= 1)
         {
-            roundCompleteText.text = "The Fight Begins";
+            roundCompleteText.text = "Your Fight \n Begins";
         } else
         {
             roundCompleteText.text = "Round Complete";
@@ -326,7 +342,7 @@ public class RoundCompleteUI : MonoBehaviour {
                 enemyEffectsText.text = "ENEMY FIRE RATE INCREASED";
                 break;
             case 4:
-                enemyEffectsText.text = "NEW ENEMY HAS ARRIVED";
+                enemyEffectsText.text = "NEW ENEMY INCOMING";
                 break;
         }
     }
@@ -454,7 +470,7 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         roundCompleteFadeIn = false;
         roundCompleteFadeOut = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         roundCountFadeIn = true;
         enemyEffectsFadeIn = true;
@@ -481,5 +497,24 @@ public class RoundCompleteUI : MonoBehaviour {
         yield return new WaitForSeconds(.05f);
 
         done = true;
+    }
+
+    IEnumerator TriangleOutlineScale()
+    {
+        for (int i = 0; i < triangleScale.Length; i++)
+        {
+            triangleOutline[i].SetActive(true);
+            triangleScale[i] = true;
+            yield return new WaitForSeconds(.5f);
+            print("for loop called");
+
+        }
+
+        /*foreach (GameObject triangle in triangleOutline)
+        {
+            triangle.SetActive(true);
+            triangle.transform.localScale = Vector3.Lerp(triangle.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 10f);
+            yield return new WaitForSeconds(.5f);
+        }*/
     }
 }

@@ -217,7 +217,7 @@ public class EnemyParent : MonoBehaviour {
         //rb.useGravity = true;
         //rb.angularVelocity = new Vector3(Random.Range(-100f, 100), Random.Range(-100f, 100f), Random.Range(-100f, 100f));
         StartCoroutine(EnemyHitFlash(enemyFlashHitDuration));
-        yield return new WaitForSeconds(.01f);
+        yield return new WaitForSeconds(.05f);
 
         /*StartCoroutine(EnemyHitFlash(.05f));
         yield return new WaitForSeconds(.1f);
@@ -232,7 +232,7 @@ public class EnemyParent : MonoBehaviour {
         if (enemyGiveBullets > 0)
         {
             playerController.playerBullets += enemyGiveBullets + playerController.enemyGiveAdditionalBullets;
-            Instantiate(explosionTextObj, transform.position, transform.rotation);
+            Instantiate(explosionTextObj, transform.position, Quaternion.identity);
         }
 
         if (gameManager.redemptionActive)
