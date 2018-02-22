@@ -149,7 +149,7 @@ public class RoundCompleteUI : MonoBehaviour {
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, playerEye.transform.position + playerEye.transform.forward * 3f, Time.deltaTime * 2.5f);
+            transform.position = Vector3.Lerp(transform.position, playerEye.transform.position + playerEye.transform.forward * 4f, Time.deltaTime * 2.5f);
         }
 
         if (turn)
@@ -188,6 +188,14 @@ public class RoundCompleteUI : MonoBehaviour {
     void CheckRound()
     {
         roundCountText.text = "Round " + gameManager.roundCurrent + " / 10";
+
+        if (gameManager.roundCurrent <= 1)
+        {
+            roundCompleteText.text = "The Fight Begins";
+        } else
+        {
+            roundCompleteText.text = "Round Complete";
+        }
 
         /*
         switch (gameManager.roundCurrent)

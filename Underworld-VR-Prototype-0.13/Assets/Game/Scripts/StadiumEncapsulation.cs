@@ -18,7 +18,7 @@ public class StadiumEncapsulation : MonoBehaviour {
 
     private void OnEnable()
     {
-        colorCurrent = Color.black;
+        //colorCurrent = Color.black;
     }
 
     // Update is called once per frame
@@ -29,10 +29,10 @@ public class StadiumEncapsulation : MonoBehaviour {
             colorCurrent = Color.Lerp(colorCurrent, colors[0], Time.deltaTime);
         }
 
-        if (gameManager.inRedemption)
+        /*if (gameManager.inRedemption)
         {
             colorCurrent = Color.Lerp(colorCurrent, colors[1], Time.deltaTime);
-        }
+        }*/
 
         rend.material.SetColor("_MKGlowTexColor", colorCurrent);
     }
