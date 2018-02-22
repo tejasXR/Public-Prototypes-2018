@@ -14,9 +14,19 @@ public class RoundCompleteUI : MonoBehaviour {
     public bool done;
     public bool turn;
 
-    public TextMeshPro roundText;
+    public TextMeshPro roundCountText;
+    public TextMeshPro roundCompleteText;
     public TextMeshPro enemyEffectsText;
     public int randomTextNum;
+
+    public bool roundCompleteFadeIn;
+    public bool roundCompleteFadeOut;
+
+    public bool roundCountFadeIn;
+    public bool roundCountFadeOut;
+
+    public bool enemyEffectsFadeIn;
+    public bool enemyEffectsFadeOut;
 
     public GameObject UIWhole;
 
@@ -25,6 +35,8 @@ public class RoundCompleteUI : MonoBehaviour {
     public float endDelay;
 
     public EnemyEffectsManager enemyEffectsManager;
+
+    public GameObject triangleOutline;
 
     //public GameObject highlightCube;
 
@@ -38,6 +50,15 @@ public class RoundCompleteUI : MonoBehaviour {
 
     private void OnEnable()
     {
+
+        roundCompleteFadeIn = false;
+        roundCompleteFadeOut = false;
+        roundCountFadeIn = false;
+        enemyEffectsFadeIn = false;
+        enemyEffectsFadeOut = false;
+
+
+        triangleOutline.transform.localScale = Vector3.zero;
         /*triangleCurrent = gameManager.roundCurrent - 1;
 
         foreach (GameObject mesh in triangleMeshes)
@@ -52,7 +73,11 @@ public class RoundCompleteUI : MonoBehaviour {
             rend.material = mats[1]; //sets all triangles to complete round UI material
         }*/
 
-        
+
+        roundCompleteText.alpha = 0;
+        roundCountText.alpha = 0;
+        enemyEffectsText.alpha = 0;
+
 
         transform.position = new Vector3(playerEye.transform.position.x, playerEye.transform.position.y + 1, playerEye.transform.position.z);
 
@@ -72,6 +97,50 @@ public class RoundCompleteUI : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (roundCompleteFadeOut)
+        {
+            roundCompleteText.alpha -= Time.deltaTime;
+        }
+
+        if (roundCompleteFadeIn)
+        {
+            roundCompleteText.alpha += Time.deltaTime;
+            //print("round complete fade in");
+        }
+
+        
+        if (roundCountFadeIn)
+        {
+            roundCountText.alpha += Time.deltaTime;
+        }
+        /*if (roundCountFadeOut)
+        {
+            roundCountText.alpha -= Time.deltaTime;
+        }*/
+
+        if (enemyEffectsFadeIn)
+        {
+            enemyEffectsText.alpha += Time.deltaTime;
+            if (enemyEffectsText.alpha >= 1)
+            {
+                enemyEffectsFadeIn = false;
+                enemyEffectsFadeOut = true;                
+            }
+        }
+
+        if (enemyEffectsFadeOut)
+        {
+            enemyEffectsText.alpha -= Time.deltaTime;
+            if (enemyEffectsText.alpha <= 0)
+            {
+                enemyEffectsFadeOut = false;
+                enemyEffectsFadeIn = true;
+            }
+        }
+        
+
+
+        triangleOutline.transform.localScale = Vector3.Lerp(triangleOutline.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 2f);
 
         if (moveBack)
         {
@@ -101,9 +170,24 @@ public class RoundCompleteUI : MonoBehaviour {
 
     }
 
+    /*void RoundCompleteUIFade()
+    {
+        roundCompleteText.alpha += Time.deltaTime;
+        if (roundCompleteText.alpha >= 1)
+        {
+            yield return new WaitForSeconds(2f);
+            roundCompleteText.alpha -= Time.deltaTime * 2f;
+            if (roundCompleteText.alpha <= .5f)
+            {
+                roundText.alpha += Time.deltaTime;
+            }
+
+        }
+    }*/
+
     void CheckRound()
     {
-        roundText.text = "Round " + gameManager.roundCurrent + " / 10";
+        roundCountText.text = "Round " + gameManager.roundCurrent + " / 10";
 
         /*
         switch (gameManager.roundCurrent)
@@ -352,7 +436,20 @@ public class RoundCompleteUI : MonoBehaviour {
     {
         UIWhole.SetActive(true);
 
+        roundCompleteFadeIn = true;
+        yield return new WaitForSeconds(1.5f);
+        roundCompleteFadeIn = false;
+        roundCompleteFadeOut = true;
+        yield return new WaitForSeconds(1f);
+
+        roundCountFadeIn = true;
+        enemyEffectsFadeIn = true;
+        //yield return new WaitForSeconds(2f);
+        
+
         yield return new WaitForSeconds(endDelay);
+
+
 
         UIWhole.gameObject.SetActive(false);
         yield return new WaitForSeconds(.05f);
