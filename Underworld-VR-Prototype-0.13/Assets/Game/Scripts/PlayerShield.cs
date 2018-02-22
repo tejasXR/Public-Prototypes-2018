@@ -7,6 +7,8 @@ public class PlayerShield : MonoBehaviour {
 
     public Player playerController;
 
+    private List<EnemyBullet> alreadyHitBy = new List<EnemyBullet>();
+
     public SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device device;
 
@@ -419,45 +421,58 @@ public class PlayerShield : MonoBehaviour {
 
         if (other.gameObject.tag == "EnemyBullet" && !hit && shieldActive)
         {
-            if (hit) return;
-            hit = true;
-
-            Instantiate(shieldHitEffect, other.transform.position, transform.localRotation);
-            Destroy(other.gameObject);
+            //print("Bullet hit shiled");
 
 
-            //print("Shield found bullet");
-            float otherDamage = other.gameObject.GetComponent<EnemyBullet>().damage;
 
-            for (int i = 0; i < meshesToChange.Length; i++)
+            if (other.GetComponent<EnemyBullet>() != null && alreadyHitBy.Contains(other.GetComponent<EnemyBullet>()))
             {
-                meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", flashColor);
+                alreadyHitBy.Add(other.GetComponent<EnemyBullet>());
+
+                if (hit) return;
+                hit = true;
+
+                Instantiate(shieldHitEffect, other.transform.position, transform.localRotation);
+                Destroy(other.gameObject);
+
+
+                //print("Shield found bullet");
+                float otherDamage = other.gameObject.GetComponent<EnemyBullet>().damage;
+
+                for (int i = 0; i < meshesToChange.Length; i++)
+                {
+                    meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", flashColor);
+                }
+
+                healthText.material.SetColor("_GlowColor", flashColor);
+
+                shieldHealth -= otherDamage;
+
+                //scanTileCurrent = 0;
+                //flickerSpeedCurrent = flickerSpeedMax;
+
+                StartCoroutine(ShieldVibration(1, 3000));
+
+                // A chance to absorb an incoming bullet
+                //float shieldAbsorption = Random.Range(0f, 1f);
+                //if (shieldAbsorption > shieldBulletAbsorbtionAmount)
+                {
+                    bulletGainedText.text = "" + shieldBulletAbsorbtionAmount;
+                    Instantiate(bulletGainedObj, other.gameObject.transform.position, other.gameObject.transform.rotation);
+                    playerController.playerBullets += shieldBulletAbsorbtionAmount;
+                }
+                //print("Hit");
+                hit = false;
             }
-
-            healthText.material.SetColor("_GlowColor", flashColor);
-
-            shieldHealth -= otherDamage;
-
-            //scanTileCurrent = 0;
-            flickerSpeedCurrent = flickerSpeedMax;
-
-            StartCoroutine(ShieldVibration(1, 3000));
-
-            // A chance to absorb an incoming bullet
-            //float shieldAbsorption = Random.Range(0f, 1f);
-            //if (shieldAbsorption > shieldBulletAbsorbtionAmount)
-            {
-                bulletGainedText.text = "" + shieldBulletAbsorbtionAmount;
-                Instantiate(bulletGainedObj, other.gameObject.transform.position, other.gameObject.transform.rotation);
-                playerController.playerBullets += shieldBulletAbsorbtionAmount;
-            }
-
-            //print("Hit");
-
-            hit = false;
-
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        alreadyHitBy.Clear();
+    }
+
+
 
     /*
 
