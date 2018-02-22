@@ -59,6 +59,11 @@ public class RoundCompleteUI : MonoBehaviour {
         enemyEffectsFadeIn = false;
         enemyEffectsFadeOut = false;
 
+        for (int i = 0; i < triangleScale.Length; i++)
+        {
+            triangleScale[i] = false;
+        }
+
         foreach(GameObject triangle in triangleOutline)
         {
             triangle.transform.localScale = Vector3.zero;
@@ -156,7 +161,7 @@ public class RoundCompleteUI : MonoBehaviour {
         {
             if (triangleScale[i])
             {
-                print("for loop called");
+                //print("for loop called");
                 triangleOutline[i].transform.localScale = Vector3.Lerp(triangleOutline[i].transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 3f);
             }
         }
@@ -501,12 +506,17 @@ public class RoundCompleteUI : MonoBehaviour {
 
     IEnumerator TriangleOutlineScale()
     {
+        yield return new WaitForSeconds(.75f);
+
+        triangleScale[0] = true;
+        yield return new WaitForSeconds(.5f);
+
         for (int i = 0; i < triangleScale.Length; i++)
         {
             triangleOutline[i].SetActive(true);
             triangleScale[i] = true;
             yield return new WaitForSeconds(.5f);
-            print("for loop called");
+            //print("for loop called");
 
         }
 
