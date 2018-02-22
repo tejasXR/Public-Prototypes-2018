@@ -31,7 +31,8 @@ public class EarnedBulletText : MonoBehaviour {
     void Start () {
         //textOutline1.SetActive(false);
         textSolid.SetActive(false);
-        StartCoroutine(EarnedBulletSpawn());
+        //StartCoroutine(EarnedBulletSpawn());
+        EarnedBulletSpawn();
 	}
 	
 	// Update is called once per frame
@@ -74,6 +75,12 @@ public class EarnedBulletText : MonoBehaviour {
 
 
         text.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
+        text.alpha -= Time.deltaTime;
+        if (text.alpha <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
 
         /*foreach (TextMeshPro text in texts)
         {
@@ -82,7 +89,7 @@ public class EarnedBulletText : MonoBehaviour {
 
     }
 
-    IEnumerator EarnedBulletSpawn()
+    /*IEnumerator EarnedBulletSpawn()
     {
         moveDirection = playerEye.transform.position - transform.position;
 
@@ -131,5 +138,16 @@ public class EarnedBulletText : MonoBehaviour {
 
 
 
+    }*/
+
+    void EarnedBulletSpawn()
+    {
+        moveDirection = playerEye.transform.position - transform.position;
+
+        //moveDirection += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(0f, 1f));
+
+        Ray ray = new Ray(transform.position, moveDirection);
+
+        targetPos = ray.GetPoint(1f);
     }
 }

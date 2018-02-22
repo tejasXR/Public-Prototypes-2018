@@ -48,6 +48,7 @@ public class PlayerShield : MonoBehaviour {
 
     public TextMeshPro healthText;
     public GameObject bulletGainedObj;
+    public TextMeshPro bulletGainedText;
 
     //public AudioSource shieldHitSound;
 
@@ -418,6 +419,7 @@ public class PlayerShield : MonoBehaviour {
 
         if (other.gameObject.tag == "EnemyBullet" && !hit && shieldActive)
         {
+            if (hit) return;
             hit = true;
 
             Instantiate(shieldHitEffect, other.transform.position, transform.localRotation);
@@ -445,8 +447,9 @@ public class PlayerShield : MonoBehaviour {
             //float shieldAbsorption = Random.Range(0f, 1f);
             //if (shieldAbsorption > shieldBulletAbsorbtionAmount)
             {
+                bulletGainedText.text = "" + shieldBulletAbsorbtionAmount;
+                Instantiate(bulletGainedObj, other.gameObject.transform.position, other.gameObject.transform.rotation);
                 playerController.playerBullets += shieldBulletAbsorbtionAmount;
-                //Instantiate(bulletGainedObj, other.gameObject.transform.position, other.gameObject.transform.rotation);
             }
 
             //print("Hit");

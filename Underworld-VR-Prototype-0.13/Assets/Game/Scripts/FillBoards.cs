@@ -56,7 +56,7 @@ public class FillBoards : MonoBehaviour {
         if (gameManager.roundActive)
         {
             //print(gameManager.enemiesDestroyed / gameManager.enemiesToSpawn);
-            //enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3.5f);
+            enemiesDestroyedPercent = Mathf.Lerp(enemiesDestroyedPercent, (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn), Time.deltaTime * 3.5f);
 
             //scaleCurrent = Vector3.Lerp(scaleCurrent, scaleOriginal * enemiesDestroyedPercent, Time.deltaTime * 3.5f);
 
@@ -67,13 +67,13 @@ public class FillBoards : MonoBehaviour {
             if (enemiesDestroyedCounter < gameManager.enemiesDestroyed)
             {
                 colorCurrent = Color.white;
-                //outlineFlicker.shouldFlicker = true;
+                outlineFlicker.shouldFlicker = true;
                 enemiesDestroyedCounter = gameManager.enemiesDestroyed;
             }
 
             if (Mathf.Abs(enemiesDestroyedPercent - (gameManager.enemiesDestroyed / gameManager.enemiesToSpawn)) < .01f)
             {
-                //outlineFlicker.shouldFlicker = false;
+                outlineFlicker.shouldFlicker = false;
             } else
             {
                 outlineFlicker.shouldFlicker = true;
@@ -83,7 +83,8 @@ public class FillBoards : MonoBehaviour {
 
         }
 
-        rend.material.SetColor("_Color", colorCurrent);
+        rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), colorCurrent, Time.deltaTime));
+        //print(rend.material.GetColor("_Color"));
 
         
 

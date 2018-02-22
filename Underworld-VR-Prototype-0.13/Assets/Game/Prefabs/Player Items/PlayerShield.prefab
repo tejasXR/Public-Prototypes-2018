@@ -1199,7 +1199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1674029941860962
 GameObject:
   m_ObjectHideFlags: 1
@@ -6730,6 +6730,8 @@ MonoBehaviour:
   flickerSpeedMax: 100
   healthText: {fileID: 114997723362589436}
   bulletGainedObj: {fileID: 1141972136093172, guid: d8a3a844c1ef9d249b1fd8ef155c2df5,
+    type: 2}
+  bulletGainedText: {fileID: 114915393238567886, guid: d8a3a844c1ef9d249b1fd8ef155c2df5,
     type: 2}
   shieldHitEffect: {fileID: 1971520402319446, guid: 5a86f88a2ebe79542aabdbd5b097d1dd,
     type: 2}

@@ -1476,6 +1476,9 @@ MonoBehaviour:
   adjust: 0
   hasHealthIcon: 1
   hasHealthIconOutline: 0
+  healthLowFlash: 0
+  healthFlashDuration: 1
+  healthFlashDurationTimer: 0
   healthColorOriginal:
     serializedVersion: 2
     rgba: 82
@@ -1517,7 +1520,7 @@ MonoBehaviour:
     rgba: 4278190335
   bulletIconOriginal:
     serializedVersion: 2
-    rgba: 1428366116
+    rgba: 1427773978
   bulletIconOutlineOriginal:
     serializedVersion: 2
     rgba: 301927424
