@@ -36,7 +36,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
     public EnemyEffectsManager enemyEffectsManager;
 
-    public GameObject triangleOutline;
+    public GameObject[] triangleOutline;
 
     //public GameObject highlightCube;
 
@@ -57,8 +57,11 @@ public class RoundCompleteUI : MonoBehaviour {
         enemyEffectsFadeIn = false;
         enemyEffectsFadeOut = false;
 
+        foreach(GameObject triangle in triangleOutline)
+        {
+            triangle.transform.localScale = Vector3.zero;
 
-        triangleOutline.transform.localScale = Vector3.zero;
+        }
         /*triangleCurrent = gameManager.roundCurrent - 1;
 
         foreach (GameObject mesh in triangleMeshes)
@@ -137,10 +140,13 @@ public class RoundCompleteUI : MonoBehaviour {
                 enemyEffectsFadeIn = true;
             }
         }
-        
 
+        foreach (GameObject triangle in triangleOutline)
+        {
+            triangle.transform.localScale = Vector3.Lerp(triangle.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 2f);
 
-        triangleOutline.transform.localScale = Vector3.Lerp(triangleOutline.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 2f);
+        }
+
 
         if (moveBack)
         {
@@ -445,7 +451,7 @@ public class RoundCompleteUI : MonoBehaviour {
         UIWhole.SetActive(true);
 
         roundCompleteFadeIn = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         roundCompleteFadeIn = false;
         roundCompleteFadeOut = true;
         yield return new WaitForSeconds(1.5f);

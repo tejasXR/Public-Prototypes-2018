@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1702868166872686
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1012663643989456}
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: -0.0971, y: 0.0625, z: 0.0312}
+  m_LocalPosition: {x: -0.1, y: 0.062, z: 0.0342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224687727408432180}
@@ -901,7 +901,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 410fc326a7772b345a87b98b087788c3, type: 2}
+  - {fileID: 2100000, guid: 33c6b957b1324d24a9739505ef6ac936, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1266,8 +1266,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4292873220
-  m_fontColor: {r: 0.015686275, g: 0.04705883, b: 0.87843144, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
-  m_overrideHtmlColors: 0
+  m_overrideHtmlColors: 1
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   hasHealthIconOutline: 0
   healthColorOriginal:
     serializedVersion: 2
-    rgba: 4279894271
+    rgba: 82
   gainHealthColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   changeTextColor: 1
   textColorOriginal:
     serializedVersion: 2
-    rgba: 181998091
+    rgba: 167772160
   textColorGainBullet:
     serializedVersion: 2
     rgba: 4294967295
@@ -1517,7 +1517,7 @@ MonoBehaviour:
     rgba: 4278190335
   bulletIconOriginal:
     serializedVersion: 2
-    rgba: 33554431
+    rgba: 1428366116
   bulletIconOutlineOriginal:
     serializedVersion: 2
     rgba: 301927424
@@ -1813,7 +1813,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0499, y: -0.0033000018}
+  m_AnchoredPosition: {x: -0.052, y: -0.0033000018}
   m_SizeDelta: {x: 0.1, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224359248687639826

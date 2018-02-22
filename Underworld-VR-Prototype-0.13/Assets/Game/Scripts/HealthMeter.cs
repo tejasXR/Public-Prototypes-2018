@@ -100,37 +100,44 @@ public class HealthMeter : MonoBehaviour {
             {
                 //healthSmoothPercent += Time.unscaledDeltaTime * 3f;
 
-                rend.material.SetFloat("_Alpha", 1);
-                rend.material.SetColor("_MainColor", gainHealthColor);
+                //rend.material.SetFloat("_Alpha", 1);
 
-                if (hasHealthIcon)
+                if (healthSmoothPercent <= (playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier)))
                 {
-                    healthIcon.material.SetColor("_Color", gainHealthColor);
+                    rend.material.SetColor("_Color", gainHealthColor);
+
+                    if (hasHealthIcon)
+                    {
+                        healthIcon.material.SetColor("_Color", gainHealthColor);
+                    }
+                } else
+                {
+                    rend.material.SetColor("_Color", loseHealthColor);
+
+                    if (hasHealthIcon)
+                    {
+                        healthIcon.material.SetColor("_Color", loseHealthColor);
+                    }
                 }
             }
 
 
 
-        } /*else
+        }/* else
         {
             //healthSmoothPercent -= Time.unscaledDeltaTime * 3f;
 
 
-            //if (healthSmoothPercent < (playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier)))
+            if (healthSmoothPercent > (playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier)))
             {
-                rend.material.SetFloat("_Alpha", 1);
-                rend.material.SetColor("_MainColor", loseHealthColor);
-
-                if (hasHealthIcon)
-                {
-                    healthIcon.material.SetColor("_Color", loseHealthColor);
-                }
+                //rend.material.SetFloat("_Alpha", 1);
+                
             }
         }*/
 
 
-        rend.material.SetFloat("_Alpha", Mathf.Lerp(rend.material.GetFloat("_Alpha"), 1.1f - healthSmoothPercent, Time.deltaTime));
-        rend.material.SetColor("_MainColor", Color.Lerp(rend.material.GetColor("_MainColor"), healthColorOriginal, Time.deltaTime));
+        //rend.material.SetFloat("_Alpha", Mathf.Lerp(rend.material.GetFloat("_Alpha"), 1.1f - healthSmoothPercent, Time.deltaTime));
+        rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), healthColorOriginal, Time.deltaTime));
         healthIcon.material.SetColor("_Color", Color.Lerp(healthIcon.material.GetColor("_Color"), healthIconColorOriginal, Time.deltaTime));
 
         //transform.localScale = new Vector3(scaleCurrent, transform.localScale.y, transform.localScale.z);
