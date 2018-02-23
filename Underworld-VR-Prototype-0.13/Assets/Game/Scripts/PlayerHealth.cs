@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour {
     private GameManager gameManager;
 
     private Renderer rendHitbody;
-    private Renderer rendPlatform;
+    //private Renderer rendPlatform;
 
     public float alphaHealth = 0; //current alpha representing health
     public float alphaHealthMax; //the maximum alpha value representing a full loss of health
@@ -18,11 +18,11 @@ public class PlayerHealth : MonoBehaviour {
 
     public GameObject hitbodyProjection; //How the hologram will show
 
-    public GameObject platformTriangle; // The platform triangle the player is on
-    public GameObject[] belowTriangle1; // The first triangle under player
-    public GameObject[] belowTriangle2;
-    public GameObject[] belowTriangle3;
-    public GameObject[] belowTriangle4;
+    //public GameObject[] platformTriangles; // The platform triangle the player is on
+    //public GameObject[] belowTriangle1; // The first triangle under player
+    //public GameObject[] belowTriangle2;
+    //public GameObject[] belowTriangle3;
+    //public GameObject[] belowTriangle4;
 
     public Color[] triangleBlueColors;
     public Color[] triangleRedColors;
@@ -31,7 +31,9 @@ public class PlayerHealth : MonoBehaviour {
 
     public Light platformLight;
 
-    public Material[] belowPlatformNeon;
+    public Material[] belowPlatformNeonMaterial;
+    public Material platformTriangleMaterial;
+
 
     public AudioSource playerHitSound;
     public AudioSource healthLowSound;
@@ -42,7 +44,7 @@ public class PlayerHealth : MonoBehaviour {
     void Start () {
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
         rendHitbody = hitbodyProjection.GetComponent<Renderer>();
-        rendPlatform = platformTriangle.GetComponent<Renderer>();
+        //rendPlatform = platformTriangle.GetComponent<Renderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 	
@@ -79,16 +81,26 @@ public class PlayerHealth : MonoBehaviour {
             //triangleCurrentColors[i] = Color.Lerp(triangleBlueColors[i], triangleRedColors[i], healthPercent);
         }
 
-        rendPlatform.material.SetColor("_MKGlowColor", triangleCurrentColors[4]);
+        /*for (int i = 0; i < platformTriangl.Length; i++)
+        {
+            platformTriangles[i].GetComponent<Renderer>().material
+        }*/
+
+        //rendPlatform.material.SetColor("_MKGlowColor", triangleCurrentColors[4]);
         //rendPlatform.material.SetColor("_MKGlowTexColor", triangleCurrentColors[0]);
         platformLight.color = triangleCurrentColors[0];
 
         // Here we are directly accessing the materials of the triangle objects, and changing them permanently at runtime
         for (int i = 0; i < 4; i++)
         {
-            belowPlatformNeon[i].SetColor("_MKGlowColor", triangleCurrentColors[i]);
-
+            belowPlatformNeonMaterial[i].SetColor("_MKGlowColor", triangleCurrentColors[i]);
         }
+
+        if (gameManager.inRound)
+        {
+            platformTriangleMaterial.SetColor("_MKGlowColor", triangleCurrentColors[0]);
+        }
+
 
         /* ///Here we are changing the material properties of all the triangle parts individually at runtime
         for (int i = 1; i < 4; i++)

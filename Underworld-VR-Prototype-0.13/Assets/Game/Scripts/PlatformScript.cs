@@ -64,7 +64,7 @@ public class PlatformScript : MonoBehaviour {
                 //print("slowing down");
             }
            
-            transform.position = Vector3.SmoothDamp(transform.position, Vector3.zero, ref velocity, smoothTime, maxSpeed);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, 0, transform.position.z), ref velocity, smoothTime, maxSpeed);
             playerController.transform.position = Vector3.SmoothDamp(playerController.transform.position, Vector3.zero, ref velocity, smoothTime, maxSpeed);
 
             if (distanceCurrent < .01f)
@@ -80,19 +80,21 @@ public class PlatformScript : MonoBehaviour {
             //scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal + ((1 - scaleOriginal) * distancePercent), Time.deltaTime * 2f);
             //scaleCurrent = Mathf.Lerp(scaleCurrent, 1, Time.deltaTime);
             // Simple scaling i.e., scale when at the top of the stadium
-            scaleCurrent = Mathf.Lerp(scaleCurrent, .5f, Time.deltaTime);
+            scaleCurrent = Mathf.Lerp(scaleCurrent, .5f, Time.deltaTime * 5f);
             transform.localScale = new Vector3(scaleCurrent, scaleCurrent, scaleCurrent);
-            platformPieces.SetActive(true);
-            platformPieces.GetComponent<PlatformPieces>().go = true;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 4f);
+            //platformPieces.SetActive(true);
+            //platformPieces.GetComponent<PlatformPieces>().go = true;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 5f);
 
 
-            if ((scaleCurrent / .5f) > .98f)
+            if (((.5f - scaleCurrent) < .001f) && ((60f - transform.rotation.y) < .001f))
             {
-                transform.localScale = new Vector3(1, 1, 1);
-                transform.rotation = Quaternion.Euler(Vector3.zero);
-                platformPieces.SetActive(false);
+                //transform.localScale = new Vector3(1, 1, 1);
+                //transform.rotation = Quaternion.Euler(Vector3.zero);
+                //platformPieces.SetActive(false);
                 scaling = false;
+                platformPieces.SetActive(true);
+                platformPieces.GetComponent<PlatformPieces>().go = true;
             }
 
         }
