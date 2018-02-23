@@ -80,11 +80,11 @@ public class PlatformScript : MonoBehaviour {
             //scaleCurrent = Mathf.Lerp(scaleCurrent, scaleOriginal + ((1 - scaleOriginal) * distancePercent), Time.deltaTime * 2f);
             //scaleCurrent = Mathf.Lerp(scaleCurrent, 1, Time.deltaTime);
             // Simple scaling i.e., scale when at the top of the stadium
-            scaleCurrent = Mathf.Lerp(scaleCurrent, .5f, Time.deltaTime * 5f);
+            scaleCurrent = Mathf.Lerp(scaleCurrent, .5f, Time.deltaTime * 3f);
             transform.localScale = new Vector3(scaleCurrent, scaleCurrent, scaleCurrent);
             //platformPieces.SetActive(true);
             //platformPieces.GetComponent<PlatformPieces>().go = true;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 5f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 3f);
 
 
             if (((.5f - scaleCurrent) < .005f))

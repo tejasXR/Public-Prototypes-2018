@@ -218,7 +218,7 @@ public class RoundCompleteUI : MonoBehaviour {
 
         if (gameManager.roundCurrent <= 1)
         {
-            roundCompleteText.text = "Your Fight \n Begins";
+            roundCompleteText.text = "Destroy All \n Enemies";
         } else
         {
             roundCompleteText.text = "Round Complete";

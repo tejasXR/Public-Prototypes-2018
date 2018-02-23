@@ -88,11 +88,13 @@ public class EnemyBullet : MonoBehaviour {
                 Destroy(collision.gameObject);
             }
 
+
+
             //print(collision.gameObject.tag);
 
         }
 
-        if (collision.gameObject.tag == "Shield")
+        if (collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Bullet")
         {
             //print("Bullet found shield");
             Destroy(this.gameObject);

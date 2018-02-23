@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public Material[] belowPlatformNeonMaterial;
     public Material platformTriangleMaterial;
+    public Material exteriorPlatformMaterial;
 
 
     public AudioSource playerHitSound;
@@ -98,7 +99,8 @@ public class PlayerHealth : MonoBehaviour {
 
         if (gameManager.inRound)
         {
-            platformTriangleMaterial.SetColor("_MKGlowColor", triangleCurrentColors[0]);
+            platformTriangleMaterial.SetColor("_MKGlowColor", Color.Lerp(platformTriangleMaterial.GetColor("_MKGlowColor"), triangleCurrentColors[0], Time.deltaTime));
+            exteriorPlatformMaterial.SetColor("_MKGlowColor", Color.Lerp(platformTriangleMaterial.GetColor("_MKGlowColor"), triangleCurrentColors[0], Time.deltaTime));
         }
 
 
