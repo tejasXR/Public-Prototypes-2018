@@ -83,7 +83,7 @@ public class EnemySpawnBoards : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-
+        FlickerDown();
         //if (gameManager.roundActive)
         {
             //print(gameManager.enemiesDestroyed / gameManager.enemiesToSpawn);
@@ -127,9 +127,11 @@ public class EnemySpawnBoards : MonoBehaviour {
             for (int j = 0; j < 3; j++)
             {
                 Renderer rend = triangleOutlines[i].lines[j].GetComponent<Renderer>();
-                rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), normalColors[i], Time.deltaTime / 2f));
+                rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), normalColors[i], Time.deltaTime));
+                rend.material.SetColor("_MKGlowColor", Color.Lerp(rend.material.GetColor("_MKGlowColor"), normalColors[i], Time.deltaTime));
+
             }
-            
+
         }
 	}
 
@@ -157,9 +159,21 @@ public class EnemySpawnBoards : MonoBehaviour {
                         switch (enemySpawnType)
                         {
                             case 0:
+                                //print("light drone colors");
                                 rend.material.SetColor("_Color", lightDroneSpawnColors[triangleOutlineCount]);
                                 rend.material.SetColor("_MKGlowColor", lightDroneSpawnColors[triangleOutlineCount]);
-
+                                break;
+                            case 1:
+                                rend.material.SetColor("_Color", fastDroneSpawnColors[triangleOutlineCount]);
+                                rend.material.SetColor("_MKGlowColor", fastDroneSpawnColors[triangleOutlineCount]);
+                                break;
+                            case 2:
+                                rend.material.SetColor("_Color", heavyDroneSpawnCoors[triangleOutlineCount]);
+                                rend.material.SetColor("_MKGlowColor", heavyDroneSpawnCoors[triangleOutlineCount]);
+                                break;
+                            case 3:
+                                rend.material.SetColor("_Color", bomberDroneSpawnColors[triangleOutlineCount]);
+                                rend.material.SetColor("_MKGlowColor", bomberDroneSpawnColors[triangleOutlineCount]);
                                 break;
                         }
                     }

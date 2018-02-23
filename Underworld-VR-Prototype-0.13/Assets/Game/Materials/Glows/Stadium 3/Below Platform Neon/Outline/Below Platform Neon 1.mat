@@ -86,5 +86,5 @@ Material:
     m_Colors:
     - _Color: {r: 0, g: 0.7529412, b: 1, a: 1}
     - _EmissionColor: {r: 0.84552854, g: 0.16260153, b: 1, a: 1}
-    - _MKGlowColor: {r: 0.15658678, g: 0.64127177, b: 0.87023884, a: 1}
+    - _MKGlowColor: {r: 0.14764704, g: 0.64764714, b: 0.8776471, a: 1}
     - _MKGlowTexColor: {r: 1, g: 1, b: 1, a: 1}
