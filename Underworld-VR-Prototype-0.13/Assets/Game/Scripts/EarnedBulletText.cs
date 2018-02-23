@@ -23,6 +23,8 @@ public class EarnedBulletText : MonoBehaviour {
     public Vector3 targetPos;
     public float moveSpeed;
 
+    public float textSolidAlphaTimer;
+
     private void Awake()
     {
         playerEye = GameObject.FindGameObjectWithTag("Player");
@@ -76,9 +78,13 @@ public class EarnedBulletText : MonoBehaviour {
 
 
         earnedBulletText.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
-        earnedBulletText.alpha -= Time.deltaTime / 2f;
-        plusText.alpha -= Time.deltaTime / 2f;
-
+        textSolidAlphaTimer -= Time.deltaTime;
+        if (textSolidAlphaTimer <= 0)
+        {
+            earnedBulletText.alpha -= Time.deltaTime;
+            plusText.alpha -= Time.deltaTime;
+        }
+       
         if (earnedBulletText.alpha <= 0)
         {
             Destroy(this.gameObject);

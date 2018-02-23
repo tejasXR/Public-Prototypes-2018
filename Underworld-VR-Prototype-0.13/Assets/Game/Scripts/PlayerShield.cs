@@ -430,7 +430,7 @@ public class PlayerShield : MonoBehaviour {
                 if (hit) return;
                 hit = true;
 
-                Instantiate(shieldHitEffect, other.transform.position, transform.localRotation);
+                Instantiate(shieldHitEffect, other.transform.position, Quaternion.Inverse(transform.rotation));
                 Destroy(other.gameObject);
 
 
