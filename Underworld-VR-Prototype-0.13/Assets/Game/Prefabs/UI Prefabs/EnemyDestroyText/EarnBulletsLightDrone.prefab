@@ -1342,14 +1342,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerEye: {fileID: 0}
   textSolid: {fileID: 1117024497479190}
-  text: {fileID: 114061905535373116}
+  earnedBulletText: {fileID: 114061905535373116}
+  plusText: {fileID: 114853464913835680}
   bulletNumber: 10
   countSpeed: 30
   adjust: 0
   bulletSmoothCount: 0
   moveDirection: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
-  moveSpeed: 7
+  moveSpeed: 3
 --- !u!114 &114764379005678800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1789,7 +1790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.018000007}
   m_SizeDelta: {x: 1.28, y: 1.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224230560343334160

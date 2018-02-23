@@ -186,8 +186,6 @@ public class PlayerShield : MonoBehaviour {
                 meshesToChange[i].GetComponent<Renderer>().material.SetColor("_MainColor", Color.Lerp(meshesToChange[i].GetComponent<Renderer>().material.GetColor("_MainColor"), normalColor, Time.deltaTime * 3f));
                 meshesToChange[i].GetComponent<Renderer>().material.SetFloat("_FlickerSpeed", flickerSpeedCurrent);
             }
-
-
         } else
         {
             for (int i = 0; i < outlines.Length; i++)
@@ -425,7 +423,7 @@ public class PlayerShield : MonoBehaviour {
 
 
 
-            if (other.GetComponent<EnemyBullet>() != null && alreadyHitBy.Contains(other.GetComponent<EnemyBullet>()))
+            if (other.GetComponent<EnemyBullet>() != null && !alreadyHitBy.Contains(other.GetComponent<EnemyBullet>()))
             {
                 alreadyHitBy.Add(other.GetComponent<EnemyBullet>());
 

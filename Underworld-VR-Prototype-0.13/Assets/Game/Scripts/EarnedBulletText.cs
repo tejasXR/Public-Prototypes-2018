@@ -11,7 +11,8 @@ public class EarnedBulletText : MonoBehaviour {
    // public GameObject textOutline2;
     public GameObject textSolid;
     //public TextMeshPro[] texts;
-    public TextMeshPro text;
+    public TextMeshPro earnedBulletText;
+    public TextMeshPro plusText;
     public float bulletNumber;
     public float countSpeed = 85f;
 
@@ -30,7 +31,7 @@ public class EarnedBulletText : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //textOutline1.SetActive(false);
-        textSolid.SetActive(false);
+        //textSolid.SetActive(false);
         //StartCoroutine(EarnedBulletSpawn());
         EarnedBulletSpawn();
 	}
@@ -74,9 +75,11 @@ public class EarnedBulletText : MonoBehaviour {
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * moveSpeed);
 
 
-        text.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
-        text.alpha -= Time.deltaTime;
-        if (text.alpha <= 0)
+        earnedBulletText.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString();
+        earnedBulletText.alpha -= Time.deltaTime / 2f;
+        plusText.alpha -= Time.deltaTime / 2f;
+
+        if (earnedBulletText.alpha <= 0)
         {
             Destroy(this.gameObject);
         }
