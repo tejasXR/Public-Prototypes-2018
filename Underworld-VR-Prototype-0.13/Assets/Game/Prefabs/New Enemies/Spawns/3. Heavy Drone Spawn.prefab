@@ -233,13 +233,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772129945141078}
-  m_LocalRotation: {x: -0.41811907, y: 0.57024246, z: -0.57024246, w: 0.41811907}
+  m_LocalRotation: {x: -0.44259477, y: 0.5514616, z: -0.58793783, w: 0.39284748}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4215325072438152}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 17.5, y: 90, z: -90}
+  m_LocalEulerAnglesHint: {x: 17.5, y: 90, z: -95}
 --- !u!4 &4848559481743398
 Transform:
   m_ObjectHideFlags: 1
@@ -373,12 +373,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnTimer: 0.5
-  destroyTimer: 2
+  destroyTimer: 4
   enemySpawnObj: {fileID: 1148098929671228, guid: 622510b4743841542ae0f4c1794b5688,
     type: 2}
   spawnPoint: {fileID: 4017920081385994}
   mesh: {fileID: 1772129945141078}
-  fadeSpeed: 2
+  fadeSpeed: 4
   mainColor: {r: 0, g: 0, b: 0, a: 0}
   glowColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114694324126129338

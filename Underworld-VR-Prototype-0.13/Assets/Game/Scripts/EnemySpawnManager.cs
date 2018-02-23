@@ -26,7 +26,7 @@ public class EnemySpawnManager : MonoBehaviour
     //private float enemyBomberChance; //chance of drone double to be spawned;
 
     public float[] enemyProbability; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber, 4 = leviathan, 5 = redemption
-    public GameObject[] enemyTypes; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber, 4 = leviathan, 5 = redemption
+    //public GameObject[] enemyTypes; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber, 4 = leviathan, 5 = redemption
 
     public bool redemptionResetTimer; //Used to reset the enemy timer for the redemption mode
 
