@@ -3477,6 +3477,12 @@ MonoBehaviour:
   heavyDroneSpawnCoors: []
   bomberDroneSpawnColors: []
   enemySpawnType: 0
+  enemySpawns:
+  - {fileID: 1230580555338202, guid: 37f8dd6f47991914aa2ddf61760a6768, type: 2}
+  - {fileID: 1230580555338202, guid: f5cede32d8983684b8a7e0ce1a7c20ce, type: 2}
+  - {fileID: 1230580555338202, guid: 3ab41e89efa210942b76c2f2a412d138, type: 2}
+  - {fileID: 1894162468825452, guid: e2a3427cfe5d54d42b922e75d403e364, type: 2}
+  enemySpawnPoint: {fileID: 4323611005012304}
   outlineFlicker: {fileID: 114195279372096380}
 --- !u!114 &114195279372096380
 MonoBehaviour:
@@ -3484,7 +3490,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1748632524382544}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c530d79c4a28f2c4ca5bc73a4e9247fc, type: 3}
   m_Name: 

@@ -7,6 +7,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     private GameManager gameManager;
     private GameObject playerController;
+    public EnemySpawnBoards[] enemySpawnBoards;
+
     public float enemySpawnTimer; //The time in seconds in which an enemy spawns
 
     //public Vector3 enemySpawnPos;
@@ -77,15 +79,18 @@ public class EnemySpawnManager : MonoBehaviour
     void SpawnEnemy()
     {
 
-        int enemy = Mathf.RoundToInt(EnemyProbability(enemyProbability));
+        int enemyType = Mathf.RoundToInt(EnemyProbability(enemyProbability));
+        int randomSide = Random.Range(0, 3);
         //print(enemy);
 
-        RandomPosition();
+        //RandomPosition(); // removing since noe we spawn through the spawn boards
 
         // Spawns enemy spawner objects at the spawn positions
-        if (spawnNow)
+        //if (spawnNow)
         {
-            Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
+            //Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
+            enemySpawnBoards[randomSide].enemySpawnType = enemyType;
+            enemySpawnBoards[randomSide].shouldFlicker = true;
             gameManager.enemiesOnScreen++;
         }
 

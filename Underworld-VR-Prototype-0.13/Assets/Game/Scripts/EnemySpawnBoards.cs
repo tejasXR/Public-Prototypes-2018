@@ -35,6 +35,9 @@ public class EnemySpawnBoards : MonoBehaviour {
     public Color[] bomberDroneSpawnColors;
 
     public int enemySpawnType;
+
+    public GameObject[] enemySpawns;
+    public Transform enemySpawnPoint;
         // 0 = light drone
         // 1 = fast drone
         // 2 = heavy drone
@@ -53,7 +56,7 @@ public class EnemySpawnBoards : MonoBehaviour {
 
     //public float enemiesDestroyedCounter;
 
-    public StadiumFlicker outlineFlicker;
+    //public StadiumFlicker outlineFlicker;
 
 
 
@@ -77,7 +80,7 @@ public class EnemySpawnBoards : MonoBehaviour {
 
     private void OnEnable()
     {
-        outlineFlicker.shouldFlicker = true;
+        //outlineFlicker.shouldFlicker = true;
     }
 
     // Update is called once per frame
@@ -135,9 +138,9 @@ public class EnemySpawnBoards : MonoBehaviour {
         }
 	}
 
-    void FlickerDown()
+    void FlickerDown() 
     {
-        if (shouldFlicker)
+        if (shouldFlicker)  // linked to enemy Spawn manager
         {
             flickerTimer -= Time.deltaTime;
             if (flickerTimer <= 0)// && !flickerActive)
@@ -185,6 +188,7 @@ public class EnemySpawnBoards : MonoBehaviour {
                         shouldFlicker = false;
                         flickerTimer = flickerFrequency;
                         triangleOutlineCount = 0;
+                        InstantiateSpawner();
                     }
                     else
                     {
@@ -195,6 +199,11 @@ public class EnemySpawnBoards : MonoBehaviour {
             }
         }
     }
+
+    void InstantiateSpawner()
+    {
+        Instantiate(enemySpawns[enemySpawnType], enemySpawnPoint.position, Quaternion.identity);
+    } 
 
 
     [System.Serializable]
