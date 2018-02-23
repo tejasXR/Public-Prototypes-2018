@@ -1330,13 +1330,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1108897346837230}
-  m_LocalRotation: {x: 0.00000029802325, y: -0.0000006854535, z: -0.46174863, w: 0.8870109}
-  m_LocalPosition: {x: -0.0641, y: -0.023999922, z: 0}
+  m_LocalRotation: {x: 0.5193672, y: -0.2946804, z: -0.34889206, w: 0.722285}
+  m_LocalPosition: {x: -0.0178, y: 0.005, z: -0.071}
   m_LocalScale: {x: 0.03000005, y: 0.1308112, z: 0.031819023}
   m_Children: []
   m_Father: {fileID: 4954318085816648}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -45.000004, z: -55}
+  m_LocalEulerAnglesHint: {x: 33, y: -70, z: -75}
 --- !u!4 &4658545913850370
 Transform:
   m_ObjectHideFlags: 1
@@ -1357,13 +1357,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507564394575254}
-  m_LocalRotation: {x: 0, y: 0, z: -0.8191521, w: 0.57357645}
-  m_LocalPosition: {x: -0.0576, y: 0.017, z: 0}
+  m_LocalRotation: {x: 0.28684556, y: -0.40965804, z: -0.7093592, w: 0.49669856}
+  m_LocalPosition: {x: -0.0069, y: -0.0049, z: -0.0537}
   m_LocalScale: {x: 0.030000033, y: 0.13081117, z: 0.031819023}
   m_Children: []
   m_Father: {fileID: 4310936749295726}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -110}
+  m_LocalEulerAnglesHint: {x: -17.232, y: -58.447002, z: -100.310005}
 --- !u!4 &4675431654224502
 Transform:
   m_ObjectHideFlags: 1
@@ -1434,13 +1434,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1936174802583614}
-  m_LocalRotation: {x: 0, y: 0, z: 0.81915206, w: 0.57357645}
-  m_LocalPosition: {x: 0.0643, y: 0.0305, z: -0.0042}
+  m_LocalRotation: {x: 0.2836967, y: 0.4051609, z: 0.7119373, w: 0.49850386}
+  m_LocalPosition: {x: 0.0272, y: 0.0054, z: -0.053}
   m_LocalScale: {x: 0.030000033, y: 0.1308112, z: 0.031819023}
   m_Children: []
   m_Father: {fileID: 4526299509852920}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 110.00001}
+  m_LocalEulerAnglesHint: {x: -17.101002, y: 57.700005, z: 100.53001}
 --- !u!4 &4732080482591406
 Transform:
   m_ObjectHideFlags: 1
@@ -1680,13 +1680,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1493193179998260}
-  m_LocalRotation: {x: 0, y: 0, z: 0.46174863, w: 0.8870109}
-  m_LocalPosition: {x: 0.0459, y: -0.0227, z: -0.0053}
+  m_LocalRotation: {x: 0.3715419, y: 0.19341247, z: 0.41928917, w: 0.805447}
+  m_LocalPosition: {x: 0.0249, y: 0.0004, z: -0.0564}
   m_LocalScale: {x: 0.030000033, y: 0.1308112, z: 0.031819023}
   m_Children: []
   m_Father: {fileID: 4862734060065950}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 55}
+  m_LocalEulerAnglesHint: {x: 25.87, y: 43.831, z: 65.55801}
 --- !u!4 &4980183027813882
 Transform:
   m_ObjectHideFlags: 1
@@ -2791,7 +2791,7 @@ Rigidbody:
   m_Drag: 0.65
   m_AngularDrag: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -3559,6 +3559,7 @@ MonoBehaviour:
   isRedemptiionDrone: 0
   isTutorialDrone: 0
   eyeObject: {fileID: 114296626985765706}
+  enemyEffectsManager: {fileID: 0}
 --- !u!114 &114455790773693888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3736,6 +3737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   enemySpawnManager: {fileID: 0}
+  enemyEffectsManager: {fileID: 0}
   player: {fileID: 0}
   enemyHealth: 3
   enemyGiveBullets: 10
@@ -3766,7 +3768,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645465024364282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04e4438180274104db6b533d440d9f51, type: 3}
   m_Name: 
