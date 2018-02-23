@@ -202,7 +202,7 @@ public class EnemySpawnBoards : MonoBehaviour {
 
     void InstantiateSpawner()
     {
-        Instantiate(enemySpawns[enemySpawnType], enemySpawnPoint.position, Quaternion.identity);
+        Instantiate(enemySpawns[enemySpawnType], enemySpawnPoint.position, enemySpawnPoint.rotation);
     } 
 
 

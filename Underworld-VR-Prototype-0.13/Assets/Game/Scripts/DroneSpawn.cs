@@ -53,7 +53,7 @@ public class DroneSpawn : MonoBehaviour {
         //Vector3 looking = Vector3.Cross(transform.position - playerController.transform.position, Vector3.up);
         //Quaternion rotation = Quaternion.LookRotation(looking);
         //transform.rotation = Quaternion.LookRotation(looking, Vector3.up);
-        transform.LookAt(playerController.transform.position);
+        //transform.LookAt(playerController.transform.position);
 
 
 
