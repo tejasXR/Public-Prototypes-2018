@@ -45,7 +45,10 @@ public class StadiumEncapsulation : MonoBehaviour {
             }
         }
 
-        colorCurrent = Color.Lerp(colorCurrent, colors[0], Time.deltaTime);
-        rend.material.SetColor("_MKGlowTexColor", colorCurrent);
+        if (gameManager.inRound)
+        {
+            colorCurrent = Color.Lerp(colorCurrent, colors[0], Time.deltaTime);
+            rend.material.SetColor("_MKGlowTexColor", colorCurrent);
+        }        
     }
 }

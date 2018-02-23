@@ -87,7 +87,7 @@ public class PlatformScript : MonoBehaviour {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(0f, 60f, 0f)), Time.deltaTime * 5f);
 
 
-            if (((.5f - scaleCurrent) < .001f) && ((60f - transform.rotation.y) < .001f))
+            if (((.5f - scaleCurrent) < .005f))
             {
                 //transform.localScale = new Vector3(1, 1, 1);
                 //transform.rotation = Quaternion.Euler(Vector3.zero);
