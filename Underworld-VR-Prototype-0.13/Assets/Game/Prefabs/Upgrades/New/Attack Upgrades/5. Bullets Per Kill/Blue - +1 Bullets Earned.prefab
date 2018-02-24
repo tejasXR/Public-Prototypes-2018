@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1188687828329348
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "earn +1 bullets \nper enemy kill"
+  m_text: earn 1 additional bullet per kill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
