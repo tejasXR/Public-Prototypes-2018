@@ -168,7 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4485406675813290}
   - component: {fileID: 114775388001153818}
-  - component: {fileID: 65474235238537932}
+  - component: {fileID: 114938616861897178}
   m_Layer: 0
   m_Name: Red - 25 Max Health
   m_TagString: Untagged
@@ -455,18 +455,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539256468387940}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65474235238537932
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1900551787085466}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.45, y: 1.65, z: 0.13}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65895876527956516
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -874,7 +862,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Increases max heatlh by 25%
+  m_text: Increases max heatlh by 20%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1dc9bd4611c0a64597cec0e1db82690, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: e1dc9bd4611c0a64597cec0e1db82690,
@@ -979,7 +967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9fd6dd7dbe19042957631b5292831e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeManager: {fileID: 0}
   playerController: {fileID: 0}
   playerShield: {fileID: 0}
   weaponActive: {fileID: 0}
@@ -992,13 +979,13 @@ MonoBehaviour:
   addShieldHealthMaxMultiplier: 0
   addShieldRegenerationMultiplier: 0
   addShieldAbsorbtionBulletAmount: 0
-  addPlayerHealthMaxMultiplier: 0.25
+  addPlayerHealthMaxMultiplier: 0.2
   addPlayerHealthChance: 0
   unlockPistol: 0
   unlockRifle: 0
   unlockShotgun: 0
   unlockSaberSword: 0
-  unlockLaserRifle: 0
+  unlockHyperRifle: 0
 --- !u!114 &114907210165364038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1018,7 +1005,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d4d275a01b69504691b7d9dcc731447, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbc4f61404f3e524e87f105a9954c388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1139,6 +1126,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114938616861897178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900551787085466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58185345a509b44bbd8154a8a212798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  negativeZ: 0.03
 --- !u!222 &222032094713591470
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1311,7 +1310,7 @@ RectTransform:
   m_GameObject: {fileID: 1571311302770684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.03}
-  m_LocalScale: {x: 0.18823522, y: 0.18823521, z: 0.18823521}
+  m_LocalScale: {x: 0.17129406, y: 0.17129405, z: 0.17129405}
   m_Children:
   - {fileID: 224116174290554768}
   m_Father: {fileID: 4485406675813290}
@@ -1319,6 +1318,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.268, y: -0.715}
+  m_AnchoredPosition: {x: -0.26, y: -0.718}
   m_SizeDelta: {x: 0.1, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}

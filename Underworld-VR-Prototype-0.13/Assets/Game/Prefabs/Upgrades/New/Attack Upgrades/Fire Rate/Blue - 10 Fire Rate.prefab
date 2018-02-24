@@ -591,7 +591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9fd6dd7dbe19042957631b5292831e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeManager: {fileID: 0}
   playerController: {fileID: 0}
   playerShield: {fileID: 0}
   weaponActive: {fileID: 0}
@@ -610,7 +609,7 @@ MonoBehaviour:
   unlockRifle: 0
   unlockShotgun: 0
   unlockSaberSword: 0
-  unlockLaserRifle: 0
+  unlockHyperRifle: 0
 --- !u!114 &114158588723849336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -893,9 +892,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Increases Fire
-
-    Rate by 10%'
+  m_text: "Increases \nFire rate\n\n1.00    1.10\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02f4e05a55b013b4f8f87159b44c965c, type: 2}
   m_sharedMaterial: {fileID: 21139881962045334, guid: 02f4e05a55b013b4f8f87159b44c965c,
@@ -934,9 +931,9 @@ MonoBehaviour:
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 10
+  m_lineSpacing: 5
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: -20
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
@@ -963,12 +960,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114795278044801402}
-    characterCount: 26
+    characterCount: 35
     spriteCount: 0
-    spaceCount: 4
-    wordCount: 5
+    spaceCount: 10
+    wordCount: 7
     linkCount: 0
-    lineCount: 2
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
@@ -1008,7 +1005,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d4d275a01b69504691b7d9dcc731447, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbc4f61404f3e524e87f105a9954c388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1140,8 +1137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58185345a509b44bbd8154a8a212798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPos: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
+  negativeZ: 0.03
 --- !u!222 &222188346420573892
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1206,7 +1202,7 @@ RectTransform:
   m_GameObject: {fileID: 1367539657205082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.03}
-  m_LocalScale: {x: 0.18823522, y: 0.18823521, z: 0.18823521}
+  m_LocalScale: {x: 0.16376464, y: 0.16376463, z: 0.16376463}
   m_Children:
   - {fileID: 224347622954382400}
   m_Father: {fileID: 4794965258324658}
@@ -1214,7 +1210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.231, y: -0.725}
+  m_AnchoredPosition: {x: -0.213, y: -0.72}
   m_SizeDelta: {x: 0.1, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224076924547891322
