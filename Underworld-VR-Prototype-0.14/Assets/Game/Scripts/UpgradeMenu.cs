@@ -80,6 +80,8 @@ public class UpgradeMenu : MonoBehaviour
     public Material[] menuMat;
     public Material[] itemLevelMat;
 
+    public GameObject blurredProjection;
+
 
     // Use this for initialization
     void Start()
@@ -103,7 +105,8 @@ public class UpgradeMenu : MonoBehaviour
             upgradeMenuOpen = true;
             upgradeMenuActive = true;
             upgradeDone = false;
-            upgradeProgress.SetActive(false);  
+            upgradeProgress.SetActive(false);
+
         }
 
         if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && upgradeMenuOpen)
@@ -136,11 +139,14 @@ public class UpgradeMenu : MonoBehaviour
             timeManager.DoSlowMotion();
             playerShield.SetActive(false);
             shieldHide = true;
+            blurredProjection.SetActive(true);
         }
         else if (!upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart && !gameManager.redemptionPreStart)
         {
             playerShield.SetActive(true);
             shieldHide = false;
+            blurredProjection.SetActive(false);
+
         }
 
         if (attackUpgradeOpen)

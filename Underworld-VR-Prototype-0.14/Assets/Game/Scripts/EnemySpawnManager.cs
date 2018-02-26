@@ -29,6 +29,7 @@ public class EnemySpawnManager : MonoBehaviour
     //public GameObject[] enemyTypes; // 0 = light, 1 = fast, 2 = heavy, 3 = bomber, 4 = leviathan, 5 = redemption
 
     public bool redemptionResetTimer; //Used to reset the enemy timer for the redemption mode
+    private int roundCount;
 
     //public bool isActive;
 
@@ -45,8 +46,14 @@ public class EnemySpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.roundActive || gameManager.redemptionActive)
+        if (gameManager.roundActive)// || gameManager.redemptionActive)
         {
+            if (roundCount != gameManager.roundCurrent)
+            {
+                enemySpawnTimer = 7;
+                roundCount = gameManager.roundCurrent;
+            }
+
             enemySpawnTimer -= Time.deltaTime;
 
             if (((gameManager.enemiesToSpawn - gameManager.enemiesDestroyed) > gameManager.enemiesOnScreen) && gameManager.enemiesOnScreen < gameManager.enemiesOnScreenMax)
@@ -102,7 +109,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     void CheckRound()
     {
-        if (gameManager.roundActive && !gameManager.redemptionActive)
+        if (gameManager.roundActive)// && !gameManager.redemptionActive)
         {
             // Resets enemy probabilities
             ResetEnemyProbability();
@@ -125,8 +132,8 @@ public class EnemySpawnManager : MonoBehaviour
 
                    
 
-                    enemyProbability[0] = 80; // Light drones
-                    enemyProbability[1] = 20; // Fast Drones
+                    enemyProbability[0] = 100; // Light drones
+                    //enemyProbability[1] = 20; // Fast Drones
                     //enemyProbability[2] = 0; // Heavy Drones
                     break;
                 case 3:

@@ -38,6 +38,8 @@ public class EnemySpawnBoards : MonoBehaviour {
 
     public GameObject[] enemySpawns;
     public Transform enemySpawnPoint;
+
+    public AudioSource countDownSound;
         // 0 = light drone
         // 1 = fast drone
         // 2 = heavy drone
@@ -85,6 +87,8 @@ public class EnemySpawnBoards : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //countDownSound.volume = Mathf.Lerp(countDownSound.volume, 1, Time.deltaTime * .5f);
+        //countDownSound.pitch = Mathf.Lerp(countDownSound.pitch, .5f, Time.deltaTime * .5f);
 
         FlickerDown();
         //if (gameManager.roundActive)

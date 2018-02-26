@@ -38,6 +38,8 @@ public class WeaponsMenu : MonoBehaviour {
 
     private GameManager gameManager;
 
+    public GameObject blurredProjection;
+
 
     // Use this for initialization
     void Start () {
@@ -91,6 +93,7 @@ public class WeaponsMenu : MonoBehaviour {
         {
             StartCoroutine(ButtonPressHaptics(1000));
             weaponActive.DisableAllWeapons();
+            blurredProjection.SetActive(true);
             CheckWeapons(); //check what weapons we have unlocked so we can show this accordingly via UI
 
             weaponsMenuOpen = true;
@@ -309,6 +312,8 @@ public class WeaponsMenu : MonoBehaviour {
         weaponsMenu.SetActive(false);
 
         weaponActive.WeaponToActivate(weaponActive.currentWeapon);
+        blurredProjection.SetActive(false);
+
 
         /*
         //Reset colors for the buttons
