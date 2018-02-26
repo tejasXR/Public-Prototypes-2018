@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1702868166872686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,7 +1517,7 @@ MonoBehaviour:
     rgba: 4294967295
   textColorLoseBullet:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4294967295
   bulletIconOriginal:
     serializedVersion: 2
     rgba: 1427773978

@@ -946,6 +946,15 @@ MonoBehaviour:
   gunBody: {fileID: 0}
   gunRecoilAngleSpeed: 0
   gunRecoilThrowbackSpeed: 0
+  gunSparkEffect: {fileID: 0}
+  sparkPoint: {fileID: 0}
+  isPistol: 0
+  isRifle: 0
+  isShotgun: 0
+  isHyperRifle: 0
+  noBulletHaptic: 0
+  bulletUsedObj: {fileID: 0}
+  noBulletsObj: {fileID: 0}
 --- !u!114 &114260654768040954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -975,49 +984,38 @@ MonoBehaviour:
   weaponList:
   - name: Pistol
     hasWeapon: 1
-    sceneImage: {fileID: 114640183848216288}
-    normalColor: {r: 0.5955882, g: 0.69878286, b: 1, a: 1}
-    highlightColor: {r: 0.121107265, g: 0.24012637, b: 1, a: 1}
-    pressedColor: {r: 0.90344834, g: 1, b: 0, a: 1}
-    unavailableColor: {r: 1, g: 1, b: 1, a: 1}
+    sphere: {fileID: 0}
+    highlightMat: {fileID: 0}
   - name: Rifle
     hasWeapon: 1
-    sceneImage: {fileID: 114412506305848670}
-    normalColor: {r: 0.5955882, g: 1, b: 0.6820486, a: 1}
-    highlightColor: {r: 0.005568777, g: 0.75735295, b: 0.16799742, a: 1}
-    pressedColor: {r: 0.90344834, g: 1, b: 0, a: 0}
-    unavailableColor: {r: 1, g: 1, b: 1, a: 0}
+    sphere: {fileID: 0}
+    highlightMat: {fileID: 0}
   - name: Shotgun
     hasWeapon: 1
-    sceneImage: {fileID: 114381657820738494}
-    normalColor: {r: 1, g: 0.5955882, b: 0.5955882, a: 1}
-    highlightColor: {r: 0.9852941, g: 0.06520329, b: 0.06520329, a: 1}
-    pressedColor: {r: 0.90344834, g: 1, b: 0, a: 0}
-    unavailableColor: {r: 1, g: 1, b: 1, a: 0}
+    sphere: {fileID: 0}
+    highlightMat: {fileID: 0}
   - name: Sword
     hasWeapon: 1
-    sceneImage: {fileID: 114760893728519380}
-    normalColor: {r: 1, g: 1, b: 1, a: 1}
-    highlightColor: {r: 0.50735295, g: 0.5, b: 0.5, a: 1}
-    pressedColor: {r: 0.90344834, g: 1, b: 0, a: 0}
-    unavailableColor: {r: 1, g: 1, b: 1, a: 0}
+    sphere: {fileID: 0}
+    highlightMat: {fileID: 0}
   - name: Laser Rifle
     hasWeapon: 1
-    sceneImage: {fileID: 114793871416464808}
-    normalColor: {r: 0.9776876, g: 1, b: 0.5955882, a: 1}
-    highlightColor: {r: 0.69240457, g: 0.7205882, b: 0.010596896, a: 1}
-    pressedColor: {r: 0.90344834, g: 1, b: 0, a: 0}
-    unavailableColor: {r: 1, g: 1, b: 1, a: 0}
+    sphere: {fileID: 0}
+    highlightMat: {fileID: 0}
   angleFromCenter: 0
   currentMenuItem: 0
   weaponsMenu: {fileID: 1352226020417874}
   weaponsMenuOpen: 0
+  cursor: {fileID: 0}
   weapons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  menuMat: []
+  weaponSelected: 0
+  firstPressUp: 0
 --- !u!114 &114381657820738494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1169,7 +1167,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: []
-  weaponActive: {fileID: 0}
+  weaponInt: 0
+  currentWeapon: 
+  previousWeapon: 
+  unlockPistol: 0
+  unlockRifle: 0
+  unlockShotgun: 0
+  unlockSaberSword: 0
+  unlockHyperRifle: 0
 --- !u!114 &114635327901154496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1302,11 +1307,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ad8975f222faa4392210adea843b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
   alphaHealth: 0
   alphaHealthMax: 0.75
   alphaHit: 0
+  healthSmooth: 0
   hitbodyProjection: {fileID: 1778478734050984}
+  triangleBlueColors: []
+  triangleRedColors: []
+  triangleCurrentColors: []
+  platformLight: {fileID: 0}
+  belowPlatformNeonMaterial: []
+  platformTriangleMaterial: {fileID: 0}
+  exteriorPlatformMaterial: {fileID: 0}
+  playerHitSound: {fileID: 0}
+  healthLowSound: {fileID: 0}
 --- !u!114 &114987014961183350
 MonoBehaviour:
   m_ObjectHideFlags: 1

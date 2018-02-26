@@ -433,7 +433,7 @@ public class PlayerShield : MonoBehaviour {
                 if (hit) return;
                 hit = true;
 
-                timeManager.DoSlowMotion();
+                //timeManager.DoSlowMotion();
                 Instantiate(shieldHitEffect, other.transform.position, transform.rotation);//Quaternion.Inverse(transform.rotation));
                 Destroy(other.gameObject);
 
