@@ -156,7 +156,7 @@ public class PlayerGun : MonoBehaviour {
                 //print(bulletNoUseChance);
                 //if (bulletNoUseChance > playerController.playerNoUseBulletChance)
                 {
-                    if (gameManager.roundActive)
+                    //if (gameManager.roundActive)
                     {
                         playerController.playerBullets -= 1;
                         //Instantiate(bulletUsedObj, sparkPoint.position, sparkPoint.transform.rotation);

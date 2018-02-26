@@ -39,6 +39,7 @@ public class WeaponsMenu : MonoBehaviour {
     private GameManager gameManager;
 
     public GameObject blurredProjection;
+    public AudioSource itemHoverSound;
 
 
     // Use this for initialization
@@ -198,7 +199,7 @@ public class WeaponsMenu : MonoBehaviour {
         {
             if (currentMenuItem != oldMenuItem && weaponList[currentMenuItem].hasWeapon)
             {
-
+                itemHoverSound.Play();
                 StartCoroutine(ButtonPressHaptics(300));
 
                 if (oldMenuItem < 5)

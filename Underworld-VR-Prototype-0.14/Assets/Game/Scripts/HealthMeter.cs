@@ -40,6 +40,9 @@ public class HealthMeter : MonoBehaviour {
 
     public Image healthIcon;
 
+    public float textSolidTimer;
+    public float textSolidTimerDuration;
+
     private void Awake()
     {
         rend = GetComponent<Renderer>();

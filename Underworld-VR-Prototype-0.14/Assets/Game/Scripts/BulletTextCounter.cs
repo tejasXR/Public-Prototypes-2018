@@ -57,19 +57,21 @@ public class BulletTextCounter : MonoBehaviour {
                 if (changeTextColor)
                 {
                     bulletTextCounter.color = textColorGainBullet;
-                }
 
-                if (hasBulletIcon)
-                {
-                    //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorGainBullet);
-                    bulletIcon.material.SetColor("_Color", textColorGainBullet);
-
-
-                    if (hasBulletIconOutline)
+                    if (hasBulletIcon)
                     {
-                        bulletIconOutline.material.SetColor("_Color", textColorGainBullet);
+                        //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorGainBullet);
+                        bulletIcon.material.SetColor("_Color", textColorGainBullet);
+
+
+                        if (hasBulletIconOutline)
+                        {
+                            bulletIconOutline.material.SetColor("_Color", textColorGainBullet);
+                        }
                     }
                 }
+
+                
 
             }
             else
@@ -79,19 +81,21 @@ public class BulletTextCounter : MonoBehaviour {
                 if (changeTextColor)
                 {
                     bulletTextCounter.color = textColorLoseBullet;
-                }
 
-                if (hasBulletIcon)
-                {
-                    //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorLoseBullet);
-                    bulletIcon.material.SetColor("_Color", textColorLoseBullet);
-
-
-                    if (hasBulletIconOutline)
+                    if (hasBulletIcon)
                     {
-                        bulletIconOutline.material.SetColor("_Color", textColorLoseBullet);
+                        //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", textColorLoseBullet);
+                        bulletIcon.material.SetColor("_Color", textColorLoseBullet);
+
+
+                        if (hasBulletIconOutline)
+                        {
+                            bulletIconOutline.material.SetColor("_Color", textColorLoseBullet);
+                        }
                     }
                 }
+
+                
 
             }
         }
@@ -105,17 +109,23 @@ public class BulletTextCounter : MonoBehaviour {
             adjust = false;
         }
 
-        bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 2f);
+        //bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 2f);
         //bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime));
         textSolidTimerDuration -= Time.deltaTime;
         if (textSolidTimerDuration <= 0)
         {
-            bulletTextCounter.alpha = Mathf.Lerp(bulletTextCounter.alpha, 0, Time.deltaTime * 5f);
-
-            if (hasBulletIcon)
+            if (changeTextColor)
             {
-                bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 5f));
+                bulletTextCounter.alpha = Mathf.Lerp(bulletTextCounter.alpha, 0, Time.deltaTime * 5f);
+
+                if (hasBulletIcon)
+                {
+                    bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 5f));
+                }
+
             }
+
+           
 
         }
         //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIcon.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 3f));

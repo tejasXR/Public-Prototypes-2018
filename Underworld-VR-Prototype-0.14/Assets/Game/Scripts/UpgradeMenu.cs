@@ -82,6 +82,9 @@ public class UpgradeMenu : MonoBehaviour
 
     public GameObject blurredProjection;
 
+    public AudioSource subHoverSound;
+    public AudioSource itemHoverSound;
+
 
     // Use this for initialization
     void Start()
@@ -141,10 +144,18 @@ public class UpgradeMenu : MonoBehaviour
             shieldHide = true;
             blurredProjection.SetActive(true);
         }
-        else if (!upgradeMenuOpen && !upgradeSelected && gameManager.mainGameStart && !gameManager.redemptionPreStart)
+        else if (!upgradeMenuOpen && !upgradeSelected)// && gameManager.mainGameStart && !gameManager.redemptionPreStart)
         {
-            playerShield.SetActive(true);
-            shieldHide = false;
+            if (!gameManager.gameStart)
+            {
+                playerShield.SetActive(true);
+                shieldHide = false;
+            }
+           
+            blurredProjection.SetActive(false);
+
+        } else
+        {
             //blurredProjection.SetActive(false);
 
         }
@@ -268,6 +279,7 @@ public class UpgradeMenu : MonoBehaviour
                         upgradeMenuActive = false;
 
                         StartCoroutine(ButtonPressHaptics(1000));
+                        subHoverSound.Play();
                     }
 
                     if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && weaponUnlockOpen)
@@ -286,7 +298,7 @@ public class UpgradeMenu : MonoBehaviour
                         attackUpgradeOpen = true;
                         attackUpgradeActive = true;
                         upgradeMenuActive = false;
-
+                        subHoverSound.Play();
                         StartCoroutine(ButtonPressHaptics(1000));
 
                         /*if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && attackUpgradeOpen)
@@ -314,7 +326,7 @@ public class UpgradeMenu : MonoBehaviour
                         defenseUpgradeOpen = true;
                         defenseUpgradeActive = true;
                         upgradeMenuActive = false;
-
+                        subHoverSound.Play();
                         StartCoroutine(ButtonPressHaptics(1000));
                     }
 
@@ -341,7 +353,7 @@ public class UpgradeMenu : MonoBehaviour
         if (currentMainMenuItem != oldMainMenuItem)
         {
             StartCoroutine(ButtonPressHaptics(300));
-
+            itemHoverSound.Play();
             mainMenuUIList[oldMainMenuItem].sphere.GetComponent<Renderer>().material = menuMat[0];
             oldMainMenuItem = currentMainMenuItem;
             mainMenuUIList[currentMainMenuItem].sphere.GetComponent<Renderer>().material = menuMat[1];
@@ -401,7 +413,7 @@ public class UpgradeMenu : MonoBehaviour
         if (currentWeaponUnlockItem != oldWeaponUnlockItem && currentWeaponUnlockItem >= 0)
         {
             StartCoroutine(ButtonPressHaptics(300));
-
+            itemHoverSound.Play();
             /*if (currentWeaponUnlockItem >= 0 && currentWeaponUnlockItem < 5)
             {
                 weaponUnlockBoardList[oldWeaponUnlockItem].weaponUpgrade.SetActive(false);
@@ -463,6 +475,8 @@ public class UpgradeMenu : MonoBehaviour
             else if (currentWeaponUnlockItem == 5)
             {
                 CloseWeaponUnlockMenu();
+                subHoverSound.Play();
+
             }
         }
     }
@@ -523,6 +537,8 @@ public class UpgradeMenu : MonoBehaviour
         if (currentAttackUpgradeItem != oldAttackUpgradeItem && currentAttackUpgradeItem >= 0)
         {
             StartCoroutine(ButtonPressHaptics(300));
+            itemHoverSound.Play();
+
 
             if (oldAttackUpgradeItem < 5)
             {
@@ -584,6 +600,8 @@ public class UpgradeMenu : MonoBehaviour
             else if (currentAttackUpgradeItem == 5)
             {
                 CloseAttackUpgradeMenu();
+                subHoverSound.Play();
+
             }
         }
     }
@@ -643,8 +661,10 @@ public class UpgradeMenu : MonoBehaviour
         if (currentDefenseUpgradeItem != oldDefenseUpgradeItem && currentDefenseUpgradeItem >= 0)
         {
             StartCoroutine(ButtonPressHaptics(300));
+            itemHoverSound.Play();
 
-            if(oldDefenseUpgradeItem < 5)
+
+            if (oldDefenseUpgradeItem < 5)
             {
                 defenseUpgradeBoardList[oldDefenseUpgradeItem].levelBoards[defenseUpgradeBoardList[oldDefenseUpgradeItem].level].SetActive(false);
 
@@ -701,6 +721,8 @@ public class UpgradeMenu : MonoBehaviour
             else if (currentDefenseUpgradeItem == 5)
             {
                 CloseDefenseUpgradeMenu();
+                subHoverSound.Play();
+
             }
         }
     }
