@@ -135,8 +135,8 @@ public class EnemyParent : MonoBehaviour {
                 }*/
 
                 // Add chance for health to regenerate by a point
-                float healthRegenChance = Random.Range(0f, 1f);
-                if (healthRegenChance <= playerController.playerHealthChance)
+                float healthChance = Random.Range(0f, 1f);
+                if (healthChance <= playerController.playerHealthChance)
                 {
                     playerController.playerHealth++;
                 }

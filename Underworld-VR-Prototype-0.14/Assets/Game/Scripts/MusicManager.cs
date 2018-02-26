@@ -10,14 +10,25 @@ public class MusicManager : MonoBehaviour {
     public GameManager gameManager;
     public TimeManager timeManager;
 
-    public bool playingMusic;
-    public int musicTrack;
+    public bool playingBeginningMusic;
+    public bool playingActiveMusic;
 
-    public float musicVolume;
-    public float musicPitch;
+    //public bool playingMusic;
+    //public int musicTrack;
 
-	// Use this for initialization
-	void Start () {
+    public AudioSource beginningMusicPlayer;
+    public AudioSource activeMusicPlayer;
+    public AudioLowPassFilter activeMusicLowPass;
+
+    public float lowPass;
+
+    public float activeMusicVolume;
+    public float beginningMusicVolume;
+
+    //public float musicPitch;
+
+    // Use this for initialization
+    void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         musicPlayer = GetComponent<AudioSource>();
@@ -26,38 +37,56 @@ public class MusicManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (gameManager.gameStart && !playingMusic)
+        if (!gameManager.gameStart)
+        {
+            //beginningMusicPlayer.Play();
+            //playingBeginningMusic = true;
+            beginningMusicVolume = 1;
+        }
+
+        if (gameManager.gameStart)
+        {
+            beginningMusicVolume = 1;
+            lowPass = 5000;
+            activeMusicVolume = .75f;
+
+        }
+
+        /*if (gameManager.gameStart && !playingMusic)
         {
             StartCoroutine(PlayMusic());
             playingMusic = true;
-        }
+        }*/
 
         if (timeManager.slowDown)
         {
-            musicPitch = .8f;
+            lowPass = 2000;
         }
         else
         {
-            musicPitch = 1f;
+            lowPass = 5000;
         }
 
-        if (gameManager.upgradeActive)
+        /*if (gameManager.upgradeActive)
         {
-            musicVolume = .1f;
+            activeMusicVolume = .1f;
         } else
         {
-            musicVolume = .1f;
-        }
+            activeMusicVolume = .1f;
+        }*/
 
-
-        musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, musicVolume, Time.deltaTime * 1f);
+        activeMusicLowPass.cutoffFrequency = Mathf.Lerp(activeMusicLowPass.cutoffFrequency, lowPass, Time.unscaledDeltaTime);
+        //musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, musicVolume, Time.deltaTime * 1f);
         //musicPlayer.pitch = Mathf.Lerp(musicPlayer.pitch, musicPitch, Time.deltaTime * 5f);
+        activeMusicPlayer.volume = Mathf.Lerp(activeMusicPlayer.volume, activeMusicVolume, Time.deltaTime * 1f);
+        beginningMusicPlayer.volume = Mathf.Lerp(beginningMusicPlayer.volume, beginningMusicVolume, Time.deltaTime * 1f);
+
 
 
     }
 
 
-    IEnumerator PlayMusic()
+    /*IEnumerator PlayMusic()
     {
         musicPlayer.clip = music[musicTrack];
         musicPlayer.PlayOneShot(musicPlayer.clip);
@@ -71,5 +100,5 @@ public class MusicManager : MonoBehaviour {
 
         playingMusic = false;
             
-    }
+    }*/
 }
