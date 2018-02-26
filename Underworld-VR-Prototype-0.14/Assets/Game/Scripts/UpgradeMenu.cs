@@ -145,7 +145,7 @@ public class UpgradeMenu : MonoBehaviour
         {
             playerShield.SetActive(true);
             shieldHide = false;
-            blurredProjection.SetActive(false);
+            //blurredProjection.SetActive(false);
 
         }
 
@@ -829,6 +829,7 @@ public class UpgradeMenu : MonoBehaviour
         oldWeaponUnlockItem = 1;
 
 
+
         // Make all extending UI unavailable
         for (int i = 0; i < 5; i++)
         {
@@ -875,6 +876,8 @@ public class UpgradeMenu : MonoBehaviour
         upgradeMenu.transform.localPosition = new Vector3(0f, .1f, .1f);
 
         upgradeMenu.SetActive(false);
+        blurredProjection.SetActive(false);
+
 
     }
 

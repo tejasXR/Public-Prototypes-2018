@@ -53,11 +53,15 @@ public class WeaponsMenu : MonoBehaviour {
             if (weaponList[i].hasWeapon)
             {
                 weaponList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+                weaponList[i].icon.SetActive(true);
             } else
             {
                 weaponList[i].sphere.GetComponent<Renderer>().material = menuMat[1];
+                weaponList[i].icon.SetActive(false);
             }
         }
+
+
 
         foreach (GameObject weapon in weapons)
         {
@@ -294,13 +298,30 @@ public class WeaponsMenu : MonoBehaviour {
         weaponsSelected = false;
         
 
-        foreach (Weapon weapon in weaponList)
+        /*foreach (Weapon weapon in weaponList)
         {
             weapon.sphere.GetComponent<Renderer>().material = menuMat[1]; // set all icons to unavailable
+            weapon.icon.SetActive(false); // set all icons to unavailable
+
 
             if (weapon.hasWeapon)
             {
                 weapon.sphere.GetComponent<Renderer>().material = menuMat[0]; // set all weapons that you have as available but inactive
+                weapon.icon.SetActive(true);
+            }
+        }*/
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (weaponList[i].hasWeapon)
+            {
+                weaponList[i].sphere.GetComponent<Renderer>().material = menuMat[0];
+                weaponList[i].icon.SetActive(true);
+            }
+            else
+            {
+                weaponList[i].sphere.GetComponent<Renderer>().material = menuMat[1];
+                weaponList[i].icon.SetActive(false);
             }
         }
 
@@ -381,6 +402,7 @@ public class WeaponsMenu : MonoBehaviour {
     {
         public string name;
         public bool hasWeapon;
+        public GameObject icon;
         //public AudioClip recording;
         public GameObject sphere;
         public Material highlightMat;

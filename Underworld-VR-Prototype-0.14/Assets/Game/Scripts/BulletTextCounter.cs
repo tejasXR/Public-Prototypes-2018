@@ -27,6 +27,9 @@ public class BulletTextCounter : MonoBehaviour {
     public Image bulletIcon;
     public Image bulletIconOutline;
 
+    public float textSolidTimer;
+    public float textSolidTimerDuration;
+
     //public bool formatXXX;
 
     // Use this for initialization
@@ -96,17 +99,27 @@ public class BulletTextCounter : MonoBehaviour {
         if (Mathf.Abs(bulletSmoothCount - playerController.playerBullets) > .5f)
         {
             adjust = true;
+            textSolidTimerDuration = textSolidTimer;
         } else
         {
             adjust = false;
         }
 
         bulletTextCounter.color = Color.Lerp(bulletTextCounter.color, textColorOriginal, Time.deltaTime * 2f);
-        //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIcon.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 3f));
-        if (hasBulletIcon)
+        //bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime));
+        textSolidTimerDuration -= Time.deltaTime;
+        if (textSolidTimerDuration <= 0)
         {
-            bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime));
+            bulletTextCounter.alpha = Mathf.Lerp(bulletTextCounter.alpha, 0, Time.deltaTime * 5f);
+
+            if (hasBulletIcon)
+            {
+                bulletIcon.material.SetColor("_Color", Color.Lerp(bulletIcon.material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 5f));
+            }
+
         }
+        //bulletIcon.GetComponent<Renderer>().material.SetColor("_Color", Color.Lerp(bulletIcon.GetComponent<Renderer>().material.GetColor("_Color"), bulletIconOriginal, Time.deltaTime * 3f));
+        
 
         //bulletIconOutline.material.SetColor("_Color", Color.Lerp(bulletIconOutline.material.GetColor("_Color"), bulletIconOutlineOriginal, Time.deltaTime * 3f));
 
