@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
 
-    public AudioClip[] music;
-    private AudioSource musicPlayer;
+    //public AudioClip[] music;
+    //private AudioSource musicPlayer;
 
     public GameManager gameManager;
     public TimeManager timeManager;
@@ -31,7 +31,7 @@ public class MusicManager : MonoBehaviour {
     void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
-        musicPlayer = GetComponent<AudioSource>();
+        //musicPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -41,14 +41,20 @@ public class MusicManager : MonoBehaviour {
         {
             //beginningMusicPlayer.Play();
             //playingBeginningMusic = true;
-            beginningMusicVolume = 1;
+            beginningMusicVolume = .75f;
+            activeMusicVolume = 0;
         }
 
         if (gameManager.gameStart)
         {
-            beginningMusicVolume = 1;
+            if (!playingActiveMusic)
+            {
+                activeMusicPlayer.Play();
+                playingActiveMusic = true;
+            }
+            beginningMusicVolume = 0f;
             lowPass = 5000;
-            activeMusicVolume = .75f;
+            activeMusicVolume = .5f;
 
         }
 
@@ -67,6 +73,13 @@ public class MusicManager : MonoBehaviour {
             lowPass = 5000;
         }
 
+        if (gameManager.gameOver)
+        {
+            beginningMusicVolume = 1;
+            activeMusicVolume = 0;
+            lowPass = 10;
+        }
+
         /*if (gameManager.upgradeActive)
         {
             activeMusicVolume = .1f;
@@ -78,8 +91,8 @@ public class MusicManager : MonoBehaviour {
         activeMusicLowPass.cutoffFrequency = Mathf.Lerp(activeMusicLowPass.cutoffFrequency, lowPass, Time.unscaledDeltaTime);
         //musicPlayer.volume = Mathf.Lerp(musicPlayer.volume, musicVolume, Time.deltaTime * 1f);
         //musicPlayer.pitch = Mathf.Lerp(musicPlayer.pitch, musicPitch, Time.deltaTime * 5f);
-        activeMusicPlayer.volume = Mathf.Lerp(activeMusicPlayer.volume, activeMusicVolume, Time.deltaTime * 1f);
-        beginningMusicPlayer.volume = Mathf.Lerp(beginningMusicPlayer.volume, beginningMusicVolume, Time.deltaTime * 1f);
+        activeMusicPlayer.volume = Mathf.Lerp(activeMusicPlayer.volume, activeMusicVolume, Time.deltaTime * .25f);
+        beginningMusicPlayer.volume = Mathf.Lerp(beginningMusicPlayer.volume, beginningMusicVolume, Time.deltaTime * .25f);
 
 
 

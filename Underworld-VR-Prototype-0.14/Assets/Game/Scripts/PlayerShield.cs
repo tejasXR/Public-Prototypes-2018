@@ -78,6 +78,8 @@ public class PlayerShield : MonoBehaviour {
 
     public Material[] shieldOutlineMats;
 
+    private TimeManager timeManager;
+
     //public GameObject[] 
 
     // Bottom Outline
@@ -87,6 +89,7 @@ public class PlayerShield : MonoBehaviour {
         shieldHealth = shieldHealthMax * shieldHealthMaxMultiplier;
         //rend = shieldMesh.GetComponent<Renderer>();
         playerController = GameObject.Find("PlayerController").GetComponent<Player>();
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         //scanTileOriginal = rend.material.GetFloat("_ScanTiling");
 
         scaleXOriginal = new float[outlines.Length];
@@ -430,7 +433,8 @@ public class PlayerShield : MonoBehaviour {
                 if (hit) return;
                 hit = true;
 
-                Instantiate(shieldHitEffect, other.transform.position, Quaternion.Inverse(transform.rotation));
+                timeManager.DoSlowMotion();
+                Instantiate(shieldHitEffect, other.transform.position, transform.rotation);//Quaternion.Inverse(transform.rotation));
                 Destroy(other.gameObject);
 
 

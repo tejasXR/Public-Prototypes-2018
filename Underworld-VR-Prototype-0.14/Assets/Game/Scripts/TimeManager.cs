@@ -31,8 +31,31 @@ public class TimeManager : MonoBehaviour {
         }*/
 
         //print(Time.timeScale);
+
+        /*if (slowDown)
+        {
+            SlowMoForDuration();
+        }*/
        
 
+    }
+
+    /*public void SlowMoDuration(float duration) // public variable that can set the duration of the slow mo
+    {
+        slowDown = true;
+        slowDownLength = duration;
+    }*/
+
+    private void SlowMoForDuration() // private function that calls the slowmotion for the set duration
+    {
+        Time.timeScale = slowDownFactor;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        /*slowDownLength -= Time.unscaledDeltaTime;
+        if (slowDownLength <= 0)
+        {
+            slowDown = false;
+            //slowDownLength = 2f;
+        }*/
     }
 
     public void DoSlowMotion()

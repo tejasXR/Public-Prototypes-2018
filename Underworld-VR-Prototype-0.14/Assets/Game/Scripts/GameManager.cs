@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour {
             gameStart = true;
             playerPlatform.moving = true;
             playerMoveToStadium = true;
-            musicManager.musicVolume = 1f;
+            //musicManager.musicVolume = 1f;
             tutorialManager.TutorialReset();
             foreach (GameObject controllerModel in controllerModels)
             {

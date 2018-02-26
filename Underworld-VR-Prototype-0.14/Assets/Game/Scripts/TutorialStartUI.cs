@@ -39,8 +39,7 @@ public class TutorialStartUI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        controllerRight = SteamVR_Controller.Input((int)trackedRight.index);
-        controllerLeft = SteamVR_Controller.Input((int)trackedLeft.index);
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -51,6 +50,9 @@ public class TutorialStartUI : MonoBehaviour {
 
         if (trackedRight.gameObject.activeInHierarchy && trackedLeft.gameObject.activeInHierarchy)
         {
+            controllerRight = SteamVR_Controller.Input((int)trackedRight.index);
+            controllerLeft = SteamVR_Controller.Input((int)trackedLeft.index);
+
             if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
                 tutorialStart = true;
