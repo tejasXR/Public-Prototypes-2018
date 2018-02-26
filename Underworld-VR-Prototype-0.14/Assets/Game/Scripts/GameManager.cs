@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour {
     public GameObject roundUI;
     public GameObject redemptionUI;
 
+    public GameObject gameOverUI;
+
     public float roundFirstStartBufferTime; // The time between when the blue platforms are enabled and the purple stadium is enabled
     public float roundBufferTime;
     private float roundBufferTimeCounter; // The float that counts down between rounds
@@ -139,12 +141,35 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+        if (roundStart && !upgradeActive && !roundActive && !redemptionActive)
+        {
+            StartRound();
+            roundActive = true;
+            roundStart = false;
+        }
+
+        if (playerController.playerHealth <= 0 && inRound)
+        {
+            gameOver = true;
+            //print("redemption start");
+        }
+
+        if (gameOver)
+        {
+            inRound = false;
+            roundActive = false;
+            //redemptionActive = false;
+            //upgradeActive = false;
+            //gameOver = true;
+            GameOver();
+        }
+
         if (roundActive)
         {
             //UpdateTimer();
             //timeLeftCounter -= Time.deltaTime;
 
-            if (enemiesDestroyed == enemiesToSpawn && enemiesOnScreen <= 0 && !redemptionActive)
+            if (enemiesDestroyed == enemiesToSpawn && enemiesOnScreen <= 0)// && !redemptionActive)
             {
                 roundBufferTimeCounter -= Time.deltaTime;
                 if (roundBufferTimeCounter <= 0)
@@ -170,7 +195,9 @@ public class GameManager : MonoBehaviour {
                 //print("Upgrade!");
             }
 
-            if (redemptionStart)
+            
+
+            /*if (redemptionStart)
             {
                 TurnOffForRedemption(); // Turn stuff off for redemption
                                         //redemptionActive = true; // Not false here, will call when redemption buffer timer runs down
@@ -235,22 +262,17 @@ public class GameManager : MonoBehaviour {
             {
                 // If the player fails redemption, end the game
                 GameOver();
-            }
+            }*/
         }
 
         // If the counter has counted down to zero and the player is currently in a round, stop the timer and enter upgrade mode
         //if (timeLeftCounter <= 0 && roundActive && !redemptionActive)
 
 
-        
+
 
         // If the player if done upgrading and the wave is already stopped, start the next wave
-        if (roundStart && !upgradeActive && !roundActive && !redemptionActive)
-        {
-            StartRound();
-            roundActive = true;
-            roundStart = false;
-        }
+        
 
         // How to start round after upgrade?
 
@@ -260,11 +282,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // If the player has lost all health (called from Player script) and the round is active, stop round and enter redemption mode
-        if (playerController.playerHealth <= 0 && !hadRedemption)
-        {
-            redemptionStart = true;
-            print("redemption start");
-        }
+       
 
         
 
@@ -454,10 +472,28 @@ public class GameManager : MonoBehaviour {
 
     void GameOver()
     {
-        roundActive = false;
-        redemptionActive = false;
-        upgradeActive = false;
-        gameOver = true;
+        // Controller Models
+        controllerModels[0].SetActive(true);
+        controllerModels[1].SetActive(true);
+
+        // Environment
+        bluePlatform.SetActive(false);
+        purpleStadium.SetActive(false);
+        synthCity.SetActive(false);
+        playerStartArea.SetActive(false);
+
+        // Lights
+        platformLight.SetActive(false);
+        redemptionLight.SetActive(false);
+
+        // UI
+        roundUI.SetActive(false);
+        redemptionUI.SetActive(false);
+        gameOverUI.SetActive(true);
+
+        // Props
+        playerShield.SetActive(false);
+        weaponActive.DisableAllWeapons();
     }
     
 }
