@@ -64,7 +64,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1154602592190512
 GameObject:
   m_ObjectHideFlags: 1
@@ -1193,8 +1193,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 6
+  m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1293,7 +1293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerEye: {fileID: 0}
   textSolid: {fileID: 1529055093154748}
-  text: {fileID: 114608831372324636}
+  earnedBulletText: {fileID: 114608831372324636}
+  plusText: {fileID: 114513967672484380}
   bulletNumber: 10
   countSpeed: 30
   adjust: 0
@@ -1301,6 +1302,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
   moveSpeed: 7
+  textSolidAlphaTimer: 0
 --- !u!114 &114710247283722880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1807,7 +1809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.761, y: -0.023000002}
+  m_AnchoredPosition: {x: 0.28, y: -0.023000002}
   m_SizeDelta: {x: 0.4, y: 0.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224103266382844070
@@ -1827,7 +1829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.609, y: 0.008}
+  m_AnchoredPosition: {x: 0, y: -9.313226e-10}
   m_SizeDelta: {x: 0.1, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224223375198260346
@@ -1867,7 +1869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.743, y: 0.008004822}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.1, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224480155238878900
@@ -1921,7 +1923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.018000007}
   m_SizeDelta: {x: 1.28, y: 1.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224640983121481262
@@ -2029,6 +2031,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.978, y: -0.023}
+  m_AnchoredPosition: {x: 0, y: 0.0000000018626451}
   m_SizeDelta: {x: 0.88, y: 0.76}
   m_Pivot: {x: 0.5, y: 0.5}

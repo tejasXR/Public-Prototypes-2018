@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1929180420134506
 GameObject:
   m_ObjectHideFlags: 1
@@ -242,7 +242,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0.75
+      value: 0.65
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01312d085de31d743b9c821c785fc59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyInSeconds: 1.75
+  destroyInSeconds: 2
 --- !u!114 &114117752178203458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,7 +413,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 475073292
+  randomSeed: -1654240216
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -808,7 +808,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 5
+    type: 0
     angle: 22.21
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -3729,14 +3729,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 486294651
+  randomSeed: 1582375056
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
+      scalar: 2
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2

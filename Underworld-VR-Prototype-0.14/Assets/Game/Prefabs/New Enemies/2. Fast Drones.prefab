@@ -1070,13 +1070,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804434109869762}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 4554203841291738}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!4 &4410334806094092
 Transform:
   m_ObjectHideFlags: 1
@@ -2996,7 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e428cef76a4afad4ea25b0b52d626f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletFireRate: 1
+  enemyBulletFireRate: 0.75
   enemyAttackTimer: 0
   enemyBulletSpeed: 10
   enemyBulletDamage: 1
@@ -3010,6 +3010,7 @@ MonoBehaviour:
   isRedemptiionDrone: 0
   isTutorialDrone: 0
   eyeObject: {fileID: 114043508270886164}
+  enemyEffectsManager: {fileID: 0}
 --- !u!114 &114197711480782936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3166,7 +3167,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1731375400292242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01312d085de31d743b9c821c785fc59c, type: 3}
   m_Name: 
@@ -3269,9 +3270,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   enemySpawnManager: {fileID: 0}
+  enemyEffectsManager: {fileID: 0}
   player: {fileID: 0}
-  enemyHealth: 1
-  enemyGiveBullets: 10
+  enemyHealth: 2
+  enemyGiveBullets: 5
   explosionPrefab: {fileID: 1957070108246546, guid: 67832243d348c7447bb24e3375b1ffc6,
     type: 2}
   explosionTextObj: {fileID: 1542694522828752, guid: 6880a9851aee3c243ba03a943c51d426,
@@ -3394,10 +3396,10 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804434109869762}
   serializedVersion: 5
-  lengthInSec: 2.5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -3447,7 +3449,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -323855144
+  randomSeed: 820600782
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3455,7 +3457,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 3
-      minScalar: 2
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3795,7 +3797,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 25
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -3842,7 +3844,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 5
+    type: 4
     angle: 26.13
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -3850,7 +3852,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1.21, y: 0.7, z: 1.82}
+    m_Scale: {x: 1.5700706, y: 0.26, z: 1.29}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -3959,7 +3961,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2

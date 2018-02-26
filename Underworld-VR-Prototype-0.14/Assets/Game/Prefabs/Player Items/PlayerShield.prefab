@@ -2801,7 +2801,7 @@ Transform:
   m_GameObject: {fileID: 1541932659593396}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_Children:
   - {fileID: 4968403102479422}
   - {fileID: 4098662331555340}
@@ -6686,7 +6686,7 @@ MonoBehaviour:
   shieldHealth: 10
   shieldHealthSmooth: 0
   shieldHealthPercent: 1
-  shieldRechargeSpeed: 0.05
+  shieldRechargeSpeed: 0.02
   shieldHealthTop30: 1
   shieldHealthMiddle20: 1
   shieldHealthBottom50: 1
