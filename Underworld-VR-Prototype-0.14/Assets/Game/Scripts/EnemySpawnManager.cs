@@ -56,11 +56,11 @@ public class EnemySpawnManager : MonoBehaviour
 
             enemySpawnTimer -= Time.deltaTime;
 
-            if (((gameManager.enemiesToSpawn - gameManager.enemiesDestroyed) > gameManager.enemiesOnScreen) && gameManager.enemiesOnScreen < gameManager.enemiesOnScreenMax)
+            if (((gameManager.enemiesToSpawn - gameManager.enemiesDestroyed) > gameManager.enemiesOnScreen) && gameManager.enemiesOnScreen < gameManager.enemiesOnScreenMax && !spawnNow)
             {
                 if (enemySpawnTimer <= 0)
                 {
-                    spawnNow = false;
+                    //spawnNow = false;
                     CheckRound();
                     SpawnEnemy();
                 }
@@ -96,9 +96,18 @@ public class EnemySpawnManager : MonoBehaviour
         //if (spawnNow)
         {
             //Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
-            enemySpawnBoards[randomSide].enemySpawnType = enemyType;
-            enemySpawnBoards[randomSide].shouldFlicker = true;
-            gameManager.enemiesOnScreen++;
+            if (!enemySpawnBoards[randomSide].shouldFlicker)
+            {
+                enemySpawnBoards[randomSide].enemySpawnType = enemyType;
+                enemySpawnBoards[randomSide].shouldFlicker = true;
+                gameManager.enemiesOnScreen++;
+                spawnNow = true;
+
+            } else
+            {
+                randomSide = Random.Range(0, 3);
+            }
+            
         }
 
 
