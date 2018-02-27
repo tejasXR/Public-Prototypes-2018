@@ -146,7 +146,7 @@ public class UpgradeMenu : MonoBehaviour
         }
         else if (!upgradeMenuOpen && !upgradeSelected)// && gameManager.mainGameStart)// && !gameManager.redemptionPreStart)
         {
-            if (gameManager.gameStart)
+            if (gameManager.mainGameStart)
             {
                 playerShield.SetActive(true);
                 shieldHide = false;

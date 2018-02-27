@@ -3740,7 +3740,7 @@ MonoBehaviour:
   enemyEffectsManager: {fileID: 0}
   player: {fileID: 0}
   enemyHealth: 3
-  enemyGiveBullets: 10
+  enemyGiveBullets: 5
   explosionPrefab: {fileID: 1791950710268172, guid: 508faf91813c2f248aed6f78763379de,
     type: 2}
   explosionTextObj: {fileID: 1157587441603694, guid: c9dfea72e479aab44b6e693335e90a10,
