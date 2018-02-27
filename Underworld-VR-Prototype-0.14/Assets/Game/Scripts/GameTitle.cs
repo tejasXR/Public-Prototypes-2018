@@ -45,7 +45,9 @@ public class GameTitle : MonoBehaviour {
         titles[2].SetActive(true);
         yield return new WaitForSeconds(.1f);
 
-        this.gameObject.SetActive(false);
+
+
+        //this.gameObject.SetActive(false);
 
        
     }

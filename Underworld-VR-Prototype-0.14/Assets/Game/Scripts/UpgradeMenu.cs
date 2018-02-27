@@ -144,9 +144,9 @@ public class UpgradeMenu : MonoBehaviour
             shieldHide = true;
             blurredProjection.SetActive(true);
         }
-        else if (!upgradeMenuOpen && !upgradeSelected)// && gameManager.mainGameStart && !gameManager.redemptionPreStart)
+        else if (!upgradeMenuOpen && !upgradeSelected)// && gameManager.mainGameStart)// && !gameManager.redemptionPreStart)
         {
-            if (!gameManager.gameStart)
+            if (gameManager.gameStart)
             {
                 playerShield.SetActive(true);
                 shieldHide = false;

@@ -94,7 +94,7 @@ public class WeaponsMenu : MonoBehaviour {
 
         //touchpad = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !weaponsMenuOpen && !gameManager.inRedemption)
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !weaponsMenuOpen)// && !gameManager.inRedemption)
         {
             StartCoroutine(ButtonPressHaptics(1000));
             weaponActive.DisableAllWeapons();

@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour {
     public GameObject redemptionPlatform;
     public GameObject encapsulatingStadium;
     //public GameObject platformPieces;
+    public GameObject gameTitle;
 
     public GameObject playerStartArea;
     public GameObject playerShield;
@@ -443,6 +444,7 @@ public class GameManager : MonoBehaviour {
         synthCity.SetActive(false);
         playerStartArea.SetActive(false);
         platformLight.SetActive(true);
+        gameTitle.SetActive(false);
     }
 
     void GameReset()

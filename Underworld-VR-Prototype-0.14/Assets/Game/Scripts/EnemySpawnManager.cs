@@ -54,13 +54,16 @@ public class EnemySpawnManager : MonoBehaviour
                 roundCount = gameManager.roundCurrent;
             }
 
-            enemySpawnTimer -= Time.deltaTime;
+            if (!spawnNow)
+            {
+                enemySpawnTimer -= Time.deltaTime;
+            }
 
             if (((gameManager.enemiesToSpawn - gameManager.enemiesDestroyed) > gameManager.enemiesOnScreen) && gameManager.enemiesOnScreen < gameManager.enemiesOnScreenMax && !spawnNow)
             {
                 if (enemySpawnTimer <= 0)
                 {
-                    //spawnNow = false;
+                    spawnNow = true;
                     CheckRound();
                     SpawnEnemy();
                 }
@@ -93,7 +96,7 @@ public class EnemySpawnManager : MonoBehaviour
         //RandomPosition(); // removing since noe we spawn through the spawn boards
 
         // Spawns enemy spawner objects at the spawn positions
-        //if (spawnNow)
+        if (spawnNow)
         {
             //Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
             if (!enemySpawnBoards[randomSide].shouldFlicker)
@@ -101,7 +104,7 @@ public class EnemySpawnManager : MonoBehaviour
                 enemySpawnBoards[randomSide].enemySpawnType = enemyType;
                 enemySpawnBoards[randomSide].shouldFlicker = true;
                 gameManager.enemiesOnScreen++;
-                spawnNow = true;
+                spawnNow = false;
 
             } else
             {

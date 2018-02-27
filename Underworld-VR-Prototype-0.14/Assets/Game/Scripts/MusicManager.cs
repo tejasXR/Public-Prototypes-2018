@@ -53,7 +53,7 @@ public class MusicManager : MonoBehaviour {
                 playingActiveMusic = true;
             }
             beginningMusicVolume = 0f;
-            lowPass = 5000;
+            //lowPass = 5000;
             activeMusicVolume = .65f;
 
         }
@@ -66,11 +66,14 @@ public class MusicManager : MonoBehaviour {
 
         if (timeManager.slowDown)
         {
-            lowPass = 2000;
+            //activeMusicLowPass.enabled = true;
+            lowPass = 500;
         }
         else
         {
-            lowPass = 5000;
+            lowPass = 7500;
+            //activeMusicLowPass.enabled = false;
+
         }
 
         if (gameManager.gameOver)

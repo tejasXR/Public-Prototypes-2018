@@ -13,6 +13,7 @@ public class BulletTextCounter : MonoBehaviour {
     private bool adjust;
 
     public bool formatXX;
+    public bool formatXXX;
     public bool hasBulletIcon;
     public bool hasBulletIconOutline;
     public bool changeTextColor;
@@ -138,9 +139,12 @@ public class BulletTextCounter : MonoBehaviour {
         if (formatXX)
         {
             bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("00");
-        } else
+        } else if (formatXXX)
         {
             bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("000");
+        } else
+        {
+            bulletTextCounter.text = "" + Mathf.RoundToInt(bulletSmoothCount).ToString("0000");
         }
     }
 }
