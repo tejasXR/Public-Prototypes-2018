@@ -52,6 +52,8 @@ public class PlayerGun : MonoBehaviour {
     public GameObject bulletUsedObj;
     public GameObject noBulletsObj;
 
+    public AudioSource noBulletsSound;
+
     //private AudioSource gunFireSound;
 
     //public ushort pulseStrength;
@@ -123,6 +125,7 @@ public class PlayerGun : MonoBehaviour {
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && playerController.playerBullets < bulletsInstantiated)
         {
             StartCoroutine(NoBulletsLeft());
+            noBulletsSound.Play();
             Instantiate(noBulletsObj, sparkPoint.position, sparkPoint.transform.rotation);
         }
     }

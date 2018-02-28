@@ -73,14 +73,13 @@ GameObject:
   - component: {fileID: 4691610781902080}
   - component: {fileID: 114981492192527982}
   - component: {fileID: 114427271202038794}
-  - component: {fileID: 82629725543353354}
   m_Layer: 0
   m_Name: Laser Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1180408355382406
 GameObject:
   m_ObjectHideFlags: 1
@@ -93,6 +92,21 @@ GameObject:
   - component: {fileID: 23442073985910740}
   m_Layer: 0
   m_Name: S_FusionCore1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1196724104007658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4442388148567244}
+  m_Layer: 8
+  m_Name: Sounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -519,6 +533,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1975506736184108
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4786307629161962}
+  - component: {fileID: 82276959056991140}
+  m_Layer: 8
+  m_Name: Gun Activate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4019693125855666
 Transform:
   m_ObjectHideFlags: 1
@@ -720,6 +750,20 @@ Transform:
   m_Father: {fileID: 4214722788034000}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4442388148567244
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196724104007658}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4786307629161962}
+  m_Father: {fileID: 4691610781902080}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4452561886812472
 Transform:
   m_ObjectHideFlags: 1
@@ -801,6 +845,7 @@ Transform:
   - {fileID: 4231464013137592}
   - {fileID: 4452561886812472}
   - {fileID: 4208647542607400}
+  - {fileID: 4442388148567244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -816,6 +861,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4214722788034000}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4786307629161962
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975506736184108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4442388148567244}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4819155602529306
 Transform:
@@ -1523,19 +1581,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &82629725543353354
+--- !u!82 &82276959056991140
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1175457261138224}
+  m_GameObject: {fileID: 1975506736184108}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: da1824778747aa24b8254b0d6a18f14e, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: d04d12b5bd0ca5c49bf1702560d45201, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.75
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1543,7 +1601,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1572,7 +1630,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1596,7 +1654,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0.972
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1637,6 +1695,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSmoothCount: 0
   countSpeed: 35
+  formatXX: 1
+  formatXXX: 0
+  hasBulletIcon: 0
+  hasBulletIconOutline: 0
+  changeTextColor: 1
+  textColorOriginal:
+    serializedVersion: 2
+    rgba: 0
+  textColorGainBullet:
+    serializedVersion: 2
+    rgba: 4294967295
+  textColorLoseBullet:
+    serializedVersion: 2
+    rgba: 4278190335
+  bulletIconOriginal:
+    serializedVersion: 2
+    rgba: 0
+  bulletIconOutlineOriginal:
+    serializedVersion: 2
+    rgba: 0
+  bulletIcon: {fileID: 0}
+  bulletIconOutline: {fileID: 0}
+  textSolidTimer: 0
+  textSolidTimerDuration: 0
 --- !u!114 &114098092448746470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1656,7 +1738,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d4d275a01b69504691b7d9dcc731447, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbc4f61404f3e524e87f105a9954c388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1765,7 +1847,7 @@ MonoBehaviour:
   isPistol: 0
   isRifle: 0
   isShotgun: 0
-  isLaserRifle: 1
+  isHyperRifle: 1
   noBulletHaptic: 0
   bulletUsedObj: {fileID: 1889865909195924, guid: c45716836252a924ead23fdf6de1bad9,
     type: 2}
@@ -1839,7 +1921,7 @@ MonoBehaviour:
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
-  m_overrideHtmlColors: 0
+  m_overrideHtmlColors: 1
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -1955,7 +2037,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d4d275a01b69504691b7d9dcc731447, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbc4f61404f3e524e87f105a9954c388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1982,6 +2064,27 @@ MonoBehaviour:
   meterZCurrent: 0
   meterZOriginal: 0
   isOnSaberSword: 0
+  adjust: 0
+  hasHealthIcon: 0
+  hasHealthIconOutline: 0
+  healthLowFlash: 0
+  healthFlashDuration: 0
+  healthFlashDurationTimer: 0
+  healthColorOriginal:
+    serializedVersion: 2
+    rgba: 0
+  gainHealthColor:
+    serializedVersion: 2
+    rgba: 0
+  loseHealthColor:
+    serializedVersion: 2
+    rgba: 0
+  healthIconColorOriginal:
+    serializedVersion: 2
+    rgba: 0
+  healthIcon: {fileID: 0}
+  textSolidTimer: 0
+  textSolidTimerDuration: 0
 --- !u!114 &114958214350929680
 MonoBehaviour:
   m_ObjectHideFlags: 1

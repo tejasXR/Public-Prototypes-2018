@@ -557,24 +557,24 @@ public class PlayerShield : MonoBehaviour {
     IEnumerator ShieldOutlineFlash()
     {
         shieldOutlineObj.SetActive(false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         shieldOutlineObj.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
     }
 }

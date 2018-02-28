@@ -443,7 +443,6 @@ GameObject:
   - component: {fileID: 4955210162491196}
   - component: {fileID: 114255682838590628}
   - component: {fileID: 114708851954637552}
-  - component: {fileID: 82447754354459742}
   m_Layer: 8
   m_Name: Shotgun
   m_TagString: Untagged
@@ -451,6 +450,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1873814299116254
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4434000302666566}
+  - component: {fileID: 82390499041813522}
+  m_Layer: 8
+  m_Name: Gun Activate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1908462159063076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4746518049605168}
+  m_Layer: 8
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4074735595092644
 Transform:
   m_ObjectHideFlags: 1
@@ -544,6 +574,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4602543424394206}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4434000302666566
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873814299116254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4746518049605168}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4485432269748390
 Transform:
@@ -677,6 +720,20 @@ Transform:
   m_Father: {fileID: 4602543424394206}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4746518049605168
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908462159063076}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4434000302666566}
+  m_Father: {fileID: 4955210162491196}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4814905463027212
 Transform:
   m_ObjectHideFlags: 1
@@ -703,6 +760,7 @@ Transform:
   - {fileID: 4485432269748390}
   - {fileID: 4260678765600196}
   - {fileID: 4490488767832634}
+  - {fileID: 4746518049605168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1235,19 +1293,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &82447754354459742
+--- !u!82 &82390499041813522
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1830616208544648}
+  m_GameObject: {fileID: 1873814299116254}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6f23a5ecba2ce674d90e3bbad8f353bf, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: d04d12b5bd0ca5c49bf1702560d45201, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.7
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1255,7 +1313,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1284,7 +1342,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1394,7 +1452,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d4d275a01b69504691b7d9dcc731447, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbc4f61404f3e524e87f105a9954c388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1463,7 +1521,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7d4d275a01b69504691b7d9dcc731447, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbc4f61404f3e524e87f105a9954c388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1508,7 +1566,7 @@ MonoBehaviour:
   isPistol: 0
   isRifle: 0
   isShotgun: 1
-  isLaserRifle: 0
+  isHyperRifle: 0
   noBulletHaptic: 0
   bulletUsedObj: {fileID: 1141972136093172, guid: 11bc16e1370b1b441ba07da134c0daef,
     type: 2}
@@ -1541,6 +1599,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSmoothCount: 0
   countSpeed: 35
+  formatXX: 1
+  formatXXX: 0
+  hasBulletIcon: 0
+  hasBulletIconOutline: 0
+  changeTextColor: 1
+  textColorOriginal:
+    serializedVersion: 2
+    rgba: 0
+  textColorGainBullet:
+    serializedVersion: 2
+    rgba: 4294967295
+  textColorLoseBullet:
+    serializedVersion: 2
+    rgba: 4278190335
+  bulletIconOriginal:
+    serializedVersion: 2
+    rgba: 0
+  bulletIconOutlineOriginal:
+    serializedVersion: 2
+    rgba: 0
+  bulletIcon: {fileID: 0}
+  bulletIconOutline: {fileID: 0}
+  textSolidTimer: 0
+  textSolidTimerDuration: 0
 --- !u!114 &114890953443894464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1587,6 +1669,27 @@ MonoBehaviour:
   meterZCurrent: 0
   meterZOriginal: 0
   isOnSaberSword: 0
+  adjust: 0
+  hasHealthIcon: 0
+  hasHealthIconOutline: 0
+  healthLowFlash: 0
+  healthFlashDuration: 0
+  healthFlashDurationTimer: 0
+  healthColorOriginal:
+    serializedVersion: 2
+    rgba: 0
+  gainHealthColor:
+    serializedVersion: 2
+    rgba: 0
+  loseHealthColor:
+    serializedVersion: 2
+    rgba: 0
+  healthIconColorOriginal:
+    serializedVersion: 2
+    rgba: 0
+  healthIcon: {fileID: 0}
+  textSolidTimer: 0
+  textSolidTimerDuration: 0
 --- !u!114 &114973429985388542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1627,7 +1730,7 @@ MonoBehaviour:
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
-  m_overrideHtmlColors: 0
+  m_overrideHtmlColors: 1
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
