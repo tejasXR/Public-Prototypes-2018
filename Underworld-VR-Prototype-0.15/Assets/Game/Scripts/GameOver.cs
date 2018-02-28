@@ -40,6 +40,9 @@ public class GameOver : MonoBehaviour {
                     || controllerRight.GetPress(SteamVR_Controller.ButtonMask.Touchpad) || controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
                 progress = Mathf.Lerp(progress , 1, Time.deltaTime * 2f);
+                //ushort haptic = (ushort)(3000 * progress);
+                controllerLeft.TriggerHapticPulse((ushort)(3000 * progress));
+                controllerRight.TriggerHapticPulse((ushort)(3000 * progress));
                 if (progress >= .98)
                 {
                     ResetScene();

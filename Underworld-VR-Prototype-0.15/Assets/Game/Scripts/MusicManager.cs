@@ -54,7 +54,7 @@ public class MusicManager : MonoBehaviour {
             }
             beginningMusicVolume = 0f;
             //lowPass = 5000;
-            activeMusicVolume = .7f;
+            activeMusicVolume = .85f;
 
         }
 

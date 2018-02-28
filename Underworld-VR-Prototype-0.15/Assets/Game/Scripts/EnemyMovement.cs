@@ -198,7 +198,7 @@ public class EnemyMovement : MonoBehaviour {
             }
 
             Ray ray = new Ray(enemyParent.player.transform.position, randomPosition);
-            targetPosition = ray.GetPoint(Random.Range(4f, 7f));
+            targetPosition = ray.GetPoint(Random.Range(3f, 6f));
         }
 
         int layerMask = 1 << 8;

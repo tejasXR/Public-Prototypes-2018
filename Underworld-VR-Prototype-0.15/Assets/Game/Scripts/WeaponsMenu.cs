@@ -41,10 +41,13 @@ public class WeaponsMenu : MonoBehaviour {
     public GameObject blurredProjection;
     public AudioSource itemHoverSound;
 
+    private TimeManager timeManager;
+
 
     // Use this for initialization
     void Start () {
         weaponsMenu.SetActive(false);
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         weaponActive = GetComponent<WeaponActive>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         CheckWeapons();
@@ -98,7 +101,8 @@ public class WeaponsMenu : MonoBehaviour {
         {
             StartCoroutine(ButtonPressHaptics(1000));
             weaponActive.DisableAllWeapons();
-            blurredProjection.SetActive(true);
+            timeManager.DoSlowMotion();
+            //blurredProjection.SetActive(true);
             CheckWeapons(); //check what weapons we have unlocked so we can show this accordingly via UI
 
             weaponsMenuOpen = true;
@@ -127,6 +131,7 @@ public class WeaponsMenu : MonoBehaviour {
 
     void OpenWeaponsMenu()
     {
+        //blurredProjection.SetActive(true);
         weaponsMenuOpen = true;
         weaponsMenu.SetActive(true);
 

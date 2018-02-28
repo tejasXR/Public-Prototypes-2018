@@ -91,7 +91,7 @@ public class EnemyParent : MonoBehaviour {
 
     private void Update()
     {
-        if (gameManager.inRedemption && !isRedemptionDrone)
+        if (gameManager.gameOver)// && !isRedemptionDrone)
         {
             EnemyDestroyNoBullets();
         }

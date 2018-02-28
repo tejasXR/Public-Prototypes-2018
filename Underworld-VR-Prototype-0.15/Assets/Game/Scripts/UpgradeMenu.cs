@@ -13,6 +13,7 @@ public class UpgradeMenu : MonoBehaviour
     public GameObject playerShield;
     private GameManager gameManager;
     private TutorialManager tutorialManager;
+    public WeaponsMenu weaponsMenu;
 
     public List<MainMenuUI> mainMenuUIList = new List<MainMenuUI>(); //creates a list of menu buttons to access
 
@@ -93,6 +94,7 @@ public class UpgradeMenu : MonoBehaviour
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
+        
 
         MenuReset();
 
@@ -139,10 +141,10 @@ public class UpgradeMenu : MonoBehaviour
         if (upgradeMenuOpen && !upgradeSelected && !gameManager.redemptionPreStart)
         {
             OpenUpgradeMenu();
-            timeManager.DoSlowMotion();
+            //timeManager.DoSlowMotion();
             playerShield.SetActive(false);
             shieldHide = true;
-            blurredProjection.SetActive(true);
+            //blurredProjection.SetActive(true);
         }
         else if (!upgradeMenuOpen && !upgradeSelected)// && gameManager.mainGameStart)// && !gameManager.redemptionPreStart)
         {
@@ -151,8 +153,10 @@ public class UpgradeMenu : MonoBehaviour
                 playerShield.SetActive(true);
                 shieldHide = false;
             }
+
+            
            
-            blurredProjection.SetActive(false);
+            //blurredProjection.SetActive(false);
 
         } else
         {

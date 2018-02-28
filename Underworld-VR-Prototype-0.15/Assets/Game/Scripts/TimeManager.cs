@@ -9,7 +9,13 @@ public class TimeManager : MonoBehaviour {
     public float slowDownLength = 2f;
 
     public bool slowDown = false;
+    private bool slowingDown;
     public float timeScale;
+    public float previousTimeScale;
+
+    public UpgradeMenu upgradeMenu;
+    public WeaponsMenu weaponsMenu;
+
 
 
 	// Use this for initialization
@@ -20,10 +26,26 @@ public class TimeManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //slowDown = 
-        Time.timeScale += (1f / slowDownLength) * Time.unscaledDeltaTime;
-        Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+       
+        //slowDown = false;
 
-        timeScale = Time.timeScale;
+        if (!slowDown)
+        {
+            Time.timeScale += (1f / slowDownLength) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        }
+
+        if (upgradeMenu.upgradeMenuOpen || weaponsMenu.weaponsMenuOpen)
+        {
+            DoSlowMotion();
+        } else
+        {
+            slowDown = false;
+        }
+
+
+        
+
         /*if (!slowDown)
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, 1, Time.unscaledDeltaTime);
@@ -36,8 +58,25 @@ public class TimeManager : MonoBehaviour {
         {
             SlowMoForDuration();
         }*/
-       
 
+
+    }
+
+    /*private void FixedUpdate()
+    {
+        timeScale = Time.timeScale;
+
+        if (previousTimeScale > timeScale)
+        {
+            slowDown = true;
+
+        }
+        else
+        {
+            slowDown = false;
+        }
+
+        previousTimeScale = timeScale;
     }
 
     /*public void SlowMoDuration(float duration) // public variable that can set the duration of the slow mo
@@ -50,6 +89,8 @@ public class TimeManager : MonoBehaviour {
     {
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        slowDown = true;
+       
         /*slowDownLength -= Time.unscaledDeltaTime;
         if (slowDownLength <= 0)
         {
@@ -61,9 +102,14 @@ public class TimeManager : MonoBehaviour {
     public void DoSlowMotion()
     {
         //Time.timeScale = Mathf.Lerp(Time.timeScale, slowDownFactor, Time.unscaledDeltaTime);
+        //if (!slowDown && !slowingDown)
+        {
+            Time.timeScale = slowDownFactor;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            //slowDown = true;
+            slowDown = true;
+        }
 
-        Time.timeScale = slowDownFactor;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
         //slowDown = true;
         /*if (slowDown)
@@ -79,6 +125,6 @@ public class TimeManager : MonoBehaviour {
             }
         }*/
 
-        
+
     }
 }

@@ -134,8 +134,8 @@ public class EnemySpawnBoards : MonoBehaviour {
             for (int j = 0; j < 3; j++)
             {
                 Renderer rend = triangleOutlines[i].lines[j].GetComponent<Renderer>();
-                rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), normalColors[i], Time.deltaTime));
-                rend.material.SetColor("_MKGlowColor", Color.Lerp(rend.material.GetColor("_MKGlowColor"), normalColors[i], Time.deltaTime));
+                rend.material.SetColor("_Color", Color.Lerp(rend.material.GetColor("_Color"), normalColors[i], Time.deltaTime / 2f));
+                rend.material.SetColor("_MKGlowColor", Color.Lerp(rend.material.GetColor("_MKGlowColor"), normalColors[i], Time.deltaTime / 2f));
 
             }
 

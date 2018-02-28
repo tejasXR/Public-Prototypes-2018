@@ -61,15 +61,15 @@ public class EnemyBullet : MonoBehaviour {
 
     private void Update()
     {
-        if(gameManager.inRedemption && !isRedemptionBullet)
+        if(gameManager.gameOver)// && !isRedemptionBullet)
         {
             Destroy(this.gameObject);
-;        }
+;       }
 
-        if (gameManager.inRound && isRedemptionBullet)
+        /*if (gameManager.inRound && isRedemptionBullet)
         {
             Destroy(this.gameObject);
-        }
+        }*/
 
         //bulletFiredSound.pitch = Mathf.Lerp(bulletFiredSound.pitch, bulletFiredSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
         //bulletNormalSound.pitch = Mathf.Lerp(bulletNormalSound.pitch, bulletNormalSoundPitchOriginal * Time.timeScale, Time.deltaTime * 4f);
