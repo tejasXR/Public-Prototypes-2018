@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,16 +17,25 @@ public class GameOver : MonoBehaviour {
     public float scaleXOriginal;
     public float scaleXCurrent;
 
+    private GameManager gameManager;
+    public TextMeshPro roundsSurvivedText;
+
 
     // Use this for initialization
     void Start () {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         scaleXOriginal = progressBar.transform.localScale.x - .5f;
         scaleXCurrent = 0;
         progress = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnEnable()
+    {
+        roundsSurvivedText.text = "YOU HAVE SURVIVED " + gameManager.roundCurrent + " ROUNDS";
+    }
+
+    // Update is called once per frame
+    void Update () {
         
 
         scaleXCurrent = Mathf.Lerp(scaleXCurrent, progress * scaleXOriginal + .5f, Time.deltaTime * 10f);
