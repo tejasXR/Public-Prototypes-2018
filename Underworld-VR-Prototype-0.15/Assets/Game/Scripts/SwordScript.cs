@@ -19,6 +19,11 @@ public class SwordScript : MonoBehaviour {
     public float trailScaleOriginal;
     public float trailScaleCurrent;
 
+    public AudioSource swordIdle;
+    public AudioSource swordHit;
+
+    public float swordIdleVolume;
+
     private Rigidbody rb;
 
 	// Use this for initialization
@@ -55,6 +60,15 @@ public class SwordScript : MonoBehaviour {
     private void FixedUpdate()
     {
         device = SteamVR_Controller.Input((int)trackedObj.index); //associates a device with the tracked object;
+        if (device.angularVelocity.magnitude > .75f)
+        {
+            swordIdle.volume = 1;
+        } else
+        {
+            swordIdleVolume = .8f;
+        }
+
+        swordIdle.volume = Mathf.Lerp(swordIdle.volume, swordIdleVolume, Time.deltaTime);
 
     }
 
@@ -62,6 +76,7 @@ public class SwordScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
+            swordHit.Play();
             var enemyBullet = other.gameObject.GetComponent<EnemyBullet>();
             var enemyBulletRb = other.gameObject.GetComponent<Rigidbody>();
             var enemyBulletRend = other.gameObject.GetComponentInChildren<Renderer>();
