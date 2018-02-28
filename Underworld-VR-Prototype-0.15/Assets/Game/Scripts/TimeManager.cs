@@ -36,7 +36,7 @@ public class TimeManager : MonoBehaviour {
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
         }
 
-        if (upgradeMenu.upgradeMenuOpen || weaponsMenu.weaponsMenuOpen && !tutorialManager)
+        if (upgradeMenu.upgradeMenuOpen || weaponsMenu.weaponsMenuOpen)
         {
             DoSlowMotion();
         } else
