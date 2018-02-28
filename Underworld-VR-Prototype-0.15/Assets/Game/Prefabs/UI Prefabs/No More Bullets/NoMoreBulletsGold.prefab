@@ -130,12 +130,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texts:
   - {fileID: 114403043569639248}
-  xForceMin: -0.5
-  xForceMax: 0.5
-  yForceMin: 0.5
-  yForceMax: 0.75
-  zForceMin: -0.75
-  zForceMax: -1
+  xForceMin: -0.25
+  xForceMax: 0.25
+  yForceMin: 0.25
+  yForceMax: 0.5
+  zForceMin: 0.5
+  zForceMax: 0.75
 --- !u!114 &114403043569639248
 MonoBehaviour:
   m_ObjectHideFlags: 1
