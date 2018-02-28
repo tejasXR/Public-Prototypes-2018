@@ -77,6 +77,7 @@ public class PlayerShield : MonoBehaviour {
     public float[] meterZOriginal;
 
     public Material[] shieldOutlineMats;
+    public GameObject shieldOutlineObj;
 
     private TimeManager timeManager;
 
@@ -434,6 +435,7 @@ public class PlayerShield : MonoBehaviour {
                 hit = true;
 
                 //timeManager.DoSlowMotion();
+                StartCoroutine(ShieldOutlineFlash());
                 Instantiate(shieldHitEffect, other.transform.position, transform.rotation);//Quaternion.Inverse(transform.rotation));
                 Destroy(other.gameObject);
 
@@ -550,5 +552,29 @@ public class PlayerShield : MonoBehaviour {
             strength = (ushort)Mathf.Lerp(strength, 0, Time.deltaTime * 5);
             yield return null; //every single frame for the duration of "length" you will vibrate at "strength" amount
         }
+    }
+
+    IEnumerator ShieldOutlineFlash()
+    {
+        shieldOutlineObj.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(false);
+        yield return new WaitForSeconds(.1f);
+        shieldOutlineObj.SetActive(true);
+        yield return new WaitForSeconds(.1f);
     }
 }
