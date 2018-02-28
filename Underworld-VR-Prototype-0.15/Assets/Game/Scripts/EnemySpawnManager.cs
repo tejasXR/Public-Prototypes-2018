@@ -63,7 +63,7 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 if (enemySpawnTimer <= 0)
                 {
-                    spawnNow = true;
+                    //spawnNow = true;
                     CheckRound();
                     SpawnEnemy();
                 }
@@ -96,7 +96,7 @@ public class EnemySpawnManager : MonoBehaviour
         //RandomPosition(); // removing since noe we spawn through the spawn boards
 
         // Spawns enemy spawner objects at the spawn positions
-        if (spawnNow)
+        if (!spawnNow)
         {
             //Instantiate(enemyTypes[enemy], enemySpawnPosition, Quaternion.identity);
             if (!enemySpawnBoards[randomSide].shouldFlicker)
@@ -104,9 +104,11 @@ public class EnemySpawnManager : MonoBehaviour
                 enemySpawnBoards[randomSide].enemySpawnType = enemyType;
                 enemySpawnBoards[randomSide].shouldFlicker = true;
                 gameManager.enemiesOnScreen++;
-                spawnNow = false;
+                spawnNow = true;
+                ResetSpawnTimer();
 
-            } else
+            }
+            else
             {
                 randomSide = Random.Range(0, 3);
             }
@@ -205,6 +207,7 @@ public class EnemySpawnManager : MonoBehaviour
     void ResetSpawnTimer()
     {
         enemySpawnTimer = Random.Range(enemySpawnTimerMin, enemySpawnTimerMax);
+        spawnNow = false;
     }
 
     float EnemyProbability(float[] probs)

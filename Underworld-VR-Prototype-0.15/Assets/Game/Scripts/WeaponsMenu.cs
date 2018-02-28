@@ -101,7 +101,7 @@ public class WeaponsMenu : MonoBehaviour {
         {
             StartCoroutine(ButtonPressHaptics(1000));
             weaponActive.DisableAllWeapons();
-            timeManager.DoSlowMotion();
+            //timeManager.DoSlowMotion();
             //blurredProjection.SetActive(true);
             CheckWeapons(); //check what weapons we have unlocked so we can show this accordingly via UI
 

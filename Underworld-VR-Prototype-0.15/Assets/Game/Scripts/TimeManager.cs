@@ -15,16 +15,17 @@ public class TimeManager : MonoBehaviour {
 
     public UpgradeMenu upgradeMenu;
     public WeaponsMenu weaponsMenu;
+    public TutorialManager tutorialManager;
 
 
+    // Use this for initialization
+    void Start () {
+        tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
         //slowDown = 
        
         //slowDown = false;
@@ -35,7 +36,7 @@ public class TimeManager : MonoBehaviour {
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
         }
 
-        if (upgradeMenu.upgradeMenuOpen || weaponsMenu.weaponsMenuOpen)
+        if (upgradeMenu.upgradeMenuOpen || weaponsMenu.weaponsMenuOpen && !tutorialManager)
         {
             DoSlowMotion();
         } else

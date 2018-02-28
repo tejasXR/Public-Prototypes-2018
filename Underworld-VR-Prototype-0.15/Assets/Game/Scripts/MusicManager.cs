@@ -71,7 +71,7 @@ public class MusicManager : MonoBehaviour {
         }
         else
         {
-            lowPass = 7500;
+            lowPass = 10000;
             //activeMusicLowPass.enabled = false;
 
         }
