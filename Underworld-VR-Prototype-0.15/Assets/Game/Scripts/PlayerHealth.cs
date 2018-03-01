@@ -146,17 +146,31 @@ public class PlayerHealth : MonoBehaviour {
 
             if (gameManager.roundActive)
             {
-                playerController.playerHealth -= 1;
+                
+                playerController.playerHealth -= other.gameObject.GetComponent<EnemyBullet>().damage;
                 alphaHit = .1f;
                 Destroy(other.gameObject);
             }
 
-            if (gameManager.redemptionActive)
+            /*if (gameManager.redemptionActive)
             {
-                playerController.playerRedemptionHealth -= 1;
+                playerController.playerRedemptionHealth -= ;
                 alphaHit = .1f;
                 Destroy(other.gameObject);
+            }*/
+        }
+
+        if (other.gameObject.tag == "Enemy" && other.gameObject.GetComponent<EnemyMovement>().isBomberDrone)
+        {
+            if (gameManager.roundActive)
+            {
+                playerController.playerHealth -= 5;
+                alphaHit = .1f;
+                //Destroy(other.gameObject);
             }
+        }
+        {
+
         }
     }
 }
