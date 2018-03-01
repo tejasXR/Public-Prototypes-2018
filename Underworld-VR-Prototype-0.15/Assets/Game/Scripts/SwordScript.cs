@@ -20,7 +20,7 @@ public class SwordScript : MonoBehaviour {
     public float trailScaleCurrent;
 
     public AudioSource swordIdle;
-    public AudioSource swordHit;
+    
 
     public float swordIdleVolume;
 
@@ -76,7 +76,7 @@ public class SwordScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
-            swordHit.Play();
+            //
             var enemyBullet = other.gameObject.GetComponent<EnemyBullet>();
             var enemyBulletRb = other.gameObject.GetComponent<Rigidbody>();
             var enemyBulletRend = other.gameObject.GetComponentInChildren<Renderer>();
@@ -97,7 +97,7 @@ public class SwordScript : MonoBehaviour {
             other.transform.rotation = Quaternion.LookRotation(bulletDirection);
             enemyBulletRb.constraints = RigidbodyConstraints.FreezeRotation;
             enemyBulletRb.velocity = bulletDirection * 3f;
-
+            other.gameObject.GetComponent<EnemyBullet>().deflectedBulletSound.Play();
             other.gameObject.tag = "DeflectedBullet";
         }
     }
