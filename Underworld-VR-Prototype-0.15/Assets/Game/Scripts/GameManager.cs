@@ -311,20 +311,14 @@ public class GameManager : MonoBehaviour {
         {
             switch (roundCurrent)
             {
-                ////////////////////////////
+                
                 case 1:
-                    enemiesToSpawn = 20;
-                    enemiesOnScreenMax = 2;
-                    break;
-
-                ////////////////////////////
-                /*case 1:
                     enemiesToSpawn = 3; //Thirty seconds
                     enemiesOnScreenMax = 1;
 
                     //roundUntilNextUpgrade = 1; // Tells us in the next round, player will upgrade
                     //upgradeRound = false;
-                    break;*/
+                    break;
                 case 2:
                     enemiesToSpawn = 10; // A minute
                     enemiesOnScreenMax = 2;
