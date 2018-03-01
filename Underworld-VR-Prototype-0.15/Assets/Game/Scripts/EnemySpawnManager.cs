@@ -138,8 +138,7 @@ public class EnemySpawnManager : MonoBehaviour
 
 
                     enemyProbability[0] = 100; // Light drones
-                    //enemyProbability[1] = 0; // Fast Drones
-                    //enemyProbability[2] = 0; // Heavy Drones
+                   
                     break;
                 case 2:
                     enemySpawnTimerMin = 4f;
@@ -148,8 +147,7 @@ public class EnemySpawnManager : MonoBehaviour
                    
 
                     enemyProbability[0] = 100; // Light drones
-                    //enemyProbability[1] = 20; // Fast Drones
-                    //enemyProbability[2] = 0; // Heavy Drones
+                   
                     break;
                 case 3:
                     enemySpawnTimerMin = 4f;
@@ -159,23 +157,75 @@ public class EnemySpawnManager : MonoBehaviour
 
                     enemyProbability[0] = 50; // Light drones
                     enemyProbability[1] = 50; // Fast Drones
-                    //enemyProbability[2] = 0; // Heavy Drones
+                 
                     break;
                 case 4:
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 5f;
 
-                    enemyProbability[0] = 30; // Light drones
-                    enemyProbability[1] = 70; // Fast Drones
-                    //enemyProbability[2] = 0; // Heavy Drones
+                    enemyProbability[0] = 33; // Light drones
+                    enemyProbability[1] = 66; // Fast Drones
+                   
                     break;
+
                 case 5:
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 5f;
 
-                    enemyProbability[0] = 10; // Light drones
+                    enemyProbability[0] = 25; // Light drones
+                    enemyProbability[1] = 75; // Fast Drones
+                    
+                    break;
+
+                case 6:
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 5f;
+
+                    
                     enemyProbability[1] = 50; // Fast Drones
+                    enemyProbability[2] = 50; // Heavy Drones
+
+                    break;
+
+                case 7:
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 5f;
+
+                    enemyProbability[0] = 30; // Light drones
+                    enemyProbability[1] = 40; // Fast Drones
+                    enemyProbability[2] = 30; // Heavy Drones
+
+
+                    break;
+
+                case 8:
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 5f;
+
+                    enemyProbability[0] = 16; // Light drones
+                    enemyProbability[1] = 16; // Fast Drones
+                    enemyProbability[2] = 16; // Heavy Drones
+                    enemyProbability[3] = 50; // Heavy Drones
+                    break;
+
+                case 9:
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 5f;
+
+                    enemyProbability[0] = 10; // Light drones
+                    enemyProbability[1] = 10; // Fast Drones
                     enemyProbability[2] = 40; // Heavy Drones
+                    enemyProbability[3] = 40; // Heavy Drones
+                    break;
+
+                case 10:
+                    enemySpawnTimerMin = 4f;
+                    enemySpawnTimerMax = 5f;
+
+                    enemyProbability[0] = 10; // Light drones
+                    enemyProbability[1] = 10; // Fast Drones
+                    enemyProbability[2] = 40; // Heavy Drones
+                    enemyProbability[3] = 40; // Heavy Drones
                     break;
             }
         }

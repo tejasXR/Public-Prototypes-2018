@@ -1302,7 +1302,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
   moveSpeed: 7
-  textSolidAlphaTimer: 0
+  textSolidAlphaTimer: 1
 --- !u!114 &114710247283722880
 MonoBehaviour:
   m_ObjectHideFlags: 1

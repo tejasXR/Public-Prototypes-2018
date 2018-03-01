@@ -327,17 +327,43 @@ public class GameManager : MonoBehaviour {
 
                     break;
                 case 3:
-                    enemiesToSpawn = 10; // A minute and a half
+                    enemiesToSpawn = 15; // A minute and a half
+                    enemiesOnScreenMax = 2;
 
                     break;
                 case 4:
                     enemiesToSpawn = 15; //Two minutes
+                    enemiesOnScreenMax = 3;
                     break;
+
                 case 5:
                     enemiesToSpawn = 20; //Three minutes
+                    enemiesOnScreenMax = 3;
                     break;
+
                 case 6:
                     enemiesToSpawn = 30; //5 Minutes
+                    enemiesOnScreenMax = 4;
+                    break;
+
+                case 7:
+                    enemiesToSpawn = 30; //5 Minutes
+                    enemiesOnScreenMax = 4;
+                    break;
+
+                case 8:
+                    enemiesToSpawn = 30; //5 Minutes
+                    enemiesOnScreenMax = 4;
+                    break;
+
+                case 9:
+                    enemiesToSpawn = 30; //5 Minutes
+                    enemiesOnScreenMax = 4;
+                    break;
+
+                case 10:
+                    enemiesToSpawn = 30; //5 Minutes
+                    enemiesOnScreenMax = 4;
                     break;
             }
         }
