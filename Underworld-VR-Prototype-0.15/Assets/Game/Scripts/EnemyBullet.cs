@@ -81,8 +81,9 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" ||/*collision.gameObject.tag == "Shield" ||*/ collision.gameObject.tag == "Bullet" || (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet"))
+        if (collision.gameObject.tag == "Solid" || collision.gameObject.tag == "Player" ||/*collision.gameObject.tag == "Shield" ||*/ collision.gameObject.tag == "Bullet")
         {
+            
             Instantiate(bulletHitEffect, transform.position, transform.rotation);
 
             if (this.gameObject.tag == "DefelctedBullet" && collision.gameObject.tag == "EnemyBullet")
@@ -96,6 +97,13 @@ public class EnemyBullet : MonoBehaviour {
             //print(collision.gameObject.tag);
 
         }
+
+        if (collision.gameObject.tag == "Enemy" && this.gameObject.tag == "DeflectedBullet")
+        {
+            Instantiate(deflectedBulletHitEffect, transform.position, transform.rotation);
+        }
+        
+        
 
         if (collision.gameObject.tag == "Shield" || collision.gameObject.tag == "Bullet")
         {

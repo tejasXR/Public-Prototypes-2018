@@ -96,7 +96,7 @@ public class SwordScript : MonoBehaviour {
 
             other.transform.rotation = Quaternion.LookRotation(bulletDirection);
             enemyBulletRb.constraints = RigidbodyConstraints.FreezeRotation;
-            enemyBulletRb.velocity = bulletDirection * 3f;
+            enemyBulletRb.velocity = bulletDirection * 5f;
             other.gameObject.GetComponent<EnemyBullet>().deflectedBulletSound.Play();
             other.gameObject.tag = "DeflectedBullet";
         }

@@ -67,7 +67,7 @@ public class MusicManager : MonoBehaviour {
         if (timeManager.slowDown)
         {
             //activeMusicLowPass.enabled = true;
-            lowPass = 100;
+            lowPass = 1000;
         }
         else
         {
