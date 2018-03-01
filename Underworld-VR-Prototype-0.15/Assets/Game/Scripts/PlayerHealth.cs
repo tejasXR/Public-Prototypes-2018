@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
     public AudioSource playerHitSound;
     public AudioSource healthLowSound;
 
-
+    //private float chromaticAberration;
 
     // Use this for initialization
     void Start () {
@@ -47,10 +47,18 @@ public class PlayerHealth : MonoBehaviour {
         rendHitbody = hitbodyProjection.GetComponent<Renderer>();
         //rendPlatform = platformTriangle.GetComponent<Renderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
+        //var chromaticAberration = postProfile.chromaticAberration.settings;
+        //chromaticAberration.intensity = Mathf.Lerp(postProfile.chromaticAberration.settings.intensity, 0, Time.deltaTime);
+        //postProfile.chromaticAberration.settings = chromaticAberration;
+
+        
+
+
 
         healthSmooth = Mathf.Lerp(healthSmooth, playerController.playerHealth / (playerController.playerHealthMax * playerController.playerHealthMaxMultiplier), Time.deltaTime * 3f);
 
@@ -130,6 +138,10 @@ public class PlayerHealth : MonoBehaviour {
         if (other.gameObject.tag == "EnemyBullet")
         {
             playerHitSound.Play();
+
+            //var chromaticAberration = postProfile.chromaticAberration.settings;
+            //chromaticAberration.intensity = 1;
+            //postProfile.chromaticAberration.settings = chromaticAberration;
 
             if (gameManager.roundActive)
             {
