@@ -3558,7 +3558,8 @@ MonoBehaviour:
   isDoubleDrone: 0
   isRedemptiionDrone: 0
   isTutorialDrone: 0
-  eyeObject: {fileID: 114296626985765706}
+  eyeObject:
+  - {fileID: 114296626985765706}
   enemyEffectsManager: {fileID: 0}
 --- !u!114 &114455790773693888
 MonoBehaviour:

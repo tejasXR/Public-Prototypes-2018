@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour {
     public bool isRedemptiionDrone;
     public bool isTutorialDrone;
 
-    public EnemyEyeGlow eyeObject;
+    public EnemyEyeGlow[] eyeObject;
 
     public EnemyEffectsManager enemyEffectsManager;
 
@@ -59,14 +59,35 @@ public class EnemyAttack : MonoBehaviour {
             //If the attack timer equals the fire rate, then attack, else keep increasing the timer
             if (enemyAttackTimer <= .25f)
             {
-                eyeObject.beforeAttack = true;
+                if (isDoubleDrone)
+                {
+                    foreach(EnemyEyeGlow eye in eyeObject)
+                    {
+                        eye.beforeAttack = true;
+                    }
+                } else
+                {
+                    eyeObject[0].beforeAttack = true;
+
+                }
             }
 
             if (enemyAttackTimer <= 0 && (enemyMovement.canFire || isRedemptiionDrone))
             {
                 Fire();
-                eyeObject.beforeAttack = false;
-                eyeObject.Flash();
+                if (isDoubleDrone)
+                {
+                    foreach (EnemyEyeGlow eye in eyeObject)
+                    {
+                        eye.beforeAttack = false;
+                        eye.Flash();
+                    }
+                } else
+                {
+                    eyeObject[0].beforeAttack = false;
+                    eyeObject[0].Flash();
+                }
+                
                 // print("fireCalled");
             }
         }

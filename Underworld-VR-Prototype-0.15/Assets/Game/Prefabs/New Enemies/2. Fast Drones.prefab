@@ -166,6 +166,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1096300188074088
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4408635459881742}
+  - component: {fileID: 82367661975991796}
+  m_Layer: 0
+  m_Name: Enemy Flying
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1097804403170874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,6 +1093,19 @@ Transform:
   m_Father: {fileID: 4554203841291738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!4 &4408635459881742
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096300188074088}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4614736033466418}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4410334806094092
 Transform:
   m_ObjectHideFlags: 1
@@ -1258,6 +1287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4181454519068128}
+  - {fileID: 4408635459881742}
   m_Father: {fileID: 4212038825064408}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2832,6 +2862,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82367661975991796
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096300188074088}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d9a8b01ba915beb4cb2aa10eac6be5c7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 0.9
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 250
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82978901173369686
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2998,7 +3108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBulletFireRate: 0.75
   enemyAttackTimer: 0
-  enemyBulletSpeed: 10
+  enemyBulletSpeed: 12
   enemyBulletDamage: 1
   enemyBulletAccuracy: 0.5
   enemyBulletPrefab: {fileID: 1871618839054336, guid: 1f2f088599c9dcd408ff5c043be1b1fc,
@@ -3009,7 +3119,8 @@ MonoBehaviour:
   isDoubleDrone: 0
   isRedemptiionDrone: 0
   isTutorialDrone: 0
-  eyeObject: {fileID: 114043508270886164}
+  eyeObject:
+  - {fileID: 114043508270886164}
   enemyEffectsManager: {fileID: 0}
 --- !u!114 &114197711480782936
 MonoBehaviour:
@@ -3109,7 +3220,7 @@ MonoBehaviour:
   enemyParent: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   enemyMoveTimer: 0
-  enemyMoveSpeed: 0.75
+  enemyMoveSpeed: 0.7
   canFire: 0
   lookDirection: {x: 0, y: 0, z: 0}
   alwaysFacingPlayer: 1

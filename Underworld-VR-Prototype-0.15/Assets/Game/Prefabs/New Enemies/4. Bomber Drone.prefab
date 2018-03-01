@@ -199,6 +199,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1251280000280726
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4063441635426060}
+  - component: {fileID: 82150087016975594}
+  m_Layer: 0
+  m_Name: Enemy Flying
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1315447836985810
 GameObject:
   m_ObjectHideFlags: 1
@@ -524,7 +540,7 @@ GameObject:
   - component: {fileID: 4750460542464876}
   - component: {fileID: 82311538953019478}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: Enemy Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,6 +718,19 @@ Transform:
   m_Father: {fileID: 4219753112665792}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4063441635426060
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251280000280726}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4066364850551074}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4066364850551074
 Transform:
   m_ObjectHideFlags: 1
@@ -713,6 +742,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4750460542464876}
+  - {fileID: 4063441635426060}
   m_Father: {fileID: 4761677853950512}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2051,6 +2081,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82150087016975594
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251280000280726}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d9a8b01ba915beb4cb2aa10eac6be5c7, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 0.8
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 250
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82311538953019478
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2060,7 +2170,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 50c2a3887de39e6479cf50fb8084b5f6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a862c316d4477954f9417510ed9d9eac, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.851
   m_Pitch: 1
@@ -2071,7 +2181,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 100
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2213,7 +2323,8 @@ MonoBehaviour:
   isDoubleDrone: 0
   isRedemptiionDrone: 0
   isTutorialDrone: 0
-  eyeObject: {fileID: 0}
+  eyeObject: []
+  enemyEffectsManager: {fileID: 0}
 --- !u!114 &114178485419918170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2319,9 +2430,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   enemySpawnManager: {fileID: 0}
+  enemyEffectsManager: {fileID: 0}
   player: {fileID: 0}
-  enemyHealth: 5
-  enemyGiveBullets: 25
+  enemyHealth: 30
+  enemyGiveBullets: 50
   explosionPrefab: {fileID: 1587944432538656, guid: 1a96677d1ad2b544c93fae382fd3fc63,
     type: 2}
   explosionTextObj: {fileID: 1245197089580330, guid: dbcfcd7eb28597741b87e9b988bfd3d0,
@@ -2341,7 +2453,7 @@ MonoBehaviour:
   - {fileID: 1899653224087592}
   enemyFlashMat: {fileID: 2100000, guid: 643b265319fbedf46b2e4bff52f05241, type: 2}
   enemyFlashHitDuration: 0.15
-  explosionSound: {fileID: 82311538953019478}
+  enemyHitSound: {fileID: 82311538953019478}
   flash: 0
 --- !u!114 &114854536892417920
 MonoBehaviour:
@@ -5706,7 +5818,7 @@ ParticleSystem:
   lengthInSec: 2.5
   simulationSpeed: 1
   stopAction: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5756,7 +5868,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -986251228
+  randomSeed: -2008088026
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6104,7 +6216,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 25
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -6159,7 +6271,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 4.75, y: 0.92, z: 4.57}
+    m_Scale: {x: 3.054021, y: 0.77345085, z: 4.57}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6268,7 +6380,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
