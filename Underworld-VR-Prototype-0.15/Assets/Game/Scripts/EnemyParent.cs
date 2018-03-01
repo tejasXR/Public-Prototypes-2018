@@ -135,11 +135,7 @@ public class EnemyParent : MonoBehaviour {
                 }*/
 
                 // Add chance for health to regenerate by a point
-                float healthChance = Random.Range(0f, 1f);
-                if (healthChance <= playerController.playerHealthChance)
-                {
-                    playerController.playerHealth++;
-                }
+                
 
                 damage = other.gameObject.GetComponent<Bullet>().damage;
             } else if (other.gameObject.tag == "DeflectedBullet")
@@ -161,8 +157,15 @@ public class EnemyParent : MonoBehaviour {
             if (enemyHealth <= 0)
             {
                 //rb.AddForce(Physics.gravity * .25f);
+               
 
                 StartCoroutine(EnemyExplosion());
+
+                float healthChance = Random.Range(0f, 1f);
+                if (healthChance <= playerController.playerHealthChance)
+                {
+                    playerController.playerHealth++;
+                }
             }
 
             //if (enemyHealth <= 0)
@@ -243,8 +246,7 @@ public class EnemyParent : MonoBehaviour {
 
         Instantiate(explosionPrefab, transform.position, transform.rotation);
 
-        gameManager.enemiesOnScreen--;
-        gameManager.enemiesDestroyed++;
+        
 
         Destroy(this.gameObject);
 
@@ -312,6 +314,12 @@ public class EnemyParent : MonoBehaviour {
 
         //gameManager.enemiesOnScreen--;
         //gameManager.enemiesDestroyed++;
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.enemiesOnScreen--;
+        gameManager.enemiesDestroyed++;
     }
 
 

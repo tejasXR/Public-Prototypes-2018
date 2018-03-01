@@ -134,10 +134,10 @@ public class EnemySpawnManager : MonoBehaviour
                     enemySpawnTimerMin = 4f;
                     enemySpawnTimerMax = 6f;
 
-                    //enemyProbability[0] = 0;
-                    //enemyProbability[1] = 0; // Fast Drones
+                    enemyProbability[0] = 100;
+                    enemyProbability[1] = 100; // Fast Drones
                     enemyProbability[2] = 100;
-                    //enemyProbability[3] = 100;
+                    enemyProbability[3] = 100;
 
 
                     //enemyProbability[0] = 100; // Light drones

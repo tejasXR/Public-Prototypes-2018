@@ -202,8 +202,14 @@ public class EnemyMovement : MonoBehaviour {
         }
 
         int layerMask = 1 << 8;
-
+        RaycastHit hit;
         // Makes sure we don't collide into the player
+        if (!Physics.SphereCast(transform.position, 2f, (targetPosition - transform.position), out hit, Vector3.Distance(transform.position, targetPosition), layerMask))
+        {
+            moveNow = true;
+        }
+
+       /*
         if (!Physics.Raycast (transform.position, (targetPosition - transform.position), Mathf.Infinity, layerMask))
         {
             // if there are no enemies with a 1 unit radius
@@ -211,7 +217,7 @@ public class EnemyMovement : MonoBehaviour {
             {
                 moveNow = true;
             }
-        }
+        }*/
     }
 
     void MoveToPlayer()

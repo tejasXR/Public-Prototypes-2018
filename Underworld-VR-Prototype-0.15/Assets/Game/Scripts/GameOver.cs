@@ -37,7 +37,7 @@ public class GameOver : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        roundsSurvivedText.text = "YOU HAVE SURVIVED UNTIL ROUND" + gameManager.roundCurrent;
+        roundsSurvivedText.text = "YOU HAVE SURVIVED UNTIL ROUND " + gameManager.roundCurrent;
 
         scaleXCurrent = Mathf.Lerp(scaleXCurrent, progress * scaleXOriginal + .5f, Time.deltaTime * 10f);
         progressBar.transform.localScale = new Vector3(scaleXCurrent, progressBar.transform.localScale.y, progressBar.transform.localScale.z);

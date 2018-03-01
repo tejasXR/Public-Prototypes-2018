@@ -1066,7 +1066,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960199627187450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.348, y: 0, z: 0.64}
+  m_LocalPosition: {x: 0.348, y: 0, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4168006591773552}
@@ -1645,7 +1645,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1264283793590602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0.64}
+  m_LocalPosition: {x: -0.05, y: 0, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4168006591773552}
@@ -3830,7 +3830,7 @@ MonoBehaviour:
   enemyBulletSpeed: 8
   enemyBulletDamage: 2
   enemyBulletAccuracy: 0.7
-  enemyBulletPrefab: {fileID: 1871618839054336, guid: 1f2f088599c9dcd408ff5c043be1b1fc,
+  enemyBulletPrefab: {fileID: 1871618839054336, guid: 1fd524baf2b76804ca73cc264e5a0342,
     type: 2}
   enemyBulletSpawns:
   - {fileID: 4919032861705742}
