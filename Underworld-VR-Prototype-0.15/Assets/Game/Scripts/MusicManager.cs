@@ -41,7 +41,7 @@ public class MusicManager : MonoBehaviour {
         {
             //beginningMusicPlayer.Play();
             //playingBeginningMusic = true;
-            beginningMusicVolume = .5f;
+            beginningMusicVolume = .55f;
             activeMusicVolume = 0;
         }
 
@@ -54,7 +54,7 @@ public class MusicManager : MonoBehaviour {
             }
             beginningMusicVolume = 0f;
             //lowPass = 5000;
-            activeMusicVolume = .85f;
+            activeMusicVolume = .95f;
 
         }
 
@@ -71,7 +71,7 @@ public class MusicManager : MonoBehaviour {
         }
         else
         {
-            lowPass = 10000;
+            lowPass = 9000;
             //activeMusicLowPass.enabled = false;
 
         }
