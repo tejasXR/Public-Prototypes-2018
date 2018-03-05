@@ -64,7 +64,7 @@ public class UpgradeProgress : MonoBehaviour {
 
         if (!upgradeMenu.upgradeSelected && upgradeMenu.upgradeDone)
         {
-            image.fillAmount = 0;
+            image.fillAmount = 1;
             textureStrength -= Time.deltaTime;
             if (textureStrength <= 0)
             {
