@@ -1,2 +1,0 @@
-Red : FF0045FF
-Blue : 00C0FFFF
