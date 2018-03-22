@@ -15,6 +15,11 @@ public class TutorialStartUI : MonoBehaviour {
 
     public Color32[] textColor;
 
+    public float progress;
+    public GameObject progressBar;
+    public float scaleXOriginal;
+    public float scaleXCurrent;
+
     private TutorialManager tutorialManager;
 
     private TextMeshPro text;
@@ -33,15 +38,49 @@ public class TutorialStartUI : MonoBehaviour {
         text = GetComponent<TextMeshPro>();
         tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
 
-        text.color = textColor[0];
+        //text.color = textColor[0];
+
+        scaleXOriginal = progressBar.transform.localScale.x - .05f;
+        scaleXCurrent = 0;
+        progress = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        scaleXCurrent = Mathf.Lerp(scaleXCurrent, progress * scaleXOriginal, Time.deltaTime * 10f);
+        progressBar.transform.localScale = new Vector3(scaleXCurrent + .05f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+
+        if (trackedRight.gameObject.activeInHierarchy && trackedLeft.gameObject.activeInHierarchy)
+        {
+            controllerRight = SteamVR_Controller.Input((int)trackedRight.index);
+            controllerLeft = SteamVR_Controller.Input((int)trackedLeft.index);
+
+            if (controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger) && !tutorialStart)
+            {
+                progress = Mathf.Lerp(progress, 1, Time.deltaTime * 2f);
+                //ushort haptic = (ushort)(3000 * progress);
+                controllerRight.TriggerHapticPulse((ushort)(1000 * progress));
+                if (progress >= .98)
+                {
+                    tutorialStart = true;
+                }
+            }
+            else
+            {
+                if (!tutorialStart)
+                {
+                    progress = Mathf.Lerp(progress, 0, Time.deltaTime * 2f);
+                    if (progress <= 0)
+                    {
+                        progress = 0;
+                    }
+                }
+            }
+        }
     }
 
+    /*
     private void OnTriggerStay(Collider other)
     {
         //rend.material = mats[1];
@@ -71,4 +110,5 @@ public class TutorialStartUI : MonoBehaviour {
 
         }
     }
+    */
 }

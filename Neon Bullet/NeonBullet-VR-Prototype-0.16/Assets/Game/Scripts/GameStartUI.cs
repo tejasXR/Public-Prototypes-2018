@@ -39,7 +39,7 @@ public class GameStartUI : MonoBehaviour {
 
         //text.color = textColor[0];
 
-        scaleXOriginal = progressBar.transform.localScale.x;
+        scaleXOriginal = progressBar.transform.localScale.x - .05f;
         scaleXCurrent = 0;
         progress = 0;
     }
@@ -48,7 +48,7 @@ public class GameStartUI : MonoBehaviour {
 	void Update () {
 
         scaleXCurrent = Mathf.Lerp(scaleXCurrent, progress * scaleXOriginal, Time.deltaTime * 10f);
-        progressBar.transform.localScale = new Vector3(scaleXCurrent, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
+        progressBar.transform.localScale = new Vector3(scaleXCurrent + .05f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
         if (trackedRight.gameObject.activeInHierarchy && trackedLeft.gameObject.activeInHierarchy)
         {
@@ -59,7 +59,7 @@ public class GameStartUI : MonoBehaviour {
             {
                 progress = Mathf.Lerp(progress, 1, Time.deltaTime * 2f);
                 //ushort haptic = (ushort)(3000 * progress);
-                controllerLeft.TriggerHapticPulse((ushort)(3000 * progress));
+                controllerLeft.TriggerHapticPulse((ushort)(1000 * progress));
                 if (progress >= .98)
                 {
                     gameStart = true;
@@ -67,14 +67,16 @@ public class GameStartUI : MonoBehaviour {
             }
             else
             {
-                progress = Mathf.Lerp(progress, 0, Time.deltaTime * 2f);
-                if (progress <= 0)
+                if (!gameStart)
                 {
-                    progress = 0;
+                    progress = Mathf.Lerp(progress, 0, Time.deltaTime * 2f);
+                    if (progress <= 0)
+                    {
+                        progress = 0;
+                    }
                 }
             }
         }
-
     }
 
     /*private void OnTriggerStay(Collider other)
