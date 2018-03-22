@@ -47,8 +47,7 @@ public class GameOver : MonoBehaviour {
             controllerRight = SteamVR_Controller.Input((int)trackedRight.index);
             controllerLeft = SteamVR_Controller.Input((int)trackedLeft.index);
 
-            if (controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Touchpad)
-                    || controllerRight.GetPress(SteamVR_Controller.ButtonMask.Touchpad) || controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+            if (controllerLeft.GetPress(SteamVR_Controller.ButtonMask.Trigger) || controllerRight.GetPress(SteamVR_Controller.ButtonMask.Trigger))
             {
                 progress = Mathf.Lerp(progress , 1, Time.deltaTime * 2f);
                 //ushort haptic = (ushort)(3000 * progress);
