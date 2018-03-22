@@ -68,6 +68,7 @@ public class HealthMeter : MonoBehaviour {
     {
         scaleCurrent = 0;
         meterXCurrent = meterXOriginal - scaleOriginal / 2;
+        healthSmoothPercent = 0;
 
         if (isOnSaberSword)
         {
